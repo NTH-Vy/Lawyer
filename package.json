@@ -1,0 +1,18 @@
+{
+  "name": "fc-gulp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development gulp",
+    "build": "cross-env NODE_ENV=development gulp build",
+    "build:prod": "cross-env NODE_ENV=production gulp build"
+  },
+  "author": "FASTCODING Thanh",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "browser-sync": "^2.28.3",
+    "cross-env": "^7.0.3",
+    "gulp": "^4.0.2"
+  }
+}
