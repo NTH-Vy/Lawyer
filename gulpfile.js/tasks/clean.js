@@ -1,9 +1,11 @@
+const del = require('del');
+const config = require('../config').base;
+
 const clean = (cb) => {
-  // body omitted
+  del([config.developDir, config.distributeDir]);
   cb();
 };
 
 module.exports = {
-	clean
+  clean
 };
-

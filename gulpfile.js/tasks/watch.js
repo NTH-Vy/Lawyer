@@ -1,16 +1,33 @@
 const { src, watch, series } = require('gulp');
 const config = require('../config');
 
-const Monitoring = () => {
+const monitoring = () => {
 
   const pug = watch(['src/pug/**/*.pug'].concat(config.html.source.ignore), series('html'));
   pug.on('all', function (event, path) {
     if (event === 'unlink') {
       if (!/^_/.test(path.split('/')[path.split('/').length - 1])) {
-        // var regExpSrc = new RegExp(config.html.source.dir),
-        //   devSrc = path.replace(regExpSrc, config.html.develop.dir).replace(/\.ejs/, '.html'),
-        //   distSrc = path.replace(regExpSrc, config.html.distribute.dir).replace(/\.ejs/, '.html');
-        // del([devSrc, distSrc]);
+        // TODO: Delete file
+      }
+    }
+    console.log(`File ${path} was changed`);
+  });
+
+  const sass = watch(['src/sass/**/*.s*ss'].concat(config.html.source.ignore), series('css'));
+  sass.on('all', function (event, path) {
+    if (event === 'unlink') {
+      if (!/^_/.test(path.split('/')[path.split('/').length - 1])) {
+        // TODO: Delete file
+      }
+    }
+    console.log(`File ${path} was changed`);
+  });
+
+  const js = watch(['src/js/**/*.js'].concat(config.js.source.ignore), series('js'));
+  js.on('all', function (event, path) {
+    if (event === 'unlink') {
+      if (!/^_/.test(path.split('/')[path.split('/').length - 1])) {
+        // TODO: Delete file
       }
     }
     console.log(`File ${path} was changed`);
@@ -19,7 +36,7 @@ const Monitoring = () => {
 };
 
 
-const watchTask = Monitoring;
+const watchTask = monitoring;
 
 module.exports = {
   watch: watchTask

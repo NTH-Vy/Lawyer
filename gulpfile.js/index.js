@@ -1,31 +1,21 @@
-const { registry, series, parallel } = require('gulp');
+const { series, parallel } = require('gulp');
 const { clean } = require('./tasks/clean.js');
-const { html } = require('./tasks/html.js');
+const { html, lintHtml } = require('./tasks/html.js');
+const { css, lintCss } = require('./tasks/css.js');
+const { js, lintJs } = require('./tasks/js.js');
 const { bs } = require('./tasks/browser_sync.js');
 const { watch } = require('./tasks/watch.js');
 
-// // const develop = series(clean, parallel(bs, watch));
-// // const build = series(copy, cssInline, html, parallel(css, images, javascript));
-// const build = series(clean);
-
-// if (process.env.NODE_ENV === 'production') {
-//   exports.build = clean;
-// } else {
-//   exports.build = clean;
-// }
-
-const develop = series(clean, parallel(bs, watch));
-const build = clean;
+const build = series(parallel(html, css, js));
+const develop = series(build, parallel(bs, watch));
+const lint = series(lintHtml, lintCss, lintJs);
 
 module.exports = {
   default: process.env.NODE_ENV === 'production' ? build : develop,
-  bs,
-  html,
   clean,
-  // parallel(
-  //   cssTranspile,
-  //   series(jsTranspile, jsBundle)
-  // ),
-  // parallel(cssMinify, jsMinify),
-  // publish,
-}
+  bs,
+  lint,
+  html,
+  css,
+  js
+};
