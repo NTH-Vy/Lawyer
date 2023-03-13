@@ -1,9 +1,8 @@
 const del = require('del');
 const config = require('../config').base;
 
-const clean = (cb) => {
-  del([config.developDir, config.distributeDir]);
-  cb();
+const clean = () => {
+  return del([config.developDir, config.distributeDir]);
 };
 
 module.exports = {

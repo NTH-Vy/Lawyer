@@ -6,7 +6,7 @@ const { js, lintJs } = require('./tasks/js.js');
 const { bs } = require('./tasks/browser_sync.js');
 const { watch } = require('./tasks/watch.js');
 
-const build = series(parallel(html, css, js));
+const build = series(clean, parallel(html, css, js));
 const develop = series(build, parallel(bs, watch));
 const lint = series(lintHtml, lintCss, lintJs);
 

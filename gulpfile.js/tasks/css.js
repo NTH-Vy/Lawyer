@@ -3,8 +3,10 @@ const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const gulpStylelint = require('gulp-stylelint');
+var sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const config = require('../config').css;
+const fs = require('fs');
 
 const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
@@ -19,17 +21,22 @@ const postCss = process.env.NODE_ENV !== 'development' ?
   ];
 
 const buildCss = () => {
+  if (!fs.existsSync(config.source.dir + '/s*ss')) {
+    return Promise.resolve();
+  }
   return src(cssGlob)
     .pipe(plumber({
       errorHandler: (err) => {
         console.log(err.message);
       }
     }))
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.identityMap())
     .pipe(sass({
-      style: 'expanded',
-      precision: 5
+      outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(postcss(postCss))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(destDir + '/css'));
 };
 
