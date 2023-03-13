@@ -2,7 +2,7 @@ const { src, dest, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const gulpStylelint = require('@ronilaukkarinen/gulp-stylelint');
+const gulpStylelint = require('gulp-stylelint');
 const plumber = require('gulp-plumber');
 const config = require('../config').css;
 
