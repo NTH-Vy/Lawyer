@@ -25,7 +25,10 @@ const buildCss = () => {
         console.log(err.message);
       }
     }))
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      style: 'expanded',
+      precision: 5
+    }).on('error', sass.logError))
     .pipe(postcss(postCss))
     .pipe(dest(destDir + '/css'));
 };
