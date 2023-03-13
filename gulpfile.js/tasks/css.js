@@ -3,6 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const gulpStylelint = require('gulp-stylelint');
+var sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const config = require('../config').css;
 
@@ -25,10 +26,13 @@ const buildCss = () => {
         console.log(err.message);
       }
     }))
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.identityMap())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(postcss(postCss))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(destDir + '/css'));
 };
 

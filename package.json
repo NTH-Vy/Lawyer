@@ -23,6 +23,7 @@
     "gulp-postcss": "^9.0.1",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
     "gulp-stylelint": "https://github.com/ronilaukkarinen/gulp-stylelint.git",
     "sass": "^1.58.3",
     "stylelint": "^15.2.0",
