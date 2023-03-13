@@ -63,5 +63,18 @@ module.exports = {
     distribute: {
       dir: baseConfig.distributeDir
     }
+  },
+  image: {
+    source: {
+      dir: baseConfig.sourceDir + '/img/',
+      glob: [baseConfig.sourceDir + '/img/**/*'],
+      ignore: [].concat(baseConfig.ignore)
+    },
+    develop: {
+      dir: baseConfig.developDir
+    },
+    distribute: {
+      dir: baseConfig.distributeDir
+    }
   }
 };

@@ -3,10 +3,11 @@ const { clean } = require('./tasks/clean.js');
 const { html, lintHtml } = require('./tasks/html.js');
 const { css, lintCss } = require('./tasks/css.js');
 const { js, lintJs } = require('./tasks/js.js');
+const { imagemin } = require('./tasks/image.js');
 const { bs } = require('./tasks/browser_sync.js');
 const { watch } = require('./tasks/watch.js');
 
-const build = series(clean, parallel(html, css, js));
+const build = series(clean, parallel(html, css, js, imagemin));
 const develop = series(build, parallel(bs, watch));
 const lint = series(lintHtml, lintCss, lintJs);
 
@@ -17,5 +18,6 @@ module.exports = {
   lint,
   html,
   css,
-  js
+  js,
+  imagemin
 };
