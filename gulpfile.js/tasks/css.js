@@ -2,7 +2,7 @@ const { src, dest, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const gulpStylelint = require('gulp-stylelint');
+const gulpStylelint = require('@ronilaukkarinen/gulp-stylelint');
 const plumber = require('gulp-plumber');
 const config = require('../config').css;
 
@@ -25,7 +25,9 @@ const buildCss = () => {
         console.log(err.message);
       }
     }))
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      outputStyle: 'expanded'
+    }).on('error', sass.logError))
     .pipe(postcss(postCss))
     .pipe(dest(destDir + '/css'));
 };
