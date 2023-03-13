@@ -3,11 +3,15 @@ const pug = require('gulp-pug');
 const htmlhint = require('gulp-htmlhint');
 const plumber = require('gulp-plumber');
 const config = require('../config').html;
+const fs = require('fs');
 
 const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
 const pugGlob = config.source.glob.concat(config.source.ignore);
 
 const buildHtml = () => {
+  if (!fs.existsSync(config.source.dir + '/pug')) {
+    return Promise.resolve();
+  }
   return src(pugGlob.concat(['!' + config.source.dir + '/pug/_*/**']))
     .pipe(plumber({
       errorHandler: (err) => {

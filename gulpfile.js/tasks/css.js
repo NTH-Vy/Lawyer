@@ -6,6 +6,7 @@ const gulpStylelint = require('gulp-stylelint');
 var sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const config = require('../config').css;
+const fs = require('fs');
 
 const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
@@ -20,6 +21,9 @@ const postCss = process.env.NODE_ENV !== 'development' ?
   ];
 
 const buildCss = () => {
+  if (!fs.existsSync(config.source.dir + '/s*ss')) {
+    return Promise.resolve();
+  }
   return src(cssGlob)
     .pipe(plumber({
       errorHandler: (err) => {
