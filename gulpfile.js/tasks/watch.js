@@ -1,8 +1,10 @@
-const { src, watch, series } = require('gulp');
+const { src, dest, watch, series } = require('gulp');
 const del = require('del');
 const config = require('../config');
 
 const path = require('path');
+
+const destDir = process.env.NODE_ENV === 'production' ? config.base.distributeDir : config.base.developDir;
 
 const monitoring = () => {
 
@@ -45,13 +47,18 @@ const monitoring = () => {
     console.log(`File ${path} was changed`);
   });
 
-  let images = watch(['src/img/**/*'].concat(config.base.ignore), series('imagemin'));
+  let images = watch(['src/img/**/*'].concat(config.base.ignore));
+
   images.on('all', (event, filepath) => {
-    if (event === 'unlink') {
-      var regExpSrc = new RegExp(config.image.source.dir),
-        devSrc = filepath.replace(regExpSrc, config.image.develop.dir),
-        distSrc = filepath.replace(regExpSrc, config.image.distribute.dir);
-      del([devSrc, distSrc]);
+    console.log(event);
+    if (event === 'add' || event === 'change') {
+      src(filepath, { base: config.image.source.dir })
+        .pipe(dest(destDir + '/img'));
+    } else if (event === 'unlink') {
+      const filePathFromSrc = path.relative(path.resolve(config.base.sourceDir), filepath);
+      let devFilePath = path.resolve(config.base.developDir, filePathFromSrc);
+      let distFilePath = path.resolve(config.base.distributeDir, filePathFromSrc);
+      del([devFilePath, distFilePath]);
     }
     console.log(`File ${filepath} was changed`);
   });

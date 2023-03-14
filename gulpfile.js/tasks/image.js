@@ -1,15 +1,11 @@
 const { src, lastRun, dest, series } = require('gulp');
 const kraken = require('gulp-kraken');
-const changed = require('gulp-changed');
 const config = require('../config').image;
 
 const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
 
 const copyImage = () => {
-  return src(config.source.glob.concat(config.source.ignore), {
-    base: config.source.dir
-  })
-    .pipe(changed(config.source.dir + '/img'))
+  return src(config.source.glob.concat(config.source.ignore))
     .pipe(dest(destDir + '/img'));
 };
 
@@ -25,7 +21,8 @@ const compressImage = () => {
     }));
 };
 
-const imagemin = series(copyImage, compressImage);
+// const imagemin = series(copyImage, compressImage);
+const imagemin = series(copyImage);
 
 module.exports = {
   imagemin

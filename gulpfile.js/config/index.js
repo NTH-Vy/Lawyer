@@ -67,7 +67,7 @@ module.exports = {
   },
   image: {
     source: {
-      dir: baseConfig.sourceDir + '/img/',
+      dir: baseConfig.sourceDir + '/img',
       glob: [baseConfig.sourceDir + '/img/**/*'],
       ignore: [].concat(baseConfig.ignore)
     },
