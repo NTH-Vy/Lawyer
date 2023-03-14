@@ -12,7 +12,7 @@ const buildHtml = () => {
   if (!fs.existsSync(config.source.dir + '/pug')) {
     return Promise.resolve();
   }
-  return src(pugGlob.concat(['!' + config.source.dir + '/pug/_*/**']), { since: lastRun(buildHtml) })
+  return src(pugGlob.concat(['!' + config.source.dir + '/pug/_*/**']))
     .pipe(plumber({
       errorHandler: (err) => {
         console.log(err.message);
@@ -27,7 +27,7 @@ const buildHtml = () => {
 };
 
 const lintHtml = () => {
-  return src([config.develop.dir + '/**/*.html'], { since: lastRun(lintHtml) })
+  return src([config.develop.dir + '/**/*.html'])
     .pipe(plumber({
       errorHandler: (err) => {
         console.log(err.message);

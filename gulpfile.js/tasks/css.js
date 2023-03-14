@@ -21,7 +21,7 @@ const postCss = process.env.NODE_ENV !== 'development' ?
   ];
 
 const buildCss = () => {
-  if (!fs.existsSync(config.source.dir + '/s*ss')) {
+  if (!fs.existsSync(config.source.dir + '/sass')) {
     return Promise.resolve();
   }
   return src(cssGlob)

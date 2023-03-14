@@ -2,54 +2,58 @@ const { src, watch, series } = require('gulp');
 const del = require('del');
 const config = require('../config');
 
+const path = require('path');
+
 const monitoring = () => {
 
   const pug = watch(['src/pug/**/*.pug'].concat(config.html.source.ignore), series('html'));
-  pug.on('all', function (event, path) {
+  pug.on('all', function (event, filepath) {
+    console.log(`File ${filepath} was changed`);
     if (event === 'unlink') {
-      if (!/^_/.test(path.split('/')[path.split('/').length - 1])) {
-        var regExpSrc = new RegExp(config.html.source.dir),
-          devSrc = path.replace(regExpSrc, config.html.develop.dir).replace(/\.pug/, '.html'),
-          distSrc = path.replace(regExpSrc, config.html.distribute.dir).replace(/\.pug/, '.html');
-        del([devSrc, distSrc]);
+      const commonPugDirectories = ['_layouts', '_mixins', '_parts'];
+      const filePathFromSrc = path.relative(path.resolve(config.html.source.dir), filepath);
+      const parsedPath = path.parse(filePathFromSrc);
+      const dirName = parsedPath.dir;
+      const containsFolder = commonPugDirectories.some(folder => dirName.includes(folder));
+      if (!containsFolder) {
+        const devFilePath = path.resolve(config.html.develop.dir, filePathFromSrc).replace(/(?:\\|\/)?pug(?:\\|\/)?/, path.sep).replace(/\.pug$/, '.html');
+        const distFilePath = path.resolve(config.html.distribute.dir, filePathFromSrc).replace(/(?:\\|\/)?pug(?:\\|\/)?/, path.sep).replace(/\.pug$/, '.html');
+        del([devFilePath, distFilePath]);
       }
     }
-    console.log(`File ${path} was changed`);
   });
 
-  const sass = watch(['src/sass/**/*.s*ss'].concat(config.html.source.ignore), series('css'));
-  sass.on('all', function (event, path) {
+  const sass = watch(['src/sass/**/*.sass'].concat(config.html.source.ignore), series('css'));
+  sass.on('all', function (event, filepath) {
+    console.log(`File ${filepath} was changed`);
     if (event === 'unlink') {
-      if (!/^_/.test(path.split('/')[path.split('/').length - 1])) {
-        var regExpSrc = new RegExp(config.css.source.dir),
-          devSrc = path.replace(regExpSrc, config.css.develop.dir).replace(/\.sass/, '.css'),
-          distSrc = path.replace(regExpSrc, config.css.distribute.dir).replace(/\.sass/, '.css');
-        del([devSrc, distSrc]);
-      }
+      const filePathFromSrc = path.relative(path.resolve(config.html.source.dir), filepath);
+      const devFilePath = path.resolve(config.css.develop.dir, filePathFromSrc).replace(/(?:\\|\/)?sass(?:\\|\/)?/, path.sep).replace(/\.sass$/, '.css');
+      const distFilePath = path.resolve(config.css.distribute.dir, filePathFromSrc).replace(/(?:\\|\/)?sass(?:\\|\/)?/, path.sep).replace(/\.sass$/, '.css');
+      del([devFilePath, distFilePath]);
     }
-    console.log(`File ${path} was changed`);
   });
 
   const js = watch(['src/js/**/*.js'].concat(config.js.source.ignore), series('js'));
-  js.on('all', function (event, path) {
+  js.on('all', function (event, filepath) {
     if (event === 'unlink') {
       var regExpSrc = new RegExp(config.js.source.dir),
-        devSrc = path.replace(regExpSrc, config.js.develop.dir),
-        distSrc = path.replace(regExpSrc, config.js.distribute.dir);
+        devSrc = filepath.replace(regExpSrc, config.js.develop.dir),
+        distSrc = filepath.replace(regExpSrc, config.js.distribute.dir);
       del([devSrc, distSrc]);
     }
     console.log(`File ${path} was changed`);
   });
 
   let images = watch(['src/img/**/*'].concat(config.base.ignore), series('imagemin'));
-  images.on('all', (event, path) => {
+  images.on('all', (event, filepath) => {
     if (event === 'unlink') {
       var regExpSrc = new RegExp(config.image.source.dir),
-        devSrc = path.replace(regExpSrc, config.image.develop.dir),
-        distSrc = path.replace(regExpSrc, config.image.distribute.dir);
+        devSrc = filepath.replace(regExpSrc, config.image.develop.dir),
+        distSrc = filepath.replace(regExpSrc, config.image.distribute.dir);
       del([devSrc, distSrc]);
     }
-    console.log(`File ${path} was changed`);
+    console.log(`File ${filepath} was changed`);
   });
 
 };

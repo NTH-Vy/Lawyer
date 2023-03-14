@@ -36,7 +36,7 @@ module.exports = {
   css: {
     source: {
       dir: baseConfig.sourceDir,
-      glob: [baseConfig.sourceDir + '/sass/**/*.s*ss'],
+      glob: [baseConfig.sourceDir + '/sass/**/*.sass'],
       ignore: [].concat(baseConfig.ignore)
     },
     develop: {
