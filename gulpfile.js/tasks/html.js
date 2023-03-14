@@ -1,4 +1,4 @@
-const { src, dest, series } = require('gulp');
+const { src, dest, series, lastRun } = require('gulp');
 const pug = require('gulp-pug');
 const htmlhint = require('gulp-htmlhint');
 const plumber = require('gulp-plumber');
@@ -12,7 +12,7 @@ const buildHtml = () => {
   if (!fs.existsSync(config.source.dir + '/pug')) {
     return Promise.resolve();
   }
-  return src(pugGlob.concat(['!' + config.source.dir + '/pug/_*/**']))
+  return src(pugGlob.concat(['!' + config.source.dir + '/pug/_*/**']), { since: lastRun(buildHtml) })
     .pipe(plumber({
       errorHandler: (err) => {
         console.log(err.message);
@@ -27,7 +27,7 @@ const buildHtml = () => {
 };
 
 const lintHtml = () => {
-  return src([config.develop.dir + '/**/*.html'])
+  return src([config.develop.dir + '/**/*.html'], { since: lastRun(lintHtml) })
     .pipe(plumber({
       errorHandler: (err) => {
         console.log(err.message);

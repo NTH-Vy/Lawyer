@@ -15,6 +15,7 @@ module.exports = {
       reloadDelay: 1000,
       reloadDebounce: 1000
     },
+    files: baseConfig.developDir,
     ui: false,
     port: 3000,
     open: 'local',
