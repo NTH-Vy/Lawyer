@@ -6,7 +6,8 @@
     "dev": "cross-env NODE_ENV=development gulp",
     "build": "cross-env NODE_ENV=development gulp",
     "build:prod": "cross-env NODE_ENV=production gulp",
-    "lint": "cross-env NODE_ENV=production gulp lint"
+    "lint": "cross-env NODE_ENV=development gulp lint",
+    "imagemin": "cross-env NODE_ENV=production gulp imagemin"
   },
   "author": "FASTCODING Thanh",
   "license": "UNLICENSED",
@@ -20,13 +21,13 @@
     "gulp-eslint": "^6.0.0",
     "gulp-htmlhint": "^4.0.2",
     "gulp-kraken": "^0.2.0",
-    "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.1",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-stylelint": "https://github.com/ronilaukkarinen/gulp-stylelint.git",
     "sass": "^1.58.3",
+    "spelling": "^2.0.2",
     "stylelint": "^15.2.0",
     "stylelint-config-standard": "^30.0.1"
   }

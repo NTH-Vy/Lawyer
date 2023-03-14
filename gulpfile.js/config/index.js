@@ -22,7 +22,7 @@ module.exports = {
   },
   html: {
     source: {
-      dir: baseConfig.sourceDir,
+      dir: baseConfig.sourceDir + '/pug',
       glob: [baseConfig.sourceDir + '/pug/**/*.pug'],
       ignore: [].concat(baseConfig.ignore)
     },

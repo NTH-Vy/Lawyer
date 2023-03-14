@@ -4,7 +4,6 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const gulpStylelint = require('gulp-stylelint');
 var sourcemaps = require('gulp-sourcemaps');
-const plumber = require('gulp-plumber');
 const config = require('../config').css;
 const fs = require('fs');
 
@@ -25,11 +24,6 @@ const buildCss = () => {
     return Promise.resolve();
   }
   return src(cssGlob)
-    .pipe(plumber({
-      errorHandler: (err) => {
-        console.log(err.message);
-      }
-    }))
     .pipe(sourcemaps.init())
     .pipe(sourcemaps.identityMap())
     .pipe(sass({
@@ -43,11 +37,6 @@ const buildCss = () => {
 
 const lintCss = () => {
   return src([config.develop.dir + '/css/**/*.css'])
-    .pipe(plumber({
-      errorHandler: (err) => {
-        console.log(err.message);
-      }
-    }))
     .pipe(gulpStylelint({
       fix: true,
       reporters: [

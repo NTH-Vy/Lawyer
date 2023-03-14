@@ -1,8 +1,7 @@
 const { src, dest, watch, series } = require('gulp');
 const del = require('del');
-const config = require('../config');
-
 const path = require('path');
+const config = require('../config');
 
 const destDir = process.env.NODE_ENV === 'production' ? config.base.distributeDir : config.base.developDir;
 
@@ -47,10 +46,8 @@ const monitoring = () => {
     console.log(`File ${path} was changed`);
   });
 
-  let images = watch(['src/img/**/*'].concat(config.base.ignore));
-
+  const images = watch(['src/img/**/*.{png,jpg,gif,svg}'].concat(config.base.ignore));
   images.on('all', (event, filepath) => {
-    console.log(event);
     if (event === 'add' || event === 'change') {
       src(filepath, { base: config.image.source.dir })
         .pipe(dest(destDir + '/img'));
@@ -64,7 +61,6 @@ const monitoring = () => {
   });
 
 };
-
 
 const watchTask = monitoring;
 

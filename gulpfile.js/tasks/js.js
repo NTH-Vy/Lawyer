@@ -1,6 +1,5 @@
 const { src, dest, series } = require('gulp');
 const eslint = require('gulp-eslint');
-const plumber = require('gulp-plumber');
 const config = require('../config').js;
 const fs = require('fs');
 
@@ -12,21 +11,11 @@ const buildJs = () => {
     return Promise.resolve();
   }
   return src(jsGlob)
-    .pipe(plumber({
-      errorHandler: (err) => {
-        console.log(err.message);
-      }
-    }))
     .pipe(dest(destDir + '/js'));
 };
 
 const lintJs = () => {
   return src([config.develop.dir + '/js/**/*.js'])
-    .pipe(plumber({
-      errorHandler: (err) => {
-        console.log(err.message);
-      }
-    }))
     .pipe(eslint({
       fix: true
     }))
