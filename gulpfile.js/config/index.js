@@ -7,6 +7,19 @@ const baseConfig = {
 
 module.exports = {
   base: baseConfig,
+  browserSync: {
+    server: {
+      baseDir: baseConfig.developDir,
+      logLevel: 'silent',
+      notify: false,
+      reloadDelay: 1000,
+      reloadDebounce: 1000
+    },
+    files: baseConfig.developDir,
+    ui: false,
+    port: 3000,
+    open: 'local',
+  },
   html: {
     source: {
       dir: baseConfig.sourceDir,
