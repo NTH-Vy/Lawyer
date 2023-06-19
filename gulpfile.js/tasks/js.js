@@ -1,5 +1,6 @@
 const { src, dest, series } = require('gulp');
 const eslint = require('gulp-eslint');
+const prettier = require('gulp-prettier');
 const config = require('../config').js;
 const fs = require('fs');
 
@@ -15,10 +16,13 @@ const buildJs = () => {
 };
 
 const lintJs = () => {
-  return src([config.develop.dir + '/js/**/*.js'])
-    .pipe(eslint({
-      fix: true
+  return src([destDir + '/js/**/*.js'])
+    .pipe(prettier({
+      singleQuote: true,
+      proseWrap: 'never',
+      endOfLine: 'lf'
     }))
+    .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(dest(destDir + '/js'));
