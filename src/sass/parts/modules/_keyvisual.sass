@@ -1,0 +1,54 @@
+@use "../../base/variables" as *
+@use "../../base/mixins" as *
+
+.section-common-keyvisual
+  height: 4rem
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+  z-index: 4
+  .keyvisual-image
+    height: inherit
+    position: absolute
+    top: 0
+    right: 0
+    left: 0
+    bottom: 0
+  .keyvisual-title
+    font-weight: $font-weight
+    background: #fff
+    text-align: center
+    margin-bottom: 0
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    position: relative
+    z-index: 2
+    .text-english
+      font-family: $font-alegreya
+      font-size: .34rem
+      line-height: 1
+      border-bottom: 1px solid #c7c7c7
+      padding: 0 .6rem .15rem
+      margin-bottom: .14rem
+    .text-japanese
+      font-family: $font-serif
+      font-size: .24rem
+      display: block
+
++desktop
+  .section-common-keyvisual
+    .keyvisual-title
+      min-width: 280px
+      min-height: 220px
+      padding: 10px 30px
+
++mobile
+  .section-common-keyvisual
+    margin-top: 0.2rem
+    .keyvisual-title
+      min-width: 1.8rem
+      min-height: 1.8rem
+      padding: .1rem

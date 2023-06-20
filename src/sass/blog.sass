@@ -1,0 +1,195 @@
+@charset "utf-8"
+@use "base/base" as *
+@use "parts/header"
+@use "parts/footer"
+@use "parts/modules/pagination"
+@use "parts/modules/aside"
+@use "parts/modules/keyvisual"
+@use "parts/modules/breadcrumb"
+@use "parts/modules/post_content"
+
+.list-news
+  list-style: none
+  padding: 0
+  &>li
+    border-bottom: 1px solid #000
+  .news-item
+    line-height: 1.6
+  .news-name
+    margin-top: .05rem
+  .news-time
+    margin-right: .12rem
+
+.news-head
+  display: flex
+  align-items: center
+
+.news-item
+  display: block
+  color: $color-default
+  .news-time
+    display: inline-block
+  .news-name
+    display: -webkit-box
+    visibility: visible
+    overflow: hidden
+    text-overflow: ellipsis
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+
+.news-tag
+  font-weight: 500
+  display: inline-block
+  border-radius: 0.05rem
+  color: #fff
+  text-align: center
+  padding: 0 .08rem .01rem
+  line-height: 1.45
+  margin: 0 .05rem .05rem 0
+  min-width: .84rem
+  position: relative
+  .is-mac &,
+  .is-firefox &
+    padding-top: 1px
+  .is-firefox &
+    padding-bottom: 2px
+
+
++desktop
+  .list-news
+    padding: 8px 36px 0 0
+    margin-bottom: 63px
+    &>li
+      padding: .28rem 0
+      margin-bottom: -3px
+    .news-item
+      font-size: .18rem
+      line-height: calc(32 / 18)
+    .news-time
+      font-size: .2rem
+
+    .news-tag
+      top: 2px
+      .is-firefox &
+        top: 3px
+
+  .news-tag
+    font-size: .16rem
+
+  .section-blog
+    margin: 55px 0 100px
+    .wrapper
+      padding: 0
+    .blog-inner
+      display: flex
+      align-items: flex-start
+      justify-content: space-between
+    .blog-content
+      width: 650px
+
++mobile
+  .list-news
+    margin-bottom: .5rem
+    &>li:first-child
+      .news-item
+        padding-top: 0
+    &>li
+      padding: .2rem 0
+    .news-item
+      font-size: .16rem
+    .news-tag
+      top: .02rem
+
+  .news-tag
+    font-size: .15rem
+
+  .section-blog
+    margin-top: 0.3rem
+    .blog-content
+      margin-bottom: .6rem
+
+
+.section-blog.is-detail
+  .detail-inner
+    border-radius: .15rem
+    background: #f7f5f2
+  .detail-heading
+    font-weight: 500
+  .detail-title
+    position: relative
+    font-weight: 500
+    border-bottom: 1px solid #000
+  .pagination-common
+    padding: 0
+  .wp-pager
+    min-width: 100%
+    .prev,
+    .next
+      top: 0
+    .prev
+      left: 0
+    .next
+      right: 0
+  .button-back
+    font-weight: 500
+    color: $color-default
+
++desktop
+  .section-blog.is-detail
+    margin-top: 59px
+    margin-bottom: 90px
+    .aside-common:before
+      top: -27px
+    .detail-inner
+      border-radius: 20px
+      padding: 47px 45px 34px
+      margin-bottom: 20px
+    .aside-common
+      padding-top: 2px
+    .detail-heading
+      margin-bottom: 8px
+      .news-time
+        font-size: .2rem
+        margin-right: 12px
+        position: relative
+        top: 2px
+    .detail-title
+      font-size: .2rem
+      margin-bottom: 42px
+      padding-bottom: 20px
+    .detail-image
+      width: 500px
+      height: 300px
+      margin: 0 auto 39px
+    .button-back
+      font-size: .16rem
+
++mobile
+  .section-blog.is-detail
+    .detail-inner
+      border-radius: .2rem
+      padding: .2rem
+      margin-bottom: .4rem
+    .detail-heading
+      margin-bottom: .1rem
+      .news-time
+        font-size: .16rem
+        margin-right: .1rem
+    .detail-title
+      font-size: .18rem
+      margin-bottom: .3rem
+      padding-bottom: .15rem
+    .detail-image
+      height: 50%
+      margin-bottom: .3rem
+    .button-back
+      font-size: .16rem
+
+@media print
+  .section-blog
+    padding-top: 0
+  .list-news
+    padding-bottom: 100px
+  .pagination-common
+    padding-top: 200px
+

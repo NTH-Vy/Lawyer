@@ -1,0 +1,1138 @@
+@charset "utf-8"
+@use "base/base" as *
+@use "parts/header"
+@use "parts/footer"
+@use "parts/modules/tab"
+@use "parts/modules/title"
+@use "parts/modules/keyvisual"
+@use "parts/modules/breadcrumb"
+@use "parts/modules/table"
+@use "parts/modules/faq"
+@use "parts/modules/button"
+
+.block-common-tab
+  position: relative
+  z-index: 20
+
++desktop
+  .block-common-tab
+    padding-top: 88px
+
++mobile
+  .block-common-tab
+    padding-top: 0.6rem
+
+.section-info-philosophy
+  text-align: center
+  font-family: $font-serif
+  position: relative
+  z-index: 5
+  &::after
+    content: ''
+    position: absolute
+    background: url(../img/info/info_decor.png) no-repeat 0 0 / auto 100%
+    left: 0
+    pointer-events: none
+    z-index: -1
+  .philosophy-title
+    font-weight: 400
+    span
+      display: block
+    .is-english
+      font-family: $font-alegreya
+      color: $color-primary
+  .philosophy-text
+    line-height: calc(32 / 20)
+
++desktop
+  .section-info-philosophy
+    padding-top: 72px
+    padding-bottom: 48px
+    &::after
+      width: 727px
+      height: 582px
+      top: -347px
+    .title-common-primary
+      margin-bottom: 18px
+    .philosophy-title
+      margin-bottom: 39px
+      .is-japan
+        font-size: .4rem
+        margin-bottom: -3px
+      .is-english
+        font-size: .24rem
+    .philosophy-description
+      font-size: .24rem
+      margin-bottom: 20px
+    .philosophy-text
+      font-size: .2rem
+      margin-bottom: 18px
+
++mobile
+  .section-info-philosophy
+    padding-top: 0.6rem
+    padding-bottom: .6rem
+    &::after
+      width: 4rem
+      height: 3rem
+      top: -2rem
+    .philosophy-title
+      margin-bottom: .42rem
+      .is-japan
+        font-size: .21rem
+        margin-bottom: -0.03rem
+      .is-english
+        font-size: .2rem
+    .philosophy-description
+      font-size: .18rem
+      margin-bottom: .2rem
+      text-align: left
+    .philosophy-text
+      margin-bottom: .18rem
+      font-size: .15rem
+      letter-spacing: .1em
+      text-align: left
+      &:last-child
+        margin-bottom: 0
+
+.section-info-career
+  .wrapper
+    position: relative
+    z-index: 20
+  .secret-block
+    background: url("../img/info/secret_bg.jpg") center/cover no-repeat
+  .secret-inner
+    background: rgba(255,255,255,.84)
+  .secret-image
+    img
+      width: 100%
+  .secret-title
+    font-family: $font-serif
+    font-weight: $font-weight
+    border-bottom: 1px solid #a5a5a5
+  .secret-text
+    margin-bottom: 0
+  .career-block
+    position: relative
+    z-index: 0
+    &::before
+      position: absolute
+      content: ""
+      background: center/contain no-repeat
+      background-image: url("../img/info/career_icn_02.png")
+      z-index: -1
+  .career-content
+    font-family: $font-serif
+  .career-title
+    font-weight: 400
+  .career-image
+    clip-path: polygon(13% 3.7%, 77% 0%, 100% 50%, 82% 100%, 19% 98%, 0 63%)
+    overflow: hidden
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+  .career-director
+    .is-name
+      display: inline-block
+  .career-name
+    font-family: $font-sans
+    color: #323232
+    letter-spacing: .05em
+    margin-bottom: 0
+  .career-item
+    border: 1px solid #000
+    .item-title
+      font-weight: $font-weight
+    .item-text
+      margin-bottom: 0
+      font-family: $font-serif
+  .item-title
+    font-family: $font-serif
+    border-bottom: 1px solid #a5a5a5
+  .biography-list
+    display: flex
+    flex-wrap: wrap
+  .qualifications-list
+    padding: 0
+    margin: 0
+    list-style: none
+    >li
+      position: relative
+      &::before
+        content: ""
+        position: absolute
+        left: 0
+        background: #e3e1da
+
++desktop
+  .section-info-career
+    padding-bottom: 54px
+    .secret-block
+      padding: 62px 0 66px
+    .wrapper
+      padding-top: 95px
+    .secret-inner
+      margin: 0 auto
+      padding: 26px 70px 26px 60px
+      border-radius: 15px
+      display: flex
+      width: 958px
+    .title-common-primary
+      margin-bottom: 23px
+    .secret-image
+      flex-shrink: 0
+      margin-right: 48px
+      width: 200px
+    .secret-content
+      flex-grow: 1
+      padding-top: 11px
+    .secret-title
+      margin-bottom: 21px
+      padding-bottom: 16px
+      font-size: .26rem
+    .secret-text
+      font-size: .16rem
+      line-height: calc(30 / 16)
+    .career-block
+      display: flex
+      align-items: center
+      margin-bottom: 54px
+      padding-left: 15px
+      &::before
+        top: -193px
+        right: -12px
+        width: 292px
+        height: 362px
+    .career-image
+      width: 425px
+      height: 399px
+      flex-shrink: 0
+      margin-right: 80px
+    .career-content
+      flex-grow: 1
+      padding-top: 8px
+      padding-bottom: 17px
+    .career-title
+      margin-bottom: 15px
+      font-size: .24rem
+      line-height: calc(36 / 24)
+    .career-text
+      font-size: .2rem
+      line-height: calc(32 / 20)
+      margin-bottom: 26px
+    .career-director
+      font-size: .16rem
+      margin-bottom: 2px
+      .is-name
+        margin-left: 5px
+        font-size: .24rem
+    .career-name
+      font-size: .16rem
+      position: relative
+      top: -7px
+    .career-info
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+      margin: 0 -12px
+      .career-item
+        margin-bottom: 27px
+        &:nth-child(odd)
+          width: 518px
+        &:nth-child(even)
+          width: 485px
+    .career-item
+      padding: 34px 53px 31px
+      border-radius: 15px
+      &.is-full
+        width: 100%!important
+        padding-right: 69px
+      .item-text
+        font-size: .2rem
+    .item-title
+      font-size: .24rem
+      margin-bottom: 21px
+      padding-bottom: 16px
+    .biography-list
+      font-size: .16rem
+      line-height: calc(30 / 16)
+      margin-right: -5px
+    .biography-date,
+    .biography-text
+      margin-bottom: 5px
+    .biography-date
+      width: 94px
+      padding-right: 5px
+    .biography-text
+      width: calc(100% - 94px)
+    .qualifications-list
+      font-size: .16rem
+      line-height: calc(30 / 16)
+      >li
+        padding-left: 22px
+        &::before
+          top: 9px
+          width: 14px
+          height: 14px
+        &:not(:last-child)
+          margin-bottom: 8px
+
++mobile
+  .section-info-career
+    padding-bottom: .5rem
+    .secret-block
+      padding: .6rem .2rem
+    .wrapper
+      padding-top: 0.6rem
+    .secret-inner
+      padding: .25rem .2rem
+      border-radius: .15rem
+    .secret-image
+      width: 1.7rem
+      margin: 0 auto .2rem
+    .secret-title
+      text-align: center
+      margin-bottom: .2rem
+      padding-bottom: .15rem
+      font-size: 0.2rem
+    .secret-text
+      line-height: calc(30 / 16)
+    .career-block
+      margin-bottom: .5rem
+      &::before
+        top: 1.5rem
+        right: -0.9rem
+        width: 1.92rem
+        height: 2.81rem
+    .career-image
+      margin-bottom: .5rem
+      height: 3.05rem
+    .career-title
+      margin-bottom: .15rem
+      font-size: .2rem
+    .career-text
+      margin-bottom: .2rem
+    .career-director
+      margin-bottom: -0.02rem
+      .is-name
+        margin-left: .1rem
+        font-size: .22rem
+    .career-item
+      margin-bottom: .25rem
+      padding: .25rem .2rem
+      border-radius: .15rem
+      .item-text
+        font-size: 0.18rem
+    .item-title
+      margin-bottom: .2rem
+      padding-bottom: .16rem
+      font-size: 0.2rem
+    .biography-list
+      font-size: .16rem
+      line-height: calc(30 / 16)
+      margin-right: -0.05rem
+    .biography-date,
+    .biography-text
+      margin-bottom: .05rem
+    .biography-date
+      width: .9rem
+      padding-right: .05rem
+    .biography-text
+      width: calc(100% - .9rem)
+    .qualifications-list
+      letter-spacing: .04em
+      line-height: calc(30 / 16)
+      >li
+        padding-left: .2rem
+        &::before
+          top: .09rem
+          width: .14rem
+          height: .14rem
+        &:not(:last-child)
+          margin-bottom: .08rem
+
+.section-info-reservation
+  background: #f7f5f2
+  .reservation-block
+    background: #fff
+    border: 1px solid #000
+  .reservation-title
+    font-weight: 400
+    font-family: $font-serif
+    border-bottom: 1px solid #a5a5a5
+  .reservation-sub-title
+    font-family: $font-serif
+    font-weight: 400
+    margin-bottom: 0
+  .reservation-text
+    margin-bottom: 0
+  .reservation-link
+    display: block
+    background-color: #ed8a96
+    color: #fff
+    font-weight: 500
+    text-align: center
+    &::before
+      position: absolute
+      content: ""
+      background: url("../img/info/reservation_icn_schedule.png") center/contain no-repeat
+      pointer-events: none
+  .reservation-system
+    background: #f0eee9
+  .system-title
+    font-family: $font-serif
+    font-weight: 400
+    border-bottom: .02rem solid #fff
+    &::before
+      display: inline-block
+      content: "■"
+      color: #fff
+      top: 0
+  .system-sub-title
+    font-family: $font-serif
+  .system-text
+    margin-bottom: 0
+    display: flex
+    &::before
+      content: "※"
+  .apps-content
+    background: #f0eee9
+  .apps-title
+    font-weight: 400
+    font-family: $font-serif
+    &::before
+      content: "■"
+      color: #fff
+      position: relative
+  .apps-download
+    display: flex
+    .apps-item
+      width: 50%
+      &:nth-child(odd)
+        border-right: 1px solid #d8d8d8
+      &:nth-child(even)
+        text-align: right
+  .apps-image
+    border-radius: .05rem
+    overflow: hidden
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+  .access-text
+    font-family: $font-serif
+  .access-map
+    background: #fff
+    border: 1px solid #000
+    text-align: center
+    cursor: pointer
+  .map-tab
+    text-align: right
+  .map-image
+    display: block
+  .map-link
+    display: inline-block
+    color: #c73c4d
+    position: relative
+    text-decoration: none
+    &::before
+      content: ""
+      left: 0
+      height: 1px
+      background: #c73c4d
+      position: absolute
+    &:hover
+      &::before
+        background: transparent
+  .access-list
+    padding: 0
+    list-style: none
+    .item-title
+      font-weight: 400
+      border-bottom: 1px solid #a5a5a5
+      font-family: $font-serif
+      &::before
+        content: "■"
+        color: #e3e1da
+    .item-text
+      margin-bottom: 0
+    .item-description
+      margin-bottom: 0
+    .is-arrow
+      color: #c7c7c7
+  .access-text
+    .text-small
+      font-size: .16rem
+  .block-common-table
+    background: #f0eee9
+
+  .block-common-table
+    background: #f0eee9
+
++desktop
+  .section-info-reservation
+    padding: 76px 0 52px
+    .wrapper
+      max-width: 970px
+    .title-common-primary
+      margin-bottom: 37px
+    .table-notes
+      margin-bottom: 66px
+    .reservation-block
+      padding: 45px 69px 49px
+      border-radius: 15px
+      margin-bottom: 30px
+    .reservation-title
+      font-size: .26rem
+      margin-bottom: 19px
+      padding-bottom: 14px
+      .is-detail
+        font-size: .22rem
+    .block-inner
+      padding: 0 200px 23px 0
+      position: relative
+      margin-bottom: -3px
+    .reservation-sub-title
+      font-size: .2rem
+      line-height: calc(32 / 20)
+    .reservation-text
+      font-size: .16rem
+      line-height: calc(30 / 16)
+    .reservation-link
+      width: 186px
+      border-radius: 5px
+      font-size: .16rem
+      line-height: calc(20 / 16)
+      position: absolute
+      top: 9px
+      right: 0
+      padding: 47px 10px 13px 22px
+      &::before
+        top: 11px
+        left: 12px
+        width: 99px
+        height: 45px
+    .reservation-system
+      padding: 27px 40px 34px
+    .system-title
+      font-size: .2rem
+      padding-bottom: 16px
+      margin-bottom: 18px
+      &::before
+        position: relative
+        font-size: .18rem
+        left: -1px
+    .system-sub-title
+      font-size: .2rem
+      margin-bottom: 5px
+    .system-text
+      margin-right: -2px
+      font-size: .16rem
+      line-height: calc(30 / 16)
+    .reservation-apps
+      margin-top: 33px
+      display: flex
+      justify-content: space-between
+    .apps-content
+      padding: 18px 43px 18px 48px
+      border-radius: 5px
+      width: 420px
+    .apps-title
+      font-size: .18rem
+      margin-bottom: 15px
+      &::before
+        font-size: .16rem
+        left: -4px
+        top: -1px
+        margin-right: -4px
+    .apps-download
+      .apps-item
+        &:nth-child(odd)
+          .item-image
+            padding-left: 10px
+      .item-image
+        margin-bottom: 20px
+    .apps-image
+      width: 370px
+    .access-wrapper
+      margin: 0 auto
+      width: 750px
+      padding-top: 43px
+      .title-common-primary
+        margin-bottom: 22px
+    .access-text
+      margin-bottom: 22px
+      font-size: .2rem
+      text-align: center
+    .access-map
+      border-radius: 15px
+      margin-bottom: 13px
+      position: relative
+      left: -4px
+    .map-image
+      padding: 28px 49px 30px
+    .map-tab
+      margin-right: 26px
+      margin-bottom: 67px
+    .access-list
+      margin: 0 -13px 0 -10px
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+      >li
+        margin-bottom: 37px
+        width: 362px
+        &:nth-child(even)
+          width: 360px
+        &.is-full
+          width: 100%!important
+      .item-title
+        margin-bottom: 13px
+        padding-bottom: 8px
+        font-size: .24rem
+        &::before
+          font-size: .21rem
+          margin-right: 2px
+          .is-mac &
+            position: relative
+            top: -1px
+      .item-text
+        line-height: calc(28 / 16)
+      .item-description
+        font-size: .18rem
+
++mobile
+  .section-info-reservation
+    padding: .6rem 0
+    .reservation-block
+      padding: .35rem .2rem
+      border-radius: .15rem
+      margin-top: 0.25rem
+      margin-bottom: .3rem
+      &:last-child
+        margin-bottom: 0
+    .reservation-title
+      font-size: 0.22rem
+      margin-bottom: .18rem
+      padding-bottom: .15rem
+      .is-detail
+        font-size: .18rem
+    .access-wrapper
+      padding-top: 0.3rem
+    .block-inner
+      margin-bottom: .3rem
+    .reservation-sub-title
+      font-size: 0.18rem
+      line-height: 1.6
+      letter-spacing: .05em
+    .reservation-text
+      line-height: calc(30 / 16)
+    .reservation-link
+      width: 1.85rem
+      border-radius: .05rem
+      font-size: 0.16rem
+      line-height: 1.25
+      padding: .46rem .1rem .13rem .3rem
+      margin: .15rem auto 0
+      position: relative
+      &::before
+        top: .11rem
+        left: .12rem
+        width: .99rem
+        height: .45rem
+    .reservation-system
+      padding: .25rem .15rem
+    .system-title
+      font-size: 0.18rem
+      padding-left: 0.2rem
+      padding-bottom: .15rem
+      margin-bottom: .17rem
+      position: relative
+      &::before
+        position: absolute
+        left: 0
+        font-size: .18rem
+    .system-sub-title
+      font-size: 0.17rem
+      margin-bottom: .05rem
+    .system-text
+      line-height: calc(30 / 16)
+    .reservation-apps
+      margin-top: .3rem
+    .apps-item
+      &:nth-child(odd)
+        padding-right: .15rem
+      &:nth-child(even)
+        padding-left: .15rem
+        .item-image
+          margin-bottom: .18rem
+          margin-top: .04rem
+      img
+        width: 100%
+    .apps-content
+      margin-bottom: .3rem
+      padding: .18rem .2rem .26rem
+      border-radius: .05rem
+    .apps-title
+      font-size: .17rem
+      margin-bottom: .15rem
+      padding-left: 0.2rem
+      text-indent: -.09rem
+      &::before
+        font-size: .16rem
+        left: -0.04rem
+        top: -0.01rem
+        margin-right: -0.04rem
+    .apps-download
+      .item-image
+        margin-bottom: .15rem
+    .apps-image
+      img
+        width: 100%
+    .access-text
+      margin-bottom: .22rem
+      font-size: .18rem
+      text-align: left
+    .access-map
+      border-radius: .15rem
+      margin-bottom: .15rem
+    .map-image
+      padding: .26rem .2rem
+    .map-tab
+      margin-bottom: .5rem
+    .access-list
+      margin-bottom: 0
+      >li
+        margin-bottom: .37rem
+        &:last-child
+          margin-bottom: 0
+      .item-title
+        margin-bottom: .12rem
+        padding-bottom: .08rem
+        font-size: 0.2rem
+        &::before
+          font-size: .21rem
+          margin-right: .02rem
+      .item-text
+        line-height: calc(28 / 16)
+
+.section-info-clothes
+  &.has-decor-line.is-light::before
+    right: 0
+    left: unset
+  .wrapper
+    position: relative
+  .clothes-block
+    background: #f7f5f2
+    border: 1px solid #e3e1da
+  .clothes-title
+    font-family: $font-serif
+    font-weight: $font-weight
+    text-align: center
+    border-bottom: 1px solid #a5a5a5
+  .clothes-list
+    list-style: none
+    padding: 0
+    margin: 0
+    font-family: $font-serif
+    >li
+      position: relative
+      &::before
+        position: absolute
+        content: ""
+        background: url("../img/info/clothes_icn_tick.png") center/contain no-repeat
+  .clothes-sub-title
+    font-family: $font-serif
+
++desktop
+  .section-info-clothes
+    padding-top: 75px
+    position: relative
+    .wrapper
+      max-width: 930px
+    .title-common-primary
+      margin-bottom: 39px
+    .clothes-block
+      border-radius: 15px
+      padding: 20px 46px 26px
+      margin-bottom: 28px
+      &:last-child
+        margin-bottom: 0
+    .clothes-title
+      font-size: .24rem
+      padding-bottom: 15px
+      margin-bottom: 19px
+    .clothes-list
+      display: flex
+      justify-content: center
+      flex-wrap: wrap
+      font-size: .2rem
+      .detail-text
+        font-size: .16rem
+      >li
+        margin: 0 31px 0 13px
+        &::before
+          top: 4px
+          left: -24px
+          width: 18px
+          height: 15px
+    .clothes-sub-title
+      font-size: .2rem
+      & + .clothes-text
+        margin-top: -20px
+    .clothes-text
+      padding-right: 12px
+      font-size: .16rem
+      line-height: calc(30 / 16)
+      margin-bottom: 14px
+    .clothes-inner
+      padding-left: 26px
+
++mobile
+  .section-info-clothes
+    padding: 0.6rem 0 .28rem
+    .clothes-block
+      border-radius: .15rem
+      padding: .2rem
+      margin-bottom: .28rem
+      &:last-child
+        margin-bottom: 0
+    .clothes-title
+      font-size: .22rem
+      padding-bottom: .15rem
+      margin-bottom: .19rem
+    .clothes-list
+      font-size: .2rem
+      .detail-text
+        font-size: .16rem
+      >li
+        margin: 0 .31rem
+        &::before
+          top: .06rem
+          left: -0.24rem
+          width: .18rem
+          height: .15rem
+    .clothes-sub-title
+      font-size: .2rem
+      & + .clothes-text
+        margin-top: -0.2rem
+    .clothes-text
+      line-height: calc(30 / 16)
+      margin-bottom: .14rem
+
+.section-info-introduction
+  position: relative
+  &::before
+    position: absolute
+    content: ""
+    top: 0
+    right: 0
+    background: center/contain repeat-y
+    background-image: url(../img/info/career_icn_decor.png)
+    height: 100%
+  .wrapper
+    z-index: 2
+    position: relative
+    &::after
+      position: absolute
+      content: ""
+      z-index: -1
+      background: url("../img/info/introduction_icn_decor.png") center/contain no-repeat
+  .introduction-text
+    text-align: center
+    font-family: $font-serif
+  .introduction-slider
+    position: relative
+    z-index: 4
+    .swiper-slide
+      height: 100%
+      img
+        display: block
+        width: 100%
+        height: 100%
+        object-fit: cover
+  .introduction-equipment
+    background: #f7f5f2
+    border: 1px solid #e3e1da
+    position: relative
+    z-index: 4
+  .equipment-title
+    text-align: center
+    font-family: $font-serif
+    font-weight: $font-weight
+    border-bottom: 1px solid #a5a5a5
+  .equipment-list
+    list-style: none
+    padding: 0
+    margin: 0
+    .equipment-image
+      img
+        width: 100%
+        height: 100%
+        object-fit: cover
+    .equipment-text
+      text-align: center
+      margin-bottom: 0
+      font-family: $font-serif
+
++desktop
+  .section-info-introduction
+    padding-top: 156px
+    padding-bottom: 104px
+    &::before
+      width: 120px
+    .wrapper
+      &::after
+        top: -118px
+        left: -200px
+        width: 727px
+        height: 582px
+    .title-common-primary
+      margin-bottom: 11px
+    .introduction-text
+      padding-left: 43px
+      margin-bottom: 51px
+      font-size: .2rem
+    .introduction-slider
+      height: 300px
+      margin-bottom: 124px
+      .swiper-slide
+        width: 400px
+    .introduction-equipment
+      border-radius: 15px
+      padding: 54px 98px 7px
+      margin: 0 auto
+      width: 912px
+    .equipment-title
+      font-size: .24rem
+      margin-bottom: 50px
+      padding-bottom: 15px
+    .equipment-list
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+      >li
+        width: 332px
+        margin-bottom: 36px
+      .equipment-image
+        height: 249px
+        margin-bottom: 10px
+      .equipment-text
+        font-size: .16rem
+        line-height: calc(26 / 16)
+
++mobile
+  .section-info-introduction
+    padding: .6rem 0
+    &::before
+      width: 0.49rem
+      bottom: 0
+    .wrapper
+      &::after
+        top: -1.18rem
+        left: -2rem
+        width: 7.27rem
+        height: 5.82rem
+    .introduction-text
+      margin-bottom: .5rem
+      font-size: .2rem
+      text-align: left
+    .introduction-slider
+      margin: 0 .25rem .8rem
+    .introduction-equipment
+      border-radius: .15rem
+      padding: .3rem .2rem .15rem
+      margin: 0 .24rem
+    .equipment-title
+      font-size: 0.2rem
+      margin-bottom: .4rem
+      padding-bottom: .1rem
+    .equipment-list
+      >li
+        margin-bottom: .3rem
+      .equipment-image
+        height: 2.2rem
+        margin-bottom: .1rem
+
+.section-info-faq
+  background: #f0eee9
+  .content-inner
+    background: #f7f5f2
+    border: 1px solid #e3e1da
+  .card-list
+    list-style: none
+    margin-bottom: 0
+    .is-square
+      color: #e3e1da
+  .card-logo
+    background: #fff
+    border: 1px solid #e3e1da
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+
++desktop
+  .section-info-faq
+    padding: 72px 0 41px
+    .title-common-primary
+      margin-bottom: 37px
+    .block-common-faq
+      margin: 0 auto 30px
+      width: 1000px
+      padding: 33px 50px 40px
+      border-radius: 15px
+    .faq-question
+      &::before
+        top: -9px
+    .faq-answer
+      font-size: .2rem
+      line-height: calc(32 / 20)
+      padding-left: 37px
+    .content-inner
+      padding: 28px 24px 16px
+      border-radius: 5px
+      margin: 15px 28px 0 39px
+    .card-list
+      line-height: calc(26 / 16)
+      padding-left: 24px
+      display: flex
+      flex-wrap: wrap
+      font-size: .16rem
+      >li
+        margin-right: 36px
+        margin-bottom: 18px
+    .card-logo
+      padding: 19px 0 12px 22px
+      border-radius: 5px
+      .logo-item
+        margin: 0 8px 3px 6px
+    .faq-inform
+      margin-bottom: -5px
+      padding-left: 38px
+      margin-top: 6px
+
++mobile
+  .section-info-faq
+    padding: .6rem 0
+    .block-common-faq
+      margin-bottom: .3rem
+      &:last-child
+        margin-bottom: 0
+    .content-inner
+      padding: .2rem .15rem
+      border-radius: .05rem
+      margin-top: .15rem
+    .card-list
+      line-height: calc(26 / 16)
+      padding-left: 0
+      >li
+        text-indent: -1.2em
+        margin-left: 0.2rem
+        margin-bottom: .18rem
+    .card-logo
+      padding: .1rem .24rem
+      border-radius: .05rem
+      justify-content: space-between
+      img
+        width: 100%
+      .logo-item
+        margin: 0 .07rem .03rem
+        width: 25%
+    .faq-inform
+      margin-bottom: 0
+      padding-left: .32rem
+      margin-top: .06rem
+
+.section-info-partner
+  text-align: center
+  .partner-text
+    font-family: $font-serif
+  .partner-list
+    list-style: none
+    background: #f7f5f2
+    border: 1px solid #e3e1da
+  .partner-link
+    display: inline-block
+    position: relative
+    text-decoration: none
+    color: #a8843b
+    font-family: $font-serif
+    &::before
+      content: ""
+      position: absolute
+      background: #e3e1da
+    &::after
+      content: ""
+      position: absolute
+      height: 1px
+      background: #a8843b
+    &:hover
+      &::after
+        background-color: transparent
+
++desktop
+  .section-info-partner
+    padding: 74px 0 64px
+    .title-common-primary
+      margin-bottom: 23px
+    .partner-text
+      margin-bottom: 10px
+      font-size: .24rem
+      line-height: calc(36 / 24)
+    .partner-description
+      font-size: .16rem
+      line-height: calc(30 / 16)
+      margin-bottom: 32px
+    .partner-list
+      display: flex
+      flex-wrap: wrap
+      padding: 27px 10px 24px 56px
+      margin: 0 50px
+      border-radius: 15px
+      >li
+        margin: 0 23px
+    .partner-link
+      padding-left: 10px
+      font-size: .2rem
+      &::before
+        top: 5px
+        left: -15px
+        width: 15px
+        height: 15px
+      &::after
+        bottom: 3px
+        left: 10px
+        right: 26px
+
++mobile
+  .section-info-partner
+    padding: .6rem 0 .2rem
+    .partner-text
+      margin-bottom: .1rem
+      font-size: .21rem
+      line-height: calc(36 / 24)
+      text-align: left
+    .partner-description
+      line-height: calc(30 / 16)
+      margin-bottom: .32rem
+      text-align: left
+    .partner-list
+      padding: .15rem .2rem .15rem .32rem
+      margin: 0
+      border-radius: .15rem
+      text-align: left
+      >li
+        margin-bottom: .05rem
+    .partner-link
+      padding-left: .1rem
+      text-align: left
+      &::before
+        top: .03rem
+        left: -0.15rem
+        width: .15rem
+        height: .15rem
+      &::after
+        bottom: .03rem
+        left: .1rem
+        right: .26rem

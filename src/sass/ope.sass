@@ -1,0 +1,412 @@
+@charset "utf-8"
+@use "base/base" as *
+@use "parts/header"
+@use "parts/footer"
+@use "parts/modules/keyvisual"
+@use "parts/modules/breadcrumb"
+@use "parts/modules/title"
+@use "parts/modules/tab"
+@use "parts/modules/box"
+
+.section-common-keyvisual
+  .keyvisual-title
+    .text-english
+      padding-right: .2rem
+      padding-left: .2rem
+
+
+.section-ope-about
+  background: url("../img/ope/background_ope_01.jpg") center/cover no-repeat
+  .about-content,
+  .content-detail
+    display: flex
+  .content-detail
+    flex-direction: column
+    font-weight: 400
+  .content-thumbnail
+    overflow: hidden
+    img
+      width: 100%
+      border-radius: .05rem
+  .detail-large
+    font-family: $font-serif
+  .detail-small
+    line-height: calc( 30 / 16 )
+
++desktop
+  .section-ope-about
+    .wrapper
+      width: 810px
+      padding: 80px 0 34px
+    .title-common-primary
+      margin-bottom: 28px
+    .content-thumbnail
+      width: 240px
+      height: 170px
+      flex: 1 0 auto
+    .about-content
+      margin-bottom: 7px
+    .content-detail
+      padding-right: 25px
+    .detail-large
+      font-size: .24rem
+      line-height: calc( 36 / 24 )
+      margin-bottom: 3px
+
+    .block-common-tab
+      .wrapper-normal
+        width: unset
+      .tab-heading
+        margin-bottom: 8px
+      .tab-list
+        &>li
+          width: 240px
+          height: 80px
+          margin: 0 30px 30px 0
+          &:nth-child(3n)
+            margin-right: 0
+        .is-first
+          width: 270px
+
++mobile
+  .section-ope-about
+    .wrapper
+      padding-top: .4rem
+      padding-bottom: .6rem
+    .about-content
+      flex-direction: column
+      margin-bottom: .3rem
+    .detail-large
+      font-size: .2rem
+      line-height: calc(32 / 20)
+      margin-bottom: .1rem
+    .content-thumbnail
+      height: 50%
+
+    .block-common-tab
+      padding-right: 0
+      padding-left: 0
+
+
+.section-ope-surgery
+  .surgery-detail
+    font-family: $font-serif
+
++desktop
+  .section-ope-surgery
+    padding: 75px 0 69px
+    .title-common-primary
+      margin-bottom: 20px
+    .surgery-detail
+      font-size: .2rem
+      line-height: calc( 32 / 20 )
+      margin-bottom: 18px
+      text-align: center
+      .is-size
+        font-size: .16rem
+
++mobile
+  .section-ope-surgery
+    padding: .6rem 0
+    .surgery-detail
+      letter-spacing: .1em
+      margin-bottom: .15rem
+
+
+.list-ope-note
+  list-style: none
+  background-color: #f0eee9
+  padding-left: 0
+  border-radius: .05rem
+  .note-item
+    font-family: $font-serif
+    color: #c73c4d
+    position: relative
+    &::before
+      display: block
+      position: absolute
+      content: ''
+      background: url("../img/common/icn_common_tick.svg") center/cover no-repeat
+
++desktop
+  .list-ope-note
+    width: 800px
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    margin: 0 auto 45px
+    padding: 19px 10px 11px
+    .note-item
+      font-size: .22rem
+      padding-left: 23px
+      margin: 0 16px 10px 0
+      &::before
+        width: 17px
+        height: 15px
+        top: 9px
+        left: 1px
+
++mobile
+  .list-ope-note
+    padding: .15rem .15rem .05rem
+    .note-item
+      padding-left: .2rem
+      margin-bottom: .05rem
+      &::before
+        width: .13rem
+        height: .1rem
+        top: .06rem
+        left: .04rem
+      &:last-child
+        margin-bottom: 0
+
+
+.list-ope-surgery
+  padding-left: 0
+  margin: 0
+  list-style: none
+  .item-title
+    font-family: $font-serif
+    font-weight: 400
+    border-bottom: 1px solid #a5a5a5
+  .item-content
+    display: flex
+  .content-detail,
+  .item-detail
+    line-height: calc(30 / 16)
+  .item-detail
+    margin-bottom: 0
+  .content-thumbnail,
+  .item-thumbnail
+    img
+      width: 100%
+  .item-thumbnail
+    img
+      border-radius: .05rem
+  .is-highlight
+    color: #a8843b
+    font-weight: 500
+  .detail-mincho
+    font-family: $font-serif
+    display: block
+  .item-highlight
+    line-height: calc( 32 / 16 )
+    background-color: #f0eee9
+    border-radius: .05rem
+    margin-bottom: 0
+  .item-wrapper,
+  .wrapper-content
+    display: flex
+  .wrapper-content
+    flex-direction: column
+    .detail-zenkaku
+      line-height: calc( 30 / 16 )
+  .box-title
+    .is-small
+      font-size: .2rem
+
++desktop
+  .list-ope-surgery
+    .block-common-box
+      padding: 45px 69px 51px
+    .surgery-item
+      &:not(:last-child)
+        margin-bottom: 40px
+    .surgery-item.is-first
+      .content-detail.is-modify
+        margin-bottom: 0
+    .box-title
+      padding-bottom: 15px
+      margin-bottom: 21px
+    .content-detail
+      padding-right: 35px
+      margin-bottom: 0
+    .content-detail.is-modify
+      padding-right: 0
+    .content-thumbnail
+      flex: 1 0 auto
+      width: 216px
+      height: 148px
+      margin: 11px 12px 0 0
+    .item-content
+      margin-bottom: 4px
+    .detail-mincho
+      font-size: .2rem
+      line-height: calc( 32 / 20 )
+      margin-bottom: 10px
+      padding-right: 20px
+    .item-highlight
+      font-size: .16rem
+      padding: 16px 35px 21px
+    .is-modify
+      margin-bottom: 35px
+    .item-thumbnail
+      flex: 1 0 auto
+      width: 250px
+      margin: 2px -20px 0 0
+    .wrapper-content
+      padding-right: 50px
+      .detail-mincho
+        padding-right: 0
+        margin-bottom: 1px
+      .item-title
+        margin-bottom: 18px
+
++mobile
+  .list-ope-surgery
+    .surgery-item
+      margin-bottom: .4rem
+      &:last-child
+        margin-bottom: 0
+    .item-content
+      flex-direction: column
+    .content-thumbnail
+      margin-bottom: .2rem
+    .content-thumbnail
+      height: 50%
+    .content-detail
+      font-size: .16rem
+    .content-detail.is-modify
+      margin-bottom: .15rem
+    .detail-mincho
+      line-height: calc(30 / 16)
+      margin-bottom: .2rem
+    .item-highlight
+      padding: .15rem
+      font-size: .14rem
+    .item-thumbnail.sm
+      margin-bottom: .2rem
+
+
+.section-ope-abortion
+  background-color: #f7f5f2
+  .abortion-about
+    text-align: center
+    font-weight: 400
+    .is-font
+      font-family: $font-serif
+  .abortion-detail,
+  .abortion-compare
+    font-weight: 400
+  .abortion-detail
+    line-height: calc( 32 / 16 )
+  .abortion-compare
+    background-color: #f0eee9
+  .compare-title
+    font-family: $font-serif
+    font-weight: 400
+  .table-wrapper
+    display: flex
+    border: 1px solid #656565
+  th,
+  td
+    border-color: #656565
+    margin-bottom: 0
+    text-align: center
+  th
+    font-weight: 500
+    color: #fff
+  td
+    background-color: #fff
+    font-weight: 400
+  .is-pink
+    background-color: $color-primary
+  .is-dark
+    background-color: #a5a5a5
+
++desktop
+  .section-ope-abortion
+    padding: 76px 0 80px
+    .title-common-primary
+      margin-bottom: 16px
+    .abortion-about
+      font-size: .2rem
+      margin-bottom: 13px
+      .is-font,
+      .is-size
+        font-size: .24rem
+        line-height: calc(36 / 24)
+      .is-font.is-top
+        margin-bottom: -5px
+        display: inline-block
+    .abortion-detail,
+    .abortion-compare,
+    .block-common-box
+      width: 860px
+      margin: 0 auto
+    .abortion-detail
+      font-size: .16rem
+      margin-bottom: 27px
+    .abortion-compare
+      padding: 24px 70px 16px
+      margin-bottom: 66px
+    .compare-title
+      font-size: .24rem
+      margin-bottom: .16rem
+    th
+      width: 50%
+      font-size: .18rem
+      padding: 7px 20px 8px
+    td
+      font-size: .16rem
+      padding: 9px 10px
+    .block-common-box
+      padding: 45px 60px 49px
+      .box-title
+        font-size: .24rem
+        padding-bottom: 7px
+        margin-bottom: 11px
+
++mobile
+  .section-ope-abortion
+    padding: .6rem 0
+    .abortion-about
+      font-size: .16rem
+      margin-bottom: 0.2rem
+      .is-font
+        font-size: .2rem
+    .abortion-detail
+      font-size: .16rem
+    .abortion-compare
+      padding: .2rem .15rem
+      margin-bottom: .2rem
+    .block-table
+      max-width: 100%
+      table
+        width: max-content
+        align-items: stretch
+        margin-bottom: 0
+    .compare-title
+      font-size: .2rem
+      margin-bottom: 0.15rem
+    th,
+    td
+      width: 3rem
+      padding: .1rem
+    th
+      font-size: .18rem
+    td
+      font-size: .16rem
+
+
+.section-ope-laparoscopy
+  .laparoscopy-detail
+    font-family: $font-serif
+    line-height: calc( 36 / 24 )
+
++desktop
+  .section-ope-laparoscopy
+    padding: 62px 0 72px
+    .title-common-primary
+      margin-bottom: 16px
+    .laparoscopy-detail
+      text-align: center
+      width: 630px
+      margin: 0 auto
+      font-size: .24rem
+
++mobile
+  .section-ope-laparoscopy
+    padding-top: .6rem
+    .laparoscopy-detail
+      margin-bottom: 0

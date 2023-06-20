@@ -1,0 +1,781 @@
+@charset "utf-8"
+@use "base/base" as *
+@use "parts/header"
+@use "parts/footer"
+@use "parts/modules/keyvisual"
+@use "parts/modules/breadcrumb"
+@use "parts/modules/title"
+@use "parts/modules/faq"
+@use "parts/modules/box"
+@use "parts/modules/button"
+@use "parts/modules/problems"
+
+
+.section-prevention-receive
+  .receive-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .receive-text
+    font-family: $font-serif
+    p
+      &:last-child
+        margin-bottom: 0
+
++desktop
+  .section-prevention-receive
+    background: url(../img/prevention/receive_bg.jpg) no-repeat 0 0 /cover
+    .wrapper
+      padding: 76px 0 75px
+    .title-common-primary
+      margin-bottom: 24px
+    .receive-heading
+      font-size: .24rem
+      text-align: center
+      margin-bottom: 15px
+    .receive-text
+      font-size: .2rem
+      line-height: calc(36 / 20)
+      text-align: center
+      p
+        margin-bottom: 16px
+
++mobile
+  .section-prevention-receive
+    background: url(../img/prevention/sp/receive_bg.jpg) no-repeat 0 0 /cover
+    .wrapper
+      padding-top: 40px
+      padding-bottom: 60px
+    .receive-heading
+      font-size: .22rem
+      text-align: left
+      margin-bottom: 10px
+    .receive-text
+      font-size: .18rem
+      text-align: left
+      p
+        margin-bottom: 10px
+
+.section-prevention-cancer
+  .cancer-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .cancer-text
+    line-height: calc(30 / 16)
+  .cancer-button
+    text-align: right
+  .cancer-link
+    font-weight: 500
+    color: #a8843b
+    text-decoration: underline
+    text-underline-offset: 9px
+    transition: .26s ease
+    position: relative
+    &::after
+      content: ''
+      position: absolute
+      background: url(../img/prevention/cancer_decor.svg) no-repeat center / auto 100%
+      width: 17px
+      height: 17px
+      top: 4px
+      right: 0
+    &:hover
+      text-decoration: none
+
+  .block-common-box
+    .cancer-list
+      list-style: none
+      padding: 0
+      margin: 0
+      &>li
+        background: #f7f5f2
+        border: 1px solid #e3e1da
+        border-radius: 5px
+    .cancer-item-heading
+      font-family: $font-serif
+      display: block
+      position: relative
+      &::before
+        content: '■'
+        position: absolute
+        color: #e3e1da
+        font-size: $font-size
+        left: 0
+    .cancer-item-text
+      line-height: calc(30 / 16)
+    .cancer-notes
+      text-align: right
+
++desktop
+  .section-prevention-cancer
+    padding: 70px 0
+    .title-common-primary
+      margin-bottom: 20px
+    .cancer-heading
+      font-size: .24rem
+      line-height: calc(36 / 24)
+      text-align: center
+      margin-bottom: 10px
+    .cancer-text
+      text-align: center
+      padding: 0 110px
+      margin-bottom: 58px
+    .cancer-image
+      width: 918px
+      padding-right: 63px
+      margin: 0 auto 46px
+      display: flex
+      justify-content: space-between
+      .item-image.is-second
+        padding-top: 3px
+    .cancer-button
+      margin-right: 83px
+      margin-bottom: 66px
+    .cancer-link
+      padding-right: 22px
+
+    .block-common-box
+      padding-right: 69px
+      padding-left: 69px
+      padding-bottom: 34px
+      .box-title
+        padding-bottom: 6px
+        margin-bottom: 25px
+      .cancer-list
+        display: flex
+        flex-wrap: wrap
+        &>li
+          width: calc((100% - 20px) / 2)
+          padding: 19px 22px 17px 31px
+          margin: 0 20px 20px 0
+          &:nth-child(even)
+            margin-right: 0
+      .cancer-item-heading
+        font-size: .2rem
+        padding-left: 19px
+        margin-bottom: 2px
+        &::before
+          top: 3px
+      .cancer-notes
+        margin: 6px 9px 0 0
+
++mobile
+  .section-prevention-cancer
+    padding: .6rem 0
+    .cancer-heading
+      font-size: .22rem
+      text-align: left
+      margin-bottom: .15rem
+    .cancer-text
+      text-align: left
+      margin-bottom: .3rem
+    .cancer-image
+      margin-bottom: .15rem
+      .item-image.is-second
+        margin: 0 12px
+      .item-image
+        img
+          width: 100%
+      .item-image:not(:last-child)
+        margin-bottom: .3rem
+    .cancer-button
+      margin-bottom: .5rem
+    .cancer-link
+      padding-right: .22rem
+
+    .block-common-box
+      .cancer-group
+        margin: .3rem 0
+      .cancer-list
+        display: flex
+        flex-wrap: wrap
+        &>li
+          padding: .25rem .15rem
+          &:not(:last-child)
+            margin-bottom: .15rem
+      .cancer-item-heading
+        font-size: .18rem
+        letter-spacing: .15em
+        padding-left: .25rem
+        margin-bottom: .05rem
+        &::before
+          top: .02rem
+      .cancer-notes
+        padding-left: 0.5rem
+        margin-top: .1rem
+        margin-bottom: 0
+
+
+.section-prevention-symptom
+  .wrapper-normal
+    position: relative
+    z-index: 20
+    &::after,
+    &::before
+      content: ''
+      position: absolute
+      z-index: -1
+      pointer-events: none
+    &::after
+      background: url(../img/common/decor_common_01.png) no-repeat 0 0 /auto 100%
+    &::before
+      background: url(../img/prevention/prevention_bg.png) no-repeat 0 0 /auto 100%
+  .block-common-box
+    &:last-child
+      margin-bottom: 0
+  .box-title
+    position: relative
+    &::before
+      content: '■'
+      position: absolute
+      color: #e3e1da
+  .symptom-intro
+    font-family: $font-serif
+  .symptom-button
+    background: #f7f5f2
+    border: 1px solid #e3e1da
+    border-radius: .05rem
+    display: flex
+    align-items: center
+  .symptom-link
+    font-weight: 500
+    color: #a8843b
+    position: relative
+    &::after
+      content: ''
+      position: absolute
+      background: url(../img/prevention/cancer_decor.svg) no-repeat center / auto 100%
+      right: 0
+  .symptom-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+    border-bottom: 1px solid #a5a5a5
+  .symptom-list
+    list-style: none
+    padding: 0
+    margin: 0
+    font-family: $font-serif
+    background: #f7f5f2
+    border: 1px solid #e3e1da
+    border-radius: .05rem
+    &>li:not(:last-child)
+      margin-bottom: .03rem
+
+  .block-common-faq
+    background: #f0eee9
+    padding-bottom: .37rem
+    .faq-inform
+      line-height: calc(30 / 16)
+      margin-top: .02rem
+
+  .block-common-problems
+    border-radius: .05rem
+
++desktop
+  .section-prevention-symptom
+    padding: 72px 0 57px
+    .wrapper-normal
+      padding: 0 12px
+      &::after,
+      &::before
+        width: 727px
+        height: 582px
+      &::after
+        top: -213px
+        left: -188px
+      &::before
+        right: -188px
+        bottom: -78px
+    .title-common-primary
+      margin-bottom: 39px
+    .block-common-box
+      padding: 39px 69px 53px
+      margin-bottom: 40px
+    .box-title
+      padding-left: 30px
+      padding-bottom: 4px
+      margin-bottom: 21px
+      &::before
+        top: 2px
+        left: 1px
+        font-size: .26rem
+        .is-mac &
+          top: 3px
+    .symptom-intro
+      font-size: .2rem
+      line-height: calc(32 / 20)
+      margin-bottom: 10px
+    .button-common-tertiary
+      margin-bottom: 26px
+    .symptom-button
+      min-height: 60px
+      padding: 15px 31px
+      margin: 0 8px 29px -4px
+    .symptom-link
+      padding-right: 28px
+      &::after
+        width: 17px
+        height: 17px
+        top: 4px
+    .symptom-heading
+      font-size: .24rem
+      padding-bottom: 15px
+      margin-bottom: 10px
+      .is-small
+        font-size: .2rem
+    .symptom-list
+      font-size: .18rem
+      min-height: 150px
+      padding: 17px 25px 5px
+      margin-right: 15px
+      margin-bottom: 16px
+
+  .block-common-box
+    .box-title
+        font-size: .28rem
+
+  .block-common-box.is-second,
+  .block-common-box.is-third
+    .box-title
+      padding-bottom: 6px
+      .is-small
+        font-size: .24rem
+
+  .block-common-box.is-second
+    .symptom-intro
+      padding-right: 2px
+      margin-bottom: 4px
+    .box-text
+      margin-bottom: 16px
+    .symptom-heading
+      margin-top: 23px
+    .symptom-button
+      margin: 26px 0 -3px 2px
+
+  .block-common-box.is-third
+    padding-bottom: 48px
+    .symptom-intro
+      margin-bottom: 9px
+    .box-text
+      margin-bottom: 16px
+    .symptom-heading
+      margin-top: 27px
+    .block-common-problems
+      padding: 21px 76px 13px 46px
+      margin-top: 20px
+      .problems-list
+        width: unset
+        &>li
+          margin-bottom: 6px
+
++mobile
+  .section-prevention-symptom
+    padding: .6rem 0
+    .wrapper-normal
+      &::after,
+      &::before
+        width: 3rem
+        height: 2.5rem
+      &::after
+        top: .36rem
+        left: 0
+      &::before
+        right: 0
+        bottom: 0
+    .block-common-box
+      margin-bottom: .3rem
+    .box-title
+      padding-left: .3rem
+      padding-bottom: .11rem
+      margin-bottom: .21rem
+      &::before
+        top: 0
+        left: .02rem
+    .symptom-intro
+      font-size: .18rem
+      margin-bottom: .1rem
+    .button-common-tertiary
+      margin: 0 -.02rem .15rem
+    .symptom-button
+      font-size: .14rem
+      height: .6rem
+      padding: .17rem .15rem .15rem
+      margin-bottom: .15rem
+    .symptom-link
+      &:after
+        position: relative
+        display: inline-block
+        width: .14rem
+        height: .14rem
+        top: 0.02rem
+        right: -.1rem
+    .symptom-heading
+      font-size: .2rem
+      padding-bottom: .1rem
+      margin-bottom: .1rem
+      .is-small
+        font-size: .18rem
+    .symptom-list
+      font-size: .16rem
+      padding: .25rem .15rem
+      margin-bottom: .15rem
+      &>li
+        text-indent: -.15rem
+        margin-left: .15rem
+
+  .block-common-box.is-second
+    .box-text
+      margin-bottom: .1rem
+    .symptom-heading
+      margin-top: .18rem
+
+  .block-common-box.is-third
+    .box-text
+      margin-bottom: .1rem
+    .symptom-heading
+      margin-top: .15rem
+    .block-common-problems
+      margin-top: .2rem
+      .problems-list > li:last-child
+        margin-bottom: 0
+
+
+.section-prevention-vaccine
+  .vaccine-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .vaccine-text
+    line-height: calc(30 / 16)
+  .vaccine-quote
+    background: #f7f5f2
+    border: 1px solid #e3e1da
+    border-radius: .05rem
+    .quote-head
+      border-bottom: 1px solid #e3e1da
+      padding-bottom: .12rem
+      margin-bottom: .1rem
+      display: flex
+      align-items: center
+    .quote-tag
+      line-height: 1.2
+      width: .86rem
+      min-height: .26rem
+      color: #fff
+      background: #bc9e61
+      border-radius: .13rem
+      padding: .03rem .02rem
+      margin-right: .12rem
+      display: flex
+      align-content: center
+      justify-content: center
+    .quote-text
+      line-height: calc(30 / 16)
+      margin-bottom: 0
+  .vaccine-source
+    font-weight: 500
+    line-height: calc(30 / 16)
+    color: #a8843b
+  .source-name
+    display: block
+  .source-link
+    text-decoration: underline
+    text-underline-offset: .1rem
+    transition: .26s ease
+    color: #a8843b
+    position: relative
+    &::after
+      content: ''
+      background: url(../img/prevention/cancer_decor.svg) no-repeat center /auto 100%
+      width: .17rem
+      height: .17rem
+    &:hover
+      text-decoration: none
+
++desktop
+  .section-prevention-vaccine
+    padding: 75px 0 80px
+    .title-common-primary
+      margin-bottom: 14px
+    .vaccine-heading
+      font-size: .2rem
+      text-align: center
+      margin-bottom: 18px
+    .vaccine-text
+      padding: 0 68px
+      margin-bottom: 16px
+    .vaccine-quote
+      width: 865px
+      min-height: 156px
+      padding: 20px 35px
+      margin: 0 auto 39px
+      .quote-text
+        margin-right: -2px
+    .vaccine-source
+      text-align: center
+      margin-bottom: 39px
+      position: relative
+      left: -9px
+    .source-link:after
+      position: absolute
+      top: 4px
+      right: -20px
+
++mobile
+  .section-prevention-vaccine
+    padding: .6rem 0 .3rem
+    .vaccine-heading
+      font-size: .18rem
+      text-align: left
+      margin-bottom: .15rem
+    .vaccine-text
+      margin-bottom: .15rem
+    .vaccine-quote
+      padding: .25rem .15rem
+      margin-bottom: .4rem
+    .vaccine-source
+      text-align: left
+      margin-bottom: .4rem
+    .source-link:after
+      position: relative
+      display: inline-block
+      bottom: -.05rem
+      right: -.1rem
+
+
+.section-prevention-check
+  background: #f7f5f2
+  .check-title
+    font-family: $font-serif
+    font-weight: $font-weight
+  .check-button
+    font-family: $font-serif
+    background: #ffebee
+    border: 1px solid $color-primary
+    border-radius: .05rem
+  .check-link
+    color: $color-default
+    width: 100%
+    height: 100%
+    display: block
+  .link-heading
+    color: #c73c4d
+    text-align: center
+    display: block
+  .link-list
+    list-style: none
+    padding: 0
+    margin: 0
+    display: flex
+    flex-wrap: wrap
+    &>li
+      text-align: center
+      border-radius: .05rem
+      background: #fff
+      display: flex
+      align-items: center
+      justify-content: center
+  .button-common-primary
+    background: #f0eee9
+    border: none
+
++desktop
+  .section-prevention-check
+    padding: 23px 0 80px
+    .title-common-primary
+      margin-bottom: 12px
+    .check-title
+      font-size: .2rem
+      line-height: calc(32 / 20)
+      text-align: center
+      margin-bottom: 12px
+    .check-text
+      text-align: center
+      margin-bottom: 46px
+    .check-button
+      width: 890px
+      min-height: 215px
+      margin: 0 auto 50px
+    .check-link
+      padding: 30px 15px 15px
+    .link-heading
+      font-size: .24rem
+      text-align: center
+      margin-bottom: 20px
+    .link-list
+      width: 800px
+      margin: 0 auto
+      &>li
+        font-size: .2rem
+        line-height: calc(28 / 20)
+        width: 180px
+        min-height: 87px
+        margin: 0 20px 20px 0
+        &:nth-child(4)
+          margin-right: 0
+      .is-modify
+        width: 200px
+
++mobile
+  .section-prevention-check
+    padding: .3rem 0 .6rem
+    .check-title
+      font-size: .18rem
+      text-align: left
+      margin-bottom: .15rem
+    .check-text
+      text-align: left
+      margin-bottom: .2rem
+    .check-button
+      margin-bottom: .3rem
+    .check-link
+      padding: .25rem .15rem
+    .link-heading
+      font-size: .2rem
+      text-align: left
+      margin-bottom: .2rem
+    .link-list
+      font-size: .14rem
+      &>li
+        width: calc((100% - .1rem) / 2)
+        padding: .1rem
+        margin-right: .1rem
+        margin-bottom: .1rem
+        &:nth-child(even)
+          margin-right: 0
+
+
+.section-prevention-about
+  background: #f7f5f2
+  position: relative
+  z-index: 20
+  .about-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .about-table
+    line-height: calc(24 / 16)
+    table
+      border: none
+      margin-bottom: 0
+    th, td
+      border-color: #656565
+    th
+      font-weight: 500
+      color: #fff
+      padding: 0.11rem 0.19rem 0.09rem
+    td
+      background: #fff
+      padding: 0.22rem 0.26rem 0.23rem 0.25rem
+    th.is-first
+      background: $color-primary
+      width: 4.3rem
+    th.is-second
+      background: #a5a5a5
+    td.is-left
+      background: #ffebee
+  .table-list
+    list-style: none
+    padding: 0
+    margin: 0
+    &>li
+      position: relative
+      &::before
+        content: '・'
+        position: absolute
+        font-size: inherit
+        top: 0
+        left: 0
+      &:not(:last-child)
+        margin-bottom: .06rem
+  .about-text
+    line-height: calc(24 / 16)
+  .about-button
+    font-weight: 500
+    color: #a8843b
+    text-decoration: underline
+    transition: .26s ease
+    display: inline-block
+    position: relative
+    &::after
+      content: ''
+      position: absolute
+      background: url(../img/prevention/cancer_decor.svg) no-repeat center / auto 100%
+    &:hover
+      text-decoration: none
+  .block-common-problems
+    background: #f0eee9
+    .problems-list
+      width: 100%
+
++desktop
+  .section-prevention-about
+    padding: 70px 0
+    .wrapper
+      width: 926px
+    .title-common-primary
+      margin-bottom: 16px
+    .about-heading
+      font-size: .24rem
+      text-align: center
+      margin-bottom: 36px
+    .about-table
+      margin-bottom: 17px
+      position: relative
+      left: -2px
+      .is-big
+        font-size: .18rem
+      .is-big.is-modify
+        display: inline-block
+        margin-bottom: 7px
+    .table-list
+      &>li
+        padding-left: 20px
+    .about-text
+      margin-bottom: 15px
+    .about-button
+      text-underline-offset: 8px
+      margin-bottom: 56px
+      top: -2px
+      &::after
+        top: 6px
+        right: -18px
+        width: 17px
+        height: 17px
+    .block-common-problems
+      padding: 31px 0 22px 53px
+      .problems-list
+        padding-left: 3px
+        &>li
+          margin-bottom: 5px
+      .info-problems
+        margin-bottom: 14px
+
++mobile
+  .section-prevention-about
+    padding: .6rem 0 .3rem
+    .about-heading
+      font-size: .22rem
+      text-align: left
+      margin-bottom: .18rem
+    .about-table
+      margin-bottom: .2rem
+      .is-big
+        font-size: .18rem
+    .table-list
+      &>li
+        padding-left: .15rem
+    .about-text
+      margin-bottom: .1rem
+    .about-button
+      text-underline-offset: .05rem
+      margin-bottom: .3rem
+      &::after
+        width: .15rem
+        height: .15rem
+        position: relative
+        display: inline-block
+        bottom: -.02rem
+        right: -.1rem
+    .about-table
+      width: 100%
+      overflow: hidden
+      table
+        width: max-content

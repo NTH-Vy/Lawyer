@@ -1,0 +1,483 @@
+@charset "utf-8"
+@use "base/base" as *
+@use "parts/header"
+@use "parts/footer"
+@use "parts/modules/keyvisual"
+@use "parts/modules/breadcrumb"
+@use "parts/modules/title"
+@use "parts/modules/problems"
+@use "parts/modules/box"
+@use "parts/modules/button"
+
+.block-common-problems
+  .problems-list
+    .is-small
+      font-size: .16rem
+
+.section-menopause-post
+  background: #f7f5f2
+  .wrapper
+    position: relative
+    z-index: 0
+    &::before,
+    &::after
+      z-index: -1
+      position: absolute
+      content: ""
+      background: center/contain no-repeat
+    &::before
+      background-image: url("../img/menopause/post_icn_01.png")
+    &::after
+      background-image: url("../img/menopause/post_icn_02.png")
+  .post-description,
+  .post-text
+    font-family: $font-serif
+  .post-description
+    margin-bottom: 0
+  .post-about
+    background: #fff
+    border: 1px solid #000
+  .about-title
+    font-family: $font-serif
+    font-weight: 400
+    border-bottom: 1px solid #a5a5a5
+  .about-text
+    font-family: $font-serif
+  .about-list
+    list-style: none
+    border: 2px solid #f0eee9
+    background: #f7f5f2
+    font-family: $font-serif
+    >li
+      position: relative
+      &::before
+        position: absolute
+        content: ""
+        left: 0
+        background: center/contain no-repeat
+        background-image: url("../img/menopause/post_icn_check.png")
+  .about-sub-title
+    font-family: $font-serif
+    font-weight: $font-weight
+    &::before
+      display: inline-block
+      content: ""
+      position: relative
+      background: #e3e1da
+  .about-modal
+    position: relative
+  .about-image
+    display: block
+  .modal-open
+    cursor: pointer
+    position: absolute
+    background: #f0eee9 url("../img/menopause/post_icn_zoom.png") top .14rem center/33px 31px no-repeat
+    color: $color-default
+    font-size: .14rem
+    text-align: center
+    border-radius: 50%
+    text-decoration: underline
+    text-underline-offset: 3px
+    transition: .26s ease
+    &:hover
+      text-decoration: none
+  .about-reference
+    margin-bottom: 0
+
++desktop
+  .section-menopause-post
+    padding: 0 0 88px
+    .wrapper
+      padding-top: 80px
+      &::before,
+      &::after
+        width: 727px
+        height: 582px
+      &::before
+        top: 38px
+        left: -200px
+      &::after
+        bottom: -88px
+        right: -201px
+    .title-common-primary
+      margin-bottom: 16px
+    .post-description,
+    .post-text
+      width: 784px
+      margin: 0 auto
+    .post-description
+      font-size: .2rem
+      line-height: calc(32/ 20)
+    .post-text
+      font-size: .18rem
+      line-height: calc(30 / 18)
+      margin-bottom: 38px
+    .post-about
+      border-radius: 15px
+      padding: 46px 69px 1px
+      margin: 0 35px
+    .about-title
+      font-size: .24rem
+      padding-bottom: 15px
+      margin-bottom: 20px
+    .about-text
+      font-size: .18rem
+      margin-bottom: 14px
+    .about-list
+      padding: 30px 52px 23px
+      margin-bottom: 11px
+      border-radius: 5px
+      font-size: .18rem
+      >li
+        padding-left: 24px
+        &:not(:last-child)
+          margin-bottom: 9px
+        &::before
+          top: 3px
+          width: 18px
+          height: 15px
+    .button-common-tertiary
+      margin-bottom: 35px
+    .about-sub-title
+      font-size: .2rem
+      margin-bottom: 28px
+      &::before
+        width: 14px
+        height: 13px
+        margin-right: 7px
+        left: 3px
+        top: -1px
+    .about-modal
+      padding-left: 10px
+      margin: -33px -10px 0
+    .modal-open
+      top: -1px
+      right: 33px
+      width: 110px
+      height: 110px
+      padding-top: 49px
+    .about-reference
+      font-size: .15rem
+      position: relative
+      bottom: 27px
+
++mobile
+  .section-menopause-post
+    padding-bottom: 0.6rem
+    .wrapper
+      padding-top: 0.3rem
+      &::before,
+      &::after
+        width: 6.17rem
+        height: 4.12rem
+      &::before
+        top: -0.23rem
+        left: -3.18rem
+      &::after
+        bottom: -0.6rem
+        right: -2.01rem
+    .post-description
+      font-size: .18rem
+      line-height: calc(32/ 20)
+    .post-text
+      line-height: calc(30 / 18)
+      margin-bottom: .3rem
+    .post-about
+      border-radius: .15rem
+      padding: .3rem .2rem
+    .about-title
+      font-size: 0.2rem
+      padding-bottom: .1rem
+      margin-bottom: .2rem
+    .about-text
+      margin-bottom: .14rem
+    .about-list
+      padding: .25rem .2rem
+      margin-bottom: .11rem
+      border-radius: .05rem
+      >li
+        padding-left: .24rem
+        &:not(:last-child)
+          margin-bottom: .09rem
+        &::before
+          top: .06rem
+          width: .18rem
+          height: .15rem
+    .button-common-tertiary
+      margin-bottom: .3rem
+    .about-sub-title
+      font-size: 0.18rem
+      margin-bottom: .28rem
+      margin-left: 0.2rem
+      text-indent: -.2rem
+      &::before
+        width: .14rem
+        height: .13rem
+        margin-right: .07rem
+        left: .03rem
+    .about-modal
+      padding-left: .1rem
+      margin-bottom: .09rem
+    .about-image
+      width: 100%
+    .modal-open
+      top: -0.11rem
+      right: .03rem
+      width: .5rem
+      height: .5rem
+      background-size: .23rem auto
+
+.section-menopause-info
+  font-family: $font-serif
+  .info-text
+    font-family: $font-sans
+  .info-important
+    text-align: center
+    color: #c73c4d
+    position: relative
+    &::before,
+    &::after
+      content: ""
+      position: absolute
+      background: #c73c4d
+      width: 1px
+    &::before
+      transform: rotate(-26deg)
+    &::after
+      transform: rotate(27deg)
+  .treatment-inner
+    border: 1px solid #000
+  .treatment-image
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      border-radius: .05rem
+  .treatment-title
+    font-family: $font-serif
+    font-weight: $font-weight
+    border-bottom: 1px solid #a5a5a5
+  .treatment-block
+    background: #f4f2ef
+  .type-text
+    margin-bottom: 0
+  .treatment-text
+    font-family: $font-sans
+    margin-bottom: 0
+
++desktop
+  .section-menopause-info
+    padding: 63px 0 76px
+    .block-common-problems
+      margin-bottom: 43px
+      padding-left: 49px
+      .info-problems
+        padding-left: 7px
+        margin-bottom: 18px
+      .problems-list
+        width: 410px
+        li.is-modify
+          margin-right: -110px
+    .title-common-primary
+      margin-bottom: 18px
+    .info-title
+      font-size: .24rem
+      line-height: calc(36 / 24)
+      margin: 0 120px 8px
+      text-align: center
+    .info-text
+      line-height: calc(30 / 16)
+      margin: 0 43px 32px
+    .info-important
+      font-size: .22rem
+      margin-bottom: 19px
+      padding: 0 95px
+      &::before,
+      &::after
+        top: 5px
+        bottom: 1px
+      &::before
+        left: 82px
+      &::after
+        right: 80px
+    .treatment-inner
+      padding: 36px 38px 38px 59px
+      border-radius: 15px
+      display: flex
+      justify-content: space-between
+    .treatment-content
+      width: 605px
+    .treatment-image
+      width: 249px
+      height: 329px
+      margin-top: 41px
+    .treatment-title
+      font-size: .24rem
+      padding-bottom: 5px
+      margin-bottom: 25px
+    .treatment-sub-title
+      font-size: .19rem
+      margin-bottom: 10px
+    .treatment-block
+      padding: 14px 27px 13px
+      border-radius: 5px
+      margin-bottom: 14px
+    .treatment-type
+      font-size: .19rem
+      margin-bottom: 3px
+    .type-text
+      padding-left: 4px
+      font-size: .17rem
+    .treatment-text
+      line-height: calc(30 / 16)
+      margin-right: -3px
+
++mobile
+  .section-menopause-info
+    padding: .6rem 0
+    .block-common-problems
+      margin-bottom: 0.3rem
+    .info-title
+      font-size: 0.2rem
+      line-height: 1.5
+      margin-bottom: .08rem
+      text-align: left
+    .info-text
+      line-height: calc(30 / 16)
+      margin-bottom: .3rem
+    .info-important
+      font-size: 0.17rem
+      margin-bottom: .2rem
+      padding: 0 .3rem
+      &::before,
+      &::after
+        top: .2rem
+        bottom: .2rem
+      &::before
+        left: .1rem
+      &::after
+        right: .1rem
+    .treatment-inner
+      padding: .3rem .15rem
+      border-radius: .15rem
+    .treatment-content
+      margin-bottom: .3rem
+    .treatment-image
+      img
+        width: 100%
+    .treatment-title
+      font-size: 0.2rem
+      padding-bottom: .05rem
+      margin-bottom: .2rem
+    .treatment-sub-title
+      font-size: .17rem
+      margin-bottom: .1rem
+    .treatment-block
+      padding: .15rem .1rem
+      border-radius: .05rem
+      margin-bottom: .14rem
+    .treatment-type
+      font-size: $font-size
+      margin-bottom: .03rem
+    .type-text
+      padding-left: .04rem
+      font-size: .15rem
+    .treatment-text
+      line-height: calc(30 / 16)
+    .block-common-problems
+      .problems-list
+        letter-spacing: 0
+
+.section-menopause-discomfort
+  background: #f7f5f2
+  font-family: $font-sans
+  .discomfort-title
+    font-weight: 400
+    font-family: $font-serif
+  .discomfort-text
+    font-family: $font-sans
+  .treatment-title
+    font-weight: 400
+    font-family: $font-serif
+    border-bottom: 1px solid #a5a5a5
+  .treatment-description
+    font-family: $font-serif
+  .treatment-text
+    font-family: $font-sans
+    margin-bottom: 0
+  .block-common-problems
+    background: #f0eee9
+
++desktop
+  .section-menopause-discomfort
+    padding: 76px 0 100px
+    .title-common-primary
+      margin-bottom: 23px
+    .block-common-problems
+      margin-bottom: 30px
+      padding-bottom: 32px
+      padding-right: 62px
+      padding-left: 51px
+      .info-problems
+        padding-left: 7px
+        margin-bottom: 18px
+      .problems-list
+        width: 432px
+        &>li
+          margin-right: -28px
+    .discomfort-title
+      font-size: .24rem
+      width: 640px
+      margin: 0 auto 12px
+      line-height: calc(30 / 24)
+      text-align: center
+      .is-detail
+        font-size: .2rem
+    .discomfort-text
+      line-height: calc(30 / 16)
+      margin: 0 22px 27px 20px
+    .block-common-box
+      padding: 47px 69px 49px
+    .box-title
+      padding-bottom: 4px
+      margin-bottom: 14px
+    .box-text
+      font-size: .2rem
+      margin-bottom: 5px
+    .treatment-description
+      font-size: .2rem
+      margin-bottom: 10px
+
++mobile
+  .section-menopause-discomfort
+    padding: .6rem 0
+    .block-common-problems
+      margin-bottom: .3rem
+    .discomfort-title
+      font-size: 0.18rem
+      margin-bottom: .15rem
+      line-height: calc(30 / 24)
+      text-align: left
+      .is-detail
+        font-size: .16rem
+    .discomfort-text
+      line-height: calc(30 / 16)
+      margin-bottom: .2rem
+    .block-common-box
+      padding: .3rem .2rem
+      border-radius: .15rem
+    .box-title
+      font-size: 0.2rem
+      padding-bottom: .06rem
+      margin-bottom: .1rem
+    .box-text
+      font-size: .18rem
+      margin-bottom: .1rem
+    .treatment-description
+      font-size: .17rem
+      margin-bottom: .1rem
+    .block-common-problems
+      .problems-list
+        letter-spacing: 0
+
+

@@ -1,1 +1,514 @@
 @charset "utf-8"
+@use "../base/mixins" as *
+@use "../base/variables" as *
+
+.info-social
+  list-style: none
+  padding: 0
+  margin: 0
+  display: flex
+  flex-wrap: wrap
+  &>li:not(:first-child)
+    margin-left: .08rem
+  .social-item
+    display: inline-block
+
+header
+  position: relative
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 2
+    pointer-events: none
+
+  .is-header-sticky
+    opacity: 1 !important
+    pointer-events: auto
+    transform: translateY(0)
+
++desktop
+  header
+    &::before
+      background: url(../img/common/header_decor.png) no-repeat 0 0 / auto 100%
+      width: 500px
+      height: 600px
+
++mobile
+  header
+    &::before
+      background: url(../img/common/sp/header_decor.png) no-repeat 0 0 / 3.75rem 13rem
+      width: 100%
+      height: 100%
+
+header.header-top
+  width: 100%
+  position: absolute
+  z-index: 1010
+  &::before
+    display: none
+
++desktop
+  header.header-top
+    min-width: $width
+
+
+.header-clone
+  opacity: 0 !important
+  pointer-events: none
+
+.header-wrapper
+  position: relative
+  .logo-image
+    display: inline-block
+    position: relative
+    z-index: 4
+  .header-info
+    position: relative
+
+
++desktop
+  .header-wrapper
+    min-width: $width
+    .block-common-header
+      min-height: 231px
+      padding: 35px 116px 15px 188px
+      display: flex
+      justify-content: space-between
+      position: relative
+      z-index: 10
+    .header-logo
+      position: relative
+      top: -7px
+    .header-info
+      display: flex
+      align-items: flex-start
+    .info-text
+      font-size: .14rem
+      line-height: calc(20 / 14)
+      padding-top: 16px
+      margin-right: 17px
+      margin-bottom: 0
+    .list-common-contact
+      margin-bottom: 18px
+      &>li:not(:first-child)
+        margin-left: 15px
+    .info-social
+      justify-content: flex-end
+
++mobile
+  .header-wrapper
+    margin-left: 0 !important
+    .block-common-header
+      display: flex
+      align-items: center
+      justify-content: space-between
+      min-height: 1.7rem
+      padding: .1rem .25rem 0 .12rem
+    .info-social
+      justify-content: center
+    .social-item
+      width: .44rem
+      img
+        width: 100%
+    .logo-image
+      width: 1.7rem
+      img
+        width: 100%
+
+.header-menu
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  min-height: 100%
+  height: 100vh
+  color: $color-default
+  z-index: 1010
+  display: none
+  .menu-wrapper
+    height: 100%
+  .menu-inner
+    height: 100%
+    overflow-y: auto
+    -ms-overflow-style: none
+    scrollbar-width: none
+    &::-webkit-scrollbar
+      display: none
+  .header-home
+    font-weight: 500
+    a
+      color: $color-default
+      display: inline-block
+  .home-logo
+    display: flex
+    align-items: center
+    justify-content: center
+  .header-list,
+  .header-navbar
+    list-style: none
+    padding: 0
+    margin: 0
+    a
+      color: $color-default
+  .header-heading
+    border-bottom: 1px solid $color-default
+    .text-big
+      font-weight: 500
+
++desktop
+  .header-menu
+    min-width: $width
+    background: url(../img/common/decor_common_line.png) repeat-y 0 0/1.2rem auto, url(../img/common/decor_common_line.png) repeat-y right 0/120px auto
+    background-color: #f7f5f2
+    .logo-menu
+      width: 230px
+    .menu-inner
+      width: 958px
+      margin: 0 auto 24px
+      display: flex
+      align-items: flex-start
+    .block-common-header
+      position: relative
+      z-index: 10
+      min-height: 222px
+    .button-menu
+      right: 40px
+      top: 34px
+      .has-menu &
+        span
+          margin-top: -14px
+    .header-home
+      font-size: 0.19rem
+      width: 130px
+    .home-text
+      display: block
+      margin-bottom: 9px
+    .header-navigation
+      width: 788px
+      margin-bottom: 2px
+    .header-heading
+      pointer-events: none
+      padding-bottom: 16px
+      margin-bottom: 21px
+      .text-big
+        font-size: .22rem
+      .text-small
+        font-size: .18rem
+    .header-list
+      display: flex
+      flex-wrap: wrap
+      align-items: flex-start
+      justify-content: space-between
+      &>li
+        width: 300px
+        &:nth-child(2),
+        &:nth-child(4)
+          width: 420px
+      &>li:not(:last-child)
+        margin-bottom: 59px
+    .header-navbar
+      &>li:not(:last-child)
+        margin-bottom: 12px
+    .navbar-wrapper
+      display: flex
+      align-items: flex-start
+      justify-content: space-between
+      .header-navbar
+        &>li
+          width: 200px
+    .contact-tel
+      pointer-events: none
+
++mobile
+  .header-menu
+    padding: .94rem .25rem .15rem
+    margin-left: 0 !important
+    background: #f7f5f2 url(../img/common/decor_common_line.png) repeat-y right 0 / 1.2rem 100%
+    .button-menu
+      top: .33rem
+      right: .26rem
+      position: absolute
+    .menu-wrapper
+      z-index: 1020
+    .menu-wrapper.has-decor-line.is-left:before
+      display: none
+    .menu-wrapper.has-decor-line.is-right:after
+      display: none
+    .menu-inner
+      padding: .1rem 0 .4rem
+    .header-home
+      font-size: .2rem
+      margin-bottom: .06rem
+    .home-text
+      margin-bottom: .09rem
+    .home-logo
+      display: inline-block
+      position: relative
+      top: -0.07rem
+      left: .08rem
+      width: .29rem
+      img
+        width: 100%
+    .header-navigation
+      margin-bottom: .73rem
+    .header-heading
+      padding-top: .2rem
+      padding-bottom: .2rem
+      margin-bottom: 0
+      .text-big
+        font-size: .22rem
+        display: block
+        margin-bottom: .02rem
+      .text-small
+        font-size: .18rem
+    .header-list
+      &>li
+        margin-bottom: .14rem
+    .header-navbar
+      &:first-child
+        padding-top: .2rem
+      &>li:not(:last-child)
+        margin-bottom: .16rem
+    .navbar-wrapper
+      .header-navbar:not(:last-child)
+        margin-bottom: .16rem
+    .list-common-contact
+      margin-bottom: .3rem
+    .contact-tel
+      font-size: .18rem
+      text-align: center
+      margin-bottom: .08rem
+      a
+        font-size: .22rem
+        color: $color-default
+        margin-left: .05rem
+    .contact-link
+      line-height: 1.8
+      text-align: center
+      margin-bottom: .15rem
+      .item-link
+        border-bottom: 1px solid
+        margin-bottom: .1rem
+        transition: .26s ease
+        &:hover
+          border: none
+      .item-link.is-first
+        color: #c73c4d
+        border-color: #c73c4d
+      .item-link.is-second
+        color: #a8843b
+        border-color: #a8843b
+
+    .content-accordion
+      display: none
+
+    .has-sub.is-active .navbar-wrapper .header-navbar
+      display: block
+
+    .header-heading
+      display: block
+      position: relative
+      &:before,
+      &:after
+        content: ''
+        position: absolute
+        top: .37rem
+        right: 0
+        width: .2rem
+        border-top: .02rem solid $color-default
+        transition: .26s ease
+      &:before
+        transform: rotate(-90deg)
+    .has-sub
+      position: relative
+    .has-sub.is-active
+      .header-heading
+        &:before
+          transform: rotate(0)
+  .is-sticky-fixed
+    .header-menu
+      .button-menu
+        top: .16rem
+
+@media (min-width: 767.98px) and (max-width: 1329.98px)
+  .header-menu
+    .block-common-header
+      padding-left: 80px
+
+
+.has-menu
+  .button-menu
+    .is-text
+      .on
+        opacity: 0
+      .off
+        opacity: 1
+    span
+      transform: none
+      &:nth-child(1)
+        transform: rotate(-25deg)
+      &:nth-child(2)
+        transform: rotate(25deg)
+
+.button-menu
+  cursor: pointer
+  top: 0
+  .is-text
+    width: 100%
+    transition: all .26s ease
+    position: absolute
+    .on
+      opacity: 1
+    .off
+      opacity: 0
+      position: absolute
+  span
+    display: block
+    position: absolute
+    left: 50%
+    top: 50%
+    transition: all .4s
+
++desktop
+  .button-menu
+    font-size: .18rem
+    width: 60px
+    height: 60px
+    right: -76px
+    position: absolute
+    z-index: 1001
+    .is-text
+      left: 6px
+      bottom: 3px
+      .off
+        top: 2px
+        left: -4px
+    span
+      width: 50px
+      margin-left: -24px
+      border-bottom: 2px solid $color-default
+      &:nth-child(1)
+        margin-top: -22px
+      &:nth-child(2)
+        margin-top: -7px
+    &.is-active
+      span
+        margin-top: -14px
+
++mobile
+  .button-menu
+    font-size: .14rem
+    width: .48rem
+    height: .48rem
+    top: -.38rem
+    right: 0
+    position: relative
+    .is-text
+      left: .06rem
+      bottom: .05rem
+      .off
+        top: 0
+        left: -0.04rem
+    span
+      width: .4rem
+      margin-left: -0.19rem
+      border-bottom: 1px solid $color-default
+      .has-menu &
+        margin-top: -0.14rem !important
+      &:nth-child(1)
+        margin-top: -0.22rem
+      &:nth-child(2)
+        margin-top: -0.09rem
+
+.header-sticky
+  box-shadow: 0 3px 6px rgba(0,0,0,.16)
+  position: fixed
+  top: 0
+  left: 0
+  transform: translateY(-150%)
+  background: #fff
+  width: 100%
+  transition: transform .5s ease, opacity .5s ease
+  opacity: 0
+  &.is-sticky
+    transform: translateY(0)
+    opacity: 1
+  .sticky-wrapper
+    display: flex
+    align-items: center
+    justify-content: space-between
+  .preload &
+    transition: none !important
+
++desktop
+  .header-sticky
+    z-index: 1001
+    height: 110px
+    min-width: $width
+    padding: 22px 20px 12px
+    .sticky-wrapper
+      width: 1024px
+      margin: 0 auto
+    .header-info
+      display: flex
+      align-items: center
+      justify-content: space-between
+      position: relative
+      top: -3px
+      right: 17px
+    .button-menu
+      position: relative
+      right: -16px
+      top: 3px
+
+    .info-contact
+      font-weight: 500
+      font-size: .18rem
+      color: #fff
+      background: #ed8a96
+      display: flex
+      justify-content: center
+      align-items: center
+      border-radius: .1rem
+      width: 300px
+      height: .64rem
+      padding: 13px 15px 15px 46px
+      margin-left: 27px
+      .item-text
+        padding-right: 14px
+        position: relative
+        &::before
+          content: ''
+          position: absolute
+          background: url(../img/common/icn_arrow_white_large.svg) no-repeat center / auto 100%
+          width: .16rem
+          height: .08rem
+          margin-top: -3px
+          top: 50%
+          left: -34px
+      .item-logo
+        position: relative
+        top: 0
+
++mobile
+  .header-sticky
+    padding: 0 .25rem 0 .18rem
+    margin-left: 0 !important
+    z-index: 998
+    .logo-image
+      width: 1.46rem
+      display: inline-block
+      img
+        width: 100%
+    .sticky-wrapper
+      height: .8rem
+    .button-menu
+      top: 0
+      right: 0
+
++mobile
+  .is-sticky-fixed.has-menu
+    .block-common-header
+      opacity: 0

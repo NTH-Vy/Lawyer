@@ -1,0 +1,77 @@
+@charset "utf-8"
+@use "../../base/variables" as *
+@use "../../base/mixins" as *
+
+.wp-pager
+  display: inline-flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+  list-style: none
+  padding: 0
+  position: relative
+  font-size: .16rem
+  line-height: 1.5
+  font-weight: 500
+  margin: 0 auto
+  min-height: .28rem
+  a
+    display: block
+    color: $color-default
+  .page-numbers
+    display: flex
+    text-decoration: none
+    justify-content: center
+    align-items: center
+    position: relative
+    transition: all .3s ease
+    font-weight: 500
+    color: $color-default
+    background: #fff
+    opacity: 1
+    border: 1px solid $color-default
+    border-radius: .05rem
+    min-width: .24rem
+    min-height: .28rem
+    margin: 0 5px 5px
+    padding-bottom: 3px
+    &.current
+      pointer-events: none
+    &:hover
+      opacity: .9
+  .arrow,
+  .page-first,
+  .page-last
+    position: absolute
+    top: .02rem
+    &.is-disable
+      pointer-events: none
+
++desktop
+  .pagination-common
+    padding-right: 26px
+    display: flex
+    justify-content: center
+  .wp-pager
+    padding: 0 130px
+    .next
+      right: 69px
+    .prev
+      left: 69px
+    .page-first
+      left: -7px
+    .page-last
+      right: -3px
+
++mobile
+  .wp-pager
+    padding-top: .4rem
+    width: 100%
+    .next
+      right: .7rem
+    .prev
+      left: .7rem
+    .page-first
+      left: 0
+    .page-last
+      right: 0

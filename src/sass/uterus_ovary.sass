@@ -1,0 +1,361 @@
+@charset "utf-8"
+@use "base/base" as *
+@use "parts/header"
+@use "parts/footer"
+@use "parts/modules/keyvisual"
+@use "parts/modules/breadcrumb"
+@use "parts/modules/title"
+@use "parts/modules/box"
+@use "parts/modules/faq"
+@use "parts/modules/tab"
+@use "parts/modules/problems"
+@use "parts/modules/button"
+
+.block-common-tab
+  position: relative
+  z-index: 22
+
++desktop
+  .block-common-tab
+    padding: 88px 10px 0
+    .tab-list
+      &>li
+        width: calc((100% - 40px) / 3)
+        margin-right: 20px
+        margin-bottom: 20px
+    .tab-item
+      padding-top: 9px
+      padding-bottom: 9px
+    .tab-item.is-modify
+      padding-right: 16px
+      padding-left: 51px
+
++mobile
+  .block-common-tab
+    padding-top: 0.4rem
+
++desktop
+  .block-common-problems
+    padding-right: 35px
+    padding-bottom: 18px
+    .info-problems
+      padding-left: 5px
+    .problems-list
+      width: 420px
+
+.title-common-primary
+  .is-small
+    display: inline-block
+
+.section-uterus-ovary
+  position: relative
+  z-index: 20
+  &::after
+    content: ''
+    position: absolute
+    background: url(../img/common/decor_common_01.png) no-repeat 0 0 /auto 100%
+    z-index: -1
+    pointer-events: none
+  .ovary-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .ovary-text
+    line-height: calc(30 / 16)
+  .box-image
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+  .box-heading
+    font-family: $font-serif
+    color: #c73c4d
+    display: block
+
++desktop
+  .section-uterus-ovary
+    padding-top: 71px
+    &::after
+      width: 727px
+      height: 582px
+      top: -348px
+    .wrapper-normal
+      padding: 0 10px
+    .title-common-primary
+      margin-bottom: 22px
+    .ovary-heading
+      font-size: .24rem
+      line-height: calc(36 / 24)
+      text-align: center
+      margin-bottom: 14px
+    .ovary-text
+      padding: 0 10px 0 22px
+      margin-bottom: 35px
+    .box-wrapper
+      display: flex
+      align-items: flex-start
+      flex-direction: row-reverse
+    .box-image
+      width: 320px
+      height: 220px
+      margin-top: 43px
+    .box-content
+      flex: 1
+      padding-right: 30px
+    .box-heading
+      font-size: .2rem
+      padding-top: 16px
+      padding-bottom: 2px
+    .box-title
+      padding-bottom: 11px
+      margin-bottom: 16px
+    .block-common-box
+      padding: 45px 69px 43px
+      margin-right: 2px
+      margin-left: 3px
+
++mobile
+  .section-uterus-ovary
+    padding-top: .6rem
+    &::after
+      width: 3rem
+      height: 2.5rem
+      top: .36rem
+      left: -1.88rem
+    .ovary-heading
+      font-size: .22rem
+      text-align: left
+      margin-bottom: .14rem
+    .ovary-text
+      margin-bottom: .2rem
+    .box-image
+      margin: 0 .2rem .2rem
+    .box-heading
+      font-size: .18rem
+      padding-top: 0.1rem
+
+.section-uterus-uterine
+  .uterine-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .uterine-text
+    line-height: calc(30 / 16)
+
++desktop
+  .section-uterus-uterine
+    padding-top: 77px
+    .wrapper
+      padding: 0 40px
+    .title-common-primary
+      margin-bottom: 20px
+    .uterine-heading
+      font-size: .24rem
+      text-align: center
+      margin-bottom: 8px
+    .uterine-text
+      margin-bottom: 27px
+
++mobile
+  .section-uterus-uterine
+    padding-top: .6rem
+    .uterine-heading
+      font-size: .22rem
+      text-align: left
+      margin-bottom: .1rem
+    .uterine-text
+      margin-bottom: .15rem
+    .block-common-problems
+      .problems-list
+        letter-spacing: .14em
+
+.section-uterus-endometriosis
+  .endometriosis-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .endometriosis-text
+    line-height: calc(30 / 16)
+  .block-common-problems
+    .problems-list .is-small
+      font-size: .14rem
+
++desktop
+  .section-uterus-endometriosis
+    padding-top: 57px
+    padding-bottom: 95px
+    .wrapper
+      padding: 0 40px
+    .title-common-primary
+      margin-bottom: 17px
+    .endometriosis-heading
+      font-size: .24rem
+      line-height: calc(36 / 24)
+      text-align: center
+      margin-bottom: 10px
+    .endometriosis-text
+      text-align: center
+      margin-bottom: 27px
+    .block-common-problems
+      padding-bottom: 27px
+      margin-bottom: 18px
+
++mobile
+  .section-uterus-endometriosis
+    padding: .6rem 0
+    .endometriosis-heading
+      font-size: .22rem
+      text-align: left
+      margin-bottom: .15rem
+    .endometriosis-text
+      text-align: left
+      margin-bottom: .15rem
+    .block-common-problems
+      margin-bottom: .15rem
+
+.section-uterus-pcos
+  background: #f7f5f2
+  position: relative
+  z-index: 20
+  &::after
+    content: ''
+    position: absolute
+    background: url(../img/common/decor_common_01.png) no-repeat 0 0 /auto 100%
+    z-index: -1
+    pointer-events: none
+  .pcos-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+  .pcos-text
+    line-height: calc(30 / 16)
+  .block-common-problems
+    background: #f0eee9
+
++desktop
+  .section-uterus-pcos
+    padding: 81px 0 99px
+    &::after
+      width: 727px
+      height: 582px
+      top: -342px
+      right: 0
+    .wrapper
+      padding: 0 40px
+    .title-common-primary
+      margin-bottom: 23px
+    .pcos-heading
+      font-size: .24rem
+      line-height: calc(36 / 24)
+      text-align: center
+      margin-bottom: 8px
+    .pcos-text
+      margin-bottom: 33px
+    .block-common-problems
+      padding-top: 28px
+      padding-right: 134px
+      padding-bottom: 24px
+
++mobile
+  .section-uterus-pcos
+    padding: .6rem 0
+    &::after
+      width: 3rem
+      height: 2.5rem
+      top: .36rem
+      right: -1.88rem
+    .wrapper
+      padding: 0 .4rem
+    .title-common-primary
+      margin-bottom: .23rem
+    .pcos-heading
+      font-size: .22rem
+      text-align: left
+      margin-bottom: .15rem
+    .pcos-text
+      margin-bottom: .15rem
+
+
+.section-uterus-cyst
+  background: #f7f5f2
+  .wrapper
+    position: relative
+    z-index: 35
+  .cyst-wrapper
+    background: #fff
+    border: 1px solid $color-default
+    border-radius: .15rem
+  .cyst-heading
+    font-family: $font-serif
+    font-weight: $font-weight
+    margin-bottom: .05rem
+  .cyst-description
+    line-height: calc(30 / 16)
+    margin-bottom: 0
+  .cyst-image
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+  .cyst-text
+    font-family: $font-sans
+    line-height: calc(30 / 16)
+  .block-common-problems
+    background: #f0eee9
+
++desktop
+  .section-uterus-cyst
+    padding-top: 76px
+    .wrapper
+      padding: 0 26px
+    .title-common-primary
+      margin-bottom: 30px
+    .cyst-wrapper
+      padding: 46px 36px 48px 55px
+      margin-bottom: 40px
+      display: flex
+      align-items: flex-start
+      flex-direction: row-reverse
+    .cyst-content
+      flex: 1
+      padding-right: 22px
+    .cyst-heading
+      font-size: .18rem
+      line-height: calc(30 / 18)
+      .is-small
+        font-size: .16rem
+    .cyst-image
+      width: 290px
+      height: 197px
+      margin-top: 10px
+    .block-common-problems
+      padding-right: 0
+      padding-bottom: 4px
+      margin-bottom: 12px
+      .problems-list
+        width: 432px
+        .is-modify
+          margin-right: -28px
+      .info-problems
+        padding-left: 2px
+        margin-bottom: 17px
+      .is-small
+        font-size: $font-size
+    .cyst-text
+      padding: 5px 63px 0 5px
+      margin-right: -2px
+    .cyst-link
+      margin-left: 14px
+
++mobile
+  .section-uterus-cyst
+    padding-top: .6rem
+    .cyst-wrapper
+      padding: .25rem .15rem
+      margin-bottom: .3rem
+    .cyst-image
+      margin: 0 .2rem .2rem
+    .cyst-heading
+      font-size: .18rem
+      .is-small
+        font-size: .14rem
+    .cyst-text
+      padding: .1rem 0
+    .block-common-problems
+      margin-bottom: 0.15rem
