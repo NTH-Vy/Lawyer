@@ -2,7 +2,6 @@ const { src, dest, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const gulpStylelint = require('gulp-stylelint');
 var sourcemaps = require('gulp-sourcemaps');
 const config = require('../config').css;
 const fs = require('fs');
@@ -11,12 +10,25 @@ const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : 
 const cssGlob = config.source.glob.concat(config.source.ignore);
 const postCss = process.env.NODE_ENV !== 'development' ?
   [
-    autoprefixer(config.distribute.options.autoprefixer)
-    // stylelint()
+    require('postcss-discard-duplicates'),
+    require('stylelint')({
+      configFile: '.stylelintrc.json',
+      formatter: 'string',
+      ignoreDisables: false,
+      failOnError: true,
+      outputFile: '',
+      reportNeedlessDisables: false,
+      fix: true,
+      syntax: ''
+    }),
+    require('autoprefixer')({
+      map: false,
+      cascade: false
+    })
   ] :
   [
-    autoprefixer(config.develop.options.autoprefixer)
-    // stylelint()
+    require('postcss-discard-duplicates'),
+    // autoprefixer(config.develop.options.autoprefixer)
   ];
 
 const buildCss = () => {
@@ -24,13 +36,13 @@ const buildCss = () => {
     return Promise.resolve();
   }
   return src(cssGlob)
-    .pipe(sourcemaps.init())
-    .pipe(sourcemaps.identityMap())
+    // .pipe(sourcemaps.init())
+    // .pipe(sourcemaps.identityMap())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(postcss(postCss))
-    .pipe(sourcemaps.write('.'))
+    // .pipe(sourcemaps.write('.'))
     .pipe(dest(destDir + '/css'));
 };
 
@@ -45,7 +57,7 @@ const lintCss = () => {
     }));
 };
 
-const css = series(buildCss, lintCss);
+const css = series(buildCss);
 
 module.exports = {
   buildCss,

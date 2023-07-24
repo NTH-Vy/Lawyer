@@ -25,10 +25,11 @@
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
-    "gulp-stylelint": "https://github.com/ronilaukkarinen/gulp-stylelint.git",
+    "postcss-discard-duplicates": "^6.0.0",
     "sass": "^1.58.3",
     "spelling": "^2.0.2",
-    "stylelint": "^15.2.0",
-    "stylelint-config-standard": "^30.0.1"
+    "stylelint": "^14.16.0",
+    "stylelint-config-property-sort-order-smacss": "^9.0.0",
+    "stylelint-config-standard": "^29.0.0"
   }
 }
