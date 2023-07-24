@@ -20,7 +20,9 @@ const lintJs = () => {
     .pipe(prettier({
       singleQuote: true,
       proseWrap: 'never',
-      endOfLine: 'lf'
+      endOfLine: 'lf',
+      printWidth: 80,
+      trailingComma: 'none'
     }))
     .pipe(eslint())
     .pipe(eslint.format())
