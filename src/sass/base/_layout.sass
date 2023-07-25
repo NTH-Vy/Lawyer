@@ -14,21 +14,12 @@ body
   color: $color-default
   font-family: $font-sans
   font-weight: $font-weight
-  font-size: $font-size
   line-height: $line-height
   -webkit-text-size-adjust: none
   -moz-text-size-adjust: none
   -ms-text-size-adjust: none
   transition: opacity .3s ease
   -webkit-tap-highlight-color:  rgba(255,255,255,0)
-  overflow-y: scroll
-  &.has-menu
-    width: 100%
-    height: 100%
-
-.container
-  width: 100%
-  overflow: hidden
 
 .hidden
   display: none
@@ -38,7 +29,7 @@ body
   transition: opacity .26s ease
   text-decoration: none
   &:hover
-    opacity: .9
+    opacity: .8
 
 .image-common
   width: 100%
@@ -50,101 +41,21 @@ body
   object-fit: cover
   display: block
 
-.font-mincho
-  font-family: $font-serif
-
-.first-view
-  opacity: 0
-  .wf-active &
-    transition: opacity .26s
-    opacity: 1
-
-.pointer-none
-  pointer-events: none
-
-.has-decor-line.is-left
-  position: relative
-  &::before
-    content: ''
-    position: absolute
-    background: url(../img/common/decor_common_line.png) repeat-y 0 0 / 1.2rem 100%
-    width: 1.2rem
-    height: 100%
-    top: 0
-    left: 0
-    bottom: 0
-    pointer-events: none
-    z-index: 5
-
-.has-decor-line.is-right
-  position: relative
-  &::after
-    content: ''
-    position: absolute
-    height: 100%
-    top: 0
-    right: 0
-    bottom: 0
-    pointer-events: none
-    z-index: 5
-
-+desktop
-  .has-decor-line.is-right:after
-    background: url(../img/common/decor_common_line.png) repeat-y 0 0 / 120px 100%
-    width: 120px
-
-+mobile
-  .has-decor-line.is-right:after
-    background: url(../img/common/sp/decor_common_line.png) repeat-y 0 0 / 100px 100%
-    width: 100px
-
-.has-decor-line.is-light
-  position: relative
-  &::before
-    content: ''
-    position: absolute
-    height: 100%
-    top: 0
-    bottom: 0
-    pointer-events: none
-
-+desktop
-  .has-decor-line.is-light
-    &::before
-      background: url(../img/common/decor_common_line_light.png) repeat-y 0 0 / 120px 100%
-      width: 120px
-      left: 0
-
-+mobile
-  .has-decor-line.is-light
-    &::before
-      background: url(../img/common/sp/decor_common_line_light.png) repeat-y 0 0 / .5rem 100%
-      width: .49rem
-      right: 0
-
-
 +desktop
 
   html
     font-size: 625%
 
+  body
+    font-size: $font-size-pc
+
   .container
     min-width: $width
-    .has-menu &
-      position: absolute
-      top: 0
-      right: 0
-      left: 0
-      bottom: 0
 
   .wrapper
     width: $wrapper
     margin-left: auto
     margin-right: auto
-
-  .wrapper-normal
-    width: $wrapper-normal
-    margin: 0 auto
 
   .sm
     display: none !important
@@ -153,19 +64,18 @@ body
 +mobile
 
   html
-    font-size: calc(100vw / 3.75)
+    font-size: calc(100vw / 7.5)
     min-height: 100vh
+
+  body
+    font-size: $font-size-sp
 
   .container
     min-width: 320px
-    .has-menu &
-      position: fixed
-      left: 0
 
-  .wrapper,
-  .wrapper-normal
-    padding-left: .25rem
-    padding-right: .25rem
+  .wrapper
+    padding-left: .4rem
+    padding-right: .4rem
 
   .md
     display: none !important
