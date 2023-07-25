@@ -38,7 +38,7 @@ const monitoring = () => {
   const js = watch(['src/js/**/*.js'].concat(config.js.source.ignore), series('js'));
   js.on('all', function (event, filepath) {
     if (event === 'unlink') {
-      var regExpSrc = new RegExp(config.js.source.dir),
+      const regExpSrc = new RegExp(config.js.source.dir),
         devSrc = filepath.replace(regExpSrc, config.js.develop.dir),
         distSrc = filepath.replace(regExpSrc, config.js.distribute.dir);
       del([devSrc, distSrc]);

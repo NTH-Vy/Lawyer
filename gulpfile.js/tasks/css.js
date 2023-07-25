@@ -1,15 +1,13 @@
 const { src, dest, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
+const sourcemaps = require('gulp-sourcemaps');
 const config = require('../config').css;
 const fs = require('fs');
 
 const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
-const postCss = process.env.NODE_ENV !== 'development' ?
-  [
+const postCss = [
     require('postcss-discard-duplicates'),
     require('stylelint')({
       configFile: '.stylelintrc.json',
@@ -25,10 +23,6 @@ const postCss = process.env.NODE_ENV !== 'development' ?
       map: false,
       cascade: false
     })
-  ] :
-  [
-    require('postcss-discard-duplicates'),
-    // autoprefixer(config.develop.options.autoprefixer)
   ];
 
 const buildCss = () => {
@@ -36,16 +30,15 @@ const buildCss = () => {
     return Promise.resolve();
   }
   return src(cssGlob)
-    // .pipe(sourcemaps.init())
-    // .pipe(sourcemaps.identityMap())
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.identityMap())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
     .pipe(postcss(postCss))
-    // .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest(destDir + '/css'));
 };
-
 
 const lintCss = () => {
   return src([config.develop.dir + '/css/**/*.css'])
@@ -57,7 +50,7 @@ const lintCss = () => {
     }));
 };
 
-const css = series(buildCss);
+const css = series(buildCss, lintCss);
 
 module.exports = {
   buildCss,
