@@ -42,12 +42,21 @@ const buildCss = () => {
 
 const lintCss = () => {
   return src([config.develop.dir + '/css/**/*.css'])
-    .pipe(gulpStylelint({
-      fix: true,
-      reporters: [
-        { formatter: 'string', console: true }
-      ]
-    }));
+    .pipe(postcss([
+      require('stylelint')({
+        configFile: '.stylelintrc.json',
+        formatter: 'string',
+        ignoreDisables: false,
+        failOnError: true,
+        outputFile: '',
+        reportNeedlessDisables: false,
+        fix: true,
+        syntax: '',
+        reporters: [
+          { formatter: 'string', console: true }
+        ]
+      })
+    ]));
 };
 
 const css = series(buildCss, lintCss);
