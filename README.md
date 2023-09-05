@@ -15,25 +15,27 @@ npm install
 ```
 
 # Start development mode
-Build files, launch your default Web Browser automatically, and watch your changes
+This command will automatically launch your default web browser to display your current coding, and it will watch for changes in the "src" folder
 ```sh
 npm run dev
 ```
+Note: It will automatically create a "dev" folder, which is intended solely for the development environment and is not suitable for production use. To build for the production environment, please refer to the instructions below
 
 # Build files for production
-Build files and make them ready for your production, all of HTML/CSS/JS files will be minified
+Build files and make them ready for your production environment. You will get the files in the `dist` folder
 ```sh
 npm run build
 ```
 
 # Minify images
-We use kraken.io service to minify images, you can update setting to your kraken.io account by updating `configs.krakenApiKey` and `configs.krakenApiSecret` in package.json file. Finally run this command
+Use this command after done developing or whenever you want to compress all image files again:
 ```sh
 npm run imagemin
 ```
+Note: We use kraken.io service to minify images, you can update setting to your kraken.io account by updating the `key` and `secret` properties in the `gulpfile.js/tasks/image.js` file
 
 # Lint check
-If you only want to do lint check for HTML/CSS/JS files without starting development env., you can use this command:
+Use this command after done developing or whenever you want to check for lint problems again:
 ```sh
 npm run lint
 ```
