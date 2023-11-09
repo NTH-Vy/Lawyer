@@ -5,28 +5,11 @@ const sourcemaps = require('gulp-sourcemaps');
 const config = require('../config').css;
 const fs = require('fs');
 
-const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
+const destDir = config.distribute.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
-const postCss = [
-    require('postcss-discard-duplicates'),
-    require('stylelint')({
-      configFile: '.stylelintrc.json',
-      formatter: 'string',
-      ignoreDisables: false,
-      failOnError: true,
-      outputFile: '',
-      reportNeedlessDisables: false,
-      fix: true,
-      syntax: ''
-    }),
-    require('autoprefixer')({
-      map: false,
-      cascade: false
-    })
-  ];
 
 const buildCss = () => {
-  if (!fs.existsSync(config.source.dir + '/sass')) {
+  if (!fs.existsSync(config.source.dir + '/scss')) {
     return Promise.resolve();
   }
   return src(cssGlob)
@@ -35,13 +18,6 @@ const buildCss = () => {
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
-    .pipe(postcss(postCss))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest(destDir + '/css'));
-};
-
-const lintCss = () => {
-  return src([config.develop.dir + '/css/**/*.css'])
     .pipe(postcss([
       require('stylelint')({
         configFile: '.stylelintrc.json',
@@ -55,15 +31,41 @@ const lintCss = () => {
         reporters: [
           { formatter: 'string', console: true }
         ]
+      }),
+      require('autoprefixer')({
+        map: false,
+        cascade: false
       })
-    ]));
+    ]))
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest(destDir + '/css'));
 };
 
-const css = series(buildCss, lintCss);
+const lintCss = () => {
+  return src(config.source.glob)
+    .pipe(postcss([
+      require('stylelint')({
+        configFile: '.stylelintrc.json',
+        formatter: 'string',
+        ignoreDisables: false,
+        failOnError: true,
+        outputFile: '',
+        reportNeedlessDisables: false,
+        fix: false,
+        syntax: '',
+        reporters: [
+          { formatter: 'string', console: true }
+        ]
+      })
+    ]))
+    .pipe(dest(config.source.dir + '/scss'));
+};
+
+const css = series(buildCss);
 
 module.exports = {
-  buildCss,
   lintCss,
+  buildCss,
   css
 };
 

@@ -2,7 +2,7 @@ const del = require('del');
 const config = require('../config').base;
 
 const clean = () => {
-  return del([config.developDir, config.distributeDir]);
+  return del([config.distributeDir]);
 };
 
 module.exports = {

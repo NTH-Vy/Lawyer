@@ -2,9 +2,9 @@ const { src, lastRun, dest } = require('gulp');
 const kraken = require('gulp-kraken');
 const config = require('../config').image;
 
-const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
+const destDir = config.distribute.dir;
 
-const copyImage = () => {
+const image = () => {
   return src(config.source.glob.concat(config.source.ignore))
     .pipe(dest(destDir + '/img'));
 };
@@ -18,8 +18,6 @@ const imagemin = () => {
       concurrency: 6
     }));
 };
-
-const image = copyImage;
 
 module.exports = {
   image,

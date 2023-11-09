@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const { src, dest, series, lastRun } = gulp;
 const pug = require('gulp-pug');
-const htmlhint = require('gulp-htmlhint');
+const pugLinter = require('gulp-pug-linter');
 const config = require('../config').html;
 const fs = require('fs');
 const through = require('through2');
@@ -9,7 +9,7 @@ const spelling = require('spelling');
 const dictionary = require('../../fclintdic.js');
 const spellChecker = new spelling(dictionary);
 
-const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
+const destDir = config.distribute.dir;
 const pugGlob = config.source.glob.concat(config.source.ignore);
 
 const buildHtml = () => {
@@ -26,13 +26,15 @@ const buildHtml = () => {
 };
 
 const lintHtml = () => {
-  return src([config.develop.dir + '/**/*.html'])
-    .pipe(htmlhint('.htmlhintrc'))
-    .pipe(htmlhint.failReporter());
+  return src([config.source.dir + '/**/*.pug'])
+    .pipe(pugLinter({
+      reporter: 'default',
+      failAfterError: true
+    }));
 };
 
-const spellcheck = () => {
-  return src('dev/**/*.html')
+const spellCheck = () => {
+  return src('dist/**/*.html')
     .pipe(through.obj((file, enc, cb) => {
       const content = file.contents.toString();
       const matches = content.match(/class="([^"]*)"/g);
@@ -60,6 +62,6 @@ module.exports = {
   buildHtml,
   lintHtml,
   html,
-  spellcheck
+  spellCheck
 };
 

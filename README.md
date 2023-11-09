@@ -19,7 +19,6 @@ This command will automatically launch your default web browser to display your 
 ```sh
 npm run dev
 ```
-Note: It will automatically create a "dev" folder, which is intended solely for the development environment and is not suitable for production use. To build for the production environment, please refer to the instructions below
 
 # Build files for production
 Build files and make them ready for your production environment. You will get the files in the `dist` folder

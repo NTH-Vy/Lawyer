@@ -25,7 +25,6 @@ node_modules
 bower_components
 temp
 tmp
-dev
 /vendor
 /wp/*
 /wp/wp-content/*

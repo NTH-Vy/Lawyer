@@ -1,6 +1,6 @@
 {
   "name": "fc-gulp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "scripts": {
     "dev": "cross-env NODE_ENV=development gulp",
@@ -18,18 +18,17 @@
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-eslint": "^6.0.0",
-    "gulp-htmlhint": "^4.0.2",
     "gulp-kraken": "^0.2.0",
     "gulp-postcss": "^9.0.1",
     "gulp-prettier": "^4.0.0",
     "gulp-pug": "^5.0.0",
+    "gulp-pug-linter": "^1.5.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
-    "postcss-discard-duplicates": "^6.0.0",
     "sass": "^1.58.3",
     "spelling": "^2.0.2",
-    "stylelint": "^14.16.0",
-    "stylelint-config-property-sort-order-smacss": "^9.0.0",
-    "stylelint-config-standard": "^29.0.0"
+    "stylelint": "^15.11.0",
+    "stylelint-config-property-sort-order-smacss": "^9.1.0",
+    "stylelint-config-standard-scss": "^11.1.0"
   }
 }

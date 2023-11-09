@@ -4,7 +4,7 @@ const prettier = require('gulp-prettier');
 const config = require('../config').js;
 const fs = require('fs');
 
-const destDir = process.env.NODE_ENV === 'production' ? config.distribute.dir : config.develop.dir;
+const destDir = config.distribute.dir;
 const jsGlob = config.source.glob.concat(config.source.ignore);
 
 const buildJs = () => {
