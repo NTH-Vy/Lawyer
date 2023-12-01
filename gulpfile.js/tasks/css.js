@@ -56,7 +56,16 @@ const lintCss = () => {
         reporters: [
           { formatter: 'string', console: true }
         ]
-      })
+      }),
+      (root, result) => {
+        root.walkDecls((decl) => {
+          if (decl.value.includes("'")) {
+            result.warn(`Use double quotes in SCSS files. Property: ${decl.prop}`, {
+              node: decl,
+            });
+          }
+        });
+      }
     ]))
     .pipe(dest(config.source.dir + '/scss'));
 };
