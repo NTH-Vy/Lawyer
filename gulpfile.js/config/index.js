@@ -44,7 +44,7 @@ module.exports = {
     distribute: {
       dir: baseConfig.distributeDir,
       options: {
-        autoprefixer: { map: false, cascade: false }
+        minify: true
       }
     }
   },

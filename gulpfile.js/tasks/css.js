@@ -12,31 +12,40 @@ const buildCss = () => {
   if (!fs.existsSync(config.source.dir + '/scss')) {
     return Promise.resolve();
   }
+
+  const postCssOptions = [
+    require('stylelint')({
+      configFile: '.stylelintrc.json',
+      formatter: 'string',
+      ignoreDisables: false,
+      failOnError: true,
+      outputFile: '',
+      reportNeedlessDisables: false,
+      fix: true,
+      syntax: '',
+      reporters: [
+        { formatter: 'string', console: true }
+      ]
+    }),
+    require('autoprefixer')({
+      map: false,
+      cascade: false
+    })
+  ];
+
+  if (config.distribute.options.minify) {
+    postCssOptions.push(require('cssnano')({
+      preset: 'default'
+    }));
+  }
+
   return src(cssGlob)
     .pipe(sourcemaps.init())
     .pipe(sourcemaps.identityMap())
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
-    .pipe(postcss([
-      require('stylelint')({
-        configFile: '.stylelintrc.json',
-        formatter: 'string',
-        ignoreDisables: false,
-        failOnError: true,
-        outputFile: '',
-        reportNeedlessDisables: false,
-        fix: true,
-        syntax: '',
-        reporters: [
-          { formatter: 'string', console: true }
-        ]
-      }),
-      require('autoprefixer')({
-        map: false,
-        cascade: false
-      })
-    ]))
+    .pipe(postcss(postCssOptions))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(destDir + '/css'));
 };
