@@ -43,7 +43,7 @@ Use this command after done developing or whenever you want to compress all imag
 npm run imagemin
 ```
 
-Note: We use kraken.io service to minify images, you can update setting to your kraken.io account by updating the `krakenConfig` object in the `gulpfile.js/config/index.js` file
+Note: We use kraken.io service to minify images, you can update setting to your kraken.io account by updating the `CONFIG.image.options.kraken` property in the `gulpfile.js/config/index.js` file
 
 # Lint check
 
@@ -77,28 +77,28 @@ npm run lint
 
 # Options
 
-You can update the default options in the `gulpfile.js/config/index.js` file
+You have the flexibility to customize default options by updating the configurations in the `gulpfile.js/config/index.js` file.
 
-| Module      | Option     | Description                                                                   | Default Value              |
-| ----------- | ---------- | ----------------------------------------------------------------------------- | -------------------------- |
-| base        | N/A        | Configuration for the base Gulp setup. Refer to the `baseConfig` object.      | N/A                        |
-| kraken      | N/A        | Configuration for the Kraken Gulp setup. Refer to the `krakenConfig` object.  | N/A                        |
-| browserSync | server     | Configuration for BrowserSync.                                                | See below                  |
-|             | files      | Files to watch for changes.                                                   | `baseConfig.distributeDir` |
-|             | ui         | Enable or disable BrowserSync UI.                                             | false                      |
-|             | port       | Port on which BrowserSync runs.                                               | 3000                       |
-|             | open       | Open BrowserSync in the specified mode (`local`, `external`, `ui`, `tunnel`). | 'local'                    |
-| html        | source     | Configuration for HTML source files.                                          | See below                  |
-|             | distribute | Configuration for HTML distribution files.                                    | See below                  |
-| css         | source     | Configuration for CSS source files.                                           | See below                  |
-|             | distribute | Configuration for CSS distribution files.                                     | See below                  |
-|             | options    | Additional options for CSS distribution.                                      | `{ minify: true }`         |
-| js          | source     | Configuration for JS source files.                                            | See below                  |
-|             | distribute | Configuration for JS distribution files.                                      | See below                  |
-| image       | source     | Configuration for image source files.                                         | See below                  |
-|             | distribute | Configuration for image distribution files.                                   | See below                  |
+| Module      | Option     | Description                                        | Default Value |
+| ----------- | ---------- | -------------------------------------------------- | ------------- |
+| base        | N/A        | Configuration for the base Gulp setup.             | See below     |
+| browserSync | N/A        | Refer to the Browsersync Documentation for options | See below     |
+| html        | source     | Configuration for HTML source files.               | See below     |
+|             | distribute | Configuration for HTML distribution files.         | See below     |
+| css         | source     | Configuration for CSS source files.                | See below     |
+|             | distribute | Configuration for CSS distribution files.          | See below     |
+|             | options    | Additional options for CSS distribution.           | See below     |
+| js          | source     | Configuration for JS source files.                 | See below     |
+|             | distribute | Configuration for JS distribution files.           | See below     |
+| image       | source     | Configuration for image source files.              | See below     |
+|             | distribute | Configuration for image distribution files.        | See below     |
+|             | options    | Additional options for image distribution.         | See below     |
 
 **Default Values:**
+
+- **base:**
+
+  - Refer to the `baseConfig` object.
 
 - **browserSync.server:**
 
@@ -148,3 +148,7 @@ You can update the default options in the `gulpfile.js/config/index.js` file
 
 - **image.distribute:**
   - dir: `baseConfig.distributeDir`
+  - options:
+    - kraken:
+      - key: ''
+      - secret: ''

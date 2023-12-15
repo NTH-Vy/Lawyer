@@ -1,21 +1,19 @@
 const { src, lastRun, dest } = require('gulp');
 const kraken = require('gulp-kraken');
-const config = require('../config');
-const imageConfig = config.image;
-const krakenConfig = config.kraken;
+const config = require('../config').image;
 
-const destDir = imageConfig.distribute.dir;
+const destDir = config.distribute.dir;
 
 const image = () => {
-  return src(imageConfig.source.glob.concat(imageConfig.source.ignore))
+  return src(config.source.glob.concat(config.source.ignore))
     .pipe(dest(destDir + '/img'));
 };
 
 const imagemin = () => {
   return src(destDir + '/img/**/*.{png,jpg,gif,svg}')
     .pipe(kraken({
-      key: krakenConfig.key,
-      secret: krakenConfig.secret,
+      key: config.options.kraken.key,
+      secret: config.options.kraken.secret,
       lossy: true,
       concurrency: 6
     }));

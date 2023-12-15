@@ -4,14 +4,8 @@ const baseConfig = {
   ignore: ['!**/.DS_Store', '!**/* copy.*']
 };
 
-const krakenConfig = {
-  key: '5b61b3c6bba11a2dbc7be9beb3ab11d5',
-  secret: '07e8e703c93fa122dd6ff3aa95d555570d9b21eb'
-};
-
 module.exports = {
   base: baseConfig,
-  kraken: krakenConfig,
   browserSync: {
     server: {
       baseDir: baseConfig.distributeDir,
@@ -42,10 +36,10 @@ module.exports = {
       ignore: [].concat(baseConfig.ignore)
     },
     distribute: {
-      dir: baseConfig.distributeDir,
-      options: {
-        minify: true
-      }
+      dir: baseConfig.distributeDir
+    },
+    options: {
+      minify: true
     }
   },
   js: {
@@ -66,6 +60,12 @@ module.exports = {
     },
     distribute: {
       dir: baseConfig.distributeDir
+    },
+    options: {
+      kraken: {
+        key: '5b61b3c6bba11a2dbc7be9beb3ab11d5',
+        secret: '07e8e703c93fa122dd6ff3aa95d555570d9b21eb'
+      }
     }
   }
 };

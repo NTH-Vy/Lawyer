@@ -33,7 +33,7 @@ const buildCss = () => {
     })
   ];
 
-  if (config.distribute.options.minify) {
+  if (config.options.minify) {
     postCssOptions.push(require('cssnano')({
       preset: 'default'
     }));
