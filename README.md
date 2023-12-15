@@ -79,75 +79,60 @@ npm run lint
 
 You have the flexibility to customize default options by updating the configurations in the `gulpfile.js/config/index.js` file.
 
-| Module      | Option     | Description                                        | Default Value |
-| ----------- | ---------- | -------------------------------------------------- | ------------- |
-| base        | N/A        | Configuration for the base Gulp setup.             | See below     |
-| browserSync | N/A        | Refer to the Browsersync Documentation for options | See below     |
-| html        | source     | Configuration for HTML source files.               | See below     |
-|             | distribute | Configuration for HTML distribution files.         | See below     |
-| css         | source     | Configuration for CSS source files.                | See below     |
-|             | distribute | Configuration for CSS distribution files.          | See below     |
-|             | options    | Additional options for CSS distribution.           | See below     |
-| js          | source     | Configuration for JS source files.                 | See below     |
-|             | distribute | Configuration for JS distribution files.           | See below     |
-| image       | source     | Configuration for image source files.              | See below     |
-|             | distribute | Configuration for image distribution files.        | See below     |
-|             | options    | Additional options for image distribution.         | See below     |
+| Module      | Option     | Description                                                                | Default Value |
+| ----------- | ---------- | -------------------------------------------------------------------------- | ------------- |
+| base        | N/A        | Configuration for the base Gulp setup.<br>Refer to the `baseConfig` object | N/A           |
+| browserSync | N/A        | Configuration for Browsersync.<br>Refer to the Browsersync Documentation   | N/A           |
+| html        | source     | Configuration for HTML source files.                                       | See below     |
+|             | distribute | Configuration for HTML distribution files.                                 | See below     |
+| css         | source     | Configuration for CSS source files.                                        | See below     |
+|             | distribute | Configuration for CSS distribution files.                                  | See below     |
+|             | options    | Additional options for CSS distribution.                                   | See below     |
+| js          | source     | Configuration for JS source files.                                         | See below     |
+|             | distribute | Configuration for JS distribution files.                                   | See below     |
+| image       | source     | Configuration for image source files.                                      | See below     |
+|             | distribute | Configuration for image distribution files.                                | See below     |
+|             | options    | Additional options for image distribution.                                 | See below     |
 
 **Default Values:**
 
-- **base:**
+- **html:**
 
-  - Refer to the `baseConfig` object.
+  - source:
+    - dir: `baseConfig.sourceDir + '/pug'`
+    - glob: [`baseConfig.sourceDir + '/pug/**/*.pug'`]
+    - ignore: `baseConfig.ignore`
+  - distribute:
+    - dir: `baseConfig.distributeDir`
 
-- **browserSync.server:**
+- **css:**
 
-  - baseDir: `baseConfig.distributeDir`
-  - logLevel: 'silent'
-  - notify: false
-  - reloadDelay: 1000
-  - reloadDebounce: 1000
-
-- **html.source:**
-
-  - dir: `baseConfig.sourceDir + '/pug'`
-  - glob: [`baseConfig.sourceDir + '/pug/**/*.pug'`]
-  - ignore: `baseConfig.ignore`
-
-- **html.distribute:**
-
-  - dir: `baseConfig.distributeDir`
-
-- **css.source:**
-
-  - dir: `baseConfig.sourceDir`
-  - glob: [`baseConfig.sourceDir + '/scss/**/*.scss'`]
-  - ignore: `baseConfig.ignore`
-
-- **css.distribute:**
-
-  - dir: `baseConfig.distributeDir`
+  - source:
+    - dir: `baseConfig.sourceDir`
+    - glob: [`baseConfig.sourceDir + '/scss/**/*.scss'`]
+    - ignore: `baseConfig.ignore`
+  - distribute:
+    - dir: `baseConfig.distributeDir`
   - options:
     - minify: true
 
-- **js.source:**
+- **js:**
 
-  - dir: `baseConfig.sourceDir`
-  - glob: [`baseConfig.sourceDir + '/js/**/*.js'`]
-  - ignore: `baseConfig.ignore`
+  - source:
+    - dir: `baseConfig.sourceDir`
+    - glob: [`baseConfig.sourceDir + '/js/**/*.js'`]
+    - ignore: `baseConfig.ignore`
+  - distribute:
+    - dir: `baseConfig.distributeDir`
 
-- **js.distribute:**
+- **image:**
 
-  - dir: `baseConfig.distributeDir`
-
-- **image.source:**
-
-  - dir: `baseConfig.sourceDir + '/img'`
-  - glob: [`baseConfig.sourceDir + '/img/**/*'`]
-  - ignore: `baseConfig.ignore`
-
-- **image.distribute:**
-  - dir: `baseConfig.distributeDir`
+  - source:
+    - dir: `baseConfig.sourceDir + '/img'`
+    - glob: [`baseConfig.sourceDir + '/img/**/*'`]
+    - ignore: `baseConfig.ignore`
+  - distribute:
+    - dir: `baseConfig.distributeDir`
   - options:
     - kraken:
       - key: ''
