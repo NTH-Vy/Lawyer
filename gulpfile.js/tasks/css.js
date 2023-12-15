@@ -1,6 +1,7 @@
 const { src, dest, series } = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
+const scssSyntax = require('postcss-scss');
 const sourcemaps = require('gulp-sourcemaps');
 const config = require('../config').css;
 const fs = require('fs');
@@ -22,7 +23,7 @@ const buildCss = () => {
       outputFile: '',
       reportNeedlessDisables: false,
       fix: true,
-      syntax: '',
+      syntax: 'scss',
       reporters: [
         { formatter: 'string', console: true }
       ]
@@ -45,7 +46,7 @@ const buildCss = () => {
     .pipe(sass({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
-    .pipe(postcss(postCssOptions))
+    .pipe(postcss(postCssOptions, { syntax: scssSyntax }))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(destDir + '/css'));
 };
@@ -61,21 +62,36 @@ const lintCss = () => {
         outputFile: '',
         reportNeedlessDisables: false,
         fix: false,
-        syntax: '',
+        syntax: 'scss',
         reporters: [
           { formatter: 'string', console: true }
         ]
       }),
       (root, result) => {
         root.walkDecls((decl) => {
-          if (decl.value.includes("'")) {
-            result.warn(`Use double quotes in SCSS files. Property: ${decl.prop}`, {
+          if (decl.value.includes('\'')) {
+            result.warn(`Use double quotes instead of single quotes in SCSS files. Property: ${decl.prop}`, {
+              node: decl,
+            });
+          }
+          if (/-\d+(\.\d+)?/g.test(decl.value)) {
+            result.warn(`Avoid using negative values. Property: ${decl.prop}`, {
               node: decl,
             });
           }
         });
+        root.walkRules((rule) => {
+          const selectors = rule.selector.split(',');
+          selectors.forEach((selector) => {
+            if (selector.includes(':not')) {
+              result.warn(`Avoid using :not() selector in SCSS. Selector: ${selector}`, {
+                node: rule,
+              });
+            }
+          });
+        });
       }
-    ]))
+    ], { syntax: scssSyntax }))
     .pipe(dest(config.source.dir + '/scss'));
 };
 

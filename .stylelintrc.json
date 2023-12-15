@@ -29,6 +29,8 @@
     "declaration-block-no-redundant-longhand-properties": [true, {
       "ignoreShorthands": ["inset"]
     }],
-    "media-feature-range-notation": null
+    "media-feature-range-notation": null,
+    "declaration-no-important": true,
+    "rule-empty-line-before": null
   }
 }
