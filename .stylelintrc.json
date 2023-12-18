@@ -14,7 +14,7 @@
     "length-zero-no-unit": true,
     "max-line-length": null,
     "max-nesting-depth": 3,
-    "no-descending-specificity": null,
+    "no-descending-specificity": true,
     "no-duplicate-selectors": null,
     "no-empty-source": null,
     "number-max-precision": null,
