@@ -23,6 +23,7 @@ const buildCss = () => {
       outputFile: '',
       reportNeedlessDisables: false,
       fix: true,
+      quietDeprecationWarnings: true,
       syntax: 'scss',
       reporters: [
         { formatter: 'string', console: true }
@@ -62,6 +63,7 @@ const lintCss = () => {
         outputFile: '',
         reportNeedlessDisables: false,
         fix: false,
+        quietDeprecationWarnings: true,
         syntax: 'scss',
         reporters: [
           { formatter: 'string', console: true }
