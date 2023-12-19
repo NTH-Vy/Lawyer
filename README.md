@@ -53,6 +53,12 @@ Use this command after done developing or whenever you want to check for lint pr
 npm run lint
 ```
 
+To automatically fix linting issues, if possible, use this command:
+
+```sh
+npm run lint:fix
+```
+
 # List of npm dependencies
 
 - **autoprefixer**: Add vendor prefixes to CSS rules using values from Can I Use
