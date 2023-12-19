@@ -39,7 +39,7 @@ module.exports = {
       dir: baseConfig.distributeDir
     },
     options: {
-      minify: true
+      minify: false
     }
   },
   js: {

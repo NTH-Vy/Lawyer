@@ -22,7 +22,7 @@ const monitoring = () => {
     }
   });
 
-  const sass = watch(['src/scss/**/*.scss'].concat(config.html.source.ignore), series('buildCss'));
+  const sass = watch(['src/scss/**/*.scss'].concat(config.html.source.ignore), series('css'));
   sass.on('all', function (event, filepath) {
     console.log(`File ${filepath} was changed`);
     if (event === 'unlink') {

@@ -1,7 +1,7 @@
 const { series, parallel } = require('gulp');
 const { clean } = require('./tasks/clean.js');
 const { html, lintHtml, spellCheck } = require('./tasks/html.js');
-const { css, buildCss, lintCss } = require('./tasks/css.js');
+const { css, buildStyles, lintStyles, lintStylesFix } = require('./tasks/css.js');
 const { js, lintJs } = require('./tasks/js.js');
 const { image, imagemin } = require('./tasks/image.js');
 const { bs } = require('./tasks/browser_sync.js');
@@ -9,7 +9,7 @@ const { watch } = require('./tasks/watch.js');
 
 const build = series(clean, parallel(html, css, js, image));
 const develop = series(build, parallel(bs, watch));
-const lint = series(lintHtml, lintCss, lintJs, spellCheck);
+const lint = series(lintHtml, lintStyles, lintJs, spellCheck);
 
 module.exports = {
   default: process.env.NODE_ENV === 'production' ? build : develop,
@@ -22,6 +22,7 @@ module.exports = {
   imagemin,
   lint,
   spellCheck,
-  buildCss,
-  lintCss
+  buildStyles,
+  lintStyles,
+  lintStylesFix
 };
