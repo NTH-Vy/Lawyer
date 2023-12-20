@@ -58,3 +58,42 @@
   color: blue;
   color: gray;
 }
+
+@media print {
+  .case-row {
+    &.is-before-1 {
+      .procedure-step-2 {
+        background-color: #0023B0;
+        .procedure-step-3 {
+          color: red;
+          &::before {
+            color: red;
+          }
+          &::after {
+            &:hover {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.case-row-aaa {
+  &.is-before-1 {
+    .procedure-step-2 {
+      background-color: #0023B0;
+      @include desktop {
+        .procedure-step-3 {
+          color: red;
+          @include mobile {
+            &:before {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
