@@ -41,7 +41,7 @@ const spellCheck = () => {
       const classNames = matches
         .map(match => match.slice(7, -1).split(' '))
         .reduce((acc, val) => acc.concat(val), []);
-      const uniqueWords = Array.from(new Set(classNames)).flatMap(className => className.split('-'));
+      const uniqueWords = Array.from(new Set(classNames.flatMap(className => className.replace(/([a-z0-9])([A-Z])/g, '$1 $2').split(/[_-\s]/))));
       const misspelled = uniqueWords.filter((word) => {
         const itemResult = spellChecker.lookup(word);
         return !itemResult.found;
