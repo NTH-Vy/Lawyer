@@ -25,29 +25,38 @@ const stylelintConfig = {
 };
 
 const customLint = (root, result) => {
-  root.walkDecls((decl) => {
-    if (decl.value.includes('\'')) {
-      result.warn(`Use double quotes instead of single quotes in SCSS files. Property: ${decl.prop}`, {
-        node: decl,
-      });
-    }
-    if (/-\d+(\.\d+)?/g.test(decl.value)) {
-      result.warn(`Avoid using negative values. Property: ${decl.prop}`, {
-        node: decl,
-      });
-    }
-  });
-  root.walkRules((rule) => {
-    const selectors = rule.selector.split(',');
-    selectors.forEach((selector) => {
-      if (selector.includes(':not')) {
-        result.warn(`Avoid using :not() selector in SCSS. Selector: ${selector}`, {
-          node: rule,
+  root.walk((node) => {
+    if (node.type === 'atrule') {
+      if ((node.name === 'media' || node.name === 'include') && node.parent.type === 'root') {
+        if (node.params !== 'print') {
+          result.warn(`Do not use @media or @include in root-level. Found: @${node.name}`, {
+            node: node,
+          });
+        }
+      }
+    } else if (node.type === 'decl') {
+      if (node.value.indexOf('\'') !== -1) {
+        result.warn(`Use double quotes instead of single quotes in SCSS files. Property: ${node.prop}`, {
+          node: node,
         });
       }
-    });
+      if (/-\d+(\.\d+)?/g.test(node.value)) {
+        result.warn(`Avoid using negative values. Property: ${node.prop}`, {
+          node: node,
+        });
+      }
+    } else if (node.type === 'rule') {
+      const selectors = node.selector.split(',');
+      selectors.forEach((selector) => {
+        if (selector.includes(':not')) {
+          result.warn(`Avoid using :not() selector in SCSS. Selector: ${selector}`, {
+            node: node,
+          });
+        }
+      });
+    }
   });
-}
+};
 
 const lintStyles = (fix = false) => {
   return src(config.source.glob)
