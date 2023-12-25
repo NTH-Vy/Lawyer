@@ -1,5 +1,5 @@
 const { src, dest, series } = require('gulp');
-const eslint = require('gulp-eslint');
+const eslint = require('gulp-eslint-new');
 const prettier = require('gulp-prettier');
 const config = require('../config').js;
 const fs = require('fs');

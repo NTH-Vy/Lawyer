@@ -19,6 +19,7 @@ module.exports = {
   html,
   css,
   js,
+  lintJs,
   image,
   imagemin,
   lint,
