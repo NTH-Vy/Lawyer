@@ -24,7 +24,8 @@ const lintJs = () => {
       printWidth: 80,
       trailingComma: 'none'
     }))
-    .pipe(eslint())
+    .pipe(eslint({ fix: true }))
+    .pipe(eslint.fix())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(dest(destDir + '/js'));
