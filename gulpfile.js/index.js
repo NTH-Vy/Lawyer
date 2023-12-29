@@ -1,13 +1,13 @@
 const { series, parallel } = require('gulp');
 const { clean } = require('./tasks/clean.js');
 const { html, lintHtml, spellCheck } = require('./tasks/html.js');
-const { css, buildStyles, lintStyles, lintStylesFix } = require('./tasks/css.js');
+const { css, copyFonts, buildStyles, lintStyles, lintStylesFix } = require('./tasks/css.js');
 const { js, lintJs } = require('./tasks/js.js');
 const { image, imagemin } = require('./tasks/image.js');
 const { bs } = require('./tasks/browser_sync.js');
 const { watch } = require('./tasks/watch.js');
 
-const build = series(clean, parallel(html, css, js, image));
+const build = series(clean, parallel(html, css, js, image, copyFonts));
 const develop = series(build, parallel(bs, watch));
 const lint = series(lintHtml, lintStyles, lintJs, spellCheck);
 const lintFix = series(lintHtml, lintStylesFix, lintJs, spellCheck);

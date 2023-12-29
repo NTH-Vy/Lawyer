@@ -102,11 +102,20 @@ const buildStyles = () => {
     .pipe(dest(destDir + '/css'));
 };
 
+const copyFonts = () => {
+  if (!fs.existsSync(config.source.dir + '/scss/fonts')) {
+    return Promise.resolve();
+  }
+  return src(config.source.dir + '/scss/fonts/**/*')
+    .pipe(dest(destDir + '/css/fonts'));
+}
+
 const css = series(lintStyles, buildStyles);
 
 module.exports = {
   lintStyles,
   lintStylesFix,
   buildStyles,
+  copyFonts,
   css
 };
