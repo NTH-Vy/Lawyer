@@ -1,0 +1,344 @@
+{
+  "variableMap": [
+    [
+      "$viewport-width",
+      "1250px"
+    ],
+    [
+      "$wrapper-width",
+      "1200px"
+    ],
+    [
+      "$md-break",
+      "1024px"
+    ],
+    [
+      "$sm-break",
+      "767.98px"
+    ],
+    [
+      "$xs-break",
+      "374px"
+    ],
+    [
+      "$font-sans",
+      "\"ヒラギノ角ゴ ProN W3\", \"Hiragino Kaku Gothic ProN\", \"游ゴシック\", yugothic, \"Yu Gothic\", \"メイリオ\", meiryo, sans-serif"
+    ],
+    [
+      "$font-serif",
+      "\"ヒラギノ明朝 ProN W3\", \"Hiragino Mincho ProN\", \"Hiragino Mincho Pro\", \"游明朝\", yumincho, \"Times New Roman\", georgia, serif"
+    ],
+    [
+      "$font-size-pc",
+      ".14rem"
+    ],
+    [
+      "$font-size-sp",
+      ".14rem"
+    ],
+    [
+      "$font-weight-pc",
+      "400"
+    ],
+    [
+      "$font-weight-sp",
+      "400"
+    ],
+    [
+      "$line-height",
+      "calc(20 / 14)"
+    ],
+    [
+      "$color-default",
+      "#000"
+    ]
+  ],
+  "mediaRules": [],
+  "importantUsages": [
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\news.scss",
+      "line": 7,
+      "column": 3,
+      "selector": ".test-4",
+      "property": "color",
+      "value": "red"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\news.scss",
+      "line": 11,
+      "column": 3,
+      "selector": ".test-5",
+      "property": "background",
+      "value": "blue"
+    }
+  ],
+  "colorValues": [
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 26,
+      "column": 3,
+      "selector": "body",
+      "property": "-webkit-tap-highlight-color",
+      "value": "rgba(255, 255, 255, 0)",
+      "extractedColor": "rgba(255, 255, 255, 0)"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 74,
+      "column": 3,
+      "selector": "table th,\ntable td",
+      "property": "border",
+      "value": "1px solid #000",
+      "extractedColor": "#000"
+    }
+  ],
+  "fontSizeValues": [
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\news.scss",
+      "line": 12,
+      "column": 3,
+      "selector": ".test-5",
+      "property": "font-size",
+      "value": "99%",
+      "extractedFontSize": "99"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 13,
+      "column": 5,
+      "property": "font-size",
+      "value": "625%",
+      "extractedFontSize": "625"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 17,
+      "column": 5,
+      "property": "font-size",
+      "value": "calc(100vw / 3.75)",
+      "extractedFontSize": "3.75"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 20,
+      "column": 3,
+      "property": "font-size",
+      "value": "100%",
+      "extractedFontSize": "100"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 35,
+      "column": 3,
+      "selector": "h1",
+      "property": "font-size",
+      "value": "2em",
+      "extractedFontSize": "2em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 39,
+      "column": 3,
+      "selector": "h2",
+      "property": "font-size",
+      "value": "1.8em",
+      "extractedFontSize": "1.8em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 43,
+      "column": 3,
+      "selector": "h3",
+      "property": "font-size",
+      "value": "1.6em",
+      "extractedFontSize": "1.6em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 47,
+      "column": 3,
+      "selector": "h4",
+      "property": "font-size",
+      "value": "1.4em",
+      "extractedFontSize": "1.4em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 51,
+      "column": 3,
+      "selector": "h5",
+      "property": "font-size",
+      "value": "1.2em",
+      "extractedFontSize": "1.2em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 55,
+      "column": 3,
+      "selector": "h6",
+      "property": "font-size",
+      "value": "1em",
+      "extractedFontSize": "1em"
+    }
+  ],
+  "marginValues": [
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 51,
+      "column": 5,
+      "property": "margin-right",
+      "value": "auto"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 52,
+      "column": 5,
+      "property": "margin-left",
+      "value": "auto"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_mixins.scss",
+      "line": 87,
+      "column": 3,
+      "property": "margin",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_print.scss",
+      "line": 11,
+      "column": 5,
+      "selector": "html,\n  body",
+      "property": "margin",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_print.scss",
+      "line": 15,
+      "column": 5,
+      "property": "margin",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_print.scss",
+      "line": 20,
+      "column": 5,
+      "property": "margin",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_print.scss",
+      "line": 24,
+      "column": 5,
+      "property": "margin",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_print.scss",
+      "line": 28,
+      "column": 5,
+      "property": "margin-top",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 16,
+      "column": 3,
+      "property": "margin",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 30,
+      "column": 3,
+      "selector": "h1,\nh2,\nh3,\nh4,\nh5,\nh6",
+      "property": "margin-bottom",
+      "value": "1.5em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 60,
+      "column": 3,
+      "selector": "ol,\nul",
+      "property": "margin-bottom",
+      "value": "1.5em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 66,
+      "column": 3,
+      "selector": "table",
+      "property": "margin-bottom",
+      "value": "1.5em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 129,
+      "column": 3,
+      "selector": "p",
+      "property": "margin-bottom",
+      "value": "1.5em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 164,
+      "column": 3,
+      "selector": "input,\nlabel,\nselect,\nbutton,\ntextarea",
+      "property": "margin",
+      "value": "0"
+    }
+  ],
+  "paddingValues": [
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 55,
+      "column": 5,
+      "property": "padding-right",
+      "value": "0.2rem"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 56,
+      "column": 5,
+      "property": "padding-left",
+      "value": "0.2rem"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_mixins.scss",
+      "line": 88,
+      "column": 3,
+      "property": "padding",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 17,
+      "column": 3,
+      "property": "padding",
+      "value": "0"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 61,
+      "column": 3,
+      "selector": "ol,\nul",
+      "property": "padding-left",
+      "value": "1.5em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 73,
+      "column": 3,
+      "selector": "table th,\ntable td",
+      "property": "padding",
+      "value": "0.5em"
+    },
+    {
+      "fileName": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_reset.scss",
+      "line": 165,
+      "column": 3,
+      "selector": "input,\nlabel,\nselect,\nbutton,\ntextarea",
+      "property": "padding",
+      "value": "0"
+    }
+  ]
+}

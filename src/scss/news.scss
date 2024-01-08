@@ -2,3 +2,13 @@
 @use "base/base" as *;
 @use "parts/header";
 @use "parts/footer";
+
+.test-4 {
+  color: red !important;
+}
+
+.test-5 {
+  background: blue !important;
+  font-size: 99%;
+  font-weight: 700;
+}

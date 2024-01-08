@@ -1,7 +1,7 @@
 const { series, parallel } = require('gulp');
 const { clean } = require('./tasks/clean.js');
 const { html, lintHtml, spellCheck } = require('./tasks/html.js');
-const { css, copyFonts, buildStyles, lintStyles, lintStylesFix } = require('./tasks/css.js');
+const { css, copyFonts, buildStyles, lintStyles, lintStylesFix, analyzeStyles } = require('./tasks/css.js');
 const { js, lintJs } = require('./tasks/js.js');
 const { image, imagemin } = require('./tasks/image.js');
 const { bs } = require('./tasks/browser_sync.js');
@@ -26,5 +26,6 @@ module.exports = {
   lintFix,
   spellCheck,
   buildStyles,
-  lintStyles
+  lintStyles,
+  analyzeStyles
 };
