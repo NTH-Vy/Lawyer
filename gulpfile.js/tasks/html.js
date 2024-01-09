@@ -6,8 +6,10 @@ const config = require('../config').html;
 const fs = require('fs');
 const through = require('through2');
 const spelling = require('spelling');
-const dictionary = require('../../fclintdic.js');
-const spellChecker = new spelling(dictionary);
+const spellDictionary = require('../../fcdic_spellings.js');
+const classDictionary = require('../../fcdic_classes.js');
+const spellChecker = new spelling(spellDictionary);
+const classChecker = new spelling(classDictionary);
 
 const destDir = config.distribute.dir;
 const pugGlob = config.source.glob.concat(config.source.ignore);
@@ -46,11 +48,36 @@ const spellCheck = () => {
         const itemResult = spellChecker.lookup(word);
         return !itemResult.found;
       });
-      console.log(`Spell check for ${file.path}`);
+      console.log(`Check spellings for ${file.path}`);
       if (misspelled.length) {
-        console.log('NG: ' + misspelled.join(', '));
+        var sortedWords = misspelled.sort();
+        console.log('>> Wrong spelling in classes: ' + sortedWords.join(', '));
       } else {
-        console.log('OK');
+        console.log('>> OK');
+      }
+      cb(null, file);
+    }));
+};
+
+const classCheck = () => {
+  return src('dist/**/*.html')
+    .pipe(through.obj((file, enc, cb) => {
+      const content = file.contents.toString();
+      const matches = content.match(/class="([^"]*)"/g);
+      const classNames = matches
+        .map(match => match.slice(7, -1).split(' '))
+        .reduce((acc, val) => acc.concat(val), []);
+      const uniqueWords = Array.from(new Set(classNames.flatMap(className => className.replace(/([a-z0-9])([A-Z])/g, '$1 $2').split(/[_-\s]/))));
+      const misspelled = uniqueWords.filter((word) => {
+        const itemResult = classChecker.lookup(word);
+        return !itemResult.found;
+      });
+      console.log(`Check classnames for ${file.path}`);
+      if (misspelled.length) {
+        var sortedWords = misspelled.sort();
+        console.log('>> Unexpected words in classes: ' + sortedWords.join(', '));
+      } else {
+        console.log('>> OK');
       }
       cb(null, file);
     }));
@@ -62,6 +89,7 @@ module.exports = {
   buildHtml,
   lintHtml,
   html,
-  spellCheck
+  spellCheck,
+  classCheck
 };
 
