@@ -2,6 +2,8 @@ const gulp = require('gulp');
 const { src, dest, series, lastRun } = gulp;
 const pug = require('gulp-pug');
 const pugLinter = require('gulp-pug-linter');
+const PluginError = require('plugin-error');
+const argv = require('yargs').argv;
 const config = require('../config').html;
 const fs = require('fs');
 const through = require('through2');
@@ -28,15 +30,27 @@ const buildHtml = () => {
 };
 
 const lintHtml = () => {
-  return src([config.source.dir + '/**/*.pug'])
+  const stopOnError = argv.stopOnError || false;
+  let filesToCheck = [config.source.dir + '/**/*.pug'];
+  if (argv.file) {
+    const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
+    filesToCheck = targetFiles.split(',');
+  }
+  return src(filesToCheck)
     .pipe(pugLinter({
       reporter: 'default',
-      failAfterError: true
+      failAfterError: stopOnError
     }));
 };
 
 const spellCheck = () => {
-  return src('dist/**/*.html')
+  const stopOnError = argv.stopOnError || false;
+  let filesToCheck = 'dist/**/*.html';
+  if (argv.file) {
+    const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
+    filesToCheck = targetFiles.split(',');
+  }
+  return src(filesToCheck)
     .pipe(through.obj((file, enc, cb) => {
       const content = file.contents.toString();
       const matches = content.match(/class="([^"]*)"/g);
@@ -50,17 +64,30 @@ const spellCheck = () => {
       });
       console.log(`Check spellings for ${file.path}`);
       if (misspelled.length) {
-        var sortedWords = misspelled.sort();
-        console.log('>> Wrong spelling in classes: ' + sortedWords.join(', '));
+        const sortedWords = misspelled.sort();
+        const errorMessage = '>> Wrong spelling in classes: ' + sortedWords.join(', ');
+        console.error(errorMessage);
+        if (stopOnError) {
+          cb(new PluginError('spellCheck', 'Task failed!', { showProperties: false }));
+        } else {
+          cb(null, file);
+        }
+
       } else {
         console.log('>> OK');
+        cb(null, file);
       }
-      cb(null, file);
     }));
 };
 
 const classCheck = () => {
-  return src('dist/**/*.html')
+  const stopOnError = argv.stopOnError || false;
+  let filesToCheck = 'dist/**/*.html';
+  if (argv.file) {
+    const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
+    filesToCheck = targetFiles.split(',');
+  }
+  return src(filesToCheck)
     .pipe(through.obj((file, enc, cb) => {
       const content = file.contents.toString();
       const matches = content.match(/class="([^"]*)"/g);
@@ -74,12 +101,18 @@ const classCheck = () => {
       });
       console.log(`Check classnames for ${file.path}`);
       if (misspelled.length) {
-        var sortedWords = misspelled.sort();
-        console.log('>> Unexpected words in classes: ' + sortedWords.join(', '));
+        const sortedWords = misspelled.sort();
+        const errorMessage = '>> Unexpected words in classes: ' + sortedWords.join(', ');
+        console.error(errorMessage);
+        if (stopOnError) {
+          cb(new PluginError('classCheck', 'Task failed!', { showProperties: false }));
+        } else {
+          cb(null, file);
+        }
       } else {
         console.log('>> OK');
+        cb(null, file);
       }
-      cb(null, file);
     }));
 };
 
