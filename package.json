@@ -31,6 +31,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "lint-staged": "^15.2.0",
+    "postcss-reporter": "^7.0.5",
     "postcss-scss": "^4.0.9",
     "sass": "^1.58.3",
     "spelling": "^2.0.2",

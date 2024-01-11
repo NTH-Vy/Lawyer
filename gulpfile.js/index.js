@@ -28,5 +28,6 @@ module.exports = {
   spellCheck,
   classCheck,
   buildStyles,
-  lintStyles
+  lintStyles,
+  lintStylesFix
 };
