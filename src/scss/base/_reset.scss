@@ -79,8 +79,8 @@ table th {
 }
 
 caption,
-table th,
-table td {
+th,
+td {
   font-weight: normal;
   text-align: left;
   vertical-align: middle;
@@ -96,6 +96,10 @@ q::after,
 blockquote::before,
 blockquote::after {
   content: none;
+}
+
+a img {
+  border: none;
 }
 
 article,
@@ -129,12 +133,12 @@ p {
   margin-bottom: 1.5em;
 }
 
-a {
-  color: inherit;
-}
-
 a:hover {
   text-decoration: none;
+}
+
+a:not([class]) {
+  color: inherit;
 }
 
 img {
@@ -142,10 +146,6 @@ img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
-}
-
-a img {
-  border: none;
 }
 
 input,
@@ -172,17 +172,6 @@ textarea {
   -webkit-appearance: none;
 }
 
-button {
-  color: inherit;
-}
-
-textarea {
-  overflow: auto;
-  line-height: 1.5;
-  white-space: pre-line;
-  resize: none;
-}
-
 button:focus {
   outline: 0;
 }
@@ -199,4 +188,15 @@ input[type="search"] {
 
 ::-webkit-search-decoration {
   display: none;
+}
+
+textarea {
+  overflow: auto;
+  line-height: 1.5;
+  white-space: pre-line;
+  resize: none;
+}
+
+button {
+  color: inherit;
 }

@@ -1,0 +1,310 @@
+@charset "utf-8";
+@use "base/mixins" as *;
+@use "base/variables" as *;
+@use "parts/pagination";
+
+.section-child-keyvisual {
+  .keyvisual-thumbnail {
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .keyvisual-title {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    color: $color-white;
+    font-weight: 700;
+    letter-spacing: .01em;
+  }
+
+  @include desktop-pc {
+    .keyvisual-thumbnail {
+      height: 520px;
+
+      &::before {
+        background: url("../img/rugby/decoration_ico_01.svg") no-repeat bottom right/ 100% auto;
+      }
+    }
+  }
+
+  @include desktop {
+    .keyvisual-title {
+      font-size: .98rem;
+      line-height: calc(108 / 98);
+    }
+  }
+
+  @include tablet {
+    .keyvisual-thumbnail {
+      &::before {
+        background: url("../img/rugby/tb/decoration_ico_01.svg") no-repeat bottom right/ 100% auto;
+      }
+    }
+  }
+
+  @include tablet-sp {
+    .keyvisual-title {
+      font-size: .5rem;
+      line-height: calc(60 / 50);
+    }
+  }
+
+  @include mobile {
+    .keyvisual-thumbnail {
+      &::before {
+        background: url("../img/rugby/sp/decoration_ico_01.svg") no-repeat bottom right/ 100% auto;
+      }
+    }
+  }
+}
+
+.section-child {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  a {
+    display: block;
+    background: $color-white;
+    text-decoration: none;
+
+    &:hover {
+      .child-title {
+        color: $color-light-blue;
+      }
+
+      .child-thumbnail {
+        &::before {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .child-list {
+    @include reset-list;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .child-title {
+    display: -webkit-box;
+    position: relative;
+    overflow: hidden;
+    transition: color .26s ease;
+    font-weight: 500;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      background: url("../img/common/arrow_ico_07.svg") no-repeat center left/ 100% 100%;
+    }
+  }
+
+  .child-content {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .child-thumbnail {
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      visibility: hidden;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity .3s ease, visibility .3s ease;
+      opacity: 0;
+      background: rgba(0, 0, 0, .5);
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  @include desktop-pc {
+    padding: 159px 0 78px;
+
+    &::before {
+      top: 362px;
+      background: url("../img/rugby/rugby_bg_01.png") no-repeat center bottom / 100% auto, $color-light-blue;
+    }
+
+    &::after {
+      top: 333px;
+      background: url("../img/rugby/decoration_ico_02.svg") no-repeat top right;
+    }
+
+    .child-item {
+      width: calc(100% / 2);
+      margin-bottom: 54px;
+      padding: 0 24.5px;
+    }
+
+    .child-list {
+      margin: 0 -24px;
+    }
+
+    .child-thumbnail {
+      padding-top: calc(300 / 530 * 100%);
+    }
+
+    .child-title {
+      margin-bottom: 15px;
+      padding-left: 36px;
+
+      &::before {
+        top: 4px;
+        left: 12px;
+        width: 10px;
+        height: 16px;
+      }
+    }
+
+    .child-description {
+      padding: 30px;
+    }
+
+    .child-content {
+      padding: 0 69px 0 12px;
+      font-size: .14rem;
+      line-height: calc(17 / 14);
+    }
+  }
+
+  @include desktop {
+    .child-title {
+      font-size: .18rem;
+      line-height: calc(22 / 18);
+    }
+  }
+
+  @include tablet {
+    padding: .87rem 0 .72rem;
+
+    &::before {
+      top: 227px;
+      background: url("../img/rugby/tb/rugby_bg_01.png") no-repeat center bottom / 100% auto $color-light-blue;
+    }
+
+    &::after {
+      top: 197px;
+      background: url("../img/rugby/tb/decoration_ico_02.svg") no-repeat top right;
+    }
+
+    .child-item {
+      width: calc(100% / 2);
+      margin-bottom: .33rem;
+      padding: 0 .175rem;
+    }
+
+    .child-description {
+      padding: .21rem .15rem;
+    }
+
+    .child-title {
+      margin-bottom: .12rem;
+      padding: 0 .27rem;
+    }
+
+    .child-content {
+      padding-right: .15rem;
+      font-size: .14rem;
+      line-height: calc(24 / 14);
+    }
+
+    .child-thumbnail {
+      padding-top: calc(186 / 328 * 100%);
+    }
+  }
+
+  @include tablet-sp {
+    .child-title {
+      &::before {
+        top: .04rem;
+        width: .1rem;
+        height: .16rem;
+      }
+    }
+  }
+
+  @include mobile {
+    padding: .81rem 0 .84rem;
+
+    &::before {
+      top: 2.32rem;
+      background: url("../img/rugby/sp/rugby_bg_01.png") no-repeat center bottom / 100% auto, $color-light-blue;
+    }
+
+    &::after {
+      top: 2.04rem;
+      background: url("../img/rugby/sp/decoration_ico_02.svg") no-repeat top right;
+    }
+
+    .child-list {
+      padding: 0 .025rem;
+    }
+
+    .child-thumbnail {
+      padding-top: calc(185 / 330 * 100%);
+    }
+
+    .child-title {
+      font-size: .2rem;
+    }
+
+    .child-description {
+      padding: .21rem .18rem .24rem;
+    }
+
+    .child-title {
+      margin-bottom: .09rem;
+      padding-left: .24rem;
+    }
+
+    .child-item {
+      &:not(:last-child) {
+        margin-bottom: .33rem;
+      }
+    }
+  }
+}

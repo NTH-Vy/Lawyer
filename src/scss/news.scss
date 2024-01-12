@@ -1,14 +1,139 @@
 @charset "utf-8";
-@use "base/base" as *;
-@use "parts/header";
-@use "parts/footer";
+@use "base/mixins" as *;
+@use "base/variables" as *;
+@use "parts/news";
+@use "parts/pagination";
+@use "parts/post_content";
 
-.test-4 {
-  color: red !important;
+.section-news {
+  .news-list {
+    @include reset-list;
+  }
+
+  .news-item {
+    border-bottom: 0.01rem solid #d0d0d0;
+  }
+
+  .news-date,
+  .news-title {
+    position: relative;
+  }
+
+  @include desktop-pc {
+    padding-bottom: 192px;
+
+    .news-list {
+      margin-bottom: 93px;
+    }
+
+    .news-date {
+      top: -2px;
+    }
+  }
+
+  @include desktop-pc {
+    padding-bottom: 99px;
+  }
+
+  @include desktop {
+    .news-item {
+      display: flex;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+
+  @include tablet {
+    padding-bottom: 1.08rem;
+
+    .item-wrapper {
+      margin-bottom: 0;
+    }
+
+    .news-list {
+      margin-bottom: .81rem;
+      padding: 0 .18rem;
+    }
+
+    .news-item {
+      align-items: flex-start;
+    }
+
+    .news-title {
+      top: .02rem;
+      margin-left: .24rem;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  @include tablet-sp {
+    .news-date {
+      top: -.01rem;
+    }
+  }
+
+  @include mobile {
+    padding-bottom: .75rem;
+
+    .breadcrumb-common {
+      margin-bottom: .12rem;
+    }
+
+    .news-list {
+      margin-bottom: .72rem;
+    }
+
+    .news-item {
+      padding-right: .12rem;
+      padding-left: .12rem;
+    }
+
+    .news-title {
+      -webkit-line-clamp: 3;
+      line-height: calc(25 / 16);
+    }
+
+    .item-wrapper {
+      margin-bottom: .18rem;
+    }
+  }
 }
 
-.test-5 {
-  background: blue !important;
-  font-size: 99%;
-  font-weight: 700;
+.section-news-post {
+  @include desktop-pc {
+    padding-bottom: 84px;
+
+    .title-common-primary {
+      margin-bottom: 18px;
+    }
+  }
+
+  @include tablet {
+    padding-bottom: 111px;
+
+    .title-common-primary {
+      margin: 0 21px 15px;
+    }
+  }
+
+  @include mobile {
+    padding-bottom: .63rem;
+
+    .breadcrumb-common {
+      margin-right: -.09rem;
+    }
+
+    .title-common-primary {
+      margin-bottom: .06rem;
+    }
+  }
+}
+
+.section-common-heading {
+  @include mobile {
+    .heading-title {
+      font-size: .26rem;
+      line-height: calc(35 / 26);
+    }
+  }
 }

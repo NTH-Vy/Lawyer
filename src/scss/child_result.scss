@@ -1,0 +1,237 @@
+@charset "utf-8";
+@use "base/mixins" as *;
+@use "base/variables" as *;
+@use "parts/post_content";
+@use "parts/pagination";
+
+.section-child-content {
+  @include desktop-pc {
+    padding-bottom: 198px;
+
+    .breadcrumb-common {
+      margin-bottom: 51px;
+    }
+
+    .title-common-primary {
+      margin-bottom: 18px;
+    }
+  }
+
+  @include tablet {
+    padding-bottom: 84px;
+
+    .breadcrumb-common {
+      margin-bottom: 24px;
+    }
+
+    .title-common-primary {
+      margin: 0 21px 15px;
+    }
+  }
+
+  @include mobile {
+    .title-common-primary {
+      margin-bottom: .06rem;
+    }
+  }
+}
+
+.section-child-result {
+  .result-category {
+    @include reset-list;
+
+    display: inline-flex;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .category-item {
+    position: relative;
+    padding: 0 .12rem 0 .24rem;
+    font-size: .15rem;
+    line-height: calc(45 / 15);
+
+    a {
+      color: $color-blue;
+      text-decoration: underline;
+      text-underline-offset: .03rem;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &:first-child {
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(50% + .01rem);
+        left: .04rem;
+        width: .01rem;
+        height: .17rem;
+        transform: translateY(-50%);
+        background: $color-default;
+      }
+    }
+
+    &:last-child {
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(50% + .01rem);
+        right: -.06rem;
+        width: .01rem;
+        height: .17rem;
+        transform: translateY(-50%);
+        background: $color-default;
+      }
+    }
+
+    & + .category-item {
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(50% + .01rem);
+        left: .05rem;
+        width: .01rem;
+        height: .17rem;
+        transform: translateY(-50%);
+        background: $color-default;
+      }
+    }
+  }
+
+  .result-list {
+    @include reset-list;
+  }
+
+  .result-date {
+    color: $color-black;
+    font-size: .15rem;
+    line-height: calc(18 / 15);
+  }
+
+  .result-title {
+    display: -webkit-box;
+    overflow: hidden;
+    transition: color .26s ease;
+    color: $color-black;
+    text-decoration: none;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    &:hover {
+      color: $color-light-blue;
+    }
+  }
+
+  @include desktop-pc {
+    padding-bottom: 204px;
+
+    .breadcrumb-common {
+      margin-bottom: 75px;
+    }
+
+    .title-common-primary {
+      margin-bottom: 51px;
+    }
+
+    .result-item {
+      padding: 30px 9px 27px;
+    }
+
+    .result-list {
+      margin-bottom: 165px;
+    }
+
+    .result-category {
+      margin-bottom: 63px;
+    }
+  }
+
+  @include desktop {
+    .breadcrumb-common {
+      .breadcrumb-item {
+        & + .breadcrumb-item {
+          padding-left: .3rem;
+        }
+      }
+    }
+
+    .result-item {
+      display: flex;
+      align-items: center;
+      border-bottom: .01rem solid #d0d0d0;
+    }
+
+    .result-date {
+      flex: 0 0 auto;
+      width: 150px;
+      padding-right: 15px;
+    }
+  }
+
+  @include tablet {
+    padding-bottom: 1.77rem;
+
+    .breadcrumb-common {
+      margin-bottom: .21rem;
+      padding-top: .12rem;
+    }
+
+    .title-common-primary {
+      margin-bottom: .27rem;
+    }
+
+    .result-category {
+      margin-bottom: .3rem;
+      padding: 0 .18rem;
+    }
+
+    .result-list {
+      margin-bottom: .9rem;
+      padding: 0 .18rem;
+    }
+
+    .result-item {
+      padding: .3rem .09rem;
+    }
+  }
+
+  @include mobile {
+    padding: .12rem 0 .69rem;
+
+    .title-common-primary {
+      margin-bottom: .21rem;
+    }
+
+    .breadcrumb-common {
+      margin-bottom: .18rem;
+    }
+
+    .result-category {
+      margin-bottom: .36rem;
+    }
+
+    .result-list {
+      margin-bottom: .78rem;
+    }
+
+    .result-item {
+      padding: .21rem .12rem;
+
+      &:not(:last-child) {
+        border-bottom: .01rem solid #d0d0d0;
+      }
+    }
+
+    .result-date {
+      display: block;
+      margin-bottom: .15rem;
+    }
+
+  }
+}
