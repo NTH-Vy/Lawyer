@@ -131,10 +131,27 @@ const analyzeStyles = (done) => {
   const mediaRules = [];
   const importantUsages = [];
   const colorValues = [];
-  const fontSizeValues = [];
+  const fontsizeValues = [];
+  const fontweightValues = [];
+  const lineheightValues = [];
+
+  const textshadowValues = [];
+  const boxshadowValues = [];
+
+  const widthValues = [];
+  const heightValues = [];
+
   const marginValues = [];
   const paddingValues = [];
+  const borderValues = [];
+
+  const topValues = [];
+  const rightValues = [];
+  const bottomValues = [];
+  const leftValues = [];
+
   // const propertyInfoMap = new Map();
+
   return src(config.source.glob)
     .pipe(postcss([
       (root, result) => {
@@ -190,12 +207,36 @@ const analyzeStyles = (done) => {
               }
             }
 
+            // Get line-height
+            if (node.prop === 'line-height') {
+              lineheightValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get font-weight
+            if (node.prop === 'font-weight') {
+              fontweightValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
             // Get font-size
             if (node.prop === 'font-size') {
               if (!node.prop.startsWith('$')) {
                 const extractedFontSize = extractFontSize(node.value);
                 if (extractedFontSize !== null) {
-                  fontSizeValues.push({
+                  fontsizeValues.push({
                     fileName: root.source.input.file,
                     line: node.source.start.line,
                     column: node.source.start.column,
@@ -206,6 +247,54 @@ const analyzeStyles = (done) => {
                   });
                 }
               }
+            }
+
+            // Get text-shadow
+            if (node.prop === 'text-shadow') {
+              textshadowValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get box-shadow
+            if (node.prop === 'box-shadow') {
+              boxshadowValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get width
+            if (/width/i.test(node.prop)) {
+              widthValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get height
+            if (/height/i.test(node.prop)) {
+              heightValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
             }
 
             // Get margin
@@ -223,6 +312,65 @@ const analyzeStyles = (done) => {
             // Get padding
             if (/padding/i.test(node.prop)) {
               paddingValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            if (node.prop.startsWith('border')) {
+              borderValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get top
+            if (node.prop === 'top') {
+              topValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get right
+            if (node.prop === 'right') {
+              rightValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get bottom
+            if (node.prop === 'bottom') {
+              bottomValues.push({
+                fileName: root.source.input.file,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector: node.parent.selector,
+                property: node.prop,
+                value: node.value,
+              });
+            }
+
+            // Get left
+            if (node.prop === 'left') {
+              leftValues.push({
                 fileName: root.source.input.file,
                 line: node.source.start.line,
                 column: node.source.start.column,
@@ -265,15 +413,20 @@ const analyzeStyles = (done) => {
       // console.log(mediaRules);
       // console.log(importantUsages);
       // console.log(colorValues);
-      // console.log(fontSizeValues);
+      // console.log(fontsizeValues);
       // console.log(marginValues);
       // console.log(paddingValues);
+
+      // console.log(fontweightValues);
+      console.log(lineheightValues);
+
       const dataObject = {
-        variableMap: Array.from(variableMap),
-        mediaRules,
-        importantUsages,
-        colorValues,
-        fontSizeValues,
+        analyzedTime: new Date(),
+        // variableMap: Array.from(variableMap),
+        // mediaRules,
+        // importantUsages,
+        // colorValues,
+        // fontsizeValues,
         marginValues,
         paddingValues
       };

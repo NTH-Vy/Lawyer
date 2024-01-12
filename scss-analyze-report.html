@@ -43,7 +43,7 @@
       font-family: ui-monospace, monospace;
     }
 
-    .estimate-timate {
+    .analyzed-time {
       margin-bottom: 40px;
     }
 
@@ -215,9 +215,11 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="container">
     <h1>SCSS Analyze Report</h1>
-    <div class="estimate-timate">Estimated time: 2023-12-21 13:24:05</div>
+    <div class="analyzed-time">Analyzed time: <time id="analyzed-time"></time></div>
+
+    <!--
     <h2>Defined Variables</h2>
     <div class="panel">
       <table class="table-data">
@@ -794,9 +796,11 @@
       </table>
     </div>
 
+    -->
+
   </div>
 
-  <div class="devtool is-open">
+  <div class="devtool">
     <div class="devtool-header">
       <button type="button" class="btn-close-devtool" onClick="closeDevTool();">
         <svg width="12" height="12" viewBox="0 0 24 24" class="inline-block fill-current ">
@@ -881,6 +885,8 @@
   </div>
   <script>
 
+    let dataObject;
+
     const openDevTool = () => {
       const devTool = document.querySelector('.devtool');
       if (devTool) {
@@ -895,19 +901,179 @@
       }
     };
 
-    document.addEventListener('DOMContentLoaded', () => {
+    const loadDevToolData = (type, prop, value) => {
+    const devToolMainEl = document.querySelector('.devtool-main');
+    if (devToolMainEl) {
+      devToolMainEl.innerHTML = '';
+    }
+    const data = dataObject[type];
+    if (data.length) {
+      const sortedData = data.sort((a, b) => a.fileName.localeCompare(b.fileName));
+      const filteredData = sortedData.filter(item => item.property === prop && item.value === value);
 
+      const table = document.createElement('table');
+      table.className = 'table-inspect';
+
+      const headers = ['File', 'Line'];
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
+      filteredData.forEach(entry => {
+        const { fileName, column, line } = entry;
+        const tr = document.createElement('tr');
+        const fileCell = document.createElement('td');
+        const lineCell = document.createElement('td');
+        fileCell.innerHTML = `<code>${fileName}</code>`;
+        lineCell.innerHTML = `<a href="file://${fileName}#${line}:${column}">${line}:${column}</a>`;
+        tr.appendChild(fileCell);
+        tr.appendChild(lineCell);
+        table.appendChild(tr);
+      });
+      devToolMainEl.appendChild(table);
+    }
+  };
+
+    const initLinkInspect = () => {
       const linkInspects = document.querySelectorAll('.link-inspect');
       linkInspects.forEach((link) => {
         link.addEventListener('click', (event) => {
           event.preventDefault();
-          console.log(event.target);
+          const el = event.currentTarget;
+          const type = el.getAttribute('data-type');
+          const prop = el.getAttribute('data-prop');
+          const value = el.getAttribute('data-value');
+          loadDevToolData(type, prop, value);
           openDevTool();
         });
       });
+    };
 
-      const jsonData = [];
-      console.log(jsonData);
+    function getDateTime(time) {
+      const now = new Date(time);
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      return formattedDateTime;
+    }
+
+    function showAnalyzedTime() {
+      if (dataObject.analyzedTime) {
+        const formatedTime = getDateTime(dataObject.analyzedTime);
+        const timeEl = document.querySelector('#analyzed-time');
+        if (timeEl) {
+          timeEl.setAttribute('datetime', formatedTime);
+          timeEl.textContent = formatedTime;
+        }
+      }
+    }
+
+    function addSection(dataKey, title, filters = null) {
+      const container = document.querySelector('#container');
+      const data = dataObject[dataKey];
+      if (!data.length) return;
+
+      const headingEl = document.createElement('h2');
+      headingEl.textContent = title;
+      container.appendChild(headingEl);
+
+      const panelEl = document.createElement('div');
+      panelEl.className = 'panel';
+
+      if (filters) {
+        const filterEl = document.createElement('div');
+        filterEl.className = 'panel-tab-header';
+        filters.unshift('all');
+        filters.forEach((item, index) => {
+          const label = document.createElement('label');
+          const input = document.createElement('input');
+          const span = document.createElement('span');
+          input.type = 'radio';
+          input.name = `filter-${dataKey}`;
+          input.value = item;
+          if (index === 0) {
+            input.checked = true;
+          }
+          span.textContent = item;
+          label.appendChild(input);
+          label.appendChild(span);
+          filterEl.appendChild(label);
+        });
+        panelEl.appendChild(filterEl);
+      }
+
+      const table = document.createElement('table');
+      table.className = 'table-data';
+      const headers = ['Count', 'Value', 'Same as variable?'];
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
+
+      const countMap = {};
+      data.forEach(item => {
+        const key = `${item.property}--${item.value}`;
+        countMap[key] = (countMap[key] || 0) + 1;
+      });
+      const sortedEntries = Object.entries(countMap).sort((a, b) => b[1] - a[1]).splice(0, 10); // TODO: USING SLICED FOR TESTING
+      sortedEntries.forEach(entry => {
+        const [key, count] = entry;
+        const [property, value] = key.split('--');
+        const tr = document.createElement('tr');
+        const countCell = document.createElement('td');
+        const valueCell = document.createElement('td');
+        const sameCell = document.createElement('td');
+        countCell.textContent = count;
+        valueCell.innerHTML = `<a class="link-inspect" data-type="${dataKey}" data-prop="${property}" data-value="${value}" href="#"><code>${property}: ${value}</code></a>`;
+        sameCell.textContent = '';
+        tr.appendChild(countCell);
+        tr.appendChild(valueCell);
+        tr.appendChild(sameCell);
+        table.appendChild(tr);
+      });
+      panelEl.appendChild(table);
+      container.appendChild(panelEl);
+
+    };
+
+    function init() {
+      console.log(dataObject);
+
+      showAnalyzedTime();
+
+      addSection('marginValues', 'Margin', ['margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left']);
+      addSection('paddingValues', 'Padding', ['padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left']);
+
+      initLinkInspect();
+
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      fetch('scss-analyze-report.json')
+        .then(response => response.json())
+        .then(data => {
+          dataObject = data;
+          init();
+          // console.log(data);
+          // console.log(getDateTime(data.analyzedTime));
+        })
+        .catch(error => {
+          console.error('Error reading the JSON file', error);
+        });
+
+      // const jsonData = [];
+      // console.log(jsonData);
     });
   </script>
 </body>
