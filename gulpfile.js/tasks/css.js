@@ -127,30 +127,24 @@ const extractFontSize = (value) => {
 };
 
 const analyzeStyles = (done) => {
-  const variableMap = new Map();
-  const mediaRules = [];
+  const definedVariables = [];
   const importantUsages = [];
   const colorValues = [];
+  const fontfamilyValues = [];
   const fontsizeValues = [];
   const fontweightValues = [];
   const lineheightValues = [];
-
   const textshadowValues = [];
   const boxshadowValues = [];
-
   const widthValues = [];
   const heightValues = [];
-
   const marginValues = [];
   const paddingValues = [];
   const borderValues = [];
-
   const topValues = [];
   const rightValues = [];
   const bottomValues = [];
   const leftValues = [];
-
-  // const propertyInfoMap = new Map();
 
   return src(config.source.glob)
     .pipe(postcss([
@@ -158,23 +152,15 @@ const analyzeStyles = (done) => {
         const fileName = root.source.input.file;
         root.walk((node) => {
           if (node.type === 'atrule') {
-            // if ((node.name === 'media' || node.name === 'include') && node.parent.type === 'root') {
-            //   if (node.params !== 'print') {
-            //     result.warn(`Do not use @media or @include in root-level. Found: @${node.name}`, {
-            //       node: node,
-            //     });
-            //   }
-            // }
-
-            if (node.name === 'media') {
-              // mediaRules.push(node.params);
-            }
 
           } else if (node.type === 'decl') {
 
             // Get defined variables
             if (node.prop.startsWith('$')) {
-              variableMap.set(node.prop, node.value);
+              definedVariables.push({
+                name: node.prop,
+                value: node.value
+              });
             }
 
             // Get the usage of !important
@@ -207,6 +193,38 @@ const analyzeStyles = (done) => {
               }
             }
 
+            // Get font-family
+            if (node.prop === 'font-family') {
+              if (!node.prop.startsWith('$')) {
+                fontfamilyValues.push({
+                  fileName: root.source.input.file,
+                  line: node.source.start.line,
+                  column: node.source.start.column,
+                  selector: node.parent.selector,
+                  property: node.prop,
+                  value: node.value,
+                });
+              }
+            }
+
+            // Get font-size
+            if (node.prop === 'font-size') {
+              if (!node.prop.startsWith('$')) {
+                const extractedFontSize = extractFontSize(node.value);
+                if (extractedFontSize !== null) {
+                  fontsizeValues.push({
+                    fileName: root.source.input.file,
+                    line: node.source.start.line,
+                    column: node.source.start.column,
+                    selector: node.parent.selector,
+                    property: node.prop,
+                    value: node.value,
+                    extractedFontSize,
+                  });
+                }
+              }
+            }
+
             // Get line-height
             if (node.prop === 'line-height') {
               lineheightValues.push({
@@ -229,24 +247,6 @@ const analyzeStyles = (done) => {
                 property: node.prop,
                 value: node.value,
               });
-            }
-
-            // Get font-size
-            if (node.prop === 'font-size') {
-              if (!node.prop.startsWith('$')) {
-                const extractedFontSize = extractFontSize(node.value);
-                if (extractedFontSize !== null) {
-                  fontsizeValues.push({
-                    fileName: root.source.input.file,
-                    line: node.source.start.line,
-                    column: node.source.start.column,
-                    selector: node.parent.selector,
-                    property: node.prop,
-                    value: node.value,
-                    extractedFontSize,
-                  });
-                }
-              }
             }
 
             // Get text-shadow
@@ -409,28 +409,31 @@ const analyzeStyles = (done) => {
       this.emit('end');
     })
     .on('end', function () {
-      // console.log(variableMap);
-      // console.log(mediaRules);
-      // console.log(importantUsages);
-      // console.log(colorValues);
-      // console.log(fontsizeValues);
-      // console.log(marginValues);
-      // console.log(paddingValues);
-
-      // console.log(fontweightValues);
-      console.log(lineheightValues);
-
       const dataObject = {
         analyzedTime: new Date(),
-        // variableMap: Array.from(variableMap),
-        // mediaRules,
-        // importantUsages,
-        // colorValues,
-        // fontsizeValues,
+        definedVariables,
+        importantUsages,
+        colorValues,
+        fontfamilyValues,
+        fontsizeValues,
+        fontweightValues,
+        lineheightValues,
+        widthValues,
+        heightValues,
         marginValues,
-        paddingValues
+        paddingValues,
+        textshadowValues,
+        boxshadowValues,
+        topValues,
+        rightValues,
+        bottomValues,
+        leftValues
       };
-      fs.writeFileSync('scss-analyze-report.json', JSON.stringify(dataObject, null, 2));
+      const templatePath = 'scss-analyze-report.tpl';
+      const templateContent = fs.readFileSync(templatePath, 'utf-8');
+      const htmlContent = templateContent.replace('{/* DATA_PLACEHOLDER */}', JSON.stringify(dataObject, null, 2));
+      const outputFilePath = 'scss-analyze-report.html';
+      fs.writeFileSync(outputFilePath, htmlContent);
       done();
     });
 };

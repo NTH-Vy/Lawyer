@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCSS Analyze Report</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      color-scheme: dark;
+    }
+
+    body {
+      background: #0f171c;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    .container {
+      margin: 0 auto;
+      padding: 40px 20px calc(30vh + 40px);
+      max-width: 1300px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin-bottom: 1em;
+    }
+
+    code {
+      font-family: ui-monospace, monospace;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .analyzed-time {
+      margin-bottom: 40px;
+    }
+
+    .link-inspect {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .panel {
+      margin: 20px 0 40px;
+      padding: 20px;
+      background-color: #18232a;
+    }
+
+    .table-data {
+      width: 100%;
+    }
+
+    .table-data tr:nth-of-type(odd) {
+      background-color: #1f2b32;
+    }
+
+    .table-data th,
+    .table-data td {
+      padding: 10px 20px;
+      text-align: left;
+    }
+
+    .table-data th:nth-child(1) {
+      width: 100px;
+    }
+
+    .table-data th:nth-child(2) {
+      width: 100%;
+    }
+
+    .table-data th:nth-child(3) {
+      min-width: 200px;
+    }
+
+    .table-data td:nth-child(1) {
+      white-space: nowrap;
+    }
+
+    .table-data td {
+      font-family: ui-monospace, monospace;
+      color: #ccc;
+    }
+
+    .table-inspect {
+      width: 100%;
+    }
+
+    .table-inspect tr:nth-child(odd) {
+      background-color: #1f2b32;
+    }
+
+    .table-inspect th,
+    .table-inspect td {
+      padding: 10px 20px;
+      text-align: left;
+      border: 1px solid #2b393f;
+    }
+
+    .table-inspect th:first-child {
+      width: 50%;
+    }
+
+    .table-inspect td {
+      font-family: ui-monospace, monospace;
+      color: #ccc;
+    }
+
+    .table-inspect td a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    .devtool {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: #18232a;
+      opacity: 0;
+      visibility: hidden
+    }
+
+    .devtool.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .devtool-header {
+      height: 36px;
+      padding: 10px 20px;
+      border-top: 1px solid #394d55;
+      border-bottom: 1px solid #394d55;
+      position: relative;
+    }
+
+    .devtool-main {
+      height: 30vh;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .btn-close-devtool {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      margin: 0;
+      -webkit-appearance: none;
+      outline: none;
+      border: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .btn-close-devtool:hover {
+      background: #394d55;
+    }
+
+    .btn-close-devtool svg {
+      fill: #f8f8f8;
+    }
+
+    .color-tile {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-right: .5em;
+      margin-top: -.2em;
+      vertical-align: middle;
+    }
+
+    .panel-tab-header {
+      padding: 10px 0 0 20px;
+      margin-bottom: 20px;
+      border: 1px solid #2b393f;
+    }
+
+    .panel-tab-header label {
+      display: inline-block;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .panel-tab-header label input {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: .3em;
+      cursor: pointer;
+    }
+
+    .panel-tab-header label span {
+      display: inline-block;
+      vertical-align: middle;
+      color: #cdd3d6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="container">
+    <h1>SCSS Analyze Report</h1>
+    <div class="analyzed-time">Analyzed time: <time id="analyzed-time"></time></div>
+
+    <!--
+    <h2>Defined Variables</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Variable</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>$viewport-width</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">1250px</code></a></td>
+        </tr>
+        <tr>
+          <td>$wrapper-width</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">1200px</code></a></td>
+        </tr>
+        <tr>
+          <td>$md-break</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">1024px</code></a></td>
+        </tr>
+        <tr>
+          <td>$sm-break</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">767.98px</code></a></td>
+        </tr>
+        <tr>
+          <td>$xs-break</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">374px</code></a></td>
+        </tr>
+        <tr>
+          <td>$font-sans</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">"ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", yugothic, "Yu Gothic", "メイリオ", meiryo, sans-serif</code></a></td>
+        </tr>
+        <tr>
+          <td>$font-serif</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">"ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "游明朝", yumincho, "Times New Roman", georgia, serif</code></a></td>
+        </tr>
+        <tr>
+          <td>$font-size-pc</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">.14rem</code></a></td>
+        </tr>
+        <tr>
+          <td>$font-size-sp</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">.14rem</code></a></td>
+        </tr>
+        <tr>
+          <td>$font-weight-pc</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">400</code></a></td>
+        </tr>
+        <tr>
+          <td>$font-weight-sp</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">400</code></a></td>
+        </tr>
+        <tr>
+          <td>$line-height</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#">1.5</code></a></td>
+        </tr>
+        <tr>
+          <td>$color-default</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #fd0000;"></span>#fd0000</code></a></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>@media</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>print</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>print, (min-width: 768px)</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>only screen and (max-width: 767.98px)</code></a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>!important</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>!important</code></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Colors</h2>
+    <div class="panel">
+      <div class="panel-tab-header">
+        <label>
+          <input type="radio" name="panel-color" checked value="1">
+          <span>all</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-color" value="2">
+          <span>color</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-color" value="3">
+          <span>background</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-color" value="4">
+          <span>border</span>
+        </label>
+      </div>
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+        <tr>
+          <td>299</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #fd0000;"></span><code>$base-color</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>299</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #000;"></span><code>#000</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>120</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #111;"></span><code>#111</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>30</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #222;"></span><code>#222</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>31</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #333;"></span><code>#222</code></a></td>
+          <td><code>$base-color-primary</code></td>
+        </tr>
+        <tr>
+          <td>25</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #444;"></span><code>#333</code></a></td>
+          <td><code>$base-color-secondary</code></td>
+        </tr>
+        <tr>
+          <td>40</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><span class="color-tile" style="background-color: #555;"></span><code>#444</code></a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Font Sizes</h2>
+    <div class="panel">
+      <div class="panel-tab-header">
+        <label>
+          <input type="radio" name="panel-font-size" checked value="1">
+          <span>all</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-font-size" value="2">
+          <span>px</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-font-size" value="3">
+          <span>em</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-font-size" value="4">
+          <span>rem</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-font-size" value="5">
+          <span>%</span>
+        </label>
+      </div>
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+        <tr>
+          <td>199</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>$base-font-size</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>299</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>20px</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>120</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>30px</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>30</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>10px</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>5%</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>25%</code></a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Font Families</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>$base-font-sans</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>$base-font-serif</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>"メイリオ", meiryo, "游ゴシック", yugothic, "Yu Gothic", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", verdana, sans-serif</code></a></td>
+          <td><code>$base-font-sans</code></td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>"游ゴシック", yugothic, "Yu Gothic", "メイリオ", meiryo, sans-serif</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>"Avenir", avenir, san-serif</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>"Hiragino Sans", "ヒラギノ角ゴ", san-serif</code></a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Line Height</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>1</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>1.25</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>1.5</code></a></td>
+          <td><code>$line-height</code></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>1.75</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>2</code></a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Font Weight</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+        <tr>
+          <td>50</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>300</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>40</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>400</code></a></td>
+          <td><code>$font-weight-pc, $font-weight-sp</code></td>
+        </tr>
+        <tr>
+          <td>35</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>500</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>600</code></a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td><a class="link-inspect" data-name="dummy" data-value="dummy" href="#"><code>900</code></a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Text Shadow</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Box Shadow</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Width</h2>
+    <div class="panel">
+      <div class="panel-tab-header">
+        <label>
+          <input type="radio" name="panel-width" checked value="1">
+          <span>all</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-width" value="2">
+          <span>width</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-width" value="3">
+          <span>max-width</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-width" value="4">
+          <span>min-width</span>
+        </label>
+      </div>
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Height</h2>
+    <div class="panel">
+      <div class="panel-tab-header">
+        <label>
+          <input type="radio" name="panel-height" checked value="1">
+          <span>all</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-height" value="2">
+          <span>height</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-height" value="3">
+          <span>max-height</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-height" value="4">
+          <span>min-height</span>
+        </label>
+      </div>
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Margin</h2>
+    <div class="panel">
+      <div class="panel-tab-header">
+        <label>
+          <input type="radio" name="panel-margin" checked value="1">
+          <span>all</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-margin" value="2">
+          <span>margin</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-margin" value="3">
+          <span>margin-top</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-margin" value="4">
+          <span>margin-right</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-margin" value="5">
+          <span>margin-bottom</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-margin" value="6">
+          <span>margin-left</span>
+        </label>
+      </div>
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Padding</h2>
+    <div class="panel">
+      <div class="panel-tab-header">
+        <label>
+          <input type="radio" name="panel-padding" checked value="1">
+          <span>all</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-padding" value="2">
+          <span>padding</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-padding" value="3">
+          <span>padding-top</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-padding" value="4">
+          <span>padding-right</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-padding" value="5">
+          <span>padding-bottom</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-padding" value="6">
+          <span>padding-left</span>
+        </label>
+      </div>
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Border</h2>
+    <div class="panel">
+      <div class="panel-tab-header">
+        <label>
+          <input type="radio" name="panel-border" checked value="1">
+          <span>all</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-border" value="2">
+          <span>border</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-border" value="3">
+          <span>border-top</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-border" value="4">
+          <span>border-right</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-border" value="5">
+          <span>border-bottom</span>
+        </label>
+        <label>
+          <input type="radio" name="panel-border" value="6">
+          <span>border-left</span>
+        </label>
+      </div>
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Top</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Right</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Bottom</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Left</h2>
+    <div class="panel">
+      <table class="table-data">
+        <tr>
+          <th>Count</th>
+          <th>Value</th>
+          <th>Same as variable?</th>
+        </tr>
+      </table>
+    </div>
+
+    -->
+
+  </div>
+
+  <div class="devtool">
+    <div class="devtool-header">
+      <button type="button" class="btn-close-devtool" onClick="closeDevTool();">
+        <svg width="12" height="12" viewBox="0 0 24 24" class="inline-block fill-current ">
+          <path
+            d="m23 20.168-8.185-8.187L23 3.807 20.168 1l-8.182 8.179L3.81 1 1 3.81l8.186 8.196L1 20.19 3.81 23l8.203-8.192L20.193 23z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div class="devtool-main">
+      <table class="table-inspect">
+        <tr>
+          <th>File</th>
+          <th>Line</th>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+        <tr>
+          <td><code>D:\Xampp\htdocs\__TEMPLATES\fc-gulp\src\scss\test.scss</code></td>
+          <td><a href="#">122:4</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script>
+
+    const dataObject = {/* DATA_PLACEHOLDER */};
+
+    const openDevTool = () => {
+      const devTool = document.querySelector('.devtool');
+      if (devTool) {
+        devTool.classList.add('is-open');
+      }
+    };
+
+    const closeDevTool = () => {
+      const devTool = document.querySelector('.devtool');
+      if (devTool) {
+        devTool.classList.remove('is-open');
+      }
+    };
+
+    const loadDevToolData = (type, prop, value) => {
+    const devToolMainEl = document.querySelector('.devtool-main');
+    if (devToolMainEl) {
+      devToolMainEl.innerHTML = '';
+    }
+    const data = dataObject[type];
+    if (data?.length) {
+      const sortedData = data.sort((a, b) => a.fileName.localeCompare(b.fileName));
+      const filteredData = sortedData.filter(item => item.property === prop && item.value === value);
+
+      const table = document.createElement('table');
+      table.className = 'table-inspect';
+
+      const headers = ['File', 'Line'];
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
+      filteredData.forEach(entry => {
+        const { fileName, column, line } = entry;
+        const tr = document.createElement('tr');
+        const fileCell = document.createElement('td');
+        const lineCell = document.createElement('td');
+        fileCell.innerHTML = `<code>${fileName}</code>`;
+        lineCell.innerHTML = `<a href="file://${fileName}#${line}:${column}">${line}:${column}</a>`;
+        tr.appendChild(fileCell);
+        tr.appendChild(lineCell);
+        table.appendChild(tr);
+      });
+      devToolMainEl.appendChild(table);
+    }
+  };
+
+    const initLinkInspect = () => {
+      const linkInspects = document.querySelectorAll('.link-inspect');
+      linkInspects.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const el = event.currentTarget;
+          const type = el.getAttribute('data-type');
+          const prop = el.getAttribute('data-prop');
+          const value = el.getAttribute('data-value');
+          loadDevToolData(type, prop, value);
+          openDevTool();
+        });
+      });
+    };
+
+    const initFilter = () => {
+      const filterRadios = document.querySelectorAll('.panel-tab-header input[type="radio"]');
+      filterRadios.forEach((radio) => {
+        radio.addEventListener('change', (event) => {
+          event.preventDefault();
+          const el = event.currentTarget;
+          const selectedProp = el.value;
+          const dataTable = el.closest('.panel-tab-header').parentElement.querySelector('.table-data');
+          const tableRows = dataTable.querySelectorAll('tr:not(:first-child)');
+          tableRows.forEach(function(row) {
+            const filterAttribute = row.getAttribute('filter');
+            if (selectedProp === 'all' || selectedProp === filterAttribute) {
+              row.classList.remove('hidden');
+            } else {
+              row.classList.add('hidden');
+            }
+          });
+          const visibleRows = dataTable.querySelectorAll('tr:not(:first-child):not(.hidden)');
+          for (let i = 0; i < visibleRows.length; i++) {
+            const row = visibleRows[i];
+            row.style.backgroundColor = 'transparent';
+            if (i % 2 === 0) {
+              row.style.backgroundColor = 'transparent';
+            } else {
+              row.style.backgroundColor = '#1f2b32';
+            }
+          }
+        });
+      });
+    };
+
+    function getDateTime(time) {
+      const now = new Date(time);
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      return formattedDateTime;
+    }
+
+    function showAnalyzedTime() {
+      if (dataObject.analyzedTime) {
+        const formatedTime = getDateTime(dataObject.analyzedTime);
+        const timeEl = document.querySelector('#analyzed-time');
+        if (timeEl) {
+          timeEl.setAttribute('datetime', formatedTime);
+          timeEl.textContent = formatedTime;
+        }
+      }
+    }
+
+    function addVariables() {
+      const container = document.querySelector('#container');
+
+      const headingEl = document.createElement('h2');
+      headingEl.textContent = 'Defined Variables';
+      container.appendChild(headingEl);
+
+      const panelEl = document.createElement('div');
+      panelEl.className = 'panel';
+
+      const data = dataObject['definedVariables'];
+      if (!data?.length) {
+        const p = document.createElement('p');
+        p.textContent = 'No data';
+        panelEl.appendChild(p);
+        container.appendChild(panelEl);
+        return;
+      };
+
+      const table = document.createElement('table');
+      table.className = 'table-data';
+      const headers = ['Variable', 'Value'];
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
+
+      data.forEach(entry => {
+        const {name, value } = entry;
+        const tr = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        const valueCell = document.createElement('td');
+        nameCell.textContent = name;
+        valueCell.innerHTML = `<code>${value}</code>`;
+        tr.appendChild(nameCell);
+        tr.appendChild(valueCell);
+        table.appendChild(tr);
+      });
+
+      panelEl.appendChild(table);
+      container.appendChild(panelEl);
+    };
+
+    function addSection(dataKey, title, filters = null) {
+      const container = document.querySelector('#container');
+
+      const headingEl = document.createElement('h2');
+      headingEl.textContent = title;
+      container.appendChild(headingEl);
+
+      const panelEl = document.createElement('div');
+      panelEl.className = 'panel';
+
+      if (filters) {
+        const filterEl = document.createElement('div');
+        filterEl.className = 'panel-tab-header';
+        filters.unshift('all');
+        filters.forEach((item, index) => {
+          const label = document.createElement('label');
+          const input = document.createElement('input');
+          const span = document.createElement('span');
+          input.type = 'radio';
+          input.name = `filter-${dataKey}`;
+          input.value = item;
+          if (index === 0) {
+            input.checked = true;
+          }
+          span.textContent = item;
+          label.appendChild(input);
+          label.appendChild(span);
+          filterEl.appendChild(label);
+        });
+        panelEl.appendChild(filterEl);
+      }
+
+      const data = dataObject[dataKey];
+      if (!data?.length) {
+        const p = document.createElement('p');
+        p.textContent = 'No data';
+        panelEl.appendChild(p);
+        container.appendChild(panelEl);
+        return;
+      };
+
+      const table = document.createElement('table');
+      table.className = 'table-data';
+      const headers = ['Count', 'Value', 'Same as variable?'];
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
+
+      const countMap = {};
+      data.forEach(item => {
+        const key = `${item.property}--${item.value}`;
+        countMap[key] = (countMap[key] || 0) + 1;
+      });
+      const sortedEntries = Object.entries(countMap).sort((a, b) => b[1] - a[1]);
+      sortedEntries.forEach(entry => {
+        const [key, count] = entry;
+        const [property, value] = key.split('--');
+        const tr = document.createElement('tr');
+        tr.setAttribute('filter', property);
+        const countCell = document.createElement('td');
+        const valueCell = document.createElement('td');
+        const sameCell = document.createElement('td');
+        countCell.textContent = count;
+        valueCell.innerHTML = `<a class="link-inspect" data-type="${dataKey}" data-prop="${property}" data-value="${value}" href="#"><code>${property}: ${value}</code></a>`;
+        const sameVariables = dataObject['definedVariables'].filter(item => item.value === value).map(item => item.name);
+        sameCell.textContent = sameVariables.length ? sameVariables.join(', ') : '';
+        tr.appendChild(countCell);
+        tr.appendChild(valueCell);
+        tr.appendChild(sameCell);
+        table.appendChild(tr);
+      });
+      panelEl.appendChild(table);
+      container.appendChild(panelEl);
+
+    };
+
+    function init() {
+      showAnalyzedTime();
+      addVariables();
+      addSection('importantUsages', '!important');
+      addSection('colorValues', 'Colors', ['color', 'background', 'background-color', 'border', 'border-top', 'border-right', 'border-bottom', 'border-left']);
+      addSection('fontfamilyValues', 'Font Families');
+      addSection('fontsizeValues', 'Font Sizes');
+      addSection('fontweightValues', 'Font Weight');
+      addSection('lineheightValues', 'Line Height');
+      addSection('widthValues', 'Width', ['min-width', 'max-width']);
+      addSection('heightValues', 'Height', ['min-height', 'max-height']);
+      addSection('marginValues', 'Margin', ['margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left']);
+      addSection('paddingValues', 'Padding', ['padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left']);
+      addSection('textshadowValues', 'Text Shadow');
+      addSection('boxshadowValues', 'Box Shadow');
+      addSection('topValues', 'Top');
+      addSection('rightValues', 'Right');
+      addSection('bottomValues', 'Bottom');
+      addSection('leftValues', 'Left');
+      initLinkInspect();
+      initFilter();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // fetch('scss-analyze-report.json')
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     dataObject = data;
+          init();
+      //   })
+      //   .catch(error => {
+      //     console.error('Error reading the JSON file', error);
+      //   });
+    });
+  </script>
+</body>
+
+</html>
