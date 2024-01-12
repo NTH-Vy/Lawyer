@@ -43,6 +43,10 @@
       font-family: ui-monospace, monospace;
     }
 
+    .hidden {
+      display: none;
+    }
+
     .analyzed-time {
       margin-bottom: 40px;
     }
@@ -62,7 +66,7 @@
       width: 100%;
     }
 
-    .table-data tr:nth-child(odd) {
+    .table-data tr:nth-of-type(odd) {
       background-color: #1f2b32;
     }
 
@@ -952,6 +956,37 @@
       });
     };
 
+    const initFilter = () => {
+      const filterRadios = document.querySelectorAll('.panel-tab-header input[type="radio"]');
+      filterRadios.forEach((radio) => {
+        radio.addEventListener('change', (event) => {
+          event.preventDefault();
+          const el = event.currentTarget;
+          const selectedProp = el.value;
+          const dataTable = el.closest('.panel-tab-header').parentElement.querySelector('.table-data');
+          const tableRows = dataTable.querySelectorAll('tr:not(:first-child)');
+          tableRows.forEach(function(row) {
+            const filterAttribute = row.getAttribute('filter');
+            if (selectedProp === 'all' || selectedProp === filterAttribute) {
+              row.classList.remove('hidden');
+            } else {
+              row.classList.add('hidden');
+            }
+          });
+          const visibleRows = dataTable.querySelectorAll('tr:not(:first-child):not(.hidden)');
+          for (let i = 0; i < visibleRows.length; i++) {
+            const row = visibleRows[i];
+            row.style.backgroundColor = 'transparent';
+            if (i % 2 === 0) {
+              row.style.backgroundColor = 'transparent';
+            } else {
+              row.style.backgroundColor = '#1f2b32';
+            }
+          }
+        });
+      });
+    };
+
     function getDateTime(time) {
       const now = new Date(time);
       const year = now.getFullYear();
@@ -1025,11 +1060,12 @@
         const key = `${item.property}--${item.value}`;
         countMap[key] = (countMap[key] || 0) + 1;
       });
-      const sortedEntries = Object.entries(countMap).sort((a, b) => b[1] - a[1]).splice(0, 10); // TODO: USING SLICED FOR TESTING
+      const sortedEntries = Object.entries(countMap).sort((a, b) => b[1] - a[1]);//.splice(0, 10); // TODO: USING SLICED FOR TESTING
       sortedEntries.forEach(entry => {
         const [key, count] = entry;
         const [property, value] = key.split('--');
         const tr = document.createElement('tr');
+        tr.setAttribute('filter', property);
         const countCell = document.createElement('td');
         const valueCell = document.createElement('td');
         const sameCell = document.createElement('td');
@@ -1055,7 +1091,7 @@
       addSection('paddingValues', 'Padding', ['padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left']);
 
       initLinkInspect();
-
+      initFilter();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
