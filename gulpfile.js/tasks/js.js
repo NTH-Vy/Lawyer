@@ -3,6 +3,7 @@ const eslint = require('gulp-eslint-new');
 const prettier = require('gulp-prettier');
 const config = require('../config').js;
 const fs = require('fs');
+const argv = require('yargs').argv;
 
 const destDir = config.distribute.dir;
 const jsGlob = config.source.glob.concat(config.source.ignore);
@@ -16,7 +17,13 @@ const buildJs = () => {
 };
 
 const lintJs = () => {
-  return src([destDir + '/js/**/*.js'])
+  const stopOnError = argv.stopOnError || false;
+  let filesToCheck = [destDir + '/js/**/*.js'];
+  if (argv.file) {
+    const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
+    filesToCheck = targetFiles.split(',');
+  }
+  const eslintStream = src(filesToCheck)
     .pipe(prettier({
       singleQuote: true,
       proseWrap: 'never',
@@ -26,9 +33,12 @@ const lintJs = () => {
     }))
     .pipe(eslint({ fix: true }))
     .pipe(eslint.fix())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
-    .pipe(dest(destDir + '/js'));
+    .pipe(eslint.format());
+
+  if (stopOnError) {
+    eslintStream.pipe(eslint.failAfterError());
+  }
+  return eslintStream.pipe(dest(destDir + '/js'));
 };
 
 const js = series(buildJs, lintJs);

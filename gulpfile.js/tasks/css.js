@@ -5,24 +5,10 @@ const scssSyntax = require('postcss-scss');
 const sourcemaps = require('gulp-sourcemaps');
 const config = require('../config').css;
 const fs = require('fs');
+const argv = require('yargs').argv;
 
 const destDir = config.distribute.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
-
-const stylelintConfig = {
-  configFile: '.stylelintrc.json',
-  formatter: 'string',
-  ignoreDisables: false,
-  failOnError: true,
-  outputFile: '',
-  reportNeedlessDisables: false,
-  quietDeprecationWarnings: true,
-  fix: false,
-  syntax: 'scss',
-  reporters: [
-    { formatter: 'string', console: true }
-  ]
-};
 
 const customLint = (root, result) => {
   root.walk((node) => {
@@ -59,14 +45,34 @@ const customLint = (root, result) => {
 };
 
 const lintStyles = (fix = false) => {
-  return src(config.source.glob)
+  const stopOnError = argv.stopOnError || false;
+  const isFix = (typeof fix === 'boolean' && fix === true) ? true : false;
+  let filesToCheck = config.source.glob;
+  if (argv.file) {
+    const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
+    filesToCheck = targetFiles.split(',');
+  }
+  return src(filesToCheck)
     .pipe(postcss([
       require('stylelint')({
-        ...stylelintConfig,
-        fix
+        configFile: '.stylelintrc.json',
+        formatter: 'string',
+        ignoreDisables: false,
+        failOnError: true,
+        outputFile: '',
+        reportNeedlessDisables: false,
+        quietDeprecationWarnings: true,
+        fix: isFix,
+        syntax: 'scss'
       }),
-      customLint
-    ], { syntax: scssSyntax }));
+      customLint,
+      require('postcss-reporter')({
+        noIcon: true,
+        noPlugin: true,
+        throwError: stopOnError
+      })
+    ], { syntax: scssSyntax })
+    );
 };
 
 const lintStylesFix = () => {

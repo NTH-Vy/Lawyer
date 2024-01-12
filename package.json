@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "",
   "scripts": {
+    "postinstall": "cp gulpfile.js/config/pre-commit.sh .git/hooks/pre-commit && cp gulpfile.js/config/prepare-commit-msg.sh .git/hooks/prepare-commit-msg && chmod +x .git/hooks/pre-commit .git/hooks/prepare-commit-msg",
     "dev": "cross-env NODE_ENV=development gulp",
     "build": "cross-env NODE_ENV=production gulp",
     "lint": "cross-env NODE_ENV=production gulp lint",
@@ -29,11 +30,14 @@
     "gulp-pug-linter": "^1.5.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "lint-staged": "^15.2.0",
+    "postcss-reporter": "^7.0.5",
     "postcss-scss": "^4.0.9",
     "sass": "^1.58.3",
     "spelling": "^2.0.2",
     "stylelint": "^16.0.2",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
-    "stylelint-config-standard-scss": "^12.0.0"
+    "stylelint-config-standard-scss": "^12.0.0",
+    "yargs": "^17.7.2"
   }
 }
