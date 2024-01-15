@@ -579,6 +579,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      console.log(dataObject);
       init();
     });
   </script>

@@ -7,6 +7,12 @@
   }
 }
 
+@mixin desktop-xxx {
+  @media print, (min-width: $sm-break + .05) {
+    @content;
+  }
+}
+
 @mixin desktop-pc {
   @media print, (min-width: $md-break) {
     @content;

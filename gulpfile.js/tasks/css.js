@@ -127,6 +127,7 @@ const extractFontSize = (value) => {
 };
 
 const analyzeStyles = (done) => {
+  const mediaQueries = new Set;
   const definedVariables = [];
   const importantUsages = [];
   const colorValues = [];
@@ -151,6 +152,32 @@ const analyzeStyles = (done) => {
       (root, result) => {
         const fileName = root.source.input.file;
         root.walk((node) => {
+
+          const selectorPath = [];
+          let currentNode = node.parent;
+          let mediaQuery = null;
+          while (currentNode) {
+            if (currentNode.type === 'rule') {
+              const ruleSelector = currentNode.selector.trim();
+              if (ruleSelector) {
+                selectorPath.unshift(ruleSelector);
+              }
+            } else if (currentNode.type === 'atrule') {
+              if (currentNode.name === 'media') {
+                mediaQueries.add(`@media ${currentNode.params}`);
+                if (!mediaQuery) {
+                  mediaQuery = `@media ${currentNode.params}`;
+                }
+              } else if (currentNode.name === 'include') {
+                mediaQueries.add(`@include ${currentNode.params}`);
+                if (!mediaQuery) {
+                  mediaQuery = `@include ${currentNode.params}`;
+                }
+              }
+            }
+            currentNode = currentNode.parent;
+          }
+
           if (node.type === 'atrule') {
 
           } else if (node.type === 'decl') {
@@ -170,6 +197,8 @@ const analyzeStyles = (done) => {
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 property: node.prop,
                 value: node.value,
               });
@@ -185,6 +214,8 @@ const analyzeStyles = (done) => {
                     line: node.source.start.line,
                     column: node.source.start.column,
                     selector: node.parent.selector,
+                    fullSelectorPath: selectorPath.join(' '),
+                    mediaQuery,
                     property: node.prop,
                     value: node.value,
                     extractedColor
@@ -202,6 +233,8 @@ const analyzeStyles = (done) => {
                   column: node.source.start.column,
                   selector: node.parent.selector,
                   property: node.prop,
+                  fullSelectorPath: selectorPath.join(' '),
+                  mediaQuery,
                   value: node.value,
                 });
               }
@@ -218,6 +251,8 @@ const analyzeStyles = (done) => {
                     column: node.source.start.column,
                     selector: node.parent.selector,
                     property: node.prop,
+                    fullSelectorPath: selectorPath.join(' '),
+                    mediaQuery,
                     value: node.value,
                     extractedFontSize,
                   });
@@ -233,6 +268,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -245,6 +282,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -257,6 +296,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -269,6 +310,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -281,6 +324,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -293,6 +338,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -305,6 +352,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -317,6 +366,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -328,6 +379,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -340,6 +393,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -352,6 +407,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -364,6 +421,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -376,6 +435,8 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
+                fullSelectorPath: selectorPath.join(' '),
+                mediaQuery,
                 value: node.value,
               });
             }
@@ -411,6 +472,7 @@ const analyzeStyles = (done) => {
     .on('end', function () {
       const dataObject = {
         analyzedTime: new Date(),
+        mediaQueries: Array.from(mediaQueries).sort(),
         definedVariables,
         importantUsages,
         colorValues,
@@ -434,6 +496,7 @@ const analyzeStyles = (done) => {
       const htmlContent = templateContent.replace('{/* DATA_PLACEHOLDER */}', JSON.stringify(dataObject, null, 2));
       const outputFilePath = 'scss-analyze-report.html';
       fs.writeFileSync(outputFilePath, htmlContent);
+      // fs.writeFileSync('scss-analyze-report.json', JSON.stringify(dataObject, null, 2));
       done();
     });
 };

@@ -15,6 +15,31 @@ html {
   }
 }
 
+@media (min-width: 768px) {
+  .test-pc {
+    color: red !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .test-sp {
+    span {
+      color: blue !important;
+    }
+    @media (max-width: 500px) {
+      span {
+        color: gray !important;
+      }
+    }
+  }
+}
+
+@include desktop-xxx {
+  .test-mixin {
+    color: yellow !important;
+  }
+}
+
 body {
   transition: opacity 0.3s ease;
   color: $color-default;
@@ -108,7 +133,7 @@ body {
   }
 
   .container {
-    min-width: 320px;
+    min-width: 320px !important;
   }
 
   .wrapper {
