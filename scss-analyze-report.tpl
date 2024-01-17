@@ -127,8 +127,16 @@
       border: 1px solid #2b393f;
     }
 
-    .table-inspect th:first-child {
+    .table-inspect th:nth-child(1) {
       width: 50%;
+    }
+
+    .table-inspect th:nth-child(2) {
+      width: 100px;
+    }
+
+    .table-inspect th:nth-child(3) {
+      width: calc(50% - 100px);
     }
 
     .table-inspect td {
@@ -299,14 +307,14 @@
       });
       table.appendChild(headerRow);
       filteredData.forEach(entry => {
-        const { fileName, column, line, fullSelectorPath } = entry;
+        const { fileName, filePath, column, line, fullSelectorPath } = entry;
         const tr = document.createElement('tr');
         const fileCell = document.createElement('td');
         const lineCell = document.createElement('td');
         const classCell = document.createElement('td');
         fileCell.innerHTML = `<code>${fileName}</code>`;
-        lineCell.innerHTML = `<a href="file://${fileName}#${line}:${column}">${line}:${column}</a>`;
-        classCell.textContent = fullSelectorPath;
+        lineCell.innerHTML = `<a href="file://${filePath}#${line}:${column}">${line}:${column}</a>`;
+        classCell.innerHTML = `<pre>${fullSelectorPath}</pre>`;
         tr.appendChild(fileCell);
         tr.appendChild(lineCell);
         tr.appendChild(classCell);
@@ -619,26 +627,27 @@
       showMediaOptions();
       addVariables();
       addSection('importantUsages', '!important');
-      addSection('colorValues', 'Colors', ['color', 'background', 'background-color', 'border', 'border-top', 'border-right', 'border-bottom', 'border-left']);
-      addSection('fontfamilyValues', 'Font Families');
-      addSection('fontsizeValues', 'Font Sizes');
-      addSection('fontweightValues', 'Font Weight');
-      addSection('lineheightValues', 'Line Height');
-      addSection('widthValues', 'Width', ['min-width', 'max-width']);
-      addSection('heightValues', 'Height', ['min-height', 'max-height']);
+      // addSection('colorValues', 'Colors', ['color', 'background', 'background-color', 'border', 'border-top', 'border-right', 'border-bottom', 'border-left']);
+      // addSection('fontfamilyValues', 'Font Families');
+      // addSection('fontsizeValues', 'Font Sizes');
+      // addSection('fontweightValues', 'Font Weight');
+      // addSection('lineheightValues', 'Line Height');
+      // addSection('widthValues', 'Width', ['min-width', 'max-width']);
+      // addSection('heightValues', 'Height', ['min-height', 'max-height']);
       addSection('marginValues', 'Margin', ['margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left']);
       addSection('paddingValues', 'Padding', ['padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left']);
-      addSection('textshadowValues', 'Text Shadow');
-      addSection('boxshadowValues', 'Box Shadow');
-      addSection('topValues', 'Top');
-      addSection('rightValues', 'Right');
-      addSection('bottomValues', 'Bottom');
-      addSection('leftValues', 'Left');
+      // addSection('textshadowValues', 'Text Shadow');
+      // addSection('boxshadowValues', 'Box Shadow');
+      // addSection('topValues', 'Top');
+      // addSection('rightValues', 'Right');
+      // addSection('bottomValues', 'Bottom');
+      // addSection('leftValues', 'Left');
       initLinkInspect();
       initFilter();
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      console.log(dataObject);
       init();
     });
   </script>

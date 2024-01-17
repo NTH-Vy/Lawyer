@@ -5,6 +5,7 @@ const scssSyntax = require('postcss-scss');
 const sourcemaps = require('gulp-sourcemaps');
 const config = require('../config').css;
 const fs = require('fs');
+const path = require('path');
 const argv = require('yargs').argv;
 
 const destDir = config.distribute.dir;
@@ -147,10 +148,27 @@ const analyzeStyles = (done) => {
   const bottomValues = [];
   const leftValues = [];
 
+  const convertArrayToCSS = (arr) => {
+    let cssCode = "";
+    let indent = "";
+    for (let i = 0; i < arr.length - 1; i++) {
+      cssCode += indent + arr[i] + " {\n";
+      indent += "  ";
+    }
+    cssCode += indent + arr[arr.length - 1] + " {}\n";
+    for (let i = arr.length - 2; i >= 0; i--) {
+      indent = indent.slice(0, -2);
+      cssCode += indent + "}\n";
+    }
+    return cssCode;
+  }
+
   return src(config.source.glob)
     .pipe(postcss([
       (root, result) => {
-        const fileName = root.source.input.file;
+        const filePath = root.source.input.file;
+        const fileName = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
+
         root.walk((node) => {
 
           const selectorPath = [];
@@ -194,10 +212,11 @@ const analyzeStyles = (done) => {
             if (node.important) {
               importantUsages.push({
                 fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 property: node.prop,
                 value: node.value,
@@ -210,11 +229,12 @@ const analyzeStyles = (done) => {
                 const extractedColor = extractColor(node.value);
                 if (extractedColor !== null) {
                   colorValues.push({
-                    fileName: root.source.input.file,
+                    fileName,
+                    filePath,
                     line: node.source.start.line,
                     column: node.source.start.column,
                     selector: node.parent.selector,
-                    fullSelectorPath: selectorPath.join(' '),
+                    fullSelectorPath: convertArrayToCSS(selectorPath),
                     mediaQuery,
                     property: node.prop,
                     value: node.value,
@@ -228,12 +248,13 @@ const analyzeStyles = (done) => {
             if (node.prop === 'font-family') {
               if (!node.prop.startsWith('$')) {
                 fontfamilyValues.push({
-                  fileName: root.source.input.file,
+                  fileName,
+                  filePath,
                   line: node.source.start.line,
                   column: node.source.start.column,
                   selector: node.parent.selector,
                   property: node.prop,
-                  fullSelectorPath: selectorPath.join(' '),
+                  fullSelectorPath: convertArrayToCSS(selectorPath),
                   mediaQuery,
                   value: node.value,
                 });
@@ -246,12 +267,13 @@ const analyzeStyles = (done) => {
                 const extractedFontSize = extractFontSize(node.value);
                 if (extractedFontSize !== null) {
                   fontsizeValues.push({
-                    fileName: root.source.input.file,
+                    fileName,
+                    filePath,
                     line: node.source.start.line,
                     column: node.source.start.column,
                     selector: node.parent.selector,
                     property: node.prop,
-                    fullSelectorPath: selectorPath.join(' '),
+                    fullSelectorPath: convertArrayToCSS(selectorPath),
                     mediaQuery,
                     value: node.value,
                     extractedFontSize,
@@ -263,12 +285,13 @@ const analyzeStyles = (done) => {
             // Get line-height
             if (node.prop === 'line-height') {
               lineheightValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -277,12 +300,13 @@ const analyzeStyles = (done) => {
             // Get font-weight
             if (node.prop === 'font-weight') {
               fontweightValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -291,12 +315,13 @@ const analyzeStyles = (done) => {
             // Get text-shadow
             if (node.prop === 'text-shadow') {
               textshadowValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -305,12 +330,13 @@ const analyzeStyles = (done) => {
             // Get box-shadow
             if (node.prop === 'box-shadow') {
               boxshadowValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -319,12 +345,13 @@ const analyzeStyles = (done) => {
             // Get width
             if (/width/i.test(node.prop)) {
               widthValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -333,12 +360,13 @@ const analyzeStyles = (done) => {
             // Get height
             if (/height/i.test(node.prop)) {
               heightValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -347,12 +375,13 @@ const analyzeStyles = (done) => {
             // Get margin
             if (/margin/i.test(node.prop)) {
               marginValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -361,12 +390,13 @@ const analyzeStyles = (done) => {
             // Get padding
             if (/padding/i.test(node.prop)) {
               paddingValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -374,12 +404,13 @@ const analyzeStyles = (done) => {
 
             if (node.prop.startsWith('border')) {
               borderValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -388,12 +419,13 @@ const analyzeStyles = (done) => {
             // Get top
             if (node.prop === 'top') {
               topValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -402,12 +434,13 @@ const analyzeStyles = (done) => {
             // Get right
             if (node.prop === 'right') {
               rightValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -416,12 +449,13 @@ const analyzeStyles = (done) => {
             // Get bottom
             if (node.prop === 'bottom') {
               bottomValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -430,12 +464,13 @@ const analyzeStyles = (done) => {
             // Get left
             if (node.prop === 'left') {
               leftValues.push({
-                fileName: root.source.input.file,
+                fileName,
+                filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: selectorPath.join(' '),
+                fullSelectorPath: convertArrayToCSS(selectorPath),
                 mediaQuery,
                 value: node.value,
               });
@@ -496,7 +531,7 @@ const analyzeStyles = (done) => {
       const htmlContent = templateContent.replace('{/* DATA_PLACEHOLDER */}', JSON.stringify(dataObject, null, 2));
       const outputFilePath = 'scss-analyze-report.html';
       fs.writeFileSync(outputFilePath, htmlContent);
-      // fs.writeFileSync('scss-analyze-report.json', JSON.stringify(dataObject, null, 2));
+      fs.writeFileSync('scss-analyze-report.json', JSON.stringify(dataObject, null, 2));
       done();
     });
 };
