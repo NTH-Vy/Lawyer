@@ -381,7 +381,7 @@
       const panelEl = document.createElement('div');
       panelEl.className = 'panel';
 
-      const data = dataObject['definedVariables'];
+      const data = dataObject['mediaQueries'];
       if (!data?.length) {
         const p = document.createElement('p');
         p.textContent = 'No data';

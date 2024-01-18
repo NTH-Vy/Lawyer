@@ -118,16 +118,6 @@ const copyFonts = () => {
     .pipe(dest(destDir + '/css/fonts'));
 }
 
-const extractColor = (value) => {
-  const match = value.match(/#(?:[0-9a-fA-F]{3}){1,2}|rgba?\([^)]*\)|hsla?\([^)]*\)/i);
-  return match ? match[0] : null;
-};
-
-const extractFontSize = (value) => {
-  const match = value.match(/\b\d+(?:\.\d+)?(?:px|em|rem|%)?\b/i);
-  return match ? match[0] : null;
-};
-
 const analyzeStyles = (done) => {
   const mediaQueries = new Set;
   const definedVariables = [];
@@ -149,7 +139,7 @@ const analyzeStyles = (done) => {
   const bottomValues = [];
   const leftValues = [];
 
-  const convertArrayToCSS = (arr) => {
+  const convertArrayToScss = (arr) => {
     let cssCode = '';
     for (let i = 0; i < arr.length - 1; i++) {
       cssCode += arr[i] + ' {';
@@ -180,6 +170,9 @@ const analyzeStyles = (done) => {
               }
             } else if (currentNode.type === 'atrule') {
               if (currentNode.name === 'media') {
+                if (currentNode.parent.type === 'atrule') {
+                  return;
+                }
                 mediaQueries.add(`@media ${currentNode.params}`);
                 if (!mediaQuery) {
                   mediaQuery = `@media ${currentNode.params}`;
@@ -193,11 +186,13 @@ const analyzeStyles = (done) => {
             }
             currentNode = currentNode.parent;
           }
-          const selectorClasses = convertArrayToCSS(selectorPath);
+          const selectorClasses = convertArrayToScss(selectorPath);
 
-          if (node.type === 'atrule') {
+          if (node.type === 'decl') {
 
-          } else if (node.type === 'decl') {
+            if (node.parent.type !== 'rule') {
+              return;
+            }
 
             // Get defined variables
             if (node.prop.startsWith('$')) {
@@ -225,21 +220,17 @@ const analyzeStyles = (done) => {
             // Get colors
             if (/#|rgba?|hsla?/i.test(node.value)) {
               if (!node.prop.startsWith('$')) {
-                const extractedColor = extractColor(node.value);
-                if (extractedColor !== null) {
-                  colorValues.push({
-                    fileName,
-                    filePath,
-                    line: node.source.start.line,
-                    column: node.source.start.column,
-                    selector: node.parent.selector,
-                    selectorClasses,
-                    mediaQuery,
-                    property: node.prop,
-                    value: node.value,
-                    extractedColor
-                  });
-                }
+                colorValues.push({
+                  fileName,
+                  filePath,
+                  line: node.source.start.line,
+                  column: node.source.start.column,
+                  selector: node.parent.selector,
+                  selectorClasses,
+                  mediaQuery,
+                  property: node.prop,
+                  value: node.value
+                });
               }
             }
 
@@ -263,21 +254,18 @@ const analyzeStyles = (done) => {
             // Get font-size
             if (node.prop === 'font-size') {
               if (!node.prop.startsWith('$')) {
-                const extractedFontSize = extractFontSize(node.value);
-                if (extractedFontSize !== null) {
-                  fontsizeValues.push({
-                    fileName,
-                    filePath,
-                    line: node.source.start.line,
-                    column: node.source.start.column,
-                    selector: node.parent.selector,
-                    property: node.prop,
-                    selectorClasses,
-                    mediaQuery,
-                    value: node.value,
-                    extractedFontSize,
-                  });
-                }
+                fontsizeValues.push({
+                  fileName,
+                  filePath,
+                  line: node.source.start.line,
+                  column: node.source.start.column,
+                  selector: node.parent.selector,
+                  property: node.prop,
+                  selectorClasses,
+                  mediaQuery,
+                  value: node.value,
+                  extractedFontSize,
+                });
               }
             }
 
@@ -474,26 +462,6 @@ const analyzeStyles = (done) => {
                 value: node.value,
               });
             }
-
-            // if (node.value.indexOf('\'') !== -1) {
-            //   result.warn(`Use double quotes instead of single quotes in SCSS files. Property: ${node.prop}`, {
-            //     node: node,
-            //   });
-            // }
-            // if (/-\d+(\.\d+)?/g.test(node.value)) {
-            //   result.warn(`Avoid using negative values. Property: ${node.prop}`, {
-            //     node: node,
-            //   });
-            // }
-          } else if (node.type === 'rule') {
-            const selectors = node.selector.split(',');
-            selectors.forEach((selector) => {
-              // if (selector.includes(':not')) {
-              //   result.warn(`Avoid using :not() selector in SCSS. Selector: ${selector}`, {
-              //     node: node,
-              //   });
-              // }
-            });
           }
         })
       }
