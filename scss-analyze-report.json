@@ -1,5 +1,5 @@
 {
-  "analyzedTime": "2024-01-18T16:37:26.331Z",
+  "analyzedTime": "2024-01-18T17:59:09.300Z",
   "mediaQueries": [
     "@include desktop",
     "@include desktop-pc",
@@ -315,6 +315,39 @@
     {
       "fileName": "src/scss/child.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
+      "line": 27,
+      "column": 5,
+      "selector": ".keyvisual-title",
+      "selectorClasses": ".section-child-keyvisual {\n  .keyvisual-title {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/child.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
+      "line": 89,
+      "column": 5,
+      "selector": "a",
+      "selectorClasses": ".section-child {\n  a {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/child.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
+      "line": 94,
+      "column": 9,
+      "selector": ".child-title",
+      "selectorClasses": ".section-child {\n  a {\n    &:hover {\n      .child-title {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/child.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
       "line": 154,
       "column": 7,
       "selector": "&::before",
@@ -322,6 +355,39 @@
       "mediaQuery": null,
       "property": "background",
       "value": "rgba(0, 0, 0, .5)"
+    },
+    {
+      "fileName": "src/scss/child.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
+      "line": 169,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-child {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "background",
+      "value": "url(\"../img/rugby/rugby_bg_01.png\") no-repeat center bottom / 100% auto, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/child.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
+      "line": 226,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-child {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include tablet",
+      "property": "background",
+      "value": "url(\"../img/rugby/tb/rugby_bg_01.png\") no-repeat center bottom / 100% auto $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/child.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
+      "line": 275,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-child {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include mobile",
+      "property": "background",
+      "value": "url(\"../img/rugby/sp/rugby_bg_01.png\") no-repeat center bottom / 100% auto, $color-light-blue"
     },
     {
       "fileName": "src/scss/child_about.scss",
@@ -346,6 +412,94 @@
       "value": "#d0d0d0"
     },
     {
+      "fileName": "src/scss/child_about.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_about.scss",
+      "line": 52,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": ".section-child-about {\n  .post-inner {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-default"
+    },
+    {
+      "fileName": "src/scss/child_result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
+      "line": 55,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": ".section-child-result {\n  .category-item {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/child_result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
+      "line": 74,
+      "column": 9,
+      "selector": "&::before",
+      "selectorClasses": ".section-child-result {\n  .category-item {\n    &:first-child {\n      &::before {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-default"
+    },
+    {
+      "fileName": "src/scss/child_result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
+      "line": 88,
+      "column": 9,
+      "selector": "&::after",
+      "selectorClasses": ".section-child-result {\n  .category-item {\n    &:last-child {\n      &::after {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-default"
+    },
+    {
+      "fileName": "src/scss/child_result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
+      "line": 102,
+      "column": 9,
+      "selector": "&::before",
+      "selectorClasses": ".section-child-result {\n  .category-item {\n    & + .category-item {\n      &::before {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-default"
+    },
+    {
+      "fileName": "src/scss/child_result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
+      "line": 112,
+      "column": 5,
+      "selector": ".result-date",
+      "selectorClasses": ".section-child-result {\n  .result-date {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-black"
+    },
+    {
+      "fileName": "src/scss/child_result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
+      "line": 121,
+      "column": 5,
+      "selector": ".result-title",
+      "selectorClasses": ".section-child-result {\n  .result-title {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-black"
+    },
+    {
+      "fileName": "src/scss/child_result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
+      "line": 127,
+      "column": 7,
+      "selector": "&:hover",
+      "selectorClasses": ".section-child-result {\n  .result-title {\n    &:hover {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
       "fileName": "src/scss/child_result.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child_result.scss",
       "line": 167,
@@ -368,6 +522,39 @@
       "value": ".01rem solid #d0d0d0"
     },
     {
+      "fileName": "src/scss/club.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\club.scss",
+      "line": 36,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-club {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "background",
+      "value": "url(\"../img/club/club_bg_01.png\") no-repeat center bottom/100% auto, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/club.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\club.scss",
+      "line": 64,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-club {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include tablet",
+      "property": "background",
+      "value": "url(\"../img/club/tb/club_bg_01.png\") no-repeat center bottom/100% auto, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/club.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\club.scss",
+      "line": 86,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-club {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include mobile",
+      "property": "background",
+      "value": "url(\"../img/club/sp/club_bg_01.png\") no-repeat center bottom/100% auto, $color-light-blue"
+    },
+    {
       "fileName": "src/scss/news.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\news.scss",
       "line": 14,
@@ -377,6 +564,50 @@
       "mediaQuery": null,
       "property": "border-bottom",
       "value": "0.01rem solid #d0d0d0"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 17,
+      "column": 5,
+      "selector": ".athletes-item",
+      "selectorClasses": ".section-result-athletes {\n  .athletes-item {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 23,
+      "column": 5,
+      "selector": ".athletes-title",
+      "selectorClasses": ".section-result-athletes {\n  .athletes-title {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 24,
+      "column": 5,
+      "selector": ".athletes-title",
+      "selectorClasses": ".section-result-athletes {\n  .athletes-title {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 34,
+      "column": 5,
+      "selector": ".athletes-number",
+      "selectorClasses": ".section-result-athletes {\n  .athletes-number {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-blue"
     },
     {
       "fileName": "src/scss/result.scss",
@@ -399,6 +630,39 @@
       "mediaQuery": null,
       "property": "color",
       "value": "#4d4d4d"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 161,
+      "column": 9,
+      "selector": "&::before",
+      "selectorClasses": ".section-result-athletes {\n  .athletes-inner {\n    &::before {\n    }\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "background",
+      "value": "url(\"../img/result/athletes_bg_01.png\") no-repeat center bottom / 100% 100% , $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 259,
+      "column": 9,
+      "selector": "&::before",
+      "selectorClasses": ".section-result-athletes {\n  .athletes-inner {\n    &::before {\n    }\n  }\n}\n",
+      "mediaQuery": "@include tablet",
+      "property": "background",
+      "value": "url(\"../img/result/tb/athletes_bg_01.png\") no-repeat center bottom / 100% auto, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 360,
+      "column": 9,
+      "selector": "&::before",
+      "selectorClasses": ".section-result-athletes {\n  .athletes-inner {\n    &::before {\n    }\n  }\n}\n",
+      "mediaQuery": "@include mobile",
+      "property": "background",
+      "value": "url(\"../img/result/sp/athletes_bg_01.png\") no-repeat center bottom / 100% auto, $color-light-blue"
     },
     {
       "fileName": "src/scss/result.scss",
@@ -436,6 +700,138 @@
     {
       "fileName": "src/scss/top.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 38,
+      "column": 3,
+      "selector": ".section-top-navigation",
+      "selectorClasses": ".section-top-navigation {\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 112,
+      "column": 5,
+      "selector": ".title-english",
+      "selectorClasses": ".title-top-primary {\n  .title-english {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-brown"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 186,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": ".section-top-news {\n  .news-mores {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-default"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 198,
+      "column": 9,
+      "selector": "&:hover",
+      "selectorClasses": ".section-top-news {\n  .news-mores {\n    a {\n      &:hover {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 293,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-top-sport {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "background",
+      "value": "url(\"../img/top/sport_bg_01.png\") no-repeat center bottom / 100% auto, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 311,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-top-sport {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include tablet",
+      "property": "background",
+      "value": "url(\"../img/top/tb/sport_bg_01.png\") no-repeat center bottom / 100% auto, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 329,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".section-top-sport {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include mobile",
+      "property": "background",
+      "value": "url(\"../img/top/sp/sport_bg_01.png\") no-repeat center bottom / 100% auto, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 355,
+      "column": 5,
+      "selector": ".swiper-button-next,\n  .swiper-button-prev",
+      "selectorClasses": ".section-common-keyvisual {\n  .swiper-button-next,\n  .swiper-button-prev {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 359,
+      "column": 5,
+      "selector": ".swiper-pagination-bullet-active",
+      "selectorClasses": ".section-common-keyvisual {\n  .swiper-pagination-bullet-active {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 371,
+      "column": 5,
+      "selector": ".keyvisual-menu",
+      "selectorClasses": ".section-common-keyvisual {\n  .keyvisual-menu {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 372,
+      "column": 5,
+      "selector": ".keyvisual-menu",
+      "selectorClasses": ".section-common-keyvisual {\n  .keyvisual-menu {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 388,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": ".section-common-keyvisual {\n  .keyvisual-item {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
       "line": 413,
       "column": 9,
       "selector": "&:hover",
@@ -443,6 +839,17 @@
       "mediaQuery": null,
       "property": "color",
       "value": "#feac51"
+    },
+    {
+      "fileName": "src/scss/base/_layout.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\base\\_layout.scss",
+      "line": 45,
+      "column": 3,
+      "selector": "body",
+      "selectorClasses": "body {\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-default"
     },
     {
       "fileName": "src/scss/base/_layout.scss",
@@ -465,6 +872,39 @@
       "mediaQuery": null,
       "property": "border",
       "value": "1px solid #000"
+    },
+    {
+      "fileName": "src/scss/parts/_breadcrumb.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_breadcrumb.scss",
+      "line": 8,
+      "column": 7,
+      "selector": "&.item-wrapper",
+      "selectorClasses": ".breadcrumb-common {\n  a {\n    &.item-wrapper {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-blue-primary"
+    },
+    {
+      "fileName": "src/scss/parts/_footer.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_footer.scss",
+      "line": 7,
+      "column": 5,
+      "selector": ".footer-wrapper",
+      "selectorClasses": "footer {\n  .footer-wrapper {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-black"
+    },
+    {
+      "fileName": "src/scss/parts/_footer.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_footer.scss",
+      "line": 28,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": "footer {\n  .footer-phone {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-default"
     },
     {
       "fileName": "src/scss/parts/_footer.scss",
@@ -491,6 +931,17 @@
     {
       "fileName": "src/scss/parts/_footer.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_footer.scss",
+      "line": 75,
+      "column": 7,
+      "selector": "span",
+      "selectorClasses": "footer {\n  .button-top {\n    span {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/parts/_footer.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_footer.scss",
       "line": 97,
       "column": 5,
       "selector": "footer",
@@ -498,6 +949,39 @@
       "mediaQuery": "@include desktop-pc",
       "property": "border-top",
       "value": ".01rem solid #d0d0d0"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 12,
+      "column": 5,
+      "selector": ".header-wrapper",
+      "selectorClasses": ".header {\n  .header-wrapper {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 25,
+      "column": 5,
+      "selector": ".navigation-link",
+      "selectorClasses": ".header {\n  .navigation-link {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-default"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 30,
+      "column": 7,
+      "selector": "&:hover",
+      "selectorClasses": ".header {\n  .navigation-link {\n    &:hover {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
     },
     {
       "fileName": "src/scss/parts/_header.scss",
@@ -564,6 +1048,39 @@
       "mediaQuery": null,
       "property": "color",
       "value": "#222"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 167,
+      "column": 9,
+      "selector": "&:hover",
+      "selectorClasses": ".navigation-block {\n  .navigation-sub {\n    a {\n      &:hover {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 196,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".header {\n  &::before {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "background",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 267,
+      "column": 5,
+      "selector": ".navigation-block",
+      "selectorClasses": ".navigation-block {\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "background",
+      "value": "$color-blue"
     },
     {
       "fileName": "src/scss/parts/_header.scss",
@@ -711,6 +1228,17 @@
     {
       "fileName": "src/scss/parts/_header.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 583,
+      "column": 7,
+      "selector": ".navigation-inner",
+      "selectorClasses": ".navigation {\n  .navigation-inner {\n  }\n}\n",
+      "mediaQuery": "@include tablet-sp",
+      "property": "border-top",
+      "value": ".04rem solid $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
       "line": 587,
       "column": 7,
       "selector": ".navigation-list",
@@ -744,6 +1272,17 @@
     {
       "fileName": "src/scss/parts/_header.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 606,
+      "column": 11,
+      "selector": "&:hover",
+      "selectorClasses": ".navigation {\n  .navigation-list {\n    .navigation-item {\n      &:hover {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": "@include tablet-sp",
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
       "line": 668,
       "column": 7,
       "selector": ".navigation-sub",
@@ -773,6 +1312,28 @@
       "mediaQuery": "@include tablet",
       "property": "background",
       "value": "#ccc"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 866,
+      "column": 7,
+      "selector": ".navigation",
+      "selectorClasses": ".header-secondary {\n  .navigation {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "border-top",
+      "value": "2px solid $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 867,
+      "column": 7,
+      "selector": ".navigation",
+      "selectorClasses": ".header-secondary {\n  .navigation {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "background",
+      "value": "$color-white"
     },
     {
       "fileName": "src/scss/parts/_header.scss",
@@ -821,6 +1382,17 @@
     {
       "fileName": "src/scss/parts/_header.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 996,
+      "column": 11,
+      "selector": "&:hover",
+      "selectorClasses": ".header-secondary {\n  .navigation-list {\n    .navigation-item {\n      &:hover {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
       "line": 1019,
       "column": 9,
       "selector": "&::before",
@@ -839,6 +1411,17 @@
       "mediaQuery": "@include desktop-pc",
       "property": "color",
       "value": "#222"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 1064,
+      "column": 11,
+      "selector": "&:hover",
+      "selectorClasses": ".header-secondary {\n  .navigation-list {\n    a {\n      &:hover {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "property": "color",
+      "value": "$color-light-blue"
     },
     {
       "fileName": "src/scss/parts/_header.scss",
@@ -964,6 +1547,28 @@
     {
       "fileName": "src/scss/parts/_news.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_news.scss",
+      "line": 13,
+      "column": 5,
+      "selector": ".news-date,\r\n  .news-title",
+      "selectorClasses": ".news-item {\n  .news-date,\n  .news-title {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-black"
+    },
+    {
+      "fileName": "src/scss/parts/_news.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_news.scss",
+      "line": 28,
+      "column": 7,
+      "selector": "&:hover",
+      "selectorClasses": ".news-item {\n  .news-title {\n    &:hover {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_news.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_news.scss",
       "line": 37,
       "column": 5,
       "selector": ".news-label",
@@ -997,6 +1602,17 @@
     {
       "fileName": "src/scss/parts/_pagination.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_pagination.scss",
+      "line": 32,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": ".pagination-common {\n  .arrow {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "url(\"../img/common/arrow_ico_08.png\") no-repeat center center / 100% 100%, $color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_pagination.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_pagination.scss",
       "line": 39,
       "column": 5,
       "selector": ".page-numbers",
@@ -1004,6 +1620,39 @@
       "mediaQuery": null,
       "property": "color",
       "value": "#bbb"
+    },
+    {
+      "fileName": "src/scss/parts/_pagination.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_pagination.scss",
+      "line": 52,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".pagination-common {\n  .page-numbers {\n    &::before {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_pagination.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_pagination.scss",
+      "line": 56,
+      "column": 7,
+      "selector": "&.current",
+      "selectorClasses": ".pagination-common {\n  .page-numbers {\n    &.current {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_pagination.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_pagination.scss",
+      "line": 64,
+      "column": 7,
+      "selector": "&:hover",
+      "selectorClasses": ".pagination-common {\n  .page-numbers {\n    &:hover {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
     },
     {
       "fileName": "src/scss/parts/_post_content.scss",
@@ -1041,6 +1690,61 @@
     {
       "fileName": "src/scss/parts/_post_content.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 90,
+      "column": 7,
+      "selector": "&::before",
+      "selectorClasses": ".post-content {\n  h4 {\n    &::before {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-brown"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 117,
+      "column": 5,
+      "selector": "a",
+      "selectorClasses": ".post-content {\n  a {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 143,
+      "column": 9,
+      "selector": "&::before",
+      "selectorClasses": ".post-content {\n  ul {\n    & > li {\n      &::before {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-brown"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 157,
+      "column": 9,
+      "selector": "&::marker",
+      "selectorClasses": ".post-content {\n  ol {\n    & > li {\n      &::marker {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-brown"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 167,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": ".post-content {\n  ol {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
       "line": 173,
       "column": 5,
       "selector": "th,td",
@@ -1048,6 +1752,17 @@
       "mediaQuery": null,
       "property": "border",
       "value": ".01rem solid #d0d0d0"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 174,
+      "column": 5,
+      "selector": "th,td",
+      "selectorClasses": ".post-content {\n  th,\n  td {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-black"
     },
     {
       "fileName": "src/scss/parts/_post_content.scss",
@@ -1061,6 +1776,61 @@
       "value": "#f8f8f8"
     },
     {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 193,
+      "column": 9,
+      "selector": "th,td",
+      "selectorClasses": ".post-content {\n  table {\n    &.is-modify {\n      th,\n      td {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-default"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 320,
+      "column": 7,
+      "selector": "a",
+      "selectorClasses": ".post-content {\n  a {\n  }\n}\n",
+      "mediaQuery": "@include desktop",
+      "property": "color",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 337,
+      "column": 9,
+      "selector": "a",
+      "selectorClasses": ".post-content {\n  ul {\n    a {\n    }\n  }\n}\n",
+      "mediaQuery": "@include desktop",
+      "property": "color",
+      "value": "$color-blue"
+    },
+    {
+      "fileName": "src/scss/parts/_sport.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_sport.scss",
+      "line": 20,
+      "column": 5,
+      "selector": "a",
+      "selectorClasses": ".sport-item {\n  a {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-white"
+    },
+    {
+      "fileName": "src/scss/parts/_sport.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_sport.scss",
+      "line": 32,
+      "column": 9,
+      "selector": ".sport-title",
+      "selectorClasses": ".sport-item {\n  a {\n    &:hover {\n      .sport-title {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-light-blue"
+    },
+    {
       "fileName": "src/scss/parts/_sport.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_sport.scss",
       "line": 52,
@@ -1072,6 +1842,17 @@
       "value": "rgba(0, 0, 0, .5)"
     },
     {
+      "fileName": "src/scss/parts/_sport.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_sport.scss",
+      "line": 61,
+      "column": 5,
+      "selector": ".sport-name",
+      "selectorClasses": ".sport-item {\n  .sport-name {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "color",
+      "value": "$color-white"
+    },
+    {
       "fileName": "src/scss/parts/_title.scss",
       "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_title.scss",
       "line": 7,
@@ -1081,6 +1862,17 @@
       "mediaQuery": null,
       "property": "background",
       "value": "#f8f8f8"
+    },
+    {
+      "fileName": "src/scss/parts/_title.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_title.scss",
+      "line": 18,
+      "column": 5,
+      "selector": "&::before",
+      "selectorClasses": ".title-common-primary {\n  &::before {\n  }\n}\n",
+      "mediaQuery": null,
+      "property": "background",
+      "value": "$color-brown"
     }
   ],
   "fontfamilyValues": [

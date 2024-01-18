@@ -118,9 +118,37 @@ const copyFonts = () => {
     .pipe(dest(destDir + '/css/fonts'));
 }
 
+const definedVariables = [];
+
+const analyzeVariables = (done) => {
+  return src(config.source.glob)
+    .pipe(postcss([
+      (root) => {
+        root.walk((node) => {
+          if (node.type === 'decl' && node.parent.type === 'root') {
+            // Get defined variables
+            if (node.prop.startsWith('$')) {
+              definedVariables.push({
+                name: node.prop,
+                value: node.value
+              });
+            }
+          }
+        });
+      }
+    ], { syntax: scssSyntax }
+    ))
+    .on('error', function (error) {
+      console.log(error.toString());
+      this.emit('end');
+    })
+    .on('end', function () {
+      done();
+    })
+}
+
 const analyzeStyles = (done) => {
   const mediaQueries = new Set;
-  const definedVariables = [];
   const importantUsages = [];
   const colorValues = [];
   const fontfamilyValues = [];
@@ -154,9 +182,14 @@ const analyzeStyles = (done) => {
 
   return src(config.source.glob)
     .pipe(postcss([
-      async (root, result) => {
+      async (root) => {
+
         const filePath = root.source.input.file;
         const fileName = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
+
+        const colorVariableNames = definedVariables
+          .filter(item => /#|rgba?|hsla?/i.test(item.value))
+          .map(item => item.name);
 
         root.walk(async (node) => {
 
@@ -189,17 +222,6 @@ const analyzeStyles = (done) => {
           }
           const selectorClasses = await convertArrayToScss(selectorPath);
 
-          if (node.type === 'decl' && node.parent.type === 'root') {
-
-            // Get defined variables
-            if (node.prop.startsWith('$')) {
-              definedVariables.push({
-                name: node.prop,
-                value: node.value
-              });
-            }
-
-          }
           if (node.type === 'decl' && node.parent.type === 'rule') {
 
             // Get the usage of !important
@@ -218,7 +240,10 @@ const analyzeStyles = (done) => {
             }
 
             // Get colors
-            if (/#|rgba?|hsla?/i.test(node.value)) {
+            if (
+              /#|rgba?|hsla?/i.test(node.value) ||
+              colorVariableNames.some(variable => node.value.includes(variable))
+            ) {
               if (!node.prop.startsWith('$')) {
                 colorValues.push({
                   fileName,
@@ -503,12 +528,13 @@ const analyzeStyles = (done) => {
 };
 
 const css = series(lintStyles, buildStyles);
+const analyze = series(analyzeVariables, analyzeStyles);
 
 module.exports = {
   lintStyles,
   lintStylesFix,
   buildStyles,
-  analyzeStyles,
   copyFonts,
-  css
+  css,
+  analyze
 };

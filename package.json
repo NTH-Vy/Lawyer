@@ -9,7 +9,7 @@
     "lint": "cross-env NODE_ENV=production gulp lint",
     "lint:fix": "cross-env NODE_ENV=production gulp lintFix",
     "imagemin": "cross-env NODE_ENV=production gulp imagemin",
-    "analyze": "cross-env NODE_ENV=production gulp analyzeStyles"
+    "analyze": "cross-env NODE_ENV=production gulp analyze"
   },
   "author": "FASTCODING Thanh",
   "license": "UNLICENSED",
