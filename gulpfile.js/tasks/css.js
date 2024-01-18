@@ -194,10 +194,14 @@ const analyzeStyles = (done) => {
         root.walk(async (node) => {
 
           const selectorPath = [];
+          let selector = '';
           let currentNode = node.parent;
           let mediaQuery = null;
           while (currentNode) {
             if (currentNode.type === 'rule') {
+              if (!selector) {
+                selector = currentNode.selector.trim();
+              }
               const ruleSelector = currentNode.selector.trim();
               if (ruleSelector) {
                 selectorPath.unshift(ruleSelector);
@@ -216,13 +220,18 @@ const analyzeStyles = (done) => {
                 if (!mediaQuery) {
                   mediaQuery = `@include ${currentNode.params}`;
                 }
+              } else if (currentNode.name === 'font-face') {
+                if (!selector) {
+                  selector = '@font-face';
+                }
+                selectorPath.unshift('@font-face');
               }
             }
             currentNode = currentNode.parent;
           }
           const selectorClasses = await convertArrayToScss(selectorPath);
 
-          if (node.type === 'decl' && node.parent.type === 'rule') {
+          if (node.type === 'decl') {
 
             // Get the usage of !important
             if (node.important) {
@@ -231,7 +240,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 selectorClasses,
                 mediaQuery,
                 property: node.prop,
@@ -241,8 +250,11 @@ const analyzeStyles = (done) => {
 
             // Get colors
             if (
-              /#|rgba?|hsla?/i.test(node.value) ||
-              colorVariableNames.some(variable => node.value.includes(variable))
+              (node.prop !== 'src') &&
+              (
+                /#|rgba?|hsla?/i.test(node.value) ||
+                colorVariableNames.some(variable => node.value.includes(variable))
+              )
             ) {
               if (!node.prop.startsWith('$')) {
                 colorValues.push({
@@ -250,7 +262,7 @@ const analyzeStyles = (done) => {
                   filePath,
                   line: node.source.start.line,
                   column: node.source.start.column,
-                  selector: node.parent.selector,
+                  selector,
                   selectorClasses,
                   mediaQuery,
                   property: node.prop,
@@ -267,7 +279,7 @@ const analyzeStyles = (done) => {
                   filePath,
                   line: node.source.start.line,
                   column: node.source.start.column,
-                  selector: node.parent.selector,
+                  selector,
                   property: node.prop,
                   selectorClasses,
                   mediaQuery,
@@ -284,7 +296,7 @@ const analyzeStyles = (done) => {
                   filePath,
                   line: node.source.start.line,
                   column: node.source.start.column,
-                  selector: node.parent.selector,
+                  selector,
                   property: node.prop,
                   selectorClasses,
                   mediaQuery,
@@ -300,7 +312,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -315,7 +327,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -330,7 +342,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -345,7 +357,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -354,13 +366,13 @@ const analyzeStyles = (done) => {
             }
 
             // Get width
-            if (/width/i.test(node.prop)) {
+            if (node.prop === 'width' || node.prop === 'max-width' || node.prop === 'min-width') {
               widthValues.push({
                 fileName,
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -369,13 +381,13 @@ const analyzeStyles = (done) => {
             }
 
             // Get height
-            if (/height/i.test(node.prop)) {
+            if (node.prop === 'height' || node.prop === 'max-height' || node.prop === 'min-height') {
               heightValues.push({
                 fileName,
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -390,7 +402,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -405,7 +417,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -419,7 +431,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -434,7 +446,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -449,7 +461,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -464,7 +476,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,
@@ -479,7 +491,7 @@ const analyzeStyles = (done) => {
                 filePath,
                 line: node.source.start.line,
                 column: node.source.start.column,
-                selector: node.parent.selector,
+                selector,
                 property: node.prop,
                 selectorClasses,
                 mediaQuery,

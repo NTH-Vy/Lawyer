@@ -311,7 +311,7 @@
     const data = dataObject[type];
     if (data?.length) {
       const sortedData = data.sort((a, b) => a.fileName.localeCompare(b.fileName));
-      const filteredData = sortedData.filter(item => item.property === atob(prop) && item.value === atob(value));
+      const filteredData = sortedData.filter(item => item.property === decodeURIComponent(prop) && item.value === decodeURIComponent(value));
 
       const table = document.createElement('table');
       table.className = 'table-inspect';
@@ -438,6 +438,23 @@
           dataObject.rightValues = dataObject.rightValues.filter(item => item.mediaQuery === null || filterQueries.includes(item.mediaQuery));
           dataObject.bottomValues = dataObject.bottomValues.filter(item => item.mediaQuery === null || filterQueries.includes(item.mediaQuery));
           dataObject.leftValues = dataObject.leftValues.filter(item => item.mediaQuery === null || filterQueries.includes(item.mediaQuery));
+        } else if (filterValue === '') {
+          dataObject.importantUsages = dataObject.importantUsages.filter(item => item.mediaQuery === null);
+          dataObject.colorValues = dataObject.colorValues.filter(item => item.mediaQuery === null);
+          dataObject.fontfamilyValues = dataObject.fontfamilyValues.filter(item => item.mediaQuery === null);
+          dataObject.fontsizeValues = dataObject.fontsizeValues.filter(item => item.mediaQuery === null);
+          dataObject.fontweightValues = dataObject.fontweightValues.filter(item => item.mediaQuery === null);
+          dataObject.lineheightValues = dataObject.lineheightValues.filter(item => item.mediaQuery === null);
+          dataObject.widthValues = dataObject.widthValues.filter(item => item.mediaQuery === null);
+          dataObject.heightValues = dataObject.heightValues.filter(item => item.mediaQuery === null);
+          dataObject.marginValues = dataObject.marginValues.filter(item => item.mediaQuery === null);
+          dataObject.paddingValues = dataObject.paddingValues.filter(item => item.mediaQuery === null);
+          dataObject.textshadowValues = dataObject.textshadowValues.filter(item => item.mediaQuery === null);
+          dataObject.boxshadowValues = dataObject.boxshadowValues.filter(item => item.mediaQuery === null);
+          dataObject.topValues = dataObject.topValues.filter(item => item.mediaQuery === null);
+          dataObject.rightValues = dataObject.rightValues.filter(item => item.mediaQuery === null);
+          dataObject.bottomValues = dataObject.bottomValues.filter(item => item.mediaQuery === null);
+          dataObject.leftValues = dataObject.leftValues.filter(item => item.mediaQuery === null);
         }
       }
 
@@ -489,10 +506,11 @@
         const checkboxes = document.querySelectorAll('input[name="filter-media-queries"]');
         const checkedCheckboxes = document.querySelectorAll('input[name="filter-media-queries"]:checked');
         const filterValues = Array.from(checkedCheckboxes).map(checkbox => checkbox.value);
+        const currentFilename = window.location.pathname.split('/').pop();
         if (filterValues.length === checkboxes.length) {
-          window.location.href = 'scss-analyze-report.html';
+          window.location.href = currentFilename;
         } else {
-          window.location.href = 'scss-analyze-report.html?filter=' + filterValues.join(',');
+          window.location.href = currentFilename + '?filter=' + filterValues.join(',');
         }
       });
 
@@ -634,7 +652,7 @@
         const valueCell = document.createElement('td');
         const sameCell = document.createElement('td');
         countCell.textContent = count;
-        valueCell.innerHTML = `<a class="link-inspect" data-type="${dataKey}" data-prop="${btoa(property)}" data-value="${btoa(value)}" href="#"><code>${property}: ${value}</code></a>`;
+        valueCell.innerHTML = `<a class="link-inspect" data-type="${dataKey}" data-prop="${encodeURIComponent(property)}" data-value="${encodeURIComponent(value)}" href="#"><code>${property}: ${value}</code></a>`;
         const sameVariables = dataObject['definedVariables'].filter(item => item.value === value).map(item => item.name);
         sameCell.textContent = sameVariables.length ? sameVariables.join(', ') : '';
         tr.appendChild(countCell);
