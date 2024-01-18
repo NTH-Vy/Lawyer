@@ -52,6 +52,7 @@
     }
 
     .link-inspect {
+      display: block;
       text-decoration: none;
       color: inherit;
     }

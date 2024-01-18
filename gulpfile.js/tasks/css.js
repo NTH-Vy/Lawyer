@@ -7,7 +7,7 @@ const config = require('../config').css;
 const fs = require('fs');
 const path = require('path');
 const argv = require('yargs').argv;
-const beautify = require('js-beautify').css;
+const prettier = require('prettier');
 
 const destDir = config.distribute.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
@@ -139,7 +139,7 @@ const analyzeStyles = (done) => {
   const bottomValues = [];
   const leftValues = [];
 
-  const convertArrayToScss = (arr) => {
+  const convertArrayToScss = async (arr) => {
     let cssCode = '';
     for (let i = 0; i < arr.length - 1; i++) {
       cssCode += arr[i] + ' {';
@@ -148,16 +148,17 @@ const analyzeStyles = (done) => {
     for (let i = arr.length - 2; i >= 0; i--) {
       cssCode += '}';
     }
-    return beautify(cssCode, { indent_size: 2, newline_between_rules: false });
+    const formattedCode = await prettier.format(cssCode, { parser: 'scss' });
+    return formattedCode;
   }
 
   return src(config.source.glob)
     .pipe(postcss([
-      (root, result) => {
+      async (root, result) => {
         const filePath = root.source.input.file;
         const fileName = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
 
-        root.walk((node) => {
+        root.walk(async (node) => {
 
           const selectorPath = [];
           let currentNode = node.parent;
@@ -186,13 +187,9 @@ const analyzeStyles = (done) => {
             }
             currentNode = currentNode.parent;
           }
-          const selectorClasses = convertArrayToScss(selectorPath);
+          const selectorClasses = await convertArrayToScss(selectorPath);
 
-          if (node.type === 'decl') {
-
-            if (node.parent.type !== 'rule') {
-              return;
-            }
+          if (node.type === 'decl' && node.parent.type === 'root') {
 
             // Get defined variables
             if (node.prop.startsWith('$')) {
@@ -201,6 +198,9 @@ const analyzeStyles = (done) => {
                 value: node.value
               });
             }
+
+          }
+          if (node.type === 'decl' && node.parent.type === 'rule') {
 
             // Get the usage of !important
             if (node.important) {
@@ -264,7 +264,6 @@ const analyzeStyles = (done) => {
                   selectorClasses,
                   mediaQuery,
                   value: node.value,
-                  extractedFontSize,
                 });
               }
             }
