@@ -295,12 +295,12 @@
     const data = dataObject[type];
     if (data?.length) {
       const sortedData = data.sort((a, b) => a.fileName.localeCompare(b.fileName));
-      const filteredData = sortedData.filter(item => item.property === prop && item.value === value);
+      const filteredData = sortedData.filter(item => item.property === atob(prop) && item.value === atob(value));
 
       const table = document.createElement('table');
       table.className = 'table-inspect';
 
-      const headers = ['File', 'Line', 'Class'];
+      const headers = ['File', 'Line', 'Selector'];
       const headerRow = document.createElement('tr');
       headers.forEach(header => {
         const th = document.createElement('th');
@@ -617,7 +617,7 @@
         const valueCell = document.createElement('td');
         const sameCell = document.createElement('td');
         countCell.textContent = count;
-        valueCell.innerHTML = `<a class="link-inspect" data-type="${dataKey}" data-prop="${property}" data-value="${value}" href="#"><code>${property}: ${value}</code></a>`;
+        valueCell.innerHTML = `<a class="link-inspect" data-type="${dataKey}" data-prop="${btoa(property)}" data-value="${btoa(value)}" href="#"><code>${property}: ${value}</code></a>`;
         const sameVariables = dataObject['definedVariables'].filter(item => item.value === value).map(item => item.name);
         sameCell.textContent = sameVariables.length ? sameVariables.join(', ') : '';
         tr.appendChild(countCell);
