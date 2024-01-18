@@ -47,6 +47,26 @@
       display: none;
     }
 
+    .mb-1 {
+      margin-bottom: 1em;
+    }
+
+    .mb-2 {
+      margin-bottom: 2em;
+    }
+
+    .mb-3 {
+      margin-bottom: 3em;
+    }
+
+    .mb-4 {
+      margin-bottom: 4em;
+    }
+
+    .mb-5 {
+      margin-bottom: 5em;
+    }
+
     .analyzed-time {
       margin-bottom: 40px;
     }
@@ -73,10 +93,6 @@
       margin: 20px 0 40px;
       padding: 20px;
       background-color: #18232a;
-    }
-
-    .panel p {
-      margin-bottom: 1em;
     }
 
     .table-data {
@@ -272,7 +288,7 @@
   <script>
 
     const dataObject = {
-  "analyzedTime": "2024-01-18T18:09:24.364Z",
+  "analyzedTime": "2024-01-18T18:15:55.706Z",
   "mediaQueries": [
     "@include desktop",
     "@include desktop-pc",
@@ -15562,6 +15578,7 @@
       };
 
       const p = document.createElement('p');
+      p.className = 'mb-1';
       p.textContent = 'You can filter the analyze result according to the selected media queries. Entries without media queries will be displayed always.';
 
       panelEl.appendChild(p);
