@@ -376,7 +376,7 @@
       const container = document.querySelector('#container');
 
       const headingEl = document.createElement('h2');
-      headingEl.textContent = 'Defined Media Queries';
+      headingEl.textContent = 'Media Queries';
       container.appendChild(headingEl);
 
       const panelEl = document.createElement('div');
@@ -442,7 +442,13 @@
               input.checked = false;
             }
           } else {
-            input.checked = true;
+            if (filterValue === null) {
+              // If no ?filter
+              input.checked = true;
+            } else {
+              // If ?filter=
+              input.checked = false;
+            }
           }
 
           span.textContent = item;
