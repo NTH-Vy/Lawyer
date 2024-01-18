@@ -7,6 +7,7 @@ const config = require('../config').css;
 const fs = require('fs');
 const path = require('path');
 const argv = require('yargs').argv;
+const beautify = require('js-beautify').css;
 
 const destDir = config.distribute.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
@@ -149,18 +150,15 @@ const analyzeStyles = (done) => {
   const leftValues = [];
 
   const convertArrayToCSS = (arr) => {
-    let cssCode = "";
-    let indent = "";
+    let cssCode = '';
     for (let i = 0; i < arr.length - 1; i++) {
-      cssCode += indent + arr[i] + " {\n";
-      indent += "  ";
+      cssCode += arr[i] + ' {';
     }
-    cssCode += indent + arr[arr.length - 1] + " {}\n";
+    cssCode += arr[arr.length - 1] + ' {}';
     for (let i = arr.length - 2; i >= 0; i--) {
-      indent = indent.slice(0, -2);
-      cssCode += indent + "}\n";
+      cssCode += '}';
     }
-    return cssCode;
+    return beautify(cssCode, { indent_size: 2, newline_between_rules: false });
   }
 
   return src(config.source.glob)
@@ -195,6 +193,7 @@ const analyzeStyles = (done) => {
             }
             currentNode = currentNode.parent;
           }
+          const selectorClasses = convertArrayToCSS(selectorPath);
 
           if (node.type === 'atrule') {
 
@@ -216,7 +215,7 @@ const analyzeStyles = (done) => {
                 line: node.source.start.line,
                 column: node.source.start.column,
                 selector: node.parent.selector,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 property: node.prop,
                 value: node.value,
@@ -234,7 +233,7 @@ const analyzeStyles = (done) => {
                     line: node.source.start.line,
                     column: node.source.start.column,
                     selector: node.parent.selector,
-                    fullSelectorPath: convertArrayToCSS(selectorPath),
+                    selectorClasses,
                     mediaQuery,
                     property: node.prop,
                     value: node.value,
@@ -254,7 +253,7 @@ const analyzeStyles = (done) => {
                   column: node.source.start.column,
                   selector: node.parent.selector,
                   property: node.prop,
-                  fullSelectorPath: convertArrayToCSS(selectorPath),
+                  selectorClasses,
                   mediaQuery,
                   value: node.value,
                 });
@@ -273,7 +272,7 @@ const analyzeStyles = (done) => {
                     column: node.source.start.column,
                     selector: node.parent.selector,
                     property: node.prop,
-                    fullSelectorPath: convertArrayToCSS(selectorPath),
+                    selectorClasses,
                     mediaQuery,
                     value: node.value,
                     extractedFontSize,
@@ -291,7 +290,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -306,7 +305,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -321,7 +320,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -336,7 +335,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -351,7 +350,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -366,7 +365,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -381,7 +380,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -396,7 +395,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -410,7 +409,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -425,7 +424,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -440,7 +439,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -455,7 +454,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
@@ -470,7 +469,7 @@ const analyzeStyles = (done) => {
                 column: node.source.start.column,
                 selector: node.parent.selector,
                 property: node.prop,
-                fullSelectorPath: convertArrayToCSS(selectorPath),
+                selectorClasses,
                 mediaQuery,
                 value: node.value,
               });
