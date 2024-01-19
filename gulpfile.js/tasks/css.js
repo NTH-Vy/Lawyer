@@ -119,6 +119,7 @@ const copyFonts = () => {
 }
 
 const definedVariables = [];
+const definedMixins = [];
 
 const analyzeVariables = (done) => {
   return src(config.source.glob)
@@ -131,6 +132,14 @@ const analyzeVariables = (done) => {
               definedVariables.push({
                 name: node.prop,
                 value: node.value,
+                count: 0
+              });
+            }
+          } else if (node.type === 'atrule') {
+            if (node.name === 'mixin') {
+              const params = node.params.split('(')[0].trim();
+              definedMixins.push({
+                name: params,
                 count: 0
               });
             }
@@ -170,6 +179,9 @@ const analyzeStyles = (done) => {
 
   const sortedVariables = JSON.parse(JSON.stringify(definedVariables));
   sortedVariables.sort((a, b) => b.name.length - a.name.length);
+
+  const sortedMixins = JSON.parse(JSON.stringify(definedMixins));
+  sortedMixins.sort((a, b) => b.name.length - a.name.length);
 
   const convertArrayToScss = async (arr) => {
     let cssCode = '';
@@ -235,17 +247,38 @@ const analyzeStyles = (done) => {
           }
           const selectorClasses = await convertArrayToScss(selectorPath);
 
-          if (node.type === 'decl') {
+          if (node.type === 'decl' || node.type === 'atrule') {
 
             // Get variable's frequency
-            let nodeValue = node.value;
+            let compareString = '';
+            if (node.type === 'decl') {
+              compareString = node.value;
+            } else {
+              compareString = node.params;
+            }
             sortedVariables.forEach((variable) => {
               const variableName = variable.name;
-              if (nodeValue.includes(variableName)) {
+              if (compareString.includes(variableName)) {
                 variable.count++;
-                nodeValue = nodeValue.replace(variableName, '$_');
+                compareString = compareString.replace(variableName, '$___');
               }
             });
+
+            let mixinString = '';
+            if (node.name === 'include') {
+              mixinString = node.params;
+              sortedMixins.forEach((mixin) => {
+                const mixinName = mixin.name;
+                if (mixinString.includes(mixinName)) {
+                  mixin.count++;
+                  mixinString = mixinString.replace(mixinName, 'm___');
+                }
+              });
+            }
+
+          }
+
+          if (node.type === 'decl') {
 
             // Get the usage of !important
             if (node.important) {
@@ -523,14 +556,19 @@ const analyzeStyles = (done) => {
     })
     .on('end', function () {
 
-      definedVariables.forEach((variable, index) => {
+      definedVariables.forEach((variable) => {
         variable.count = sortedVariables.find((v) => v.name === variable.name).count;
+      });
+
+      definedMixins.forEach((mixin) => {
+        mixin.count = sortedMixins.find((v) => v.name === mixin.name).count;
       });
 
       const dataObject = {
         analyzedTime: new Date(),
         mediaQueries: Array.from(mediaQueries).sort(),
         definedVariables,
+        definedMixins,
         importantUsages,
         colorValues,
         fontfamilyValues,

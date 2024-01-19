@@ -588,6 +588,56 @@
       container.appendChild(panelEl);
     };
 
+    function addMixins() {
+      const container = document.querySelector('#container');
+
+      const headingEl = document.createElement('h2');
+      headingEl.textContent = 'Defined Mixins';
+      container.appendChild(headingEl);
+
+      const panelEl = document.createElement('div');
+      panelEl.className = 'panel';
+
+      const data = dataObject['definedMixins'];
+      if (!data?.length) {
+        const p = document.createElement('p');
+        p.textContent = 'No data';
+        panelEl.appendChild(p);
+        container.appendChild(panelEl);
+        return;
+      };
+
+      const table = document.createElement('table');
+      table.className = 'table-data';
+      const headers = ['Mixin', 'Frequency'];
+      const headerRow = document.createElement('tr');
+      headers.forEach(header => {
+        const th = document.createElement('th');
+        th.textContent = header;
+        headerRow.appendChild(th);
+      });
+      table.appendChild(headerRow);
+
+      data.forEach(entry => {
+        const {name, count } = entry;
+        const tr = document.createElement('tr');
+        const nameCell = document.createElement('td');
+        // const valueCell = document.createElement('td');
+        const frequencyCell = document.createElement('td');
+        nameCell.textContent = `@mixin ${name}`;
+        nameCell.style.width = '83.5%';
+        // valueCell.innerHTML = `<code>${name}</code>`;
+        frequencyCell.textContent = count;
+        tr.appendChild(nameCell);
+        // tr.appendChild(valueCell);
+        tr.appendChild(frequencyCell);
+        table.appendChild(tr);
+      });
+
+      panelEl.appendChild(table);
+      container.appendChild(panelEl);
+    };
+
     function addSection(dataKey, title, filters = null) {
       const container = document.querySelector('#container');
 
@@ -679,6 +729,7 @@
       showAnalyzedTime();
       showMediaOptions();
       addVariables();
+      addMixins();
       addSection('importantUsages', '!important');
       addSection('colorValues', 'Colors', 'auto');
       addSection('fontfamilyValues', 'Font Families');
