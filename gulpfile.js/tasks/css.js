@@ -130,7 +130,8 @@ const analyzeVariables = (done) => {
             if (node.prop.startsWith('$')) {
               definedVariables.push({
                 name: node.prop,
-                value: node.value
+                value: node.value,
+                count: 0
               });
             }
           }
@@ -166,6 +167,9 @@ const analyzeStyles = (done) => {
   const rightValues = [];
   const bottomValues = [];
   const leftValues = [];
+
+  const sortedVariables = JSON.parse(JSON.stringify(definedVariables));
+  sortedVariables.sort((a, b) => b.name.length - a.name.length);
 
   const convertArrayToScss = async (arr) => {
     let cssCode = '';
@@ -232,6 +236,16 @@ const analyzeStyles = (done) => {
           const selectorClasses = await convertArrayToScss(selectorPath);
 
           if (node.type === 'decl') {
+
+            // Get variable's frequency
+            let nodeValue = node.value;
+            sortedVariables.forEach((variable) => {
+              const variableName = variable.name;
+              if (nodeValue.includes(variableName)) {
+                variable.count++;
+                nodeValue = nodeValue.replace(variableName, '$_');
+              }
+            });
 
             // Get the usage of !important
             if (node.important) {
@@ -508,6 +522,11 @@ const analyzeStyles = (done) => {
       this.emit('end');
     })
     .on('end', function () {
+
+      definedVariables.forEach((variable, index) => {
+        variable.count = sortedVariables.find((v) => v.name === variable.name).count;
+      });
+
       const dataObject = {
         analyzedTime: new Date(),
         mediaQueries: Array.from(mediaQueries).sort(),

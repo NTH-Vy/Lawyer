@@ -560,7 +560,7 @@
 
       const table = document.createElement('table');
       table.className = 'table-data';
-      const headers = ['Variable', 'Value'];
+      const headers = ['Variable', 'Value', 'Frequency'];
       const headerRow = document.createElement('tr');
       headers.forEach(header => {
         const th = document.createElement('th');
@@ -570,14 +570,17 @@
       table.appendChild(headerRow);
 
       data.forEach(entry => {
-        const {name, value } = entry;
+        const {name, value, count } = entry;
         const tr = document.createElement('tr');
         const nameCell = document.createElement('td');
         const valueCell = document.createElement('td');
+        const frequencyCell = document.createElement('td');
         nameCell.textContent = name;
         valueCell.innerHTML = `<code>${value}</code>`;
+        frequencyCell.textContent = count;
         tr.appendChild(nameCell);
         tr.appendChild(valueCell);
+        tr.appendChild(frequencyCell);
         table.appendChild(tr);
       });
 
