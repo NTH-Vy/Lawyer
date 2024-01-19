@@ -598,8 +598,15 @@
       if (filters) {
         const filterEl = document.createElement('div');
         filterEl.className = 'panel-tab-header';
-        filters.unshift('all');
-        filters.forEach((item, index) => {
+        let filterArray = [];
+        if (typeof filters === 'string' && filters === 'auto') {
+          filterArray = [...new Set(dataObject[dataKey].map(item => item.property))];
+          filterArray.sort();
+        } else if (typeof filters === 'object' && filters.length) {
+          filterArray = filters;
+        }
+        filterArray.unshift('all');
+        filterArray.forEach((item, index) => {
           const label = document.createElement('label');
           const input = document.createElement('input');
           const span = document.createElement('span');
@@ -670,15 +677,15 @@
       showMediaOptions();
       addVariables();
       addSection('importantUsages', '!important');
-      addSection('colorValues', 'Colors', ['color', 'background', 'background-color', 'border', 'border-top', 'border-right', 'border-bottom', 'border-left']);
+      addSection('colorValues', 'Colors', 'auto');
       addSection('fontfamilyValues', 'Font Families');
       addSection('fontsizeValues', 'Font Sizes');
       addSection('fontweightValues', 'Font Weight');
       addSection('lineheightValues', 'Line Height');
-      addSection('widthValues', 'Width', ['min-width', 'max-width']);
-      addSection('heightValues', 'Height', ['min-height', 'max-height']);
-      addSection('marginValues', 'Margin', ['margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left']);
-      addSection('paddingValues', 'Padding', ['padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left']);
+      addSection('widthValues', 'Width', 'auto');
+      addSection('heightValues', 'Height', 'auto');
+      addSection('marginValues', 'Margin', 'auto');
+      addSection('paddingValues', 'Padding', 'auto');
       addSection('textshadowValues', 'Text Shadow');
       addSection('boxshadowValues', 'Box Shadow');
       addSection('topValues', 'Top');

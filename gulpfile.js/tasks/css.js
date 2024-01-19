@@ -244,7 +244,7 @@ const analyzeStyles = (done) => {
                 selectorClasses,
                 mediaQuery,
                 property: node.prop,
-                value: node.value,
+                value: node.value + ' !important',
               });
             }
 
