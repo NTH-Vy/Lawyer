@@ -7,10 +7,10 @@ const { image, imagemin } = require('./tasks/image.js');
 const { bs } = require('./tasks/browser_sync.js');
 const { watch } = require('./tasks/watch.js');
 
-const build = series(clean, parallel(html, css, js, image, copyFonts));
-const develop = series(build, parallel(bs, watch));
 const lint = series(lintHtml, lintStyles, lintJs, spellCheck, classCheck);
 const lintFix = series(lintHtml, lintStylesFix, lintJs, spellCheck, classCheck);
+const build = series(clean, parallel(html, css, js, image, copyFonts, lint));
+const develop = series(build, parallel(bs, watch));
 
 module.exports = {
   default: process.env.NODE_ENV === 'production' ? build : develop,
