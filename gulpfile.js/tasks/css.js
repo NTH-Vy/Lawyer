@@ -167,6 +167,7 @@ const analyzeStyles = (done) => {
   const fontsizeValues = [];
   const fontweightValues = [];
   const lineheightValues = [];
+  const letterspacingValues = [];
   const textshadowValues = [];
   const boxshadowValues = [];
   const widthValues = [];
@@ -357,6 +358,21 @@ const analyzeStyles = (done) => {
             // Get line-height
             if (node.prop === 'line-height') {
               lineheightValues.push({
+                fileName,
+                filePath,
+                line: node.source.start.line,
+                column: node.source.start.column,
+                selector,
+                property: node.prop,
+                selectorClasses,
+                mediaQuery,
+                value: node.value,
+              });
+            }
+
+            // Get letter-spacing
+            if (node.prop === 'letter-spacing') {
+              letterspacingValues.push({
                 fileName,
                 filePath,
                 line: node.source.start.line,
@@ -577,6 +593,7 @@ const analyzeStyles = (done) => {
         fontsizeValues,
         fontweightValues,
         lineheightValues,
+        letterspacingValues,
         widthValues,
         heightValues,
         marginValues,

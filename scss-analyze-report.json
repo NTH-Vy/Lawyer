@@ -1,5 +1,5 @@
 {
-  "analyzedTime": "2024-01-19T18:06:50.242Z",
+  "analyzedTime": "2024-01-29T02:45:53.033Z",
   "mediaQueries": [
     "@include desktop",
     "@include desktop-pc",
@@ -4734,6 +4734,217 @@
       "selectorClasses": ".title-common-primary {\n}\n",
       "mediaQuery": "@include mobile",
       "value": "calc(35 / 25)"
+    }
+  ],
+  "letterspacingValues": [
+    {
+      "fileName": "src/scss/child.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\child.scss",
+      "line": 29,
+      "column": 5,
+      "selector": ".keyvisual-title",
+      "property": "letter-spacing",
+      "selectorClasses": ".section-child-keyvisual {\n  .keyvisual-title {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".01em"
+    },
+    {
+      "fileName": "src/scss/result.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\result.scss",
+      "line": 606,
+      "column": 11,
+      "selector": "html.is-ios &",
+      "property": "letter-spacing",
+      "selectorClasses": ".section-result-info {\n  dd {\n    li {\n      html.is-ios & {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": "@include mobile",
+      "value": "-.02em"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 49,
+      "column": 7,
+      "selector": ".navigation-item",
+      "property": "letter-spacing",
+      "selectorClasses": ".section-top-navigation {\n  .navigation-block {\n    .navigation-item {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "value": "0"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 113,
+      "column": 5,
+      "selector": ".title-english",
+      "property": "letter-spacing",
+      "selectorClasses": ".title-top-primary {\n  .title-english {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".4em"
+    },
+    {
+      "fileName": "src/scss/top.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\top.scss",
+      "line": 118,
+      "column": 7,
+      "selector": ".title-english",
+      "property": "letter-spacing",
+      "selectorClasses": ".title-top-primary {\n  &.is-modify {\n    .title-english {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".399em"
+    },
+    {
+      "fileName": "src/scss/parts/_footer.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_footer.scss",
+      "line": 13,
+      "column": 5,
+      "selector": ".footer-title",
+      "property": "letter-spacing",
+      "selectorClasses": "footer {\n  .footer-title {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".1em"
+    },
+    {
+      "fileName": "src/scss/parts/_footer.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_footer.scss",
+      "line": 23,
+      "column": 5,
+      "selector": ".footer-label",
+      "property": "letter-spacing",
+      "selectorClasses": "footer {\n  .footer-label {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".149em"
+    },
+    {
+      "fileName": "src/scss/parts/_footer.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_footer.scss",
+      "line": 58,
+      "column": 5,
+      "selector": ".button-top",
+      "property": "letter-spacing",
+      "selectorClasses": "footer {\n  .button-top {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".1em"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 38,
+      "column": 5,
+      "selector": ".header-text",
+      "property": "letter-spacing",
+      "selectorClasses": ".header {\n  .header-text {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".05em"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 62,
+      "column": 7,
+      "selector": "&::after",
+      "property": "letter-spacing",
+      "selectorClasses": ".header {\n  .button-menu {\n    &::after {\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".15em"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 142,
+      "column": 5,
+      "selector": ".navigation-text",
+      "property": "letter-spacing",
+      "selectorClasses": ".navigation-block {\n  .navigation-text {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".05em"
+    },
+    {
+      "fileName": "src/scss/parts/_header.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_header.scss",
+      "line": 1184,
+      "column": 7,
+      "selector": ".navigation-text",
+      "property": "letter-spacing",
+      "selectorClasses": ".navigation-common {\n  .navigation-text {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "value": ".05em"
+    },
+    {
+      "fileName": "src/scss/parts/_news.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_news.scss",
+      "line": 39,
+      "column": 5,
+      "selector": ".news-label",
+      "property": "letter-spacing",
+      "selectorClasses": ".news-item {\n  .news-label {\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".05em"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 160,
+      "column": 9,
+      "selector": "&::marker",
+      "property": "letter-spacing",
+      "selectorClasses": ".post-content {\n  ol {\n    & > li {\n      &::marker {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".1em"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 199,
+      "column": 9,
+      "selector": "th",
+      "property": "letter-spacing",
+      "selectorClasses": ".post-content {\n  table {\n    &.is-modify {\n      th {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".15em"
+    },
+    {
+      "fileName": "src/scss/parts/_post_content.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_post_content.scss",
+      "line": 205,
+      "column": 9,
+      "selector": "td",
+      "property": "letter-spacing",
+      "selectorClasses": ".post-content {\n  table {\n    &.is-modify {\n      td {\n      }\n    }\n  }\n}\n",
+      "mediaQuery": null,
+      "value": ".15em"
+    },
+    {
+      "fileName": "src/scss/parts/_sport.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_sport.scss",
+      "line": 90,
+      "column": 7,
+      "selector": ".sport-name",
+      "property": "letter-spacing",
+      "selectorClasses": ".sport-item {\n  .sport-name {\n  }\n}\n",
+      "mediaQuery": "@include desktop-pc",
+      "value": ".1em"
+    },
+    {
+      "fileName": "src/scss/parts/_sport.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_sport.scss",
+      "line": 130,
+      "column": 7,
+      "selector": ".sport-name",
+      "property": "letter-spacing",
+      "selectorClasses": ".sport-item {\n  .sport-name {\n  }\n}\n",
+      "mediaQuery": "@include tablet",
+      "value": ".07em"
+    },
+    {
+      "fileName": "src/scss/parts/_sport.scss",
+      "filePath": "D:\\Xampp\\htdocs\\__TEMPLATES\\fc-gulp\\src\\scss\\parts\\_sport.scss",
+      "line": 145,
+      "column": 7,
+      "selector": ".sport-name",
+      "property": "letter-spacing",
+      "selectorClasses": ".sport-item {\n  .sport-name {\n  }\n}\n",
+      "mediaQuery": "@include mobile",
+      "value": ".1em"
     }
   ],
   "widthValues": [
