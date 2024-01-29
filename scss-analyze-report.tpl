@@ -264,6 +264,55 @@
       display: block;
     }
 
+    .navigation {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      z-index: 1000;
+      width: 200px;
+      height: 100vh;
+      padding: 30px 0;
+      margin-left: 540px;
+    }
+
+    .navigation .nav-title {
+      color: #f8f8f8;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .navigation .nav-list {
+      padding-left: 5px;
+    }
+
+    .navigation .nav-list li {
+      list-style-position: inside;
+    }
+
+    .navigation .nav-list li:not(:first-child) {
+      margin-top: 0.5em;
+    }
+
+    .navigation .nav-list li a {
+      color: #cdd3d6;
+      text-decoration: none;
+    }
+
+    .navigation .nav-list li a:hover {
+      color: #fff;
+    }
+
+    @media (min-width: 1500px) {
+      .navigation {
+        display: block;
+      }
+      .container {
+        position: relative;
+        left: -100px;
+      }
+    }
+
   </style>
 </head>
 
@@ -304,43 +353,73 @@
     };
 
     const loadDevToolData = (type, prop, value) => {
-    const devToolMainEl = document.querySelector('.devtool-main');
-    if (devToolMainEl) {
-      devToolMainEl.innerHTML = '';
-    }
-    const data = dataObject[type];
-    if (data?.length) {
-      const sortedData = data.sort((a, b) => a.fileName.localeCompare(b.fileName));
-      const filteredData = sortedData.filter(item => item.property === decodeURIComponent(prop) && item.value === decodeURIComponent(value));
+      const devToolMainEl = document.querySelector('.devtool-main');
+      if (devToolMainEl) {
+        devToolMainEl.innerHTML = '';
+      }
+      const data = dataObject[type];
+      if (data?.length) {
+        const sortedData = data.sort((a, b) => a.fileName.localeCompare(b.fileName));
+        const filteredData = sortedData.filter(item => item.property === decodeURIComponent(prop) && item.value === decodeURIComponent(value));
 
-      const table = document.createElement('table');
-      table.className = 'table-inspect';
+        const table = document.createElement('table');
+        table.className = 'table-inspect';
 
-      const headers = ['File', 'Line', 'Selector'];
-      const headerRow = document.createElement('tr');
-      headers.forEach(header => {
-        const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
+        const headers = ['File', 'Line', 'Selector'];
+        const headerRow = document.createElement('tr');
+        headers.forEach(header => {
+          const th = document.createElement('th');
+          th.textContent = header;
+          headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+        filteredData.forEach(entry => {
+          const { fileName, filePath, column, line, selectorClasses } = entry;
+          const tr = document.createElement('tr');
+          const fileCell = document.createElement('td');
+          const lineCell = document.createElement('td');
+          const classCell = document.createElement('td');
+          fileCell.innerHTML = `<code>${fileName}</code>`;
+          lineCell.innerHTML = `<a href="file://${filePath}#${line}:${column}">${line}:${column}</a>`;
+          classCell.innerHTML = `<pre>${selectorClasses}</pre>`;
+          tr.appendChild(fileCell);
+          tr.appendChild(lineCell);
+          tr.appendChild(classCell);
+          table.appendChild(tr);
+        });
+        devToolMainEl.appendChild(table);
+      }
+    };
+
+    const initNavigation = () => {
+      const body = document.querySelector('body');
+
+      const navigation = document.createElement('div');
+      navigation.className = 'navigation';
+
+      const navTitle = document.createElement('h2');
+      navTitle.className = 'nav-title';
+      navTitle.textContent = 'Navigate this page';
+      navigation.appendChild(navTitle);
+
+      const navList = document.createElement('ul');
+      navList.className = 'nav-list';
+      navigation.appendChild(navList);
+
+      const headings = document.querySelectorAll('#container h2');
+      headings.forEach((h2) => {
+        const id = h2.textContent.replace(/\s+/g, '-').toLowerCase();
+        h2.setAttribute('id', id);
+        const navItem = document.createElement('li');
+        const navLink = document.createElement('a');
+        navLink.href = `#${id}`;
+        navLink.textContent = h2.textContent;
+        navItem.appendChild(navLink);
+        navList.appendChild(navItem);
       });
-      table.appendChild(headerRow);
-      filteredData.forEach(entry => {
-        const { fileName, filePath, column, line, selectorClasses } = entry;
-        const tr = document.createElement('tr');
-        const fileCell = document.createElement('td');
-        const lineCell = document.createElement('td');
-        const classCell = document.createElement('td');
-        fileCell.innerHTML = `<code>${fileName}</code>`;
-        lineCell.innerHTML = `<a href="file://${filePath}#${line}:${column}">${line}:${column}</a>`;
-        classCell.innerHTML = `<pre>${selectorClasses}</pre>`;
-        tr.appendChild(fileCell);
-        tr.appendChild(lineCell);
-        tr.appendChild(classCell);
-        table.appendChild(tr);
-      });
-      devToolMainEl.appendChild(table);
-    }
-  };
+
+      body.appendChild(navigation);
+    };
 
     const initLinkInspect = () => {
       const linkInspects = document.querySelectorAll('.link-inspect');
@@ -744,6 +823,7 @@
       addSection('rightValues', 'Right');
       addSection('bottomValues', 'Bottom');
       addSection('leftValues', 'Left');
+      initNavigation();
       initLinkInspect();
       initFilter();
     }
