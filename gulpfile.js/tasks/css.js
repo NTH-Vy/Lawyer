@@ -3,6 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const scssSyntax = require('postcss-scss');
 const sourcemaps = require('gulp-sourcemaps');
+const replace = require('gulp-replace');
 const config = require('../config').css;
 const fs = require('fs');
 const path = require('path');
@@ -107,6 +108,7 @@ const buildStyles = () => {
     }).on('error', sass.logError))
     .pipe(postcss(transpileOptions, { syntax: scssSyntax }))
     .pipe(sourcemaps.write('.'))
+    .pipe(replace(/\n$/, ''))
     .pipe(dest(destDir + '/css'));
 };
 

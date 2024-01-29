@@ -18,7 +18,7 @@ Just simply to use this command
 npm install
 ```
 
-# Start development mode
+# Build files and start development mode
 
 Build files and make them ready for your production environment. You will get the files in the `dist` folder.
 Beside, it will automatically launch your default web browser to display the current coding, and watch for changes in the "src" folder
@@ -27,7 +27,7 @@ Beside, it will automatically launch your default web browser to display the cur
 npm run dev
 ```
 
-# Build files for production
+# Build files
 
 Build files and make them ready for your production environment. You will get the files in the `dist` folder
 

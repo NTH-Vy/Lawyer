@@ -82,10 +82,12 @@
       var href = typeof context === 'string'
         ? context
         : '#' + $(context).attr('href').split('#')[1];
-      if ($(context).hasClass('no-scroll') || !$(href).length) return false;
-      position = $(href).offset().top - headerHeight;
-      $('body, html').animate({ scrollTop: position }, speed, 'swing');
-      return false;
+      if (!$(context).hasClass('no-scroll') && $(href).length) {
+        position = $(href).offset().top - headerHeight;
+        $('body, html').animate({ scrollTop: position }, speed, 'swing');
+        return false;
+      }
+      return true;
     }
     setTimeout(function setTimerHTMLVisibility() {
       window.scroll(0, 0);
