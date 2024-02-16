@@ -1,0 +1,133 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+@use "../base/variables" as *;
+
+.news-item {
+  a {
+    text-decoration: none;
+  }
+
+  .news-date,
+  .news-title {
+    margin: 0;
+    color: $color-black;
+  }
+
+  .news-date {
+    flex: 0 0 auto;
+  }
+
+  .news-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    transition: color .26s ease;
+
+    &:hover {
+      color: $color-light-blue;
+    }
+  }
+
+  .news-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border: .01rem solid #00256d;
+    color: #00256d;
+    letter-spacing: .05em;
+    text-align: center;
+  }
+
+  .item-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  @include desktop-pc {
+    display: flex;
+    align-items: center;
+    padding: 27px 5px 24px;
+
+    .news-date {
+      width: 125px;
+      padding-right: 5px;
+    }
+
+    .news-title {
+      margin-left: 21px;
+    }
+  }
+
+  @include desktop-pc {
+    &:not(:last-child) {
+      border-bottom: .01rem solid #d0d0d0;
+    }
+  }
+
+  @include desktop {
+    .news-date {
+      flex: 0 0 auto;
+      font-size: .15rem;
+      line-height: calc(18 / 15);
+    }
+
+    .news-label {
+      flex: 0 0 auto;
+      width: 110px;
+      min-height: 25px;
+      padding: 3px 6px;
+      font-size: .13rem;
+      line-height: calc(15.6 / 13);
+    }
+
+    .news-title {
+      font-size: .16rem;
+      line-height: calc(19.2 / 16);
+    }
+  }
+
+  @include tablet {
+    padding: .24rem .06rem;
+
+    .item-wrapper {
+      margin-bottom: .18rem;
+    }
+
+    .news-date {
+      width: 1.23rem;
+      padding-right: .05rem;
+    }
+  }
+
+  @include tablet-sp {
+    border-bottom: .01rem solid #d0d0d0;
+  }
+
+  @include mobile {
+    padding: .3rem .06rem .27rem;
+
+    .news-date {
+      width: 1.18rem;
+      font-size: .15rem;
+    }
+
+    .news-label {
+      width: 1.1rem;
+      min-height: .25rem;
+      padding: .03rem .06rem;
+      font-size: .13rem;
+    }
+
+    .news-title {
+      font-size: .16rem;
+      -webkit-line-clamp: 2;
+    }
+
+    .item-wrapper {
+      margin-bottom: .12rem;
+    }
+  }
+}
+

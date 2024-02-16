@@ -1,0 +1,165 @@
+@charset "utf-8";
+@use "../base/mixins" as *;
+@use "../base/variables" as *;
+
+.sport-item {
+  .sport-thumbnail {
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  a {
+    display: block;
+    position: relative;
+    height: 100%;
+    background: $color-white;
+    text-decoration: none;
+
+    &:hover {
+      .sport-thumbnail {
+        &::before {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+
+      .sport-title {
+        color: $color-light-blue;
+      }
+    }
+  }
+
+  .sport-thumbnail {
+    position: relative;
+
+    &::before {
+      content: "";
+      display: block;
+      visibility: hidden;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity .3s ease, visibility .3s ease;
+      opacity: 0;
+      background: rgba(0, 0, 0, .5);
+    }
+  }
+
+  .sport-name {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    margin: 0;
+    color: $color-white;
+    font-weight: 700;
+  }
+
+  .sport-title {
+    position: relative;
+    margin: 0;
+    transition: color .3s ease;
+    font-weight: 500;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      background: url("../img/top/arrow_ico_01.svg") no-repeat center left / 100% 100%;
+    }
+  }
+
+  @include desktop-pc {
+    width: calc(100% / 3);
+    margin-bottom: 69px;
+    padding: 0 22px;
+
+    .sport-thumbnail {
+      padding-top: calc(410 / 340 * 100%);
+    }
+
+    .sport-name {
+      letter-spacing: .1em;
+    }
+  }
+
+  @include desktop {
+    .sport-name {
+      bottom: -9px;
+      font-size: .45rem;
+      line-height: calc(54 / 45);
+    }
+
+    .sport-content {
+      padding: 24px 18px 22px;
+    }
+
+    .sport-title {
+      padding-left: 24px;
+      font-size: .2rem;
+
+      &::before {
+        width: 10px;
+        height: 24px;
+
+        html.is-firefox & {
+          top: 1px;
+        }
+      }
+    }
+  }
+
+  @include tablet {
+    width: calc(100% / 2);
+    margin-bottom: .51rem;
+    padding: 0 .095rem;
+
+    .sport-thumbnail {
+      padding-top: calc(364 / 308 * 100%);
+    }
+
+    .sport-name {
+      letter-spacing: .07em;
+    }
+  }
+
+  @include mobile {
+    width: 1.6rem;
+    margin: 0 .06rem .24rem;
+
+    .sport-thumbnail {
+      padding-top: calc(190 / 160 * 100%);
+    }
+
+    .sport-name {
+      bottom: -.05rem;
+      font-size: .2rem;
+      letter-spacing: .1em;
+    }
+
+    .sport-content {
+      padding: .09rem;
+    }
+
+    .sport-title {
+      padding-left: .15rem;
+
+      &::before {
+        width: .08rem;
+        height: .21rem;
+      }
+    }
+
+  }
+}
+
+
+

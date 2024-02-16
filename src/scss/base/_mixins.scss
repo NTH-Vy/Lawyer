@@ -7,8 +7,38 @@
   }
 }
 
+@mixin desktop-xxx {
+  @media print, (min-width: $sm-break + .05) {
+    @content;
+  }
+}
+
+@mixin desktop-pc {
+  @media print, (min-width: $md-break) {
+    @content;
+  }
+}
+
+@mixin tb-pc-01 {
+  @media only screen and (min-width: $md-break) and (max-width: $pc-01) {
+    @content;
+  }
+}
+
+@mixin tb-pc-02 {
+  @media only screen and (min-width: $md-break) and (max-width: $pc-02) {
+    @content;
+  }
+}
+
+@mixin tablet-sp {
+  @media only screen and (max-width: $md-break - .02) {
+    @content;
+  }
+}
+
 @mixin tablet {
-  @media print, (min-width: $sm-break + .02) and (max-width: $md-break) {
+  @media only screen and (min-width: $sm-break + .02) and (max-width: $md-break - .02) {
     @content;
   }
 }
