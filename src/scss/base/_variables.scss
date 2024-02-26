@@ -1,28 +1,15 @@
 @charset "utf-8";
 
-$wrapper-width: 1152px;
+$viewport-width: 1250px;
+$wrapper-width: 1200px;
 $md-break: 1024px;
-$pc-01: 1380px;
-$pc-02: 1300px;
 $sm-break: 767.98px;
 $xs-break: 374px;
-$font-sans: "Noto Sans JP","ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", yugothic, "Yu Gothic", "メイリオ", meiryo, verdana, sans-serif;
-$font-barlow: "Barlow", sans-serif;
-$font-size: .16rem;
-$font-weight: 400;
-$line-height: calc(19.2 / 16);
-$color-default: #222;
-$color-black: #141414;
-$color-blue: #00317a;
-$color-light-blue: #00a0c8;
-$color-blue-primary: #219dc4;
-$color-white: #fff;
-$color-brown: #ba7e3b;
-$test001: 0;
-$test001x: 0;
-$test001x2: 0;
-$test002: 15px;
-$test003: 24px;
-
-$colora: #000;
-$colorab: #000;
+$font-sans: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "游ゴシック", yugothic, "Yu Gothic", "メイリオ", meiryo, sans-serif;
+$font-serif: "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "游明朝", yumincho, "Times New Roman", georgia, serif;
+$font-size-pc: .14rem;
+$font-size-sp: .14rem;
+$font-weight-pc: 400;
+$font-weight-sp: 400;
+$line-height: calc(20 / 14);
+$color-default: #000;
