@@ -1,6 +1,6 @@
 # Getting started
 
-This template is made by Gulp and Gulp's plugins that are installed and managed via npm, the Node.js package manager. It requires stable Node.js version 16
+This template is made by Gulp and Gulp's plugins that are installed and managed via npm, the Node.js package manager. It requires stable Node.js version 16, 18, or 20.
 
 # Install the Gulp CLI for the first time of using
 
@@ -80,66 +80,3 @@ npm run lint:fix
 - **stylelint**: A mighty CSS linter that helps you avoid errors and enforce conventions
 - **stylelint-config-property-sort-order-smacss**: Stylelint config for Property Sort Ordering based on the SMACSS methodology
 - **stylelint-config-standard-scss**: The standard SCSS config for Stylelint
-
-# Options
-
-You have the flexibility to customize default options by updating the configurations in the `gulpfile.js/config/index.js` file.
-
-| Module      | Option     | Description                                                                | Default Value |
-| ----------- | ---------- | -------------------------------------------------------------------------- | ------------- |
-| base        | N/A        | Configuration for the base Gulp setup.<br>Refer to the `baseConfig` object | N/A           |
-| browserSync | N/A        | Configuration for Browsersync.<br>Refer to the Browsersync Documentation   | N/A           |
-| html        | source     | Configuration for HTML source files.                                       | See below     |
-|             | distribute | Configuration for HTML distribution files.                                 | See below     |
-| css         | source     | Configuration for CSS source files.                                        | See below     |
-|             | distribute | Configuration for CSS distribution files.                                  | See below     |
-|             | options    | Additional options for CSS distribution.                                   | See below     |
-| js          | source     | Configuration for JS source files.                                         | See below     |
-|             | distribute | Configuration for JS distribution files.                                   | See below     |
-| image       | source     | Configuration for image source files.                                      | See below     |
-|             | distribute | Configuration for image distribution files.                                | See below     |
-|             | options    | Additional options for image distribution.                                 | See below     |
-
-**Default Values:**
-
-- **html:**
-
-  - source:
-    - dir: `baseConfig.sourceDir + '/pug'`
-    - glob: [`baseConfig.sourceDir + '/pug/**/*.pug'`]
-    - ignore: `baseConfig.ignore`
-  - distribute:
-    - dir: `baseConfig.distributeDir`
-
-- **css:**
-
-  - source:
-    - dir: `baseConfig.sourceDir`
-    - glob: [`baseConfig.sourceDir + '/scss/**/*.scss'`]
-    - ignore: `baseConfig.ignore`
-  - distribute:
-    - dir: `baseConfig.distributeDir`
-  - options:
-    - minify: true
-
-- **js:**
-
-  - source:
-    - dir: `baseConfig.sourceDir`
-    - glob: [`baseConfig.sourceDir + '/js/**/*.js'`]
-    - ignore: `baseConfig.ignore`
-  - distribute:
-    - dir: `baseConfig.distributeDir`
-
-- **image:**
-
-  - source:
-    - dir: `baseConfig.sourceDir + '/img'`
-    - glob: [`baseConfig.sourceDir + '/img/**/*'`]
-    - ignore: `baseConfig.ignore`
-  - distribute:
-    - dir: `baseConfig.distributeDir`
-  - options:
-    - kraken:
-      - key: ''
-      - secret: ''
