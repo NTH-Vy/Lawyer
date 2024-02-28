@@ -25,13 +25,3 @@ node_modules
 bower_components
 temp
 tmp
-/vendor
-/wp/*
-/wp/wp-content/*
-/wp/wp-content/themes/*
-!/wp/favicon.ico
-!/wp/google*.html
-!/wp/wp-content
-!/wp/wp-content/themes
-!/wp/wp-content/themes/vanilla
-!package.json
