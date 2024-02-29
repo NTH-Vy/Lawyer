@@ -1,6 +1,7 @@
 const { src, dest, series } = require('gulp');
 const eslint = require('gulp-eslint-new');
 const prettier = require('gulp-prettier');
+const uglify = require('gulp-uglify');
 const config = require('../config').js;
 const fs = require('fs');
 const argv = require('yargs').argv;
@@ -12,18 +13,24 @@ const buildJs = () => {
   if (!fs.existsSync(config.source.dir + '/js')) {
     return Promise.resolve();
   }
-  return src(jsGlob)
-    .pipe(dest(destDir + '/js'));
+
+  const stream = src(jsGlob);
+
+  if (config.options.minify === true) {
+    stream.pipe(uglify());
+  }
+
+  return stream.pipe(dest(destDir + '/js'));
 };
 
 const lintJs = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = [destDir + '/js/**/*.js'];
+  let filesToCheck = jsGlob;
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
   }
-  const eslintStream = src(filesToCheck)
+  const stream = src(filesToCheck)
     .pipe(prettier({
       singleQuote: true,
       proseWrap: 'never',
@@ -36,12 +43,12 @@ const lintJs = () => {
     .pipe(eslint.format());
 
   if (stopOnError) {
-    eslintStream.pipe(eslint.failAfterError());
+    stream.pipe(eslint.failAfterError());
   }
-  return eslintStream.pipe(dest(destDir + '/js'));
+  return stream.pipe(dest(config.source.dir + '/js'));
 };
 
-const js = series(buildJs, lintJs);
+const js = series(lintJs, buildJs);
 
 module.exports = {
   buildJs,

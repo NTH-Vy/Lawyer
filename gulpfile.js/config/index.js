@@ -27,6 +27,9 @@ module.exports = {
     },
     distribute: {
       dir: baseConfig.distributeDir
+    },
+    options: {
+      minify: false
     }
   },
   css: {
@@ -50,6 +53,9 @@ module.exports = {
     },
     distribute: {
       dir: baseConfig.distributeDir
+    },
+    options: {
+      minify: false
     }
   },
   image: {

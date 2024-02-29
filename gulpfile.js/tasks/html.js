@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const { src, dest, series, lastRun } = gulp;
 const pug = require('gulp-pug');
 const pugLinter = require('gulp-pug-linter');
+const htmlnano = require('gulp-htmlnano');
 const PluginError = require('plugin-error');
 const config = require('../config').html;
 const fs = require('fs');
@@ -20,13 +21,21 @@ const buildHtml = () => {
   if (!fs.existsSync(config.source.dir)) {
     return Promise.resolve();
   }
-  return src(pugGlob.concat(['!' + config.source.dir + '/_*/**']), { since: lastRun(buildHtml) })
+
+  const stream = src(pugGlob.concat(['!' + config.source.dir + '/_*/**']), { since: lastRun(buildHtml) })
     .pipe(
       pug({
         pretty: true
       })
-    )
-    .pipe(dest(destDir));
+    );
+
+  if (config.options.minify === true) {
+    stream.pipe(htmlnano({
+      removeComments: false
+    }));
+  }
+
+  return stream.pipe(dest(destDir));
 };
 
 const lintHtml = () => {

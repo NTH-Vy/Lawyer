@@ -23,6 +23,7 @@
     "eslint-plugin-import": "^2.29.1",
     "gulp": "^4.0.2",
     "gulp-eslint-new": "^1.9.0",
+    "gulp-htmlnano": "^0.1.0",
     "gulp-imagemin": "^9.0.0",
     "gulp-kraken": "^0.2.0",
     "gulp-postcss": "^9.0.1",
