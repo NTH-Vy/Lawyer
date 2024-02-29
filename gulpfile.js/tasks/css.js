@@ -9,6 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const argv = require('yargs').argv;
 const prettier = require('prettier');
+const gulpPrettier = require('gulp-prettier');
 
 const destDir = config.distribute.dir;
 const cssGlob = config.source.glob.concat(config.source.ignore);
@@ -79,7 +80,23 @@ const lintStyles = (fix = false) => {
 };
 
 const lintStylesFix = () => {
-  return lintStyles(true).pipe(dest(config.source.dir + '/scss'));
+  return lintStyles(true)
+    .pipe(gulpPrettier({
+      "printWidth": 160,
+      "tabWidth": 2,
+      "useTabs": false,
+      "semi": true,
+      "singleQuote": false,
+      "trailingComma": "none",
+      "bracketSpacing": true,
+      "jsxBracketSameLine": false,
+      "arrowParens": "always",
+      "insertPragma": false,
+      "requirePragma": false,
+      "proseWrap": "preserve",
+      "endOfLine": "lf"
+    }))
+    .pipe(dest(config.source.dir + '/scss'));
 };
 
 const buildStyles = () => {
