@@ -22,6 +22,7 @@ npm install
 
 Build files and make them ready for your production environment. You will get the files in the `dist` folder.
 Beside, it will automatically launch your default web browser to display the current coding, and watch for changes in the "src" folder
+Minify images and Lint check will run also.
 
 ```sh
 npm run dev
@@ -30,6 +31,7 @@ npm run dev
 # Build files
 
 Build files and make them ready for your production environment. You will get the files in the `dist` folder
+Minify images and Lint check will run also.
 
 ```sh
 npm run build
@@ -58,25 +60,3 @@ To automatically fix linting issues, if possible, use this command:
 ```sh
 npm run lint:fix
 ```
-
-# List of npm dependencies
-
-- **autoprefixer**: Add vendor prefixes to CSS rules using values from Can I Use
-- **browser-sync**: Live CSS Reload & Browser Syncing
-- **cross-env**: Set and use environment variables across platforms
-- **cssnano**: A modular minifier, built on top of the PostCSS ecosystem
-- **del**: Delete files and directories
-- **gulp**: JavaScript task runner
-- **gulp-eslint**: Gulp plugin for processing files with ESLint
-- **gulp-kraken**: Gulp plugin to optimize all your images with the powerful Kraken.io API
-- **gulp-postcss**: Gulp plugin for PostCSS
-- **gulp-prettier**: Gulp plugin to format JS files with Prettier
-- **gulp-pug**: Gulp plugin to compile Pug files
-- **gulp-pug-linter**: Gulp plugin to lint Pug files
-- **gulp-sass**: Gulp plugin for Sass
-- **gulp-sourcemaps**: Gulp plugin for sourcemap support
-- **sass**: A pure JavaScript implementation of Sass
-- **spelling**: A spelling checker plugin
-- **stylelint**: A mighty CSS linter that helps you avoid errors and enforce conventions
-- **stylelint-config-property-sort-order-smacss**: Stylelint config for Property Sort Ordering based on the SMACSS methodology
-- **stylelint-config-standard-scss**: The standard SCSS config for Stylelint
