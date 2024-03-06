@@ -27,6 +27,9 @@ module.exports = {
     },
     distribute: {
       dir: baseConfig.distributeDir
+    },
+    options: {
+      minify: false
     }
   },
   css: {
@@ -50,6 +53,9 @@ module.exports = {
     },
     distribute: {
       dir: baseConfig.distributeDir
+    },
+    options: {
+      minify: false
     }
   },
   image: {
@@ -61,11 +67,6 @@ module.exports = {
     distribute: {
       dir: baseConfig.distributeDir
     },
-    options: {
-      kraken: {
-        key: '5b61b3c6bba11a2dbc7be9beb3ab11d5',
-        secret: '07e8e703c93fa122dd6ff3aa95d555570d9b21eb'
-      }
-    }
+    options: {}
   }
 };
