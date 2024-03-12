@@ -60,3 +60,10 @@ To automatically fix linting issues, if possible, use this command:
 ```sh
 npm run lint:fix
 ```
+
+# How to minify HTML, CSS and JS files
+
+Go to `gulpfile.js/config/index.js` file in your template.
+Update `minify: false` option inside `html: {...}` to `minify: true` if you want to minify HTML files.
+Update `minify: false` option inside `css: {...}` to `minify: true` if you want to minify CSS files.
+Update `minify: false` option inside `js: {...}` to `minify: true` if you want to minify JS files.
