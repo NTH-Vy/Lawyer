@@ -25,7 +25,7 @@ const buildJs = () => {
 
 const lintJs = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = jsGlob;
+  let filesToCheck = [destDir + '/js/**/*.js'];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
@@ -38,13 +38,14 @@ const lintJs = () => {
       printWidth: 80,
       trailingComma: 'none'
     }))
-    .pipe(eslint())
+    .pipe(eslint({ fix: true }))
+    .pipe(eslint.fix())
     .pipe(eslint.format());
 
   if (stopOnError) {
     stream.pipe(eslint.failAfterError());
   }
-  return stream;
+  return stream.pipe(dest(destDir + '/js'));
 };
 
 const js = series(lintJs, buildJs);
