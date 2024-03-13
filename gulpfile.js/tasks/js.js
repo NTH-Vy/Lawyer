@@ -48,7 +48,7 @@ const lintJs = () => {
   return stream.pipe(dest(destDir + '/js'));
 };
 
-const js = series(lintJs, buildJs);
+const js = series(buildJs, lintJs);
 
 module.exports = {
   buildJs,
