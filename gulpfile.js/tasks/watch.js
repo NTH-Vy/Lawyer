@@ -39,7 +39,7 @@ const monitoring = () => {
       const distSrc = filepath.replace(regExpSrc, config.js.distribute.dir);
       del([distSrc]);
     }
-    console.log(`File ${path} was changed`);
+    console.log(`File ${filepath} was changed`);
   });
 
   const images = watch(['src/img/**/*.{png,jpg,gif,svg}'].concat(config.base.ignore));

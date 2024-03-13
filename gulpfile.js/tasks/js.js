@@ -38,14 +38,13 @@ const lintJs = () => {
       printWidth: 80,
       trailingComma: 'none'
     }))
-    .pipe(eslint({ fix: true }))
-    .pipe(eslint.fix())
+    .pipe(eslint())
     .pipe(eslint.format());
 
   if (stopOnError) {
     stream.pipe(eslint.failAfterError());
   }
-  return stream.pipe(dest(config.source.dir + '/js'));
+  return stream;
 };
 
 const js = series(lintJs, buildJs);
