@@ -25,7 +25,7 @@ const buildJs = () => {
 
 const lintJs = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = jsGlob;
+  let filesToCheck = [destDir + '/js/**/*.js'];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
@@ -45,10 +45,10 @@ const lintJs = () => {
   if (stopOnError) {
     stream.pipe(eslint.failAfterError());
   }
-  return stream.pipe(dest(config.source.dir + '/js'));
+  return stream.pipe(dest(destDir + '/js'));
 };
 
-const js = series(lintJs, buildJs);
+const js = series(buildJs, lintJs);
 
 module.exports = {
   buildJs,
