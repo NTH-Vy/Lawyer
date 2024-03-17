@@ -1,8 +1,8 @@
 const del = require('del');
 const config = require('../config').base;
 
-const clean = () => {
-  return del([config.distributeDir]);
+const cleanResources = () => {
+  return del([config.distributeDir+'/css',config.distributeDir+'/img']);
 };
 
 module.exports = {

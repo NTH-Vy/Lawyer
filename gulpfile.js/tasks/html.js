@@ -125,7 +125,7 @@ const classCheck = () => {
     }));
 };
 
-const html = series(buildHtml, lintHtml);
+const html = series(buildHtml);
 
 module.exports = {
   buildHtml,

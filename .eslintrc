@@ -5,7 +5,9 @@
     "sourceType": "script",
     "ecmaFeatures": {}
   },
-  "rules": {},
+  "rules": {
+    "no-new": 0
+  },
   "env": {
     "browser": true,
     "jquery": true

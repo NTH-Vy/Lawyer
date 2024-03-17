@@ -30,6 +30,8 @@
     }],
     "media-feature-range-notation": null,
     "declaration-no-important": true,
-    "rule-empty-line-before": null
+    "rule-empty-line-before": ["always", {
+      "except": ["first-nested"]
+    }]
   }
 }
