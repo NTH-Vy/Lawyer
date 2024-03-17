@@ -1,6 +1,6 @@
 {
   "name": "fc-gulp",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "",
   "scripts": {
     "dev": "cross-env NODE_ENV=development gulp",
@@ -10,8 +10,8 @@
     "imagemin": "cross-env NODE_ENV=production gulp imageMin",
     "analyze": "cross-env NODE_ENV=production gulp analyze"
   },
-  "author": "FASTCODING Thanh",
-  "license": "UNLICENSED",
+  "author": "FASTCODING Inc.",
+  "license": "MIT License",
   "private": true,
   "devDependencies": {
     "autoprefixer": "^10.4.14",
