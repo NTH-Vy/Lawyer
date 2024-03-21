@@ -130,11 +130,11 @@ const buildStyles = () => {
 };
 
 const copyFonts = () => {
-  if (!fs.existsSync(config.source.dir + '/scss/fonts')) {
+  if (!fs.existsSync(config.source.dir + '/fonts')) {
     return Promise.resolve();
   }
-  return src(config.source.dir + '/scss/fonts/**/*')
-    .pipe(dest(destDir + '/css/fonts'));
+  return src(config.source.dir + '/fonts/**/*')
+    .pipe(dest(destDir + '/fonts'));
 }
 
 const definedVariables = [];
