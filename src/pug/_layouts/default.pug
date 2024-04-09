@@ -1,11 +1,9 @@
-
 block vars
   -path = ""
   -pageID = ""
   -pageTitle = ""
   -pageDescription = ""
   -pageKeywords = ""
-
 doctype html
 include ../_mixins/all
 html(lang="ja")
@@ -20,6 +18,8 @@ html(lang="ja")
     meta(name="description", content=pageDescription)
     meta(name="keywords", content=pageKeywords)
     title=pageTitle
+    if(["top"].includes(pageID))
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css")
     link(rel="stylesheet", href=`${path}/css/${pageID.replace(/-/gi,'_')}.css`)
   body
     .container
@@ -29,5 +29,5 @@ html(lang="ja")
       include ../_parts/footer
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js")
     if(["top"].includes(pageID))
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.1.0/swiper-bundle.min.js")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js")
     script(src=path+"/js/scripts.js")

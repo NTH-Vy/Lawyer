@@ -3,12 +3,15 @@
 @use "mixins" as *;
 
 html {
-  transition: opacity 0.3s ease;
-  opacity: 1;
+  opacity: .01;
   line-height: 1;
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
   -ms-text-size-adjust: none;
+
+  &.is-visible {
+    opacity: 1;
+  }
 
   @include desktop {
     font-size: 625%;
@@ -21,7 +24,6 @@ html {
 }
 
 body {
-  transition: opacity 0.3s ease;
   color: $color-default;
   font-family: $font-sans;
   line-height: $line-height;

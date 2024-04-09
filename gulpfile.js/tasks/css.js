@@ -632,7 +632,7 @@ const analyzeStyles = (done) => {
     });
 };
 
-const css = series(buildStyles);
+const css = series(buildStyles, lintStyles);
 const analyze = series(analyzeVariables, analyzeStyles);
 
 module.exports = {

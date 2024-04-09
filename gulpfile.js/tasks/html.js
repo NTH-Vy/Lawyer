@@ -125,13 +125,13 @@ const classCheck = () => {
     }));
 };
 
-const html = series(buildHtml);
+const html = series(buildHtml, lintHtml, spellCheck, classCheck);
 
 module.exports = {
   buildHtml,
   lintHtml,
-  html,
   spellCheck,
-  classCheck
+  classCheck,
+  html
 };
 
