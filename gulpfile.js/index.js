@@ -4,7 +4,7 @@ const { html, buildHtml, lintHtml, spellCheck, classCheck } = require('./tasks/h
 const { css, buildStyles, lintStyles, lintStylesFix, copyFonts, analyze } = require('./tasks/css.js');
 const { js, buildJs, lintJs } = require('./tasks/js.js');
 const { imageMin, convertToWebp } = require('./tasks/image.js');
-const { sync } = require('./tasks/browser_sync.js');
+const { bs } = require('./tasks/browser_sync.js');
 const { watch } = require('./tasks/watch.js');
 
 const lint = series(lintHtml, lintStyles, lintJs, spellCheck, classCheck);
