@@ -10,7 +10,7 @@ const { watch } = require('./tasks/watch.js');
 const lint = series(lintHtml, lintStyles, lintJs, spellCheck, classCheck);
 const lintFix = series(lintHtml, lintStylesFix, lintJs, spellCheck, classCheck);
 const build = series(cleanResources, buildHtml, buildStyles, buildJs, imageMin, copyFonts, lint);
-const develop = series(cleanResources, imageMin, copyFonts, parallel(bs, watch));
+const develop = series(cleanResources, buildHtml, buildStyles, buildJs, imageMin, copyFonts, parallel(bs, watch));
 
 module.exports = {
   default: process.env.NODE_ENV === 'production' ? build : develop,
