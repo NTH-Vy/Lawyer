@@ -19,8 +19,8 @@ html(lang="ja")
     meta(name="keywords", content=pageKeywords)
     title=pageTitle
     if(["top"].includes(pageID))
-      script(src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css")
-    link(rel="stylesheet", href=`${path}/css/${pageID.replace(/-/gi,'_')}.css`)
+      link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css")
+    link(rel="stylesheet" href=`${path}/css/${pageID.replace(/-/gi,'_')}.css`)
   body
     .container
       include ../_parts/header
