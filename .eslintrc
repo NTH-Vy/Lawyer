@@ -6,7 +6,8 @@
     "ecmaFeatures": {}
   },
   "rules": {
-    "no-new": 0
+    "no-new": 0,
+    "camelcase": 1
   },
   "env": {
     "browser": true,
