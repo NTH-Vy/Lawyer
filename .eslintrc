@@ -14,7 +14,7 @@
       {
         "cspell": {
           "ignoreWords": ["getElementById"],
-          "flagWords": ["do", "handle", "element", "data"]
+          "flagWords": ["do", "handle", "element", "elements", "data"]
         }
       }
     ]
