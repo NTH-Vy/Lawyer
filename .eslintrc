@@ -1,12 +1,23 @@
 {
   "extends": "airbnb-base/legacy",
+  "plugins": ["@cspell"],
   "parserOptions": {
     "ecmaVersion": 5,
     "sourceType": "script",
     "ecmaFeatures": {}
   },
   "rules": {
-    "no-new": 0
+    "no-new": 0,
+    "camelcase": 1,
+    "@cspell/spellchecker": [
+      2,
+      {
+        "cspell": {
+          "ignoreWords": ["getElementById"],
+          "flagWords": ["do", "handle", "element", "elements", "data"]
+        }
+      }
+    ]
   },
   "env": {
     "browser": true,
