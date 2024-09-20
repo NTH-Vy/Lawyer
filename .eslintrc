@@ -21,9 +21,7 @@
             "getElementsByTagName",
             "getElementsByClassName",
             "getElementsByName",
-            "createElement",
-            "isOutsideOfElement",
-            "isDo"
+            "createElement"
           ],
           "ignoreRegExpList": ["/\\.data\\(/"],
           "flagWords": ["do", "handle", "element", "elements", "data"]
