@@ -1,7 +1,7 @@
 const baseConfig = {
   sourceDir: './src',
   distributeDir: './dist',
-  ignore: ['!**/.DS_Store', '!**/* copy.*']
+  ignore: ['!**/.DS_Store', '!**/* copy.*', '!./wp/**/*', '!./dist/wp/**/*']
 };
 
 module.exports = {

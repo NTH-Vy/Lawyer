@@ -54,7 +54,8 @@ const lintHtml = () => {
 
 const spellCheck = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = 'dist/**/*.html';
+  let filesToCheck = './dist/**/*.html';
+  filesToCheck = [filesToCheck].concat(config.source.ignore);
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
@@ -92,6 +93,7 @@ const spellCheck = () => {
 const classCheck = () => {
   const stopOnError = argv.stopOnError || false;
   let filesToCheck = 'dist/**/*.html';
+  filesToCheck = [filesToCheck].concat(config.source.ignore);
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
