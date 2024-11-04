@@ -1,6 +1,6 @@
 # Getting started
 
-This template is made by Gulp and Gulp's plugins that are installed and managed via npm, the Node.js package manager. It requires stable Node.js version 18 or 20.
+This template is made by Gulp and Gulp's plugins that are installed and managed via npm, the Node.js package manager. It requires stable Node.js version 20.*** or newer.
 
 # Install the Gulp CLI for the first time of using
 

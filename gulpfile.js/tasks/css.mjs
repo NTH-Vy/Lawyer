@@ -1,18 +1,30 @@
-const { src, dest, series } = require('gulp');
-const sass = require('gulp-sass')(require('sass'));
-const postcss = require('gulp-postcss');
-const scssSyntax = require('postcss-scss');
-const sourcemaps = require('gulp-sourcemaps');
-const replace = require('gulp-replace');
-const config = require('../config').css;
-const fs = require('fs');
-const path = require('path');
-const argv = require('yargs').argv;
-const prettier = require('prettier');
-const gulpPrettier = require('gulp-prettier');
+import { src, dest, series } from 'gulp';
+import gulpSass from 'gulp-sass';
+import * as sass from 'sass';
+const sassCompiler = gulpSass(sass);
+import postcss from 'gulp-postcss';
+import scssSyntax from 'postcss-scss';
+import gulpSourcemaps from 'gulp-sourcemaps';
+const { init, identityMap, write } = gulpSourcemaps;
+import replace from 'gulp-replace';
+import { scss as config } from '../config/index.mjs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { relative, dirname, join as pathJoin } from 'path';
+import { format } from 'prettier';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+const argv = yargs(hideBin(process.argv)).argv;
+import gulpPrettier from 'gulp-prettier';
+import stylelint from 'stylelint';
+import postcssReporter from 'postcss-reporter';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const destDir = config.distribute.dir;
-const cssGlob = config.source.glob.concat(config.source.ignore);
+const scssGlob = config.source.glob.concat(config.source.ignore);
 
 const customLint = (root, result) => {
   root.walk((node) => {
@@ -58,7 +70,7 @@ const lintStyles = (fix = false) => {
   }
   return src(filesToCheck)
     .pipe(postcss([
-      require('stylelint')({
+      stylelint({
         configFile: '.stylelintrc.json',
         formatter: 'string',
         ignoreDisables: false,
@@ -70,7 +82,7 @@ const lintStyles = (fix = false) => {
         syntax: 'scss'
       }),
       customLint,
-      require('postcss-reporter')({
+      postcssReporter({
         noIcon: true,
         noPlugin: true,
         throwError: stopOnError
@@ -100,37 +112,37 @@ const lintStylesFix = () => {
 };
 
 const buildStyles = () => {
-  if (!fs.existsSync(config.source.dir + '/scss')) {
+  if (!existsSync(config.source.dir + '/scss')) {
     return Promise.resolve();
   }
 
   const transpileOptions = [
-    require('autoprefixer')({
+    autoprefixer({
       map: false,
       cascade: false
     })
   ];
 
   if (config.options.minify) {
-    transpileOptions.push(require('cssnano')({
+    transpileOptions.push(cssnano({
       preset: 'default'
     }));
   }
 
-  return src(cssGlob)
-    .pipe(sourcemaps.init())
-    .pipe(sourcemaps.identityMap())
-    .pipe(sass({
+  return src(scssGlob)
+    .pipe(init())
+    .pipe(identityMap())
+    .pipe(sassCompiler({
       outputStyle: 'expanded'
-    }).on('error', sass.logError))
+    }).on('error', sassCompiler.logError))
     .pipe(postcss(transpileOptions, { syntax: scssSyntax }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(write('.'))
     .pipe(replace(/\n$/, ''))
     .pipe(dest(destDir + '/css'));
 };
 
 const copyFonts = () => {
-  if (!fs.existsSync(config.source.dir + '/fonts')) {
+  if (!existsSync(config.source.dir + '/fonts')) {
     return Promise.resolve();
   }
   return src(config.source.dir + '/fonts/**/*')
@@ -212,7 +224,7 @@ const analyzeStyles = (done) => {
     for (let i = arr.length - 2; i >= 0; i--) {
       cssCode += '}';
     }
-    const formattedCode = await prettier.format(cssCode, { parser: 'scss' });
+    const formattedCode = await format(cssCode, { parser: 'scss' });
     return formattedCode;
   }
 
@@ -221,7 +233,7 @@ const analyzeStyles = (done) => {
       async (root) => {
 
         const filePath = root.source.input.file;
-        const fileName = path.relative(process.cwd(), filePath).replace(/\\/g, '/');
+        const fileName = relative(process.cwd(), filePath).replace(/\\/g, '/');
 
         const colorVariableNames = definedVariables
           .filter(item => /#|rgba?|hsla?/i.test(item.value))
@@ -622,12 +634,12 @@ const analyzeStyles = (done) => {
         bottomValues,
         leftValues
       };
-      const templatePath = 'scss-analyze-report.tpl';
-      const templateContent = fs.readFileSync(templatePath, 'utf-8');
+      const templatePath = pathJoin(__dirname,'..','config','scss-analyze-report.tpl');
+      const templateContent = readFileSync(templatePath, 'utf-8');
       const htmlContent = templateContent.replace('{/* DATA_PLACEHOLDER */}', JSON.stringify(dataObject, null, 2));
       const outputFilePath = 'scss-analyze-report.html';
-      fs.writeFileSync(outputFilePath, htmlContent);
-      fs.writeFileSync('scss-analyze-report.json', JSON.stringify(dataObject, null, 2));
+      writeFileSync(outputFilePath, htmlContent);
+      writeFileSync('scss-analyze-report.json', JSON.stringify(dataObject, null, 2));
       done();
     });
 };
@@ -635,7 +647,7 @@ const analyzeStyles = (done) => {
 const css = series(buildStyles, lintStyles);
 const analyze = series(analyzeVariables, analyzeStyles);
 
-module.exports = {
+export  {
   lintStyles,
   lintStylesFix,
   buildStyles,

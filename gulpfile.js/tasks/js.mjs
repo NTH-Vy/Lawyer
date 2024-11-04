@@ -1,16 +1,18 @@
-const { src, dest, series } = require('gulp');
-const eslint = require('gulp-eslint-new');
-const prettier = require('gulp-prettier');
-const uglify = require('gulp-uglify');
-const config = require('../config').js;
-const fs = require('fs');
-const argv = require('yargs').argv;
+import { src, dest, series } from 'gulp';
+import eslint, { fix as _fix, format, failAfterError } from 'gulp-eslint-new';
+import prettier from 'gulp-prettier';
+import uglify from 'gulp-uglify';
+import { js as config } from '../config/index.mjs';
+import { existsSync } from 'fs';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+const argv = yargs(hideBin(process.argv)).argv;
 
 const destDir = config.distribute.dir;
 const jsGlob = config.source.glob.concat(config.source.ignore);
 
 const buildJs = () => {
-  if (!fs.existsSync(config.source.dir + '/js')) {
+  if (!existsSync(config.source.dir + '/js')) {
     return Promise.resolve();
   }
 
@@ -39,18 +41,18 @@ const lintJs = () => {
       trailingComma: 'none'
     }))
     .pipe(eslint({ fix: true }))
-    .pipe(eslint.fix())
-    .pipe(eslint.format());
+    .pipe(_fix())
+    .pipe(format());
 
   if (stopOnError) {
-    stream.pipe(eslint.failAfterError());
+    stream.pipe(failAfterError());
   }
   return stream.pipe(dest(destDir + '/js'));
 };
 
 const js = series(buildJs, lintJs);
 
-module.exports = {
+export  {
   buildJs,
   lintJs,
   js

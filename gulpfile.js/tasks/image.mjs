@@ -1,10 +1,10 @@
-const { src, dest } = require('gulp');
-const changed = require('gulp-changed');
-const imageMinify = require('gulp-imagemin');
-const mozjpeg = require('imagemin-mozjpeg');
-const pngquant = require('imagemin-pngquant');
-const webp = require('gulp-webp');
-const config = require('../config').image;
+import { src, dest } from 'gulp';
+import changed from 'gulp-changed';
+import imageMinify, { svgo, optipng, gifsicle } from 'gulp-imagemin';
+import mozjpeg from 'imagemin-mozjpeg';
+import pngquant from 'imagemin-pngquant';
+import webp from 'gulp-webp';
+import { image as config } from '../config/index.mjs';
 
 const destDir = config.distribute.dir;
 
@@ -17,11 +17,11 @@ const imageMin = () => {
         speed: 1,
       }),
       mozjpeg({ progressive: true, quality: 70 }),
-      imageMinify.svgo({
+      svgo({
         plugins: [{ removeViewBox: false }],
       }),
-      imageMinify.optipng(),
-      imageMinify.gifsicle({ optimizationLevel: 3 }),
+      optipng(),
+      gifsicle({ optimizationLevel: 3 }),
     ]))
     .pipe(dest(destDir + '/img'));
 };
@@ -34,11 +34,11 @@ const convertToWebp = () => {
         speed: 1,
       }),
       mozjpeg({ progressive: true, quality: 70 }),
-      imageMinify.svgo({
+      svgo({
         plugins: [{ removeViewBox: false }],
       }),
-      imageMinify.optipng(),
-      imageMinify.gifsicle({ optimizationLevel: 3 }),
+      optipng(),
+      gifsicle({ optimizationLevel: 3 }),
     ]))
     .pipe(webp({
       quality: 80,
@@ -47,7 +47,7 @@ const convertToWebp = () => {
     .pipe(dest(destDir + '/img'));
 };
 
-module.exports = {
+export  {
   imageMin,
   convertToWebp
 };

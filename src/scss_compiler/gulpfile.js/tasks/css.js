@@ -4,7 +4,7 @@ const postcss = require('gulp-postcss');
 const scssSyntax = require('postcss-scss');
 const sourcemaps = require('gulp-sourcemaps');
 const replace = require('gulp-replace');
-const config = require('../config').css;
+const config = require('../config/index.mjs').css;
 const fs = require('fs');
 const argv = require('yargs').argv;
 

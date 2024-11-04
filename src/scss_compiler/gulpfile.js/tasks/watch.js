@@ -1,7 +1,7 @@
 const { watch, series } = require('gulp');
 const del = require('del');
 const path = require('path');
-const config = require('../config');
+const config = require('../config/index.mjs');
 
 const monitoring = () => {
 

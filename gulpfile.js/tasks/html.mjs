@@ -1,24 +1,26 @@
-const gulp = require('gulp');
+import gulp from 'gulp';
 const { src, dest, series, lastRun } = gulp;
-const pug = require('gulp-pug');
-const pugLinter = require('gulp-pug-linter');
-const htmlnano = require('gulp-htmlnano');
-const PluginError = require('plugin-error');
-const config = require('../config').html;
-const fs = require('fs');
-const argv = require('yargs').argv;
-const through = require('through2');
-const spelling = require('spelling');
-const spellDictionary = require('../../fcdic_spellings.js');
-const classDictionary = require('../../fcdic_classes.js');
-const spellChecker = new spelling(spellDictionary);
-const classChecker = new spelling(classDictionary);
+import pug from 'gulp-pug';
+import pugLinter from 'gulp-pug-linter';
+import htmlnano from 'gulp-htmlnano';
+import PluginError from 'plugin-error';
+import { html as config } from '../config/index.mjs';
+import { existsSync } from 'fs';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+const argv = yargs(hideBin(process.argv)).argv;
+import { obj as through2Obj } from 'through2';
+import spelling from 'spelling';
+import  * as spellDictionary  from '../config/fcdic-spellings.js';
+import  * as classDictionary  from '../config/fcdic-classes.js';
+const spellChecker = new spelling(spellDictionary.default);
+const classChecker = new spelling(classDictionary.default);
 
 const destDir = config.distribute.dir;
 const pugGlob = config.source.glob.concat(config.source.ignore);
 
 const buildHtml = () => {
-  if (!fs.existsSync(config.source.dir)) {
+  if (!existsSync(config.source.dir)) {
     return Promise.resolve();
   }
 
@@ -61,7 +63,7 @@ const spellCheck = () => {
     filesToCheck = targetFiles.split(',');
   }
   return src(filesToCheck)
-    .pipe(through.obj((file, enc, cb) => {
+    .pipe(through2Obj((file, enc, cb) => {
       const content = file.contents.toString();
       const matches = content.match(/class="([^"]*)"/g);
       const classNames = matches
@@ -99,7 +101,7 @@ const classCheck = () => {
     filesToCheck = targetFiles.split(',');
   }
   return src(filesToCheck)
-    .pipe(through.obj((file, enc, cb) => {
+    .pipe(through2Obj((file, enc, cb) => {
       const content = file.contents.toString();
       const matches = content.match(/class="([^"]*)"/g);
       const classNames = matches
@@ -129,7 +131,7 @@ const classCheck = () => {
 
 const html = series(buildHtml, lintHtml, spellCheck, classCheck);
 
-module.exports = {
+export  {
   buildHtml,
   lintHtml,
   spellCheck,

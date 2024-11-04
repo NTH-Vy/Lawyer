@@ -25,3 +25,5 @@ node_modules
 bower_components
 temp
 tmp
+scss-analyze-report.html
+scss-analyze-report.json
