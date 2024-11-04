@@ -3,6 +3,10 @@
     "stylelint-config-standard-scss",
     "stylelint-config-property-sort-order-smacss"
   ],
+  "plugins": [
+    "./gulpfile.js/config/plugins/stylelint-spell-check-scss.mjs",
+    "./gulpfile.js/config/plugins/stylelint-classname-check-scss.mjs"
+  ],
   "rules": {
     "alpha-value-notation": null,
     "block-no-empty": null,
@@ -39,6 +43,8 @@
         "message": "Selector violates BEM Convention",
         "resolveNestedSelectors": true
       }
-    ]
+    ],
+    "plugin/spell-check-scss": true,
+    "plugin/classname-check-scss": true
   }
 }
