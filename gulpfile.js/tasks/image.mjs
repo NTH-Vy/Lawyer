@@ -9,7 +9,7 @@ import { image as config } from '../config/index.mjs';
 const destDir = config.distribute.dir;
 
 const imageMin = () => {
-  return src(config.source.glob.concat(config.source.ignore))
+  return src(config.source.glob.concat(config.source.ignore), {encoding: false})
     .pipe(changed(destDir + '/img'))
     .pipe(imageMinify([
       pngquant({
@@ -17,9 +17,7 @@ const imageMin = () => {
         speed: 1,
       }),
       mozjpeg({ progressive: true, quality: 70 }),
-      svgo({
-        plugins: [{ removeViewBox: false }],
-      }),
+      svgo(),
       optipng(),
       gifsicle({ optimizationLevel: 3 }),
     ]))
@@ -27,16 +25,14 @@ const imageMin = () => {
 };
 
 const convertToWebp = () => {
-  return src(config.source.glob.concat(config.source.ignore))
+  return src(config.source.glob.concat(config.source.ignore), {encoding: false})
     .pipe(imageMinify([
       pngquant({
         quality: [0.7, 0.8],
         speed: 1,
       }),
       mozjpeg({ progressive: true, quality: 70 }),
-      svgo({
-        plugins: [{ removeViewBox: false }],
-      }),
+      svgo(),
       optipng(),
       gifsicle({ optimizationLevel: 3 }),
     ]))
