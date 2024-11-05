@@ -3,8 +3,9 @@ import spelling from 'spelling';
 import  * as classDictionary  from '../fcdic-classes.js';
 const classChecker = new spelling(classDictionary.default);
 
-const classnameCheckScss = stylelint.createPlugin('plugin/classname-check-scss', () => {
+const classnameCheckScss = stylelint.createPlugin('plugin/classname-check-scss', (isEnabled) => {
   return (root, result) => {
+    if (isEnabled === false) return;
     root.walkRules(rule => {
       // セレクタからクラス名を抽出する正規表現
       const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+/g) || [];

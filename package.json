@@ -36,6 +36,7 @@
     "gulp-webp": "^5.0.0",
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-pngquant": "^10.0.0",
+    "popular-english-words": "^1.0.2",
     "postcss-reporter": "^7.1.0",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.3.3",

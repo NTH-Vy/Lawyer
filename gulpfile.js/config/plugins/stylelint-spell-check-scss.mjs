@@ -1,10 +1,14 @@
 import stylelint from 'stylelint';
 import spelling from 'spelling';
+import {words} from 'popular-english-words';
 import  * as spellDictionary  from '../fcdic-spellings.js';
-const spellChecker = new spelling(spellDictionary.default);
+const commonWords = words.getAll();
+commonWords.concat(spellDictionary.default);
+const spellChecker = new spelling(commonWords);
 
-const spellCheckScss = stylelint.createPlugin('plugin/spell-check-scss', () => {
+const spellCheckScss = stylelint.createPlugin('plugin/spell-check-scss', (isEnabled) => {
   return (root, result) => {
+    if (isEnabled === false) return;
     root.walkRules(rule => {
       // セレクタからクラス名を抽出する正規表現
       const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+/g) || [];
