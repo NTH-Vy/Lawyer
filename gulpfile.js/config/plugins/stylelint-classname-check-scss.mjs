@@ -1,10 +1,14 @@
 import stylelint from 'stylelint';
 import spelling from 'spelling';
-import  * as classDictionary  from '../fcdic-classes.js';
+import * as classDictionary from '../fcdic-classes.js';
+import fs from 'fs';
 const classChecker = new spelling(classDictionary.default);
+let classResultArray = [];
+const classResultFilePath = './incorrect_classnames.txt';
+const classResultFileStream = fs.createWriteStream(classResultFilePath, { flags: 'w' });
 
 const classnameCheckScss = stylelint.createPlugin('plugin/classname-check-scss', (isEnabled) => {
-  return (root, result) => {
+  return (root, classResult) => {
     if (isEnabled === false) return;
     root.walkRules(rule => {
       // セレクタからクラス名を抽出する正規表現
@@ -18,15 +22,25 @@ const classnameCheckScss = stylelint.createPlugin('plugin/classname-check-scss',
           // 各単語をスペルチェック
           const checked = classChecker.lookup(word);
           if (!checked.found) {
-            result.warn(`Unexpected word "${word}" in class name "${fullClassName}"`, {
+            const warningMessage = `Unexpected word "${word}" in class name "${fullClassName}"`;
+            classResult.warn(warningMessage, {
               node: rule,
               stylelintType: 'invalid-classname-check'
             });
+            if (!classResultArray.includes(word)) {
+              classResultArray.push(word)
+              classResultFileStream.write(`${word}\n`);
+            }
           }
         });
       });
     });
   };
+});
+
+// Close the file stream after processing is done
+classResultFileStream.on('finish', () => {
+  console.log('Incorrect class names have been exported to', classResultFilePath);
 });
 
 export default classnameCheckScss;

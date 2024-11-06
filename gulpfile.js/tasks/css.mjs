@@ -634,7 +634,7 @@ const analyzeStyles = (done) => {
         bottomValues,
         leftValues
       };
-      const templatePath = pathJoin(__dirname,'..','config','scss-analyze-report.tpl');
+      const templatePath = pathJoin(__dirname, '..', 'config', 'scss-analyze-report.tpl');
       const templateContent = readFileSync(templatePath, 'utf-8');
       const htmlContent = templateContent.replace('{/* DATA_PLACEHOLDER */}', JSON.stringify(dataObject, null, 2));
       const outputFilePath = 'scss-analyze-report.html';
@@ -647,7 +647,7 @@ const analyzeStyles = (done) => {
 const css = series(buildStyles, lintStyles);
 const analyze = series(analyzeVariables, analyzeStyles);
 
-export  {
+export {
   lintStyles,
   lintStylesFix,
   buildStyles,

@@ -5,6 +5,6 @@ const cleanResources = () => {
   return del.deleteAsync([config.distributeDir + '/css', config.distributeDir + '/img']);
 };
 
-export  {
+export {
   cleanResources
 };

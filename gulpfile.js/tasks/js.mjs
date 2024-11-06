@@ -52,7 +52,7 @@ const lintJs = () => {
 
 const js = series(buildJs, lintJs);
 
-export  {
+export {
   buildJs,
   lintJs,
   js

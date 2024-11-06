@@ -11,8 +11,8 @@ import { hideBin } from 'yargs/helpers';
 const argv = yargs(hideBin(process.argv)).argv;
 import { obj as through2Obj } from 'through2';
 import spelling from 'spelling';
-import  * as spellDictionary  from '../config/fcdic-spellings.js';
-import  * as classDictionary  from '../config/fcdic-classes.js';
+import * as spellDictionary from '../config/fcdic-spellings.js';
+import * as classDictionary from '../config/fcdic-classes.js';
 const spellChecker = new spelling(spellDictionary.default);
 const classChecker = new spelling(classDictionary.default);
 
@@ -131,7 +131,7 @@ const classCheck = () => {
 
 const html = series(buildHtml, lintHtml, spellCheck, classCheck);
 
-export  {
+export {
   buildHtml,
   lintHtml,
   spellCheck,
