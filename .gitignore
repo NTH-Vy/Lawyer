@@ -27,3 +27,6 @@ temp
 tmp
 scss-analyze-report.html
 scss-analyze-report.json
+incorrect_classnames.txt
+incorrect_spelling.txt
+

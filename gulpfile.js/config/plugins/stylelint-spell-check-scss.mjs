@@ -12,7 +12,7 @@ const spellingResultFileStream = fs.createWriteStream(spellingResultFilePath, { 
 
 const spellCheckScss = stylelint.createPlugin('plugin/spell-check-scss', (isEnabled) => {
   return (root, spellingResult) => {
-    if (isEnabled === false) return;
+    if (isEnabled == false) return;
     root.walkRules(rule => {
       // セレクタからクラス名を抽出する正規表現
       const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+/g) || [];

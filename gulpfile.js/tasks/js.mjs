@@ -33,6 +33,22 @@ const lintJs = () => {
     filesToCheck = targetFiles.split(',');
   }
   const stream = src(filesToCheck)
+    .pipe(eslint({ fix: false }))
+
+  if (stopOnError) {
+    stream.pipe(failAfterError());
+  }
+  return stream.pipe(dest(destDir + '/js'));
+};
+
+const lintJsFix = () => {
+  const stopOnError = argv.stopOnError || false;
+  let filesToCheck = [destDir + '/js/**/*.js'];
+  if (argv.file) {
+    const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
+    filesToCheck = targetFiles.split(',');
+  }
+  const stream = src(filesToCheck)
     .pipe(prettier({
       singleQuote: true,
       proseWrap: 'never',
@@ -50,11 +66,12 @@ const lintJs = () => {
   return stream.pipe(dest(destDir + '/js'));
 };
 
-const js = series(buildJs, lintJs);
+const js = series(buildJs, lintJs, lintJsFix);
 
 export {
   buildJs,
   lintJs,
+  lintJsFix,
   js
 };
 

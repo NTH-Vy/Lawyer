@@ -9,7 +9,7 @@ const classResultFileStream = fs.createWriteStream(classResultFilePath, { flags:
 
 const classnameCheckScss = stylelint.createPlugin('plugin/classname-check-scss', (isEnabled) => {
   return (root, classResult) => {
-    if (isEnabled === false) return;
+    if (isEnabled == false) return;
     root.walkRules(rule => {
       // セレクタからクラス名を抽出する正規表現
       const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+/g) || [];
