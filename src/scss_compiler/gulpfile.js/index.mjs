@@ -1,4 +1,4 @@
-import { series, parallel } from 'gulp';
+import { series } from 'gulp';
 import { css, lintStyles, lintStylesFix, copyFonts } from './tasks/css.mjs';
 import { myWatch } from './tasks/watch.mjs';
 
