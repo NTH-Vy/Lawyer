@@ -5,7 +5,7 @@ import { base as _base, scss} from '../config/index.mjs';
 
 const monitoring = () => {
 
-  const sass = watch(['src/scss/**/*.scss'].concat(scss.source.ignore), series('css'));
+  const sass = watch(['../scss/**/*.scss'].concat(scss.source.ignore), series('css'));
   sass.on('all', function (event, filepath) {
     console.log(`File ${filepath} was changed`);
     if (event === 'unlink') {
