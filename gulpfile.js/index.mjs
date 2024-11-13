@@ -1,6 +1,6 @@
 import { series, parallel } from 'gulp';
 import { cleanResources } from './tasks/clean.mjs';
-import { html, buildHtml, lintHtml} from './tasks/html.mjs';
+import { html, buildHtml, lintHtml } from './tasks/html.mjs';
 import { css, buildStyles, lintStyles, lintStylesFix, copyFonts, analyze } from './tasks/css.mjs';
 import { js, buildJs, lintJs, lintJsFix } from './tasks/js.mjs';
 import { imageMin, convertToWebp } from './tasks/image.mjs';
