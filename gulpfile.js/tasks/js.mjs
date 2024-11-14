@@ -2,48 +2,30 @@ import { src, dest, series } from 'gulp';
 import eslint, { fix as _fix, format, failAfterError } from 'gulp-eslint-new';
 import prettier from 'gulp-prettier';
 import uglify from 'gulp-uglify';
-import { js as config } from '../config/index.mjs';
+import { base as config } from '../config/index.mjs';
 import { existsSync } from 'fs';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 const argv = yargs(hideBin(process.argv)).argv;
 
-const destDir = config.distribute.dir;
-const jsGlob = config.source.glob.concat(config.source.ignore);
-
-const buildJs = () => {
-  if (!existsSync(config.source.dir + '/js')) {
-    return Promise.resolve();
-  }
-
-  const stream = src(jsGlob);
-
-  if (config.options.minify === true) {
-    stream.pipe(uglify());
-  }
-
-  return stream.pipe(dest(destDir + '/js'));
-};
-
 const lintJs = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = [destDir + '/js/**/*.js'];
+  let filesToCheck = [config.js.path.output];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
   }
   const stream = src(filesToCheck)
     .pipe(eslint({ fix: false }))
-
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
-  return stream.pipe(dest(destDir + '/js'));
+  return stream.pipe(dest(config.js.path.output));
 };
 
 const lintJsFix = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = [destDir + '/js/**/*.js'];
+  let filesToCheck = [config.js.path.output];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
@@ -59,11 +41,21 @@ const lintJsFix = () => {
     .pipe(eslint({ fix: true }))
     .pipe(_fix())
     .pipe(format());
-
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
-  return stream.pipe(dest(destDir + '/js'));
+  return stream.pipe(dest(config.js.path.output));
+};
+
+const buildJs = () => {
+  if (!existsSync(config.js.path.input)) {
+    return Promise.resolve();
+  }
+  const stream = src([config.js.path.inputFiles].concat(config.ignore).concat(config.js.ignore));
+  if (config.js.options.minify) {
+    stream.pipe(uglify());
+  }
+  return stream.pipe(dest(config.js.path.output));
 };
 
 const js = series(buildJs, lintJs, lintJsFix);

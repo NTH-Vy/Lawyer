@@ -47,6 +47,13 @@ npm run imagemin
 
 Note: We use kraken.io service to minify images, you can update setting to your kraken.io account by updating the `CONFIG.image.options.kraken` property in the `gulpfile.js/config/index.js` file
 
+
+To create WEBP of your images (jpg, png):
+
+```sh
+npm run imagewebp
+```
+
 # Lint check
 
 Use this command after done developing or whenever you want to check for lint problems again:
@@ -99,4 +106,3 @@ js: {
   }
 },
 ```
-
