@@ -17,10 +17,13 @@ import postcssReporter from 'postcss-reporter';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 const sassCompiler = gulpSass(sass);
 const { init, identityMap, write } = gulpSourcemaps;
 const argv = yargs(hideBin(process.argv)).argv;
+const cssResultFilePath = './unused_css.txt';
+const cssResultFileStream = fs.createWriteStream(cssResultFilePath, { flags: 'w' });
 const definedVariables = [];
 const definedMixins = [];
 
@@ -57,6 +60,17 @@ const customLint = (root, result) => {
     }
   });
 };
+
+const customLintUnusedCSS = () => {
+  return src([config.css.path.outputFiles])
+    .pipe(purgecss({
+        content: [config.html.path.outputFiles],
+        rejected: true
+    })).on('data', (file) => {
+      cssResultFileStream.write(`=====\n${file.path}\n=====\n\n${file.contents}\n\n\n\n\n`);
+    });
+};
+
 
 const lintStyles = (fix = false) => {
   const stopOnError = argv.stopOnError || false;
@@ -628,8 +642,13 @@ const analyzeStyles = (done) => {
     });
 };
 
-const css = series(buildStyles, lintStyles);
+const css = series(buildStyles, lintStyles, customLintUnusedCSS);
 const analyze = series(analyzeVariables, analyzeStyles);
+
+// Close the file stream after processing is done
+cssResultFileStream.on('finish', () => {
+  console.log('Unused CSS has been exported to', cssResultFilePath);
+});
 
 export {
   lintStyles,

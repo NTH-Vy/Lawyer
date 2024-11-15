@@ -13,6 +13,7 @@ const baseConfig = {
       input: pathSource + '/pug',
       inputFiles: pathSource + '/pug/**/*.pug',
       output: pathDestination + '',
+      outputFiles: pathDestination + '/**/*.html',
     },
     ignore: ['!./src/pug/_*/**'],
     options: {
@@ -24,6 +25,7 @@ const baseConfig = {
       input: pathSource + '/scss',
       inputFiles: pathSource + '/scss/**/*.scss',
       output: pathDestination + '/css',
+      outputFiles: pathDestination + '/css/**/*.css',
     },
     ignore: [],
     options: {
@@ -35,6 +37,7 @@ const baseConfig = {
       input: pathSource + '/js',
       inputFiles: pathSource + '/js/**/*.js',
       output: pathDestination + '/js',
+      outputFiles: pathDestination + '/js/**/*.js',
     },
     ignore: [],
     options: {
@@ -46,6 +49,7 @@ const baseConfig = {
       input: pathSource + '/img',
       inputFiles: pathSource + '/img/**/*',
       output: pathDestination + '/img',
+      outputFiles: pathDestination + '/img/**/*',
     },
     ignore: [],
   },
@@ -54,6 +58,7 @@ const baseConfig = {
       input: pathSource + '/font',
       inputFiles: pathSource + '/font/**/*',
       output: pathDestination + '/font',
+      outputFiles: pathDestination + '/font/**/*',
     },
     ignore: [],
   },
@@ -62,6 +67,7 @@ const baseConfig = {
       input: pathSource + '/doc',
       inputFiles: pathSource + '/doc/**/*',
       output: pathDestination + '/doc',
+      outputFiles: pathDestination + '/doc/**/*',
     },
     ignore: [],
   },
@@ -70,6 +76,7 @@ const baseConfig = {
       input: pathSource + '/pdf',
       inputFiles: pathSource + '/pdf/**/*',
       output: pathDestination + '/pdf',
+      outputFiles: pathDestination + '/pdf/**/*',
     },
     ignore: [],
   },
@@ -78,21 +85,9 @@ const baseConfig = {
       input: pathSource + '/video',
       inputFiles: pathSource + '/video/**/*',
       output: pathDestination + '/video',
+      outputFiles: pathDestination + '/video/**/*',
     },
     ignore: [],
-  },
-  browserSync: {
-    server: {
-      baseDir: pathDestination,
-      logLevel: 'silent',
-      notify: false,
-      reloadDelay: 1000,
-      reloadDebounce: 1000,
-    },
-    files: pathDestination,
-    ui: false,
-    port: 3000,
-    open: 'local',
   },
 };
 

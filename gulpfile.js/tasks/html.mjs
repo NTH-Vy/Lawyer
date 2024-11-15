@@ -8,6 +8,7 @@ import { base as config } from '../config/index.mjs';
 import { existsSync } from 'fs';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+
 const argv = yargs(hideBin(process.argv)).argv;
 
 const customLint = (root) => {
@@ -49,7 +50,7 @@ const lintPug = () => {
 
 const lintHtml = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = ['./dist/**/*.html'];
+  let filesToCheck = [config.html.path.outputFiles];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');

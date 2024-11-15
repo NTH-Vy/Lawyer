@@ -29,4 +29,5 @@ scss-analyze-report.html
 scss-analyze-report.json
 incorrect_classnames.txt
 incorrect_spelling.txt
-
+unused_html_classes.txt
+unused_css.txt
