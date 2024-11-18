@@ -4,6 +4,7 @@ import * as sass from 'sass';
 import postcss from 'gulp-postcss';
 import scssSyntax from 'postcss-scss';
 import gulpSourcemaps from 'gulp-sourcemaps';
+import gulpPurgeCSS from 'gulp-purgecss';
 import replace from 'gulp-replace';
 import { base as config } from '../config/index.mjs';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
@@ -63,7 +64,7 @@ const customLint = (root, result) => {
 
 const customLintUnusedCSS = () => {
   return src([config.css.path.outputFiles])
-    .pipe(purgecss({
+    .pipe(gulpPurgeCSS({
         content: [config.html.path.outputFiles],
         rejected: true
     })).on('data', (file) => {
