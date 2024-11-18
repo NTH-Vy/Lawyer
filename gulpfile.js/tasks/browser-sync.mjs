@@ -7,77 +7,82 @@ import { base as config } from '../config/index.mjs';
 const liveHTMLFilePath = './unused_html_classes.txt';
 
 function liveTestHTML(req, res, next) {
-  const originalWrite = res.write;
-  const pagePath = `${req.protocol || 'http'}://${req.headers.host}${req.url}`; // Full path of the page
-  const scriptTesting = `
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-  // Collect all unique class names from HTML elements
-  const htmlClasses = new Set();
-  document.querySelectorAll('[class]').forEach(element => {
-    element.classList.forEach(className => {
-      htmlClasses.add(className);
+  // Only apply middleware to HTML files
+  if (req.url.endsWith('.html') || req.url.endsWith('/') || req.url.endsWith(':3000')) {
+    const originalWrite = res.write;
+    const pagePath = `${req.protocol || 'http'}://${req.headers.host}${req.url}`; // Full path of the page
+    const scriptTesting = `
+      <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Collect all unique class names from HTML elements
+    const htmlClasses = new Set();
+    document.querySelectorAll('[class]').forEach(element => {
+      element.classList.forEach(className => {
+        htmlClasses.add(className);
+      });
     });
-  });
 
-  // Collect all unique class names from the CSSOM, including those in media queries
-  const cssClasses = new Set();
+    // Collect all unique class names from the CSSOM, including those in media queries
+    const cssClasses = new Set();
 
-  function collectCSSClasses(rules) {
-    for (const rule of rules) {
-      if (rule instanceof CSSMediaRule) {
-        // Recursively process media query rules
-        collectCSSClasses(rule.cssRules);
-      } else if (rule.selectorText) {
-        // Extract all class selectors from CSS rule
-        const matches = rule.selectorText.match(/\\.[a-zA-Z0-9_-]+/g);
-        if (matches) {
-          matches.forEach(match => {
-            const className = match.slice(1); // Remove the leading dot
-            cssClasses.add(className);
-          });
+    function collectCSSClasses(rules) {
+      for (const rule of rules) {
+        if (rule instanceof CSSMediaRule) {
+          // Recursively process media query rules
+          collectCSSClasses(rule.cssRules);
+        } else if (rule.selectorText) {
+          // Extract all class selectors from CSS rule
+          const matches = rule.selectorText.match(/\\.[a-zA-Z0-9_-]+/g);
+          if (matches) {
+            matches.forEach(match => {
+              const className = match.slice(1); // Remove the leading dot
+              cssClasses.add(className);
+            });
+          }
         }
       }
     }
-  }
 
-  for (const sheet of document.styleSheets) {
-    try {
-      collectCSSClasses(sheet.cssRules || []);
-    } catch (e) {
-      console.warn('Unable to read stylesheet:', sheet.href || 'inline style', e);
+    for (const sheet of document.styleSheets) {
+      try {
+        collectCSSClasses(sheet.cssRules || []);
+      } catch (e) {
+        console.warn('Unable to read stylesheet:', sheet.href || 'inline style', e);
+      }
     }
-  }
 
-  // Find and log classes used in HTML but not fully defined in CSS
-  const undefinedClasses = [...htmlClasses].filter(className => !cssClasses.has(className));
+    // Find and log classes used in HTML but not fully defined in CSS
+    const undefinedClasses = [...htmlClasses].filter(className => !cssClasses.has(className));
 
-  // Send results to the server regardless of whether there are undefined classes
-  fetch('/bs-test-html-result', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ undefinedClasses, allClassesDefined: undefinedClasses.length === 0, pagePath: "${pagePath}" })
-  }).then(response => {
-    if (response.ok) {
-      console.log('Class analysis result has been sent to the server.');
+    // Send results to the server regardless of whether there are undefined classes
+    fetch('/bs-test-html-result', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ undefinedClasses, allClassesDefined: undefinedClasses.length === 0, pagePath: "${pagePath}" })
+    }).then(response => {
+      if (response.ok) {
+        console.log('Class analysis result has been sent to the server.');
+      } else {
+        console.error('Failed to send class analysis result to the server.');
+      }
+    });
+
+    if (undefinedClasses.length > 0) {
+      console.log('Class names in HTML that are not defined in CSS:', undefinedClasses);
     } else {
-      console.error('Failed to send class analysis result to the server.');
+      console.log('All class names in HTML are defined in CSS');
     }
   });
-
-  if (undefinedClasses.length > 0) {
-    console.log('Class names in HTML that are not defined in CSS:', undefinedClasses);
+      </script>
+    `;
+    res.write = function (data) {
+      const modifiedData = data.toString().replace('</body>', `${scriptTesting}</body>`);
+      originalWrite.call(res, Buffer.from(modifiedData));
+    };
+    next();
   } else {
-    console.log('All class names in HTML are defined in CSS');
+    next();
   }
-});
-    </script>
-  `;
-  res.write = function (data) {
-    const modifiedData = data.toString().replace('</body>', `${scriptTesting}</body>`);
-    originalWrite.call(res, Buffer.from(modifiedData));
-  };
-  next();
 }
 
 function liveTestHTMLResult(req, res, next) {
