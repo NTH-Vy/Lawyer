@@ -1,15 +1,13 @@
-'use strict';
+(() => {
+  const spBreak = 767.98;
 
-(function app() {
-  var spBreak = 767.98;
-
-  function isMobile() {
-    return window.matchMedia('(max-width: ' + spBreak + 'px)').matches;
+  const isMobile = () => {
+    return window.matchMedia(`(max-width: ${spBreak}px)`).matches;
   }
 
-  function detectBrowsers() {
-    var html = $('html');
-    var ua = navigator.userAgent.toLowerCase();
+  const detectBrowsers = () => {
+    const html = $('html');
+    const ua = navigator.userAgent.toLowerCase();
     if (ua.indexOf('mac') >= 0) {
       html.addClass('is-mac');
     }
@@ -38,11 +36,11 @@
     }
   }
 
-  function tabletViewport() {
-    var viewport = document.getElementById('viewport');
-    var ua = '';
-    function setViewport() {
-      var portrait = window.matchMedia('(orientation: portrait)').matches;
+  const tabletViewport = () => {
+    const viewport = document.getElementById('viewport');
+    let ua = '';
+    const setViewport = () => {
+      const portrait = window.matchMedia('(orientation: portrait)').matches;
       if (window.screen.width < 375 && portrait) {
         viewport.setAttribute('content', 'width=375, user-scalable=0');
       } else if (
@@ -72,14 +70,14 @@
     $(window).on('load resize', setViewport);
   }
 
-  function smoothScroll() {
-    var anchors = $('a[href*="#"]:not([href="#"])');
-    var headerHeight = 0;
-    var speed = 500;
-    var timeout = 0;
-    var position = 0;
-    function triggerScroll(context) {
-      var href = typeof context === 'string'
+  const smoothScroll = () => {
+    const anchors = $('a[href*="#"]:not([href="#"])');
+    const headerHeight = 0;
+    const speed = 500;
+    let timeout = 0;
+    let position = 0;
+    const triggerScroll = (context) => {
+      const href = typeof context === 'string'
         ? context
         : '#' + $(context).attr('href').split('#')[1];
       if (!$(context).hasClass('no-scroll') && $(href).length) {
@@ -89,7 +87,7 @@
       }
       return true;
     }
-    setTimeout(function setTimerHTMLVisibility() {
+    setTimeout(() => {
       window.scroll(0, 0);
       $('html').removeClass('is-loading').addClass('is-visible');
     }, 1);
@@ -103,18 +101,16 @@
       } else {
         timeout = 500;
       }
-      setTimeout(function setTimerTriggerScroll() {
+      setTimeout(() => {
         triggerScroll(window.location.hash);
       }, timeout);
     }
-    anchors.on('click', function onClickAnchor() {
-      return triggerScroll(this);
-    });
+    anchors.on('click', (e) => triggerScroll(e.target));
   }
 
-  $(function init() {
+  $(() => {
     detectBrowsers();
     tabletViewport();
     smoothScroll();
   });
-}());
+})();

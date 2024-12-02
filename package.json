@@ -20,7 +20,6 @@
     "cross-env": "^7.0.3",
     "cssnano": "^7.0.6",
     "del": "^8.0.0",
-    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.31.0",
     "gulp-changed": "^5.0.2",
     "gulp-eslint-new": "^2.4.0",

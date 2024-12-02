@@ -1,14 +1,15 @@
 {
-  "extends": "airbnb-base/legacy",
   "plugins": ["@cspell"],
   "parserOptions": {
-    "ecmaVersion": 5,
-    "sourceType": "script",
-    "ecmaFeatures": {}
+    "ecmaVersion": 6,
+    "sourceType": "script"
   },
   "rules": {
     "no-new": 0,
     "camelcase": 1,
+    "prefer-arrow-callback": "warn",
+    "no-var": "warn",
+    "prefer-const": "warn",
     "@cspell/spellchecker": [
       2,
       {
