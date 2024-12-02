@@ -10,13 +10,14 @@ const argv = yargs(hideBin(process.argv)).argv;
 
 const lintJs = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = [config.js.path.output];
+  let filesToCheck = [config.js.path.outputFiles];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
   }
   const stream = src(filesToCheck)
     .pipe(eslint({ fix: false }))
+    .pipe(format());
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
