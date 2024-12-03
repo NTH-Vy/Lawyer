@@ -3,7 +3,7 @@
 
   const isMobile = () => {
     return window.matchMedia(`(max-width: ${spBreak}px)`).matches;
-  }
+  };
 
   const detectBrowsers = () => {
     const html = $('html');
@@ -34,7 +34,7 @@
       html.removeClass('is-chrome');
       html.addClass('is-chromium');
     }
-  }
+  };
 
   const tabletViewport = () => {
     const viewport = document.getElementById('viewport');
@@ -44,17 +44,17 @@
       if (window.screen.width < 375 && portrait) {
         viewport.setAttribute('content', 'width=375, user-scalable=0');
       } else if (
-        (window.screen.width >= 768 && window.screen.width <= 1199)
-        || (window.screen.width < 768 && window.screen.height >= 768 && !portrait)
+        (window.screen.width >= 768 && window.screen.width <= 1199) ||
+        (window.screen.width < 768 && window.screen.height >= 768 && !portrait)
       ) {
         viewport.setAttribute('content', 'width=1300, user-scalable=0');
         ua = navigator.userAgent.toLowerCase();
         if (
-          (/macintosh/i.test(ua)
-            && navigator.maxTouchPoints
-            && navigator.maxTouchPoints > 1)
-          || (ua.match(/(iphone|ipod|ipad)/) && !isMobile())
-          || (ua.indexOf('android') > -1 && !isMobile())
+          (/macintosh/i.test(ua) &&
+            navigator.maxTouchPoints &&
+            navigator.maxTouchPoints > 1) ||
+          (ua.match(/(iphone|ipod|ipad)/) && !isMobile()) ||
+          (ua.indexOf('android') > -1 && !isMobile())
         ) {
           $('html').addClass('is-tablet');
         }
@@ -65,10 +65,10 @@
         );
         $('html').removeClass('is-tablet');
       }
-    }
+    };
     setViewport();
     $(window).on('load resize', setViewport);
-  }
+  };
 
   const smoothScroll = () => {
     const anchors = $('a[href*="#"]:not([href="#"])');
@@ -77,16 +77,17 @@
     let timeout = 0;
     let position = 0;
     const triggerScroll = (context) => {
-      const href = typeof context === 'string'
-        ? context
-        : '#' + $(context).attr('href').split('#')[1];
+      const href =
+        typeof context === 'string' ?
+          context :
+          '#' + $(context).attr('href').split('#')[1];
       if (!$(context).hasClass('no-scroll') && $(href).length) {
         position = $(href).offset().top - headerHeight;
         $('body, html').animate({ scrollTop: position }, speed, 'swing');
         return false;
       }
       return true;
-    }
+    };
     setTimeout(() => {
       window.scroll(0, 0);
       $('html').removeClass('is-loading').addClass('is-visible');
@@ -94,8 +95,8 @@
     if (window.location.hash) {
       window.scroll(0, 0);
       if (
-        navigator.userAgent.indexOf('MSIE ') > -1
-        || navigator.userAgent.indexOf('Trident/') > -1
+        navigator.userAgent.indexOf('MSIE ') > -1 ||
+        navigator.userAgent.indexOf('Trident/') > -1
       ) {
         timeout = 0;
       } else {
@@ -106,7 +107,7 @@
       }, timeout);
     }
     anchors.on('click', (e) => triggerScroll(e.target));
-  }
+  };
 
   $(() => {
     detectBrowsers();

@@ -1,4 +1,5 @@
 {
+  "extends": "jquery",
   "plugins": ["@cspell"],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -11,6 +12,10 @@
     "no-var": "warn",
     "prefer-const": "warn",
     "func-style": ["warn", "expression"],
+    "space-in-parens": ["error", "never"],
+    "quotes": ["error", "single"],
+    "template-curly-spacing": ["error", "never"],
+    "computed-property-spacing": ["error", "never"],
     "no-restricted-syntax": [
       "warn",
       {
