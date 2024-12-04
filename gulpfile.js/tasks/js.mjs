@@ -26,7 +26,7 @@ const lintJs = () => {
 
 const lintJsFix = () => {
   const stopOnError = argv.stopOnError || false;
-  let filesToCheck = [config.js.path.output];
+  let filesToCheck = [config.js.path.outputFiles];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
