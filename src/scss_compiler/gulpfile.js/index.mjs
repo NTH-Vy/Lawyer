@@ -1,16 +1,16 @@
-import { series } from 'gulp';
-import { css, lintStyles, lintStylesFix, copyFonts } from './tasks/css.mjs';
+import { series, parallel } from 'gulp';
+import { css, buildStyles, lintStyles, lintStylesFix } from './tasks/css.mjs';
 import { myWatch } from './tasks/watch.mjs';
 
-const lint = lintStyles;
-const lintFix = lintStylesFix;
-const build = series(css, copyFonts, lint);
-const develop = series(build, myWatch);
+const lint = series(lintStyles);
+const lintFix = series(lintStylesFix);
+const build = series(buildStyles);
+const develop = series(buildStyles, lint, parallel(myWatch));
 
 export {
   build,
   develop,
+  css,
   lint,
   lintFix,
-  css
 };

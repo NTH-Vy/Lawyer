@@ -1,20 +1,24 @@
+const pathSource = '..';
+const pathDestination = '..';
+const ignoreGlobal = ['!**/.DS_Store', '!**/* copy.*', '!./wp/**/*', '!./dist/wp/**/*'];
+
 const baseConfig = {
-  sourceDir: '..',
-  distributeDir: '..',
-  ignore: ['!**/.DS_Store', '!**/* copy.*']
+  pathSource: pathSource,
+  pathDestination: pathDestination,
+  ignore: ignoreGlobal,
+  css: {
+    path: {
+      input: pathSource + '/scss',
+      inputFiles: pathSource + '/scss/**/*.scss',
+      output: pathDestination + '/css',
+      outputFiles: pathDestination + '/css/**/*.css',
+    },
+    ignore: [],
+    options: {
+      minify: false, // To Minify CSS files
+    },
+  },
 };
 
 export const base = baseConfig;
-export const scss = {
-  source: {
-    dir: baseConfig.sourceDir,
-    glob: [baseConfig.sourceDir + '/scss/**/*.scss'],
-    ignore: [].concat(baseConfig.ignore)
-  },
-  distribute: {
-    dir: baseConfig.distributeDir
-  },
-  options: {
-    minify: false
-  }
-};
+
