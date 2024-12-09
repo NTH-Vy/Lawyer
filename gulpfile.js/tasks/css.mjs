@@ -17,8 +17,12 @@ import stylelint from 'stylelint';
 import postcssReporter from 'postcss-reporter';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import cheerio from 'gulp-cheerio';
+import plumber from 'gulp-plumber';
 import { fileURLToPath } from 'url';
+import path from 'path';
 import fs from 'fs';
+import * as cssParse from 'css';
 
 const sassCompiler = gulpSass(sass);
 const { init, identityMap, write } = gulpSourcemaps;
@@ -65,8 +69,8 @@ const customLint = (root, result) => {
 const customLintUnusedCSS = () => {
   return src([config.css.path.outputFiles])
     .pipe(gulpPurgeCSS({
-        content: [config.html.path.outputFiles],
-        rejected: true
+      content: [config.html.path.outputFiles],
+      rejected: true
     })).on('data', (file) => {
       cssResultFileStream.write(`=====\n${file.path}\n=====\n\n${file.contents}\n\n\n\n\n`);
     });
@@ -643,6 +647,89 @@ const analyzeStyles = (done) => {
     });
 };
 
+const compareClasses = () => {
+  let htmlClassList = [];
+  let cssClassList = [];
+  return src([config.html.path.outputFiles])
+    .pipe(plumber())
+    .pipe(
+      cheerio({
+        run: function ($) {
+          $('*[class]').each(function () {
+            const classes = $(this)
+              .attr('class')
+              .split(/\s+/);
+            htmlClassList.push(...classes);
+          });
+          $('link[rel="stylesheet"]').each(function () {
+            const href = $(this).attr('href');
+            if (href) {
+              const cssPath = path.join(config.pathDestination, href.split('?')[0]);
+              if (fs.existsSync(cssPath)) {
+                const cssContent = fs.readFileSync(cssPath, 'utf8');
+                const cssAst = cssParse.parse(cssContent);
+                cssAst.stylesheet.rules.forEach((rule) => {
+                  if (rule.type === 'rule') {
+                    rule.selectors.forEach((selector) => {
+                      const classNames = selector
+                        .split(/\s|>|~|\+|,/)
+                        .map((part) => part.trim())
+                        .flatMap((part) => {
+                          return part.split('.')
+                            .filter((className, index) => className && (index > 0 || part.startsWith('.')))
+                            .map((className) => `.${className}`);
+                        })
+                        .filter((className) => {
+                          return /^\.[a-zA-Z_-].*$/.test(className);
+                        })
+                        .map((className) => {
+                          if (className.match(/(^[^#]+)#.+$/)) {
+                            className = className.match(/(^[^#]+)#.+$/)[1];
+                          }
+                          if (className.match(/(^[^\:]+)\:.+$/)) {
+                            className = className.match(/(^[^\:]+)\:.+$/)[1];
+                          }
+                          if (className.match(/(^[^\[]+)\[.+$/)) {
+                            className = className.match(/(^[^\[]+)\[.+$/)[1];
+                          }
+                          return className;
+                        });
+                      cssClassList.push(...classNames);
+                    });
+                  }
+                });
+              }
+            }
+          });
+          cssClassList = cssClassList.map((className) => className.replace(/^\./, ''));
+        },
+        parserOptions: {
+          decodeEntities: true,
+        },
+      })
+    )
+    .on('end', () => {
+      htmlClassList = [...new Set(htmlClassList)];
+      cssClassList = [...new Set(cssClassList)];
+      const undefinedClassesHTML = htmlClassList.filter(
+        (className) => !cssClassList.includes(className)
+      );
+      if (undefinedClassesHTML.length > 0) {
+        console.dir(`Undefined classnames in HTMLs:  ${undefinedClassesHTML}`);
+      } else {
+        console.log('All classes in HTMLs are defined.');
+      }
+      const unusedClassesCSS = cssClassList.filter(
+        (className) => !htmlClassList.includes(className)
+      );
+      if (unusedClassesCSS.length > 0) {
+        console.dir(`Unused classnames in CSSs:  ${unusedClassesCSS}`);
+      } else {
+        console.log('All classes in CSSs are used.');
+      }
+    });
+}
+
 const css = series(buildStyles, lintStyles, customLintUnusedCSS);
 const analyze = series(analyzeVariables, analyzeStyles);
 
@@ -656,5 +743,6 @@ export {
   lintStylesFix,
   buildStyles,
   css,
-  analyze
+  analyze,
+  compareClasses
 };
