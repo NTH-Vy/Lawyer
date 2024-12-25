@@ -1,14 +1,28 @@
 {
-  "extends": "airbnb-base/legacy",
+  "extends": ["jquery", "eslint:recommended"],
   "plugins": ["@cspell"],
   "parserOptions": {
-    "ecmaVersion": 5,
-    "sourceType": "script",
-    "ecmaFeatures": {}
+    "ecmaVersion": 6,
+    "sourceType": "script"
   },
   "rules": {
     "no-new": 0,
     "camelcase": 1,
+    "prefer-arrow-callback": "warn",
+    "no-var": "warn",
+    "prefer-const": "warn",
+    "func-style": ["warn", "expression"],
+    "space-in-parens": ["error", "never"],
+    "quotes": ["error", "single"],
+    "template-curly-spacing": ["error", "never"],
+    "computed-property-spacing": ["error", "never"],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "FunctionExpression",
+        "message": "Function expressions are not recommended."
+      }
+    ],
     "@cspell/spellchecker": [
       2,
       {
