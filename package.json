@@ -9,7 +9,8 @@
     "lint:fix": "cross-env NODE_ENV=production gulp -f gulpfile.js/index.mjs --cwd . lintFix",
     "imagemin": "cross-env NODE_ENV=production gulp -f gulpfile.js/index.mjs --cwd . minifyImage",
     "imagewebp": "cross-env NODE_ENV=production gulp -f gulpfile.js/index.mjs --cwd . convertToWebp",
-    "analyze": "cross-env NODE_ENV=production gulp -f gulpfile.js/index.mjs --cwd . analyze"
+    "analyze": "cross-env NODE_ENV=production gulp -f gulpfile.js/index.mjs --cwd . analyze",
+    "compare:classes": "cross-env NODE_ENV=production gulp -f gulpfile.js/index.mjs --cwd . compareClasses"
   },
   "author": "FASTCODING Inc.",
   "license": "MIT License",
@@ -23,9 +24,11 @@
     "eslint-config-jquery": "^3.0.2",
     "eslint-plugin-import": "^2.31.0",
     "gulp-changed": "^5.0.2",
+    "gulp-cheerio": "^1.0.0",
     "gulp-eslint-new": "^2.4.0",
     "gulp-htmlnano": "^0.1.0",
     "gulp-imagemin": "^9.1.0",
+    "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^10.0.0",
     "gulp-posthtml": "^3.0.5",
     "gulp-prettier": "^6.0.0",

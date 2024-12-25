@@ -1,30 +1,36 @@
 import { src, dest, series } from 'gulp';
 import gulpSass from 'gulp-sass';
 import * as sass from 'sass';
-const sassCompiler = gulpSass(sass);
 import postcss from 'gulp-postcss';
 import scssSyntax from 'postcss-scss';
 import gulpSourcemaps from 'gulp-sourcemaps';
-const { init, identityMap, write } = gulpSourcemaps;
+import gulpPurgeCSS from 'gulp-purgecss';
 import replace from 'gulp-replace';
-import { scss as config } from '../config/index.mjs';
+import { base as config } from '../config/index.mjs';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { relative, dirname, join as pathJoin } from 'path';
 import { format } from 'prettier';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-const argv = yargs(hideBin(process.argv)).argv;
 import gulpPrettier from 'gulp-prettier';
 import stylelint from 'stylelint';
 import postcssReporter from 'postcss-reporter';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import cheerio from 'gulp-cheerio';
+import plumber from 'gulp-plumber';
 import { fileURLToPath } from 'url';
+import path from 'path';
+import fs from 'fs';
+import * as cssParse from 'css';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const destDir = config.distribute.dir;
-const scssGlob = config.source.glob.concat(config.source.ignore);
+const sassCompiler = gulpSass(sass);
+const { init, identityMap, write } = gulpSourcemaps;
+const argv = yargs(hideBin(process.argv)).argv;
+const cssResultFilePath = './unused_css.txt';
+const cssResultFileStream = fs.createWriteStream(cssResultFilePath, { flags: 'w' });
+const definedVariables = [];
+const definedMixins = [];
 
 const customLint = (root, result) => {
   root.walk((node) => {
@@ -60,10 +66,21 @@ const customLint = (root, result) => {
   });
 };
 
+const customLintUnusedCSS = () => {
+  return src([config.css.path.outputFiles])
+    .pipe(gulpPurgeCSS({
+        content: [config.html.path.outputFiles],
+        rejected: true
+    })).on('data', (file) => {
+      cssResultFileStream.write(`=====\n${file.path}\n=====\n\n${file.contents}\n\n\n\n\n`);
+    });
+};
+
+
 const lintStyles = (fix = false) => {
   const stopOnError = argv.stopOnError || false;
   const isFix = (typeof fix === 'boolean' && fix === true) ? true : false;
-  let filesToCheck = config.source.glob;
+  let filesToCheck = [config.css.path.inputFiles].concat(config.ignore).concat(config.css.ignore);
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
@@ -108,28 +125,25 @@ const lintStylesFix = () => {
       "proseWrap": "preserve",
       "endOfLine": "lf"
     }))
-    .pipe(dest(config.source.dir + '/scss'));
+    .pipe(dest(config.css.path.input));
 };
 
 const buildStyles = () => {
-  if (!existsSync(config.source.dir + '/scss')) {
+  if (!existsSync(config.css.path.input)) {
     return Promise.resolve();
   }
-
   const transpileOptions = [
     autoprefixer({
       map: false,
       cascade: false
     })
   ];
-
-  if (config.options.minify) {
+  if (config.css.options.minify) {
     transpileOptions.push(cssnano({
       preset: 'default'
     }));
   }
-
-  return src(scssGlob)
+  return src([config.css.path.inputFiles].concat(config.ignore).concat(config.css.ignore))
     .pipe(init())
     .pipe(identityMap())
     .pipe(sassCompiler({
@@ -138,22 +152,11 @@ const buildStyles = () => {
     .pipe(postcss(transpileOptions, { syntax: scssSyntax }))
     .pipe(write('.'))
     .pipe(replace(/\n$/, ''))
-    .pipe(dest(destDir + '/css'));
+    .pipe(dest(config.css.path.output));
 };
 
-const copyFonts = () => {
-  if (!existsSync(config.source.dir + '/fonts')) {
-    return Promise.resolve();
-  }
-  return src(config.source.dir + '/fonts/**/*')
-    .pipe(dest(destDir + '/fonts'));
-}
-
-const definedVariables = [];
-const definedMixins = [];
-
 const analyzeVariables = (done) => {
-  return src(config.source.glob)
+  return src([config.css.path.inputFiles])
     .pipe(postcss([
       (root) => {
         root.walk((node) => {
@@ -228,7 +231,7 @@ const analyzeStyles = (done) => {
     return formattedCode;
   }
 
-  return src(config.source.glob)
+  return src([config.css.path.inputFiles])
     .pipe(postcss([
       async (root) => {
 
@@ -634,7 +637,7 @@ const analyzeStyles = (done) => {
         bottomValues,
         leftValues
       };
-      const templatePath = pathJoin(__dirname, '..', 'config', 'scss-analyze-report.tpl');
+      const templatePath = pathJoin(dirname(fileURLToPath(import.meta.url)), '..', 'config', 'scss-analyze-report.tpl');
       const templateContent = readFileSync(templatePath, 'utf-8');
       const htmlContent = templateContent.replace('{/* DATA_PLACEHOLDER */}', JSON.stringify(dataObject, null, 2));
       const outputFilePath = 'scss-analyze-report.html';
@@ -644,14 +647,102 @@ const analyzeStyles = (done) => {
     });
 };
 
-const css = series(buildStyles, lintStyles);
+const compareClasses = () => {
+  let htmlClassList = [];
+  let cssClassList = [];
+  return src([config.html.path.outputFiles])
+    .pipe(plumber())
+    .pipe(
+      cheerio({
+        run: function ($) {
+          $('*[class]').each(function () {
+            const classes = $(this)
+              .attr('class')
+              .split(/\s+/);
+            htmlClassList.push(...classes);
+          });
+          $('link[rel="stylesheet"]').each(function () {
+            const href = $(this).attr('href');
+            if (href) {
+              const cssPath = path.join(config.pathDestination, href.split('?')[0]);
+              if (fs.existsSync(cssPath)) {
+                const cssContent = fs.readFileSync(cssPath, 'utf8');
+                const cssAst = cssParse.parse(cssContent);
+                cssAst.stylesheet.rules.forEach((rule) => {
+                  if (rule.type === 'rule') {
+                    rule.selectors.forEach((selector) => {
+                      const classNames = selector
+                        .split(/\s|>|~|\+|,/)
+                        .map((part) => part.trim())
+                        .flatMap((part) => {
+                          return part.split('.')
+                            .filter((className, index) => className && (index > 0 || part.startsWith('.')))
+                            .map((className) => `.${className}`);
+                        })
+                        .filter((className) => {
+                          return /^\.[a-zA-Z_-].*$/.test(className);
+                        })
+                        .map((className) => {
+                          if (className.match(/(^[^#]+)#.+$/)) {
+                            className = className.match(/(^[^#]+)#.+$/)[1];
+                          }
+                          if (className.match(/(^[^\:]+)\:.+$/)) {
+                            className = className.match(/(^[^\:]+)\:.+$/)[1];
+                          }
+                          if (className.match(/(^[^\[]+)\[.+$/)) {
+                            className = className.match(/(^[^\[]+)\[.+$/)[1];
+                          }
+                          return className;
+                        });
+                      cssClassList.push(...classNames);
+                    });
+                  }
+                });
+              }
+            }
+          });
+          cssClassList = cssClassList.map((className) => className.replace(/^\./, ''));
+        },
+        parserOptions: {
+          decodeEntities: true,
+        },
+      })
+    )
+    .on('end', () => {
+      htmlClassList = [...new Set(htmlClassList)];
+      cssClassList = [...new Set(cssClassList)];
+      const undefinedClassesHTML = htmlClassList.filter(
+        (className) => !cssClassList.includes(className)
+      );
+      if (undefinedClassesHTML.length > 0) {
+        console.dir(`Undefined classnames in HTMLs:  ${undefinedClassesHTML}`);
+      } else {
+        console.log('All classes in HTMLs are defined.');
+      }
+      const unusedClassesCSS = cssClassList.filter(
+        (className) => !htmlClassList.includes(className)
+      );
+      if (unusedClassesCSS.length > 0) {
+        console.dir(`Unused classnames in CSSs:  ${unusedClassesCSS}`);
+      } else {
+        console.log('All classes in CSSs are used.');
+      }
+    });
+}
+
+const css = series(buildStyles, lintStyles, customLintUnusedCSS);
 const analyze = series(analyzeVariables, analyzeStyles);
+
+// Close the file stream after processing is done
+cssResultFileStream.on('finish', () => {
+  console.log('Unused CSS has been exported to', cssResultFilePath);
+});
 
 export {
   lintStyles,
   lintStylesFix,
   buildStyles,
-  copyFonts,
   css,
-  analyze
+  analyze,
+  compareClasses
 };
