@@ -1,5 +1,5 @@
 {
-  "extends": "jquery",
+  "extends": ["jquery", "eslint:recommended"],
   "plugins": ["@cspell"],
   "parserOptions": {
     "ecmaVersion": 6,
