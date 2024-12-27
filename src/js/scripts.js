@@ -106,7 +106,7 @@
         triggerScroll(window.location.hash);
       }, timeout);
     }
-    anchors.on('click', (e) => triggerScroll(e.target));
+    anchors.on('click', (e) => triggerScroll(e.target.closest('a')));
   };
 
   $(() => {
