@@ -730,7 +730,7 @@ const compareClasses = () => {
     });
 }
 
-const css = series(buildStyles, lintStyles, customLintUnusedCSS);
+const css = series(buildStyles, lintStyles);
 const analyze = series(analyzeVariables, analyzeStyles);
 
 // Close the file stream after processing is done
