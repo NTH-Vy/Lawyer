@@ -16,7 +16,7 @@
     "declaration-block-no-shorthand-property-overrides": true,
     "function-url-quotes": "always",
     "length-zero-no-unit": true,
-    "max-nesting-depth": [3, { "ignore": ["blockless-at-rules", "pseudo-classes"], "ignoreRules": ["/.*::.*/"] }],
+    "max-nesting-depth": [2, { "ignore": ["blockless-at-rules", "pseudo-classes"], "ignoreRules": ["/.*::.*/"] }],
     "no-descending-specificity": true,
     "at-rule-disallowed-list": ["import"],
     "scss/at-rule-no-unknown": true,
