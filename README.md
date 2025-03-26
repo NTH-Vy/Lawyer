@@ -106,3 +106,10 @@ js: {
   }
 },
 ```
+
+# Use TypeScript
+```sh
+{
+  useTypescript: true
+}
+```

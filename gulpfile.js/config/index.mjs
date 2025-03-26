@@ -4,6 +4,7 @@ const ignoreGlobal = ['!**/.DS_Store', '!**/* copy.*', '!./wp/**/*', '!./dist/wp
 const cleanDirectory = ['./dist/css', './dist/img']; // Clean these directories before each time npm is building
 
 const baseConfig = {
+  useTypescript: false,
   pathSource: pathSource,
   pathDestination: pathDestination,
   cleanDirectory: cleanDirectory,
@@ -40,6 +41,15 @@ const baseConfig = {
       outputFiles: pathDestination + '/js/**/*.js',
     },
     ignore: [],
+    options: {
+      minify: false, // To Minify JS files
+    },
+  },
+  ts: {
+    path: {
+      input: pathSource + '/ts',
+      inputFiles: pathSource + '/ts/**/*.ts',
+    },
     options: {
       minify: false, // To Minify JS files
     },
