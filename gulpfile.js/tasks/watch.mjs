@@ -25,25 +25,26 @@ const monitoring = () => {
     }
   });
 
-  const js = watch([config.js.path.inputFiles].concat(config.ignore).concat(config.js.ignore), series('js'));
-  js.on('all', function (event, filepath) {
+  const onJsFileChange = function (event, filepath, srcInput) {
     if (event === 'unlink') {
-      const regExpSrc = new RegExp(config.js.path.input);
+      const regExpSrc = new RegExp(srcInput);
       let distFilePath = filepath.replace(regExpSrc, config.pathDestination);
       del.deleteAsync([distFilePath]);
     }
     console.log(`File ${filepath} was changed`);
-  });
+  }
 
-  const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), series('js'));
-  ts.on('all', function (event, filepath) {
-    if (event === 'unlink') {
-      const regExpSrc = new RegExp(config.js.path.input);
-      let distFilePath = filepath.replace(regExpSrc, config.pathDestination);
-      del.deleteAsync([distFilePath]);
-    }
-    console.log(`File ${filepath} was changed`);
-  });
+  if (config.useTypescript) {
+    const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), series('js'));
+    ts.on('all', function (event, filepath) {
+      onJsFileChange(event, filepath, config.ts.path.input);
+    });
+  } else {
+    const js = watch([config.js.path.inputFiles].concat(config.ignore).concat(config.js.ignore), series('js'));
+    js.on('all', function (event, filepath) {
+      onJsFileChange(event, filepath, config.js.path.input);
+    });
+  }
 
   const images = watch([config.image.path.inputFiles].concat(config.ignore).concat(config.image.ignore));
   images.on('all', (event, filepath) => {
