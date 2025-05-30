@@ -30,14 +30,14 @@ const lintJs = () => {
 };
 
 const lintJsFix = () => {
-  if (isFixing) {
-    isFixing = false;
-    return;
-  }
-  isFixing = true;
   const stopOnError = argv.stopOnError || false;
   let filesToCheck = [config.js.path.outputFiles];
   if (config.useTypescript) {
+    if (isFixing) {
+      isFixing = false;
+      return;
+    }
+    isFixing = true;
     filesToCheck = [config.ts.path.inputFiles];
   }
   if (argv.file) {
