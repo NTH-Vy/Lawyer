@@ -2,6 +2,7 @@ import { src, dest, watch, series } from 'gulp';
 import * as del from 'del';
 import { relative, resolve, parse, sep } from 'path';
 import { base as config } from '../config/index.mjs';
+import { buildTs } from './js.mjs';
 
 const monitoring = () => {
 
@@ -27,6 +28,16 @@ const monitoring = () => {
 
   const js = watch([config.js.path.inputFiles].concat(config.ignore).concat(config.js.ignore), series('js'));
   js.on('all', function (event, filepath) {
+    if (event === 'unlink') {
+      const regExpSrc = new RegExp(config.js.path.input);
+      let distFilePath = filepath.replace(regExpSrc, config.pathDestination);
+      del.deleteAsync([distFilePath]);
+    }
+    console.log(`File ${filepath} was changed`);
+  });
+
+  const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), buildTs);
+  ts.on('all', function (event, filepath) {
     if (event === 'unlink') {
       const regExpSrc = new RegExp(config.js.path.input);
       let distFilePath = filepath.replace(regExpSrc, config.pathDestination);

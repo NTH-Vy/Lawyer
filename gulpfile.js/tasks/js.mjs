@@ -85,6 +85,7 @@ const js = series(buildJs, lintJs, lintJsFix);
 
 export {
   buildJs,
+  buildTs,
   lintJs,
   lintJsFix,
   js
