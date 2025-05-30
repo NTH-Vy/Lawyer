@@ -26,7 +26,7 @@ const lintJs = () => {
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
-  return stream.pipe(dest(config.js.path.output));
+  return stream.pipe(dest(config.useTypescript ? config.ts.path.input : config.js.path.output));
 };
 
 const lintJsFix = () => {
@@ -58,7 +58,7 @@ const lintJsFix = () => {
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
-  return stream.pipe(dest(config.js.path.output));
+  return stream.pipe(dest(config.useTypescript ? config.ts.path.input : config.js.path.output));
 };
 
 const buildTs = () => {
