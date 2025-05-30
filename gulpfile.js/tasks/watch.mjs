@@ -2,7 +2,6 @@ import { src, dest, watch, series } from 'gulp';
 import * as del from 'del';
 import { relative, resolve, parse, sep } from 'path';
 import { base as config } from '../config/index.mjs';
-import { buildTs } from './js.mjs';
 
 const monitoring = () => {
 
@@ -36,7 +35,7 @@ const monitoring = () => {
     console.log(`File ${filepath} was changed`);
   });
 
-  const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), buildTs);
+  const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), series('js'));
   ts.on('all', function (event, filepath) {
     if (event === 'unlink') {
       const regExpSrc = new RegExp(config.js.path.input);
