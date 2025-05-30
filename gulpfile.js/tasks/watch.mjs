@@ -2,6 +2,7 @@ import { src, dest, watch, series } from 'gulp';
 import * as del from 'del';
 import { relative, resolve, parse, sep } from 'path';
 import { base as config } from '../config/index.mjs';
+import { buildTs } from './js.mjs';
 
 const monitoring = () => {
 
@@ -35,7 +36,7 @@ const monitoring = () => {
   }
 
   if (config.useTypescript) {
-    const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), series('js'));
+    const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), buildTs);
     ts.on('all', function (event, filepath) {
       onJsFileChange(event, filepath, config.ts.path.input);
     });
