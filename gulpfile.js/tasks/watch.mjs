@@ -2,6 +2,7 @@ import { src, dest, watch, series } from 'gulp';
 import * as del from 'del';
 import { relative, resolve, parse, sep } from 'path';
 import { base as config } from '../config/index.mjs';
+import { buildTs } from './js.mjs';
 
 const monitoring = () => {
 
@@ -25,15 +26,26 @@ const monitoring = () => {
     }
   });
 
-  const js = watch([config.js.path.inputFiles].concat(config.ignore).concat(config.js.ignore), series('js'));
-  js.on('all', function (event, filepath) {
+  const onJsFileChange = function (event, filepath, srcInput) {
     if (event === 'unlink') {
-      const regExpSrc = new RegExp(config.js.path.input);
+      const regExpSrc = new RegExp(srcInput);
       let distFilePath = filepath.replace(regExpSrc, config.pathDestination);
       del.deleteAsync([distFilePath]);
     }
     console.log(`File ${filepath} was changed`);
-  });
+  }
+
+  if (config.useTypescript) {
+    const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), buildTs);
+    ts.on('all', function (event, filepath) {
+      onJsFileChange(event, filepath, config.ts.path.input);
+    });
+  } else {
+    const js = watch([config.js.path.inputFiles].concat(config.ignore).concat(config.js.ignore), series('js'));
+    js.on('all', function (event, filepath) {
+      onJsFileChange(event, filepath, config.js.path.input);
+    });
+  }
 
   const images = watch([config.image.path.inputFiles].concat(config.ignore).concat(config.image.ignore));
   images.on('all', (event, filepath) => {

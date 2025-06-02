@@ -8,6 +8,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import ts from 'gulp-typescript';
 const argv = yargs(hideBin(process.argv)).argv;
+let isFixing = false;
 
 const lintJs = () => {
   const stopOnError = argv.stopOnError || false;
@@ -25,13 +26,18 @@ const lintJs = () => {
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
-  return stream.pipe(dest(config.js.path.output));
+  return stream.pipe(dest(config.useTypescript ? config.ts.path.input : config.js.path.output));
 };
 
 const lintJsFix = () => {
   const stopOnError = argv.stopOnError || false;
   let filesToCheck = [config.js.path.outputFiles];
   if (config.useTypescript) {
+    if (isFixing) {
+      isFixing = false;
+      return;
+    }
+    isFixing = true;
     filesToCheck = [config.ts.path.inputFiles];
   }
   if (argv.file) {
@@ -52,7 +58,7 @@ const lintJsFix = () => {
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
-  return stream.pipe(dest(config.js.path.output));
+  return stream.pipe(dest(config.useTypescript ? config.ts.path.input : config.js.path.output));
 };
 
 const buildTs = () => {
@@ -85,6 +91,7 @@ const js = series(buildJs, lintJs, lintJsFix);
 
 export {
   buildJs,
+  buildTs,
   lintJs,
   lintJsFix,
   js
