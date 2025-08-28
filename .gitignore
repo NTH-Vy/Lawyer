@@ -1,9 +1,5 @@
 *~
 *.bak
-*.org
-*.7z
-*.rar
-*.zip
 *.log
 *.sql
 *.sqlite
@@ -11,11 +7,6 @@
 .htpasswd
 .Trashes
 .DS_Store
-.buildpath
-.project
-.settings
-.idea
-.env
 .sass-cache
 validation-status.json
 *.tmproj
@@ -23,8 +14,6 @@ Thumbs.db
 Desktop.ini
 node_modules
 bower_components
-temp
-tmp
 scss-analyze-report.html
 scss-analyze-report.json
 incorrect_classnames.txt
