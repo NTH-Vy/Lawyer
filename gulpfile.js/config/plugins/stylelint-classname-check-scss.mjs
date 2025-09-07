@@ -1,46 +1,67 @@
 import stylelint from 'stylelint';
-import spelling from 'spelling';
-import * as classDictionary from '../fcdic-classes.js';
-import fs from 'fs';
-const classChecker = new spelling(classDictionary.default);
-let classResultArray = [];
-const classResultFilePath = './incorrect_classnames.txt';
-const classResultFileStream = fs.createWriteStream(classResultFilePath, { flags: 'w' });
+import classDictionary from '../fcdic-classes.mjs';
+
+// Create a Set for faster lookup
+const classWordsSet = new Set(classDictionary.map(word => word.toLowerCase()));
 
 const classnameCheckScss = stylelint.createPlugin('plugin/classname-check-scss', (isEnabled) => {
-  return (root, classResult) => {
+  return (root, result) => {
     if (isEnabled == false) return;
+    console.log('Class name check plugin is running...');
+
+    // Track processed class names to avoid duplicates
+    const processedClasses = new Set();
+
     root.walkRules(rule => {
-      // セレクタからクラス名を抽出する正規表現
-      const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+/g) || [];
+      // Extract class names from selectors (exclude pseudo-classes and pseudo-elements)
+      const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+(?![:(])/g) || [];
 
-      // クラス名を区切り文字で分割し、各単語をチェック
       classNames.forEach(fullClassName => {
-        const words = fullClassName.slice(1).split(/[-_]/); // `.`を除いて分割
+        // Skip if already processed
+        if (processedClasses.has(fullClassName)) {
+          return;
+        }
+        
+        // Mark as processed
+        processedClasses.add(fullClassName);
 
-        words.forEach(word => {
-          // 各単語をスペルチェック
-          const checked = classChecker.lookup(word);
-          if (!checked.found) {
-            const warningMessage = `Unexpected word "${word}" in class name "${fullClassName}"`;
-            classResult.warn(warningMessage, {
-              node: rule,
-              stylelintType: 'invalid-classname-check'
-            });
-            if (!classResultArray.includes(word)) {
-              classResultArray.push(word)
-              classResultFileStream.write(`${word}\n`);
-            }
+        // Remove the leading dot and split by delimiters
+        const words = fullClassName.slice(1).split(/[-_]/);
+
+        for (const word of words) {
+          // Skip empty words
+          if (!word || word.trim() === '') {
+            continue;
           }
-        });
+          
+          // Skip numbers only
+          if (/^[0-9]+$/.test(word)) {
+            continue;
+          }
+          
+          // Skip special characters only
+          if (/^[^a-zA-Z0-9]+$/.test(word)) {
+            continue;
+          }
+          
+          const lowerWord = word.toLowerCase();
+          
+          // Check if word exists in our class dictionary
+          if (classWordsSet.has(lowerWord)) {
+            continue; // Skip if found in dictionary
+          }
+          
+          // If we get here, the word is not in our class dictionary - report it
+          stylelint.utils.report({
+            ruleName: 'plugin/classname-check-scss',
+            result,
+            node: rule,
+            message: `Unexpected word "${word}" in class name "${fullClassName}"`
+          });
+        }
       });
     });
   };
-});
-
-// Close the file stream after processing is done
-classResultFileStream.on('finish', () => {
-  console.log('Incorrect class names have been exported to', classResultFilePath);
 });
 
 export default classnameCheckScss;

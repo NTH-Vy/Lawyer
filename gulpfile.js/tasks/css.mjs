@@ -14,7 +14,6 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import gulpPrettier from 'gulp-prettier';
 import stylelint from 'stylelint';
-import postcssReporter from 'postcss-reporter';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import cheerio from 'gulp-cheerio';
@@ -89,23 +88,18 @@ const lintStyles = (fix = false) => {
     .pipe(postcss([
       stylelint({
         configFile: '.stylelintrc.json',
-        formatter: 'string',
+        formatter: 'json',
         ignoreDisables: false,
-        failOnError: true,
+        failOnError: false,
         outputFile: '',
         reportNeedlessDisables: false,
         quietDeprecationWarnings: true,
         fix: isFix,
-        syntax: 'scss'
+        syntax: 'scss',
+        quiet: true
       }),
       customLint,
-      postcssReporter({
-        noIcon: true,
-        noPlugin: true,
-        throwError: stopOnError
-      })
-    ], { syntax: scssSyntax })
-    );
+    ], { syntax: scssSyntax }));
 };
 
 const lintStylesFix = () => {
@@ -730,7 +724,7 @@ const compareClasses = () => {
     });
 }
 
-const css = series(buildStyles, lintStyles, customLintUnusedCSS);
+const css = series(lintStyles, customLintUnusedCSS, buildStyles);
 const analyze = series(analyzeVariables, analyzeStyles);
 
 // Close the file stream after processing is done

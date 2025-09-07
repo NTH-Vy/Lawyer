@@ -2,7 +2,7 @@
   "extends": ["jquery", "eslint:recommended"],
   "plugins": ["@cspell"],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2018,
     "sourceType": "script"
   },
   "rules": {

@@ -1,48 +1,76 @@
 import stylelint from 'stylelint';
-import spelling from 'spelling';
 import { words } from 'popular-english-words';
-import * as spellDictionary from '../fcdic-spellings.js';
+import spellDictionary from '../fcdic-spellings.mjs';
+
+// Combine common English words with custom dictionary
 let commonWords = words.getAll();
-commonWords = commonWords.concat(spellDictionary.default);
-import fs from 'fs';
-const spellChecker = new spelling(commonWords);
-let spellingResultArray = [];
-const spellingResultFilePath = './incorrect_spelling.txt';
-const spellingResultFileStream = fs.createWriteStream(spellingResultFilePath, { flags: 'w' });
+
+// Create a Set for faster lookup
+const customWordsSet = new Set(spellDictionary.map(word => word.toLowerCase()));
+const commonWordsSet = new Set(commonWords.map(word => word.toLowerCase()));
+
+// Combine both sets
+const allWordsSet = new Set([...commonWordsSet, ...customWordsSet]);
+const allWords = Array.from(allWordsSet);
 
 const spellCheckScss = stylelint.createPlugin('plugin/spell-check-scss', (isEnabled) => {
-  return (root, spellingResult) => {
+  return (root, result) => {
     if (isEnabled == false) return;
+    console.log('Spell check plugin is running...');
+
+    // Track processed class names to avoid duplicates
+    const processedClasses = new Set();
+
     root.walkRules(rule => {
-      // セレクタからクラス名を抽出する正規表現
-      const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+/g) || [];
+      // Extract class names from selectors (exclude pseudo-classes and pseudo-elements)
+      const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+(?![:(])/g) || [];
 
-      // クラス名を区切り文字で分割し、各単語をチェック
       classNames.forEach(fullClassName => {
-        const words = fullClassName.slice(1).split(/[-_]/); // `.`を除いて分割
+        // Skip if already processed
+        if (processedClasses.has(fullClassName)) {
+          return;
+        }
+        
+        // Mark as processed
+        processedClasses.add(fullClassName);
 
-        words.forEach(word => {
-          // 各単語をスペルチェック
-          const checked = spellChecker.lookup(word);
-          if (!checked.found) {
-            spellingResult.warn(`Misspelled word "${word}" in class name "${fullClassName}"`, {
-              node: rule,
-              stylelintType: 'invalid-spell-check'
-            });
-            if (!spellingResultArray.includes(word)) {
-              spellingResultArray.push(word)
-              spellingResultFileStream.write(`${word}\n`);
-            }
+        // Remove the leading dot and split by delimiters
+        const words = fullClassName.slice(1).split(/[-_]/);
+
+        for (const word of words) {
+          // Skip empty words
+          if (!word || word.trim() === '') {
+            continue;
           }
-        });
+          
+          // Skip numbers only
+          if (/^[0-9]+$/.test(word)) {
+            continue;
+          }
+          
+          // Skip special characters only
+          if (/^[^a-zA-Z0-9]+$/.test(word)) {
+            continue;
+          }
+          
+          const lowerWord = word.toLowerCase();
+          
+          // Check if word exists in our combined dictionary
+          if (allWordsSet.has(lowerWord)) {
+            continue; // Skip if found in dictionary
+          }
+          
+          // If we get here, the word is not in our dictionary - report it
+          stylelint.utils.report({
+            ruleName: 'plugin/spell-check-scss',
+            result,
+            node: rule,
+            message: `Wrong spelling "${word}" in class name "${fullClassName}"`
+          });
+        }
       });
     });
   };
-});
-
-// Close the file stream after processing is done
-spellingResultFileStream.on('finish', () => {
-  console.log('Incorrect spelling has been exported to', spellingResultFilePath);
 });
 
 export default spellCheckScss;

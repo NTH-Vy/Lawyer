@@ -1,4 +1,4 @@
-import gulp, { src, dest, series } from 'gulp';
+import { src, dest, series } from 'gulp';
 import eslint, { fix as _fix, format, failAfterError } from 'gulp-eslint-new';
 import prettier from 'gulp-prettier';
 import uglify from 'gulp-uglify';
@@ -6,7 +6,11 @@ import { base as config } from '../config/index.mjs';
 import { existsSync } from 'fs';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import ts from 'gulp-typescript';
+import { rollup } from 'rollup';
+import typescript from '@rollup/plugin-typescript';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import { writeFileSync } from 'fs';
 const argv = yargs(hideBin(process.argv)).argv;
 let isFixing = false;
 
@@ -21,7 +25,12 @@ const lintJs = () => {
     filesToCheck = targetFiles.split(',');
   }
   const stream = src(filesToCheck)
-    .pipe(eslint({ fix: false, ...(config.useTypescript ? { overrideConfigFile: '.eslintrc-ts.json'} : {}) }))
+    .pipe(eslint({ 
+      fix: false, 
+      ...(config.useTypescript ? { 
+        overrideConfigFile: '.eslintrc-ts.js'
+      } : {}) 
+    }))
     .pipe(format());
   if (stopOnError) {
     stream.pipe(failAfterError());
@@ -52,7 +61,12 @@ const lintJsFix = () => {
       printWidth: 80,
       trailingComma: 'none'
     }))
-    .pipe(eslint({ fix: true, ...(config.useTypescript ? { overrideConfigFile: '.eslintrc-ts.json'} : {}) }))
+    .pipe(eslint({ 
+      fix: true, 
+      ...(config.useTypescript ? { 
+        overrideConfigFile: '.eslintrc-ts.js'
+      } : {}) 
+    }))
     .pipe(_fix())
     .pipe(format());
   if (stopOnError) {
@@ -61,16 +75,65 @@ const lintJsFix = () => {
   return stream.pipe(dest(config.useTypescript ? config.ts.path.input : config.js.path.output));
 };
 
-const buildTs = () => {
+const buildTs = async () => {
   if (!existsSync(config.ts.path.input)) {
     return Promise.resolve();
   }
-  const tsProject = ts.createProject('tsconfig.json');
-  const stream = tsProject.src().pipe(tsProject()).js;
-  if (config.ts.options.minify) {
-    stream.pipe(uglify());
+
+  try {
+    // Rollupでバンドル
+    const bundle = await rollup({
+      input: `${config.ts.path.input}/scripts.ts`,
+      plugins: [
+        typescript({
+          tsconfig: 'tsconfig.json',
+          declaration: false,
+          sourceMap: true
+        }),
+        nodeResolve({
+          browser: true,
+          preferBuiltins: false
+        }),
+        commonjs()
+      ],
+      external: ['jquery'] // jQueryは外部ライブラリとして扱う
+    });
+
+    // バンドルを生成
+    const { output } = await bundle.generate({
+      format: 'iife',
+      name: 'App',
+      globals: {
+        'jquery': '$'
+      }
+    });
+
+    // 出力ファイルを書き込み
+    for (const chunk of output) {
+      if (chunk.type === 'chunk') {
+        const outputPath = `${config.js.path.output}/scripts.js`;
+        writeFileSync(outputPath, chunk.code);
+        
+        // ソースマップも出力
+        if (chunk.map) {
+          writeFileSync(`${outputPath}.map`, chunk.map.toString());
+        }
+      }
+    }
+
+    // 既存のminify設定を適用
+    if (config.ts.options.minify) {
+      return src(`${config.js.path.output}/scripts.js`)
+        .pipe(uglify())
+        .pipe(dest(config.js.path.output));
+    }
+
+    await bundle.close();
+    return Promise.resolve();
+  } catch (error) {
+    console.error('Rollup build error:', error);
+    throw error;
   }
-  return stream.pipe(dest(config.js.path.output));
 };
 
 const buildJs = () => {
@@ -87,7 +150,7 @@ const buildJs = () => {
   return stream.pipe(dest(config.js.path.output));
 };
 
-const js = series(buildJs, lintJs, lintJsFix);
+const js = series(lintJs, buildJs);
 
 export {
   buildJs,

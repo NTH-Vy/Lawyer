@@ -2,7 +2,7 @@ import { src, dest, watch, series } from 'gulp';
 import * as del from 'del';
 import { relative, resolve, parse, sep } from 'path';
 import { base as config } from '../config/index.mjs';
-import { buildTs } from './js.mjs';
+import { js } from './js.mjs';
 
 const monitoring = () => {
 
@@ -35,17 +35,11 @@ const monitoring = () => {
     console.log(`File ${filepath} was changed`);
   }
 
-  if (config.useTypescript) {
-    const ts = watch([config.ts.path.inputFiles].concat(config.ignore).concat(config.ts.ignore), buildTs);
-    ts.on('all', function (event, filepath) {
-      onJsFileChange(event, filepath, config.ts.path.input);
-    });
-  } else {
-    const js = watch([config.js.path.inputFiles].concat(config.ignore).concat(config.js.ignore), series('js'));
-    js.on('all', function (event, filepath) {
-      onJsFileChange(event, filepath, config.js.path.input);
-    });
-  }
+  const jsConfig = config.useTypescript ? config.ts : config.js;
+  const js = watch([jsConfig.path.inputFiles].concat(jsConfig.ignore).concat(jsConfig.ignore), js);
+  js.on('all', function (event, filepath) {
+    onJsFileChange(event, filepath, jsConfig.path.input);
+  });
 
   const images = watch([config.image.path.inputFiles].concat(config.ignore).concat(config.image.ignore));
   images.on('all', (event, filepath) => {

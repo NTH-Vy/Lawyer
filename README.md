@@ -1,76 +1,73 @@
-# Getting started
+# プロジェクト概要
 
-This template is made by Gulp and Gulp's plugins that are installed and managed via npm, the Node.js package manager. It requires stable Node.js version 20.*** or newer.
+このテンプレートは、株式会社ファストコーディングが開発したGulpベースのフロントエンド開発環境です。npm（Node.jsパッケージマネージャー）でインストール・管理されるGulpとそのプラグインを使用しています。安定版のNode.js 20.***以上が必要です。
 
-# Install the Gulp CLI for the first time of using
+## セットアップ
 
-You’ll need to install Gulp’s command line interface (CLI) globally. You may need to use `sudo` (for OSX, \*nix, BSD etc) or run your command shell as `Administrator` (for Windows) to do this.
+### 依存関係のインストール
 
-```sh
-npm install -g gulp-cli
-```
-
-# Install npm dependencies
-
-Just simply to use this command
+以下のコマンドを実行してください：
 
 ```sh
 npm install
 ```
 
-# Build files and start development mode
+### 開発モードの開始
 
-Build files and make them ready for your production environment. You will get the files in the `dist` folder.
-Beside, it will automatically launch your default web browser to display the current coding, and watch for changes in the "src" folder
-Minify images and Lint check will run also.
+ファイルをビルドして本番環境用に準備し、`dist`フォルダに出力します。
+また、デフォルトのWebブラウザが自動的に起動し、現在のコーディングを表示し、`src`フォルダの変更を監視します。
+画像の最適化とLintチェックも実行されます。
 
 ```sh
 npm run dev
 ```
 
-# Build files
+### 本番ビルド
 
-Build files and make them ready for your production environment. You will get the files in the `dist` folder
-Minify images and Lint check will run also.
+ファイルをビルドして本番環境用に準備し、`dist`フォルダに出力します。
+画像の最適化とLintチェックも実行されます。
 
 ```sh
 npm run build
 ```
 
-# Minify images
+## 画像の最適化
 
-Use this command after done developing or whenever you want to compress all image files again:
+開発完了後や、画像ファイルを再度圧縮したい場合に使用してください：
 
 ```sh
 npm run imagemin
 ```
 
-Note: We use kraken.io service to minify images, you can update setting to your kraken.io account by updating the `CONFIG.image.options.kraken` property in the `gulpfile.js/config/index.js` file
+**注意**: 画像の最適化には`gulp-imagemin`プラグインとその関連プラグイン（mozjpeg、pngquant、svgo、optipng、gifsicle）を使用しています。
 
+### WEBP形式への変換
 
-To create WEBP of your images (jpg, png):
+画像（jpg、png）をWEBP形式に変換する場合：
 
 ```sh
 npm run imagewebp
 ```
 
-# Lint check
+## Lintチェック
 
-Use this command after done developing or whenever you want to check for lint problems again:
+開発完了後や、Lintの問題を再度チェックしたい場合に使用してください：
 
 ```sh
 npm run lint
 ```
 
-To automatically fix linting issues, if possible, use this command:
+可能な限り自動的にLintの問題を修正する場合：
 
 ```sh
 npm run lint:fix
 ```
 
-# Minify HTML files
+## ファイルの最適化設定
 
-To minify HTML files, go to `gulpfile.js/config/index.js` file in your template. Update `minify: false` option from `false` to `true` in `html: {...}` block of code like below:
+### HTMLファイルの最適化
+
+HTMLファイルを最適化するには、`gulpfile.js/config/index.mjs`ファイルの`html: {...}`ブロック内の`minify: false`オプションを`true`に変更してください：
 
 ```sh
 html: {
@@ -81,9 +78,9 @@ html: {
 },
 ```
 
-# Minify CSS files
+### CSSファイルの最適化
 
-To minify CSS files, go to `gulpfile.js/config/index.js` file in your template. Update `minify: false` option from `false` to `true` in `css: {...}` block of code like below:
+CSSファイルを最適化するには、`gulpfile.js/config/index.mjs`ファイルの`css: {...}`ブロック内の`minify: false`オプションを`true`に変更してください：
 
 ```sh
 css: {
@@ -94,9 +91,9 @@ css: {
 },
 ```
 
-# Minify JS files
+### JavaScriptファイルの最適化
 
-To minify JS files, go to `gulpfile.js/config/index.js` file in your template. Update `minify: false` option from `false` to `true` in `js: {...}` block of code like below:
+JavaScriptファイルを最適化するには、`gulpfile.js/config/index.mjs`ファイルの`js: {...}`ブロック内の`minify: false`オプションを`true`に変更してください：
 
 ```sh
 js: {
@@ -107,7 +104,10 @@ js: {
 },
 ```
 
-# Use TypeScript
+## TypeScriptの使用
+
+TypeScriptを使用する場合は、`gulpfile.js/config/index.mjs`ファイルで以下のように指定してください：
+
 ```sh
 {
   useTypescript: true

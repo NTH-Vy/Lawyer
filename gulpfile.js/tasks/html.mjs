@@ -1,9 +1,11 @@
 import gulp from 'gulp';
 const { src, dest, series, lastRun } = gulp;
 import pug from 'gulp-pug';
-import pugLinter from 'gulp-pug-linter';
 import posthtml from 'gulp-posthtml';
 import htmlnano from 'gulp-htmlnano';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import { glob } from 'glob';
 import { base as config } from '../config/index.mjs';
 import { existsSync } from 'fs';
 import yargs from 'yargs';
@@ -34,18 +36,52 @@ const customLint = (root) => {
   root.walk(walkNode);
 };
 
-const lintPug = () => {
+const execAsync = promisify(exec);
+
+const lintPug = async () => {
   const stopOnError = argv.stopOnError || false;
   let filesToCheck = [config.html.path.inputFiles];
   if (argv.file) {
     const targetFiles = argv.file.replace(/"/g, '').replace(/, /g, ',');
     filesToCheck = targetFiles.split(',');
   }
-  return src(filesToCheck)
-    .pipe(pugLinter({
-      reporter: 'default',
-      failAfterError: stopOnError
-    }));
+  
+  try {
+    // globパターンを個別のファイルパスに展開
+    const expandedFiles = [];
+    
+    for (const pattern of filesToCheck) {
+      const matches = await glob(pattern);
+      expandedFiles.push(...matches);
+    }
+    
+    if (expandedFiles.length === 0) {
+      console.log('No Pug files found to lint');
+      return;
+    }
+    
+    const filesPattern = expandedFiles.join(' ');
+    const command = `npx pug-lint ${filesPattern}`;
+    
+    const { stdout, stderr } = await execAsync(command);
+    
+    if (stdout) {
+      console.log(stdout);
+    }
+    if (stderr) {
+      console.error(stderr);
+    }
+    
+    if (stderr && stopOnError) {
+      throw new Error('Pug linting failed');
+    }
+  } catch (error) {
+    if (stopOnError) {
+      throw error;
+    } else {
+      console.log(error.message);
+    }
+  }
 };
 
 const lintHtml = () => {
@@ -58,11 +94,11 @@ const lintHtml = () => {
   return src(filesToCheck)
     .pipe(posthtml([
       customLint
-    ])).on('error', (err) => {
+    ])).on('error', (error) => {
       if (stopOnError) {
-        throw err;
+        throw error;
       } else {
-        console.warn(err.message);
+        console.warn(error.message);
       }
     }
     );
@@ -86,7 +122,7 @@ const buildHtml = () => {
   return stream.pipe(dest('./dist'));
 };
 
-const html = series(buildHtml, lintPug, lintHtml);
+const html = series(lintPug, buildHtml);
 
 export {
   buildHtml,
