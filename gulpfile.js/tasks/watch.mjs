@@ -36,8 +36,8 @@ const monitoring = () => {
   }
 
   const jsConfig = config.useTypescript ? config.ts : config.js;
-  const js = watch([jsConfig.path.inputFiles].concat(jsConfig.ignore).concat(jsConfig.ignore), js);
-  js.on('all', function (event, filepath) {
+  const jsWatcher = watch([jsConfig.path.inputFiles].concat(jsConfig.ignore).concat(jsConfig.ignore), series('js'));
+  jsWatcher.on('all', function (event, filepath) {
     onJsFileChange(event, filepath, jsConfig.path.input);
   });
 
