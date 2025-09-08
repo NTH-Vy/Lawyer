@@ -30,12 +30,16 @@ const lintJs = () => {
       ...(config.useTypescript ? { 
         overrideConfigFile: '.eslintrc-ts.js'
       } : {}) 
-    }))
-    .pipe(format());
+    }));
+  
   if (stopOnError) {
     stream.pipe(failAfterError());
   }
-  return stream.pipe(dest(config.useTypescript ? config.ts.path.input : config.js.path.output));
+  
+  // ESLintの結果を表示するためにformat()を追加
+  stream.pipe(format());
+  
+  return stream;
 };
 
 const lintJsFix = () => {
