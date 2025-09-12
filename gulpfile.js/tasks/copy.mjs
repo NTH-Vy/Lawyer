@@ -34,7 +34,28 @@ const copyVideo = () => {
     .pipe(dest(config.video.path.output));
 }
 
-const copy = series(copyFont, copyDoc, copyPDF, copyVideo);
+const copyAdditionalFiles = () => {
+  const tasks = [];
+  
+  if (Array.isArray(config.additionalFiles)) {
+    for (const additionalFile of config.additionalFiles) {
+      if (existsSync(additionalFile.path.input)) {
+        tasks.push(
+          src([additionalFile.path.inputFiles].concat(config.ignore).concat(additionalFile.ignore), { encoding: false })
+            .pipe(dest(additionalFile.path.output))
+        );
+      }
+    }
+  }
+  
+  if (tasks.length === 0) {
+    return Promise.resolve();
+  }
+  
+  return Promise.all(tasks);
+}
+
+const copy = series(copyFont, copyDoc, copyPDF, copyVideo, copyAdditionalFiles);
 
 export {
   copy
