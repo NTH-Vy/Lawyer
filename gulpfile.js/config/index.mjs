@@ -2,12 +2,14 @@ const pathSource = './src';
 const pathDestination = './dist';
 const ignoreGlobal = ['!**/.DS_Store', '!**/* copy.*', '!./wp/**/*', '!./dist/wp/**/*'];
 const cleanDirectory = ['./dist/css', './dist/img']; // Clean these directories before each time npm is building
+const cleanDirectoryWithoutImage = ['./dist/css']; // Clean these directories before each time npm is building
 
 const baseConfig = {
   useTypescript: true,
   pathSource: pathSource,
   pathDestination: pathDestination,
   cleanDirectory: cleanDirectory,
+  cleanDirectoryWithoutImage: cleanDirectoryWithoutImage,
   ignore: ignoreGlobal,
   html: {
     path: {

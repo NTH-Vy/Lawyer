@@ -68,8 +68,6 @@ const extractClassNamesFromCompiledCSS = async (scssContent, filePath) => {
       style: 'expanded'
     });
 
-    console.log(result.css);
-    
     // Parse CSS and extract class names
     const classNames = extractClassNamesFromCSS(result.css);
     
@@ -177,6 +175,7 @@ const validateClassName = (className, pattern, type) => {
 const bemFlocssScss = stylelint.createPlugin('plugin/bem-flocss-scss', (config) => {
   return async (root, result) => {
     if (config === false) return;
+    console.log('bemFlocssScss check plugin is running...');
     
     const filePath = root.source?.input?.file;
     if (!filePath) return;

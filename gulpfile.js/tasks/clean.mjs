@@ -5,6 +5,11 @@ const cleanResources = () => {
   return del.deleteAsync(config.cleanDirectory);
 };
 
+const cleanResourcesWithoutImage = () => {
+  return del.deleteAsync(config.cleanDirectoryWithoutImage);
+};
+
 export {
-  cleanResources
+  cleanResources,
+  cleanResourcesWithoutImage
 };

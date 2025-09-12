@@ -1,5 +1,5 @@
 import { series, parallel } from 'gulp';
-import { cleanResources } from './tasks/clean.mjs';
+import { cleanResources, cleanResourcesWithoutImage } from './tasks/clean.mjs';
 import { html, lintPug, lintHtml } from './tasks/html.mjs';
 import { css, lintStyles, lintStylesFix, analyze, compareClasses } from './tasks/css.mjs';
 import { js, lintJs, lintJsFix } from './tasks/js.mjs';
@@ -12,7 +12,7 @@ const lint = series(lintPug, lintHtml, lintStyles, lintJs);
 const lintFix = series(lintStylesFix, lintJsFix);
 const build = series(cleanResources, copy, html, css, js, minifyImage);
 const buildJsOnly = series(js);
-const develop = series(cleanResources, copy, html, css, js, lint, parallel(browser, myWatch));
+const develop = series(cleanResourcesWithoutImage, copy, html, css, js, lint, parallel(browser, myWatch));
 const lintStylesOnly = series(lintStyles);
 const lintPugOnly = series(lintPug);
 const lintJsOnly = series(lintJs);
