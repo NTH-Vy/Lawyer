@@ -175,7 +175,9 @@ const validateClassName = (className, pattern, type) => {
 const bemFlocssScss = stylelint.createPlugin('plugin/bem-flocss-scss', (config) => {
   return async (root, result) => {
     if (config === false) return;
-    console.log('bemFlocssScss check plugin is running...');
+    // ファイル名を取得して表示
+    const fileName = result.root.source.input.from || 'unknown';
+    console.log('bemFlocssScss check plugin is running...:', fileName);
     
     const filePath = root.source?.input?.file;
     if (!filePath) return;

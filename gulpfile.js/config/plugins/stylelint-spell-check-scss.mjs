@@ -16,16 +16,58 @@ const allWords = Array.from(allWordsSet);
 const spellCheckScss = stylelint.createPlugin('plugin/spell-check-scss', (isEnabled) => {
   return (root, result) => {
     if (isEnabled == false) return;
-    console.log('Spell check plugin is running...');
+    // ファイル名を取得して表示
+    const fileName = result.root.source.input.from || 'unknown';
+    console.log('Spell check plugin is running...:', fileName);
 
     // Track processed class names to avoid duplicates
     const processedClasses = new Set();
 
     root.walkRules(rule => {
-      // Extract class names from selectors (exclude pseudo-classes and pseudo-elements)
-      const classNames = rule.selector.match(/\.[a-zA-Z0-9_-]+(?![:(])/g) || [];
+      
+      // 属性セレクタ内のカンマを保護してから分割
+      const protectedSelector = rule.selector.replace(/\[[^\]]+\]/g, (match) => {
+        return match.replace(/,/g, '___FCGULP-COMMA___');
+      });
+      
+      // 改行を除去してカンマで分割
+      const normalizedSelector = protectedSelector.replace(/[\r\n]+/g, ' ').trim();
+      const individualSelectors = normalizedSelector.split(',').map(s => s.trim());
+      
+      // 各セレクタからクラス名を抽出
+      const allClassNames = [];
+      individualSelectors.forEach(selector => {
+        // 保護されたカンマを元に戻す
+        const restoredSelector = selector.replace(/___FCGULP-COMMA___/g, ',');
 
-      classNames.forEach(fullClassName => {
+        // より包括的なクラス名抽出の正規表現
+        // 1. 通常のクラス名: .class-name
+        // 2. 属性セレクタ内のクラス名: [class~="class-name"]
+        // 3. ネスト記法: &__element, &--modifier
+        // 4. 複合セレクタ: .class-name::before, .class-name:hover
+        const classNames = restoredSelector.match(/(?:\.([a-zA-Z0-9_-]+)(?![a-zA-Z0-9_:])|\[class~="([^"]+)"\]|&[a-zA-Z0-9_-]+)/g) || [];
+        
+        // マッチした結果からクラス名を抽出
+        const extractedClassNames = classNames.map(match => {
+          // .class-name の形式の場合
+          if (match.startsWith('.')) {
+            return match;
+          }
+          // [class~="class-name"] の形式の場合
+          if (match.startsWith('[class~="')) {
+            return '.' + match.match(/\[class~="([^"]+)"\]/)[1];
+          }
+          // &__element や &--modifier の形式の場合
+          if (match.startsWith('&')) {
+            return match; // &のまま返す（後で処理）
+          }
+          return match;
+        });
+        
+        allClassNames.push(...extractedClassNames);
+      });
+
+      allClassNames.forEach(fullClassName => {
         // Skip if already processed
         if (processedClasses.has(fullClassName)) {
           return;
@@ -35,7 +77,7 @@ const spellCheckScss = stylelint.createPlugin('plugin/spell-check-scss', (isEnab
         processedClasses.add(fullClassName);
 
         // Remove the leading dot and split by delimiters
-        const words = fullClassName.slice(1).split(/[-_]/);
+        const words = fullClassName.slice(1).split(/[-_]+/).filter(word => word.length > 0);
 
         for (const word of words) {
           // Skip empty words
