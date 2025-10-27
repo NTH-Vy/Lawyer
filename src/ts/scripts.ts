@@ -45,12 +45,12 @@
     const setViewport = () => {
       const portrait = window.matchMedia('(orientation: portrait)').matches;
       if (window.screen.width < 375 && portrait) {
-        viewport.setAttribute('content', 'width=375, user-scalable=0');
+        viewport.setAttribute('content', 'width=375');
       } else if (
         (window.screen.width >= 768 && window.screen.width <= 1199) ||
         (window.screen.width < 768 && window.screen.height >= 768 && !portrait)
       ) {
-        viewport.setAttribute('content', 'width=1300, user-scalable=0');
+        viewport.setAttribute('content', 'width=1300');
         ua = navigator.userAgent.toLowerCase();
         if (
           (/macintosh/i.test(ua) &&
@@ -64,7 +64,7 @@
       } else {
         viewport.setAttribute(
           'content',
-          'width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0'
+          'width=device-width, initial-scale=1, shrink-to-fit=no'
         );
         $('html').removeClass('is-tablet');
       }
