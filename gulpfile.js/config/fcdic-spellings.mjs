@@ -6,7 +6,7 @@ export default [
   'sitemap', 'menu', 'support', 'user', 'point', 'history', 'category', 'highlighted', 'women', 
   'men', 'kids', 'cosmetics', 'font', 'image', 'object', 'text', 'strong', 'hidden', 'hover', 
   'load', 'align', 'skip', 'guide', 'introduction', 'frozen', 'notification', 'vertical', 'android',
-  'os', 'pc', 'sp', 'wf', 'trans', 'header', 'login', 'button', 'primary', 'secondary', 'search',
+  'os', 'pc', 'sp', 'wf', 'trans', 'header', 'login', 'button', 'primary', 'secondary', 'tertiary', 'quaternary', 'quinary', 'senary', 'septenary', 'octonary', 'nonary', 'denary', 'search',
   'input', 'overlay', 'member', 'icon', 'label', 'wrapper', 'list', 'item', 'link', 'column', 'title',
   'main', 'information', 'left', 'center', 'right', 'down', 'up', 'navigation', 'product', 'small',
   'more', 'style', 'active', 'scroll', 'is',

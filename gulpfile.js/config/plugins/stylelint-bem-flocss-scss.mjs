@@ -6,11 +6,11 @@ import * as sass from 'sass';
 import * as cssParse from 'css';
 
 // BEM pattern: block__element--modifier
-const BEM_PATTERN = /^(?:fc-)?(?:[a-z][-a-z0-9]+(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+)?)$/;
+const BEM_PATTERN = /^(?:fc-)?(?:[a-z][-a-z0-9]+(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?)$/;
 
 // FLOCSS pattern: l-, p-, c-, u- prefixes (official) + project-specific extensions: js-, is-, wf-
 // Supports BEM structure: block__element--modifier
-const FLOCSS_PATTERN = /^(?:fc-)?(?:(?:[lpcu]-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+)?))|(?:js-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+)?))|(?:is-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+)?))|(?:wf-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+)?)))$/;
+const FLOCSS_PATTERN = /^(?:fc-)?(?:(?:[lpcu]-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?))|(?:js-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?))|(?:is-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?))|(?:wf-(?:[a-z0-9]+(?:-[a-z0-9]+)*(?:__(?:[a-z0-9]+(?:-[a-z0-9]+)*))?(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?)))$/;
 
 // Determine which pattern to use based on configuration and file path
 const getPatternForFile = (filePath, config) => {
