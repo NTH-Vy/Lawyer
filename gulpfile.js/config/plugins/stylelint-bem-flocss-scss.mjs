@@ -35,16 +35,6 @@ const getPatternForFile = (filePath, config) => {
     return patternFlocss;
   }
   
-  // If config is true or auto, determine based on file path
-  // FLOCSS directories
-  if (relativePath.includes('/_foundation/') || 
-      relativePath.includes('/_layout/') || 
-      relativePath.includes('/_object/') ||
-      relativePath.includes('/_object/_component/') ||
-      relativePath.includes('/_object/_utility/')) {
-    return patternFlocss;
-  }
-  
   // Default to BEM for other files
   return patternBem;
 };
@@ -177,13 +167,12 @@ const bemFlocssScss = stylelint.createPlugin('plugin/bem-flocss-scss', (config) 
   return async (root, result) => {
     if (config === false) return;
     // ファイル名を取得して表示
-    const fileName = result.root.source.input.from || 'unknown';
-    console.log('bemFlocssScss check plugin is running...:', fileName);
-    
+    const fileName = result.root.source.input.from || 'unknown';   
     const filePath = root.source?.input?.file;
     if (!filePath) return;
     
     const { pattern, type, message } = getPatternForFile(filePath, config);
+    console.log(`bemFlocssScss check plugin is running with ${type} pattern: ${fileName}`);
     
     try {
       // Get the original SCSS content

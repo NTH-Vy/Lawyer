@@ -43,6 +43,6 @@
     "selector-class-pattern": null,
     "plugin/spell-check-scss": true,
     "plugin/classname-check-scss": true,
-    "plugin/bem-flocss-scss": true
+    "plugin/bem-flocss-scss": "flocss"
   }
 }
