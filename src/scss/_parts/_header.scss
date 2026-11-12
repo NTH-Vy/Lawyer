@@ -1,2 +1,124 @@
-@charset "utf-8";
-@use "../_base/base" as *;
+.l-header {
+  // background: #FFFFFF;
+
+  .l-header__wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 104px;
+  }
+
+  .l-header__logo {
+    a {
+      font-size: 22px;
+      line-height: 24px;
+      font-weight: 600;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+
+      .l-header__logo-icon {
+        background-color: #1777E5;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 56px;
+        padding: 0;
+        border-radius: 4px;
+
+        span {
+          font-size: 22px;
+          line-height: 24px;
+          font-weight: 600;
+          text-decoration: none;
+        }
+      }
+
+      .l-header__logo-content {
+        display: grid;
+        gap: 4px;
+        justify-content: center;
+
+        strong {
+          font-size: 20px;
+          line-height: 20px;
+          font-weight: 500;
+          color: #121314;
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 400;
+          color: #5E6971;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .l-header__nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .l-header__utilities {
+    display: flex;
+    align-items: center;
+
+    .c-list--inline {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      .c-list__item {
+        background-color: #E8F1FC;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        padding: 16px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .l-global-nav {
+    .l-global-nav__list {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .l-global-nav__link {
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 24px;
+      color: #697484;
+      font-weight: 400;
+      transition: color 0.2s;
+
+      &:hover,
+      &.is-active {
+        color: #1777E5;
+        font-weight: 600;
+      }
+    }
+  }
+
+}
+

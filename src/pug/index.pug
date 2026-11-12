@@ -1,12 +1,108 @@
+//- extends ./_layouts/default
+//- block vars
+//-   -path = "."
+//-   -pageID = "top"
+//-   -pageTitle = "sample title"
+//-   -pageDescription = "sample description"
+//-   -pageKeywords = ""
+//-   -imgPC = path+"/img/top/"
+//-   -imgSP = path+"/img/top/sp/"
+//-   -imgCommonPC = path+"/img/common/"
+//-   -imgCommonSP = path+"/img/common/sp/"
+//- block container
+
+
 extends ./_layouts/default
 block vars
   -path = "."
   -pageID = "top"
-  -pageTitle = "sample title"
-  -pageDescription = "sample description"
+  -pageTitle = "Winston Potter | Professional Lawyer"
+  -pageDescription = "Winston Potter, Professional Lawyer"
   -pageKeywords = ""
   -imgPC = path+"/img/top/"
   -imgSP = path+"/img/top/sp/"
   -imgCommonPC = path+"/img/common/"
   -imgCommonSP = path+"/img/common/sp/"
+//- block container
+//-   section.l-hero
+//-     h1 WINSTON POTTER
+//-     p Professional Lawyer
+
+
 block container
+  section#home.p-section-top-keyvisual
+    .p-section-top-keyvisual__wrapper
+      .p-section-top-keyvisual__body
+        h1.p-section-top-keyvisual__title
+          | Hello, I’m a professional lawyer for almost
+          strong  13 years.
+
+        .p-section-top-keyvisual__text.c-text.c-text--description
+          | Phasellus malesuada nibh sit amet leo blandit finibus. Ut lorem neque, egestas vel nisi ut, pharetra venenatis enim.
+
+        .p-section-top-keyvisual__actions
+          a.c-button.c-button--primary(href="#contact")
+            span.c-button__label Book appointment
+            img.c-button__icon(src=path+"/img/common/icon_arrow_right.svg" alt="Arrow Right" width="24" height="24" loading="eager")
+
+          a.c-button.c-button--secondary(href="#testimonials")
+            img.c-button__icon(src=path+"/img/common/icn_play_circle.svg" alt="Play Circle" width="24" height="24" loading="eager")
+            span.c-button__label Customer feedback
+
+      figure.p-section-top-keyvisual__media
+        img(src=path+"/img/top/Winston_Potter.svg" alt="Winston Potter" width="470" height="470")
+
+  section#about.p-section-top-company
+    .p-section-top-company__wrapper
+      .p-section-top-company__body
+        h2.p-section-top-company__title
+          | I helped #[strong 280+ peoples] to win
+          br
+          | their fair and they are happy 😀.
+
+        ul.p-section-top-company__item-logo
+          li.p-section-top-company__list-logo
+            img(src=path+"/img/top/company_logo_amazon.svg" alt="Arrow Right" width="170" height="56" loading="eager")
+
+          li.p-section-top-company__list-logo
+            img(src=path+"/img/top/company_logo_dribbble.svg" alt="Arrow Right" width="170" height="56" loading="eager")
+
+          li.p-section-top-company__list-logo
+            img(src=path+"/img/top/company_logo_google.svg" alt="Arrow Right" width="170" height="56" loading="eager")
+
+          li.p-section-top-company__list-logo
+            img(src=path+"/img/top/company_logo_linked.svg" alt="Arrow Right" width="170" height="56" loading="eager")
+
+          li.p-section-top-company__list-logo
+            img(src=path+"/img/top/company_logo_medium.svg" alt="Arrow Right" width="170" height="56" loading="eager")
+
+          li.p-section-top-company__list-logo
+            img(src=path+"/img/top/company_logo_microsoft.svg" alt="Arrow Right" width="170" height="56" loading="eager")
+
+  section#counter.p-section-top-counter
+    .p-section-top-counter__wrapper
+      ul.p-section-top-counter__body
+        li.p-section-top-counter__grid
+          img(src=path+"/img/top/counter_icn_stack.svg" alt="Arrow Right" width="40" height="40" loading="lazy")
+          .p-section-top-counter__stat
+            strong 13+
+            span Years of experience
+
+        li.p-section-top-counter__grid
+          img(src=path+"/img/top/counter_icn_briefcase.svg" alt="Arrow Right" width="40" height="40" loading="lazy")
+          .p-section-top-counter__stat
+            strong 98.5%
+            span Client Satisfaction
+
+        li.p-section-top-counter__grid
+          img(src=path+"/img/top/counter_icn_smiley_wink.svg" alt="Arrow Right" width="40" height="40" loading="lazy")
+          .p-section-top-counter__stat
+            strong 279+
+            span Happy Clients
+
+        li.p-section-top-counter__grid
+          img(src=path+"/img/top/counter_icn_medal.svg" alt="Arrow Right" width="40" height="40" loading="lazy")
+          .p-section-top-counter__stat
+            strong 47+
+            span Awards
+
