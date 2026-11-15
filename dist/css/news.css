@@ -1,4 +1,3 @@
-@charset "UTF-8";
 html,
 body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -253,7 +252,7 @@ html.is-visible {
 
 body {
   color: #000;
-  font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ", "Hiragino Sans", "游ゴシック", yugothic, "Yu Gothic", "メイリオ", meiryo, sans-serif;
+  font-family: "Barlow";
   line-height: 1.7142857143;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
