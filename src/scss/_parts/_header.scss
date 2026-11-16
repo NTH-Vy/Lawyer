@@ -1,5 +1,7 @@
+@use "../_base/variables" as *;
+
 .l-header {
-  // background: #FFFFFF;
+  background-color: $color-white;
 
   .l-header__wrapper {
     max-width: 11.7rem;
@@ -10,115 +12,110 @@
     height: 1.04rem;
   }
 
-  .l-header__logo {
-    a {
-      font-size: 0.22rem;
-      line-height: 0.24rem;
-      font-weight: 600;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      gap: 0.1rem;
-      text-decoration: none;
+  .l-header__logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    color: $color-white;
+    font-size: 0.22rem;
+    font-weight: 600;
+    line-height: 0.24rem;
+    text-decoration: none;
+  }
 
-      .l-header__logo-icon {
-        background-color: #1777E5;
-        width: 0.56rem;
-        height: 0.56rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 0 0 0.56rem;
-        padding: 0;
-        border-radius: 0.04rem;
+  .l-header__logo a .l-header__logo-icon {
+    display: flex;
+    flex: 0 0 0.56rem;
+    align-items: center;
+    justify-content: center;
+    width: 0.56rem;
+    height: 0.56rem;
+    padding: 0;
+    border-radius: 0.04rem;
+    background-color: $color-brand;
+  }
 
-        span {
-          font-size: 0.22rem;
-          line-height: 0.24rem;
-          font-weight: 600;
-          text-decoration: none;
-        }
-      }
+  .l-header__logo a .l-header__logo-icon span {
+    font-size: 0.22rem;
+    font-weight: 600;
+    line-height: 0.24rem;
+    text-decoration: none;
+  }
 
-      .l-header__logo-content {
-        display: grid;
-        gap: 0.04rem;
-        justify-content: center;
+  .l-header__logo a .l-header__logo-content {
+    display: grid;
+    gap: 0.04rem;
+    justify-content: center;
+  }
 
-        strong {
-          font-size: 0.2rem;
-          line-height: 0.2rem;
-          font-weight: 500;
-          color: #121314;
-        }
+  .l-header__logo a .l-header__logo-content strong {
+    color: #121314;
+    font-size: 0.2rem;
+    font-weight: 500;
+    line-height: 0.2rem;
+  }
 
-        p {
-          font-size: 0.14rem;
-          line-height: 0.2rem;
-          font-weight: 400;
-          color: #5E6971;
-          margin-bottom: 0;
-        }
-      }
-    }
+  .l-header__logo a .l-header__logo-content p {
+    margin-bottom: 0;
+    color: #5e6971;
+    font-size: 0.14rem;
+    font-weight: 400;
+    line-height: 0.2rem;
   }
 
   .l-header__nav {
-    flex: 1;
     display: flex;
+    flex: 1;
     justify-content: center;
   }
 
   .l-header__utilities {
     display: flex;
     align-items: center;
-
-    .c-list--inline {
-      display: flex;
-      align-items: center;
-      gap: 0.08rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-
-      .c-list__item {
-        background-color: #E8F1FC;
-        width: 0.48rem;
-        height: 0.48rem;
-        display: flex;
-        padding: 0.16rem;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0.04rem;
-      }
-    }
   }
 
-  .l-global-nav {
-    .l-global-nav__list {
-      display: flex;
-      justify-content: center;
-      gap: 0.24rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .l-global-nav__link {
-      text-decoration: none;
-      font-size: 0.16rem;
-      line-height: 0.24rem;
-      color: #697484;
-      font-weight: 400;
-      transition: color 0.2s;
-
-      &:hover,
-      &.is-active {
-        color: #1777E5;
-        font-weight: 600;
-      }
-    }
+  .l-header__utilities .c-list--inline {
+    display: flex;
+    align-items: center;
+    gap: 0.08rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
+  .l-header__utilities .c-list--inline .c-list__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.48rem;
+    height: 0.48rem;
+    padding: 0.16rem;
+    border-radius: 0.04rem;
+    background-color: $color-surface-blue;
+  }
+
+  .l-global-nav .l-global-nav__list {
+    display: flex;
+    justify-content: center;
+    gap: 0.24rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .l-global-nav .l-global-nav__link {
+    color: $color-text-muted;
+    font-size: 0.16rem;
+    transition: color 0.2s;
+    font-weight: 400;
+    line-height: 0.24rem;
+    text-decoration: none;
+
+    &:hover,
+    &.is-active {
+      color: $color-brand;
+      font-weight: 600;
+    }
+  }
 }
 

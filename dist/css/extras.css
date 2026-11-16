@@ -347,6 +347,9 @@ html.is-visible .load {
   }
 }
 
+.l-header {
+  background-color: #fff;
+}
 .l-header .l-header__wrapper {
   max-width: 11.7rem;
   margin: 0 auto;
@@ -362,10 +365,6 @@ html.is-visible .load {
   height: 1.04rem;
 }
 .l-header .l-header__logo a {
-  font-size: 0.22rem;
-  line-height: 0.24rem;
-  font-weight: 600;
-  color: #FFFFFF;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -373,31 +372,35 @@ html.is-visible .load {
   -ms-flex-align: center;
   align-items: center;
   gap: 0.1rem;
+  color: #fff;
+  font-size: 0.22rem;
+  font-weight: 600;
+  line-height: 0.24rem;
   text-decoration: none;
 }
 .l-header .l-header__logo a .l-header__logo-icon {
-  background-color: #1777E5;
-  width: 0.56rem;
-  height: 0.56rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 0.56rem;
+  flex: 0 0 0.56rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 0.56rem;
-  flex: 0 0 0.56rem;
+  width: 0.56rem;
+  height: 0.56rem;
   padding: 0;
   border-radius: 0.04rem;
+  background-color: #1777e5;
 }
 .l-header .l-header__logo a .l-header__logo-icon span {
   font-size: 0.22rem;
-  line-height: 0.24rem;
   font-weight: 600;
+  line-height: 0.24rem;
   text-decoration: none;
 }
 .l-header .l-header__logo a .l-header__logo-content {
@@ -408,25 +411,25 @@ html.is-visible .load {
   justify-content: center;
 }
 .l-header .l-header__logo a .l-header__logo-content strong {
-  font-size: 0.2rem;
-  line-height: 0.2rem;
-  font-weight: 500;
   color: #121314;
+  font-size: 0.2rem;
+  font-weight: 500;
+  line-height: 0.2rem;
 }
 .l-header .l-header__logo a .l-header__logo-content p {
-  font-size: 0.14rem;
-  line-height: 0.2rem;
-  font-weight: 400;
-  color: #5E6971;
   margin-bottom: 0;
+  color: #5e6971;
+  font-size: 0.14rem;
+  font-weight: 400;
+  line-height: 0.2rem;
 }
 .l-header .l-header__nav {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -452,20 +455,20 @@ html.is-visible .load {
   list-style: none;
 }
 .l-header .l-header__utilities .c-list--inline .c-list__item {
-  background-color: #E8F1FC;
-  width: 0.48rem;
-  height: 0.48rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0.16rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  width: 0.48rem;
+  height: 0.48rem;
+  padding: 0.16rem;
   border-radius: 0.04rem;
+  background-color: #e8f1fc;
 }
 .l-header .l-global-nav .l-global-nav__list {
   display: -webkit-box;
@@ -480,16 +483,16 @@ html.is-visible .load {
   list-style: none;
 }
 .l-header .l-global-nav .l-global-nav__link {
-  text-decoration: none;
-  font-size: 0.16rem;
-  line-height: 0.24rem;
   color: #697484;
-  font-weight: 400;
+  font-size: 0.16rem;
   -webkit-transition: color 0.2s;
   transition: color 0.2s;
+  font-weight: 400;
+  line-height: 0.24rem;
+  text-decoration: none;
 }
 .l-header .l-global-nav .l-global-nav__link:hover, .l-header .l-global-nav .l-global-nav__link.is-active {
-  color: #1777E5;
+  color: #1777e5;
   font-weight: 600;
 }
 
@@ -655,7 +658,7 @@ html.is-visible .load {
   height: 0.01rem;
   width: 100%;
   max-width: 11.7rem;
-  margin: 0.32rem auto 0.16rem;
+  margin: 0.4rem auto 0.16rem;
   background-color: #2B384C;
 }
 .l-footer .l-footer__copyright {

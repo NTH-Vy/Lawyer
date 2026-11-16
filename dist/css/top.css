@@ -347,6 +347,9 @@ html.is-visible .load {
   }
 }
 
+.l-header {
+  background-color: #fff;
+}
 .l-header .l-header__wrapper {
   max-width: 11.7rem;
   margin: 0 auto;
@@ -362,10 +365,6 @@ html.is-visible .load {
   height: 1.04rem;
 }
 .l-header .l-header__logo a {
-  font-size: 0.22rem;
-  line-height: 0.24rem;
-  font-weight: 600;
-  color: #FFFFFF;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -373,31 +372,35 @@ html.is-visible .load {
   -ms-flex-align: center;
   align-items: center;
   gap: 0.1rem;
+  color: #fff;
+  font-size: 0.22rem;
+  font-weight: 600;
+  line-height: 0.24rem;
   text-decoration: none;
 }
 .l-header .l-header__logo a .l-header__logo-icon {
-  background-color: #1777E5;
-  width: 0.56rem;
-  height: 0.56rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 0.56rem;
+  flex: 0 0 0.56rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-flex: 0;
-  -ms-flex: 0 0 0.56rem;
-  flex: 0 0 0.56rem;
+  width: 0.56rem;
+  height: 0.56rem;
   padding: 0;
   border-radius: 0.04rem;
+  background-color: #1777e5;
 }
 .l-header .l-header__logo a .l-header__logo-icon span {
   font-size: 0.22rem;
-  line-height: 0.24rem;
   font-weight: 600;
+  line-height: 0.24rem;
   text-decoration: none;
 }
 .l-header .l-header__logo a .l-header__logo-content {
@@ -408,25 +411,25 @@ html.is-visible .load {
   justify-content: center;
 }
 .l-header .l-header__logo a .l-header__logo-content strong {
-  font-size: 0.2rem;
-  line-height: 0.2rem;
-  font-weight: 500;
   color: #121314;
+  font-size: 0.2rem;
+  font-weight: 500;
+  line-height: 0.2rem;
 }
 .l-header .l-header__logo a .l-header__logo-content p {
-  font-size: 0.14rem;
-  line-height: 0.2rem;
-  font-weight: 400;
-  color: #5E6971;
   margin-bottom: 0;
+  color: #5e6971;
+  font-size: 0.14rem;
+  font-weight: 400;
+  line-height: 0.2rem;
 }
 .l-header .l-header__nav {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -452,20 +455,20 @@ html.is-visible .load {
   list-style: none;
 }
 .l-header .l-header__utilities .c-list--inline .c-list__item {
-  background-color: #E8F1FC;
-  width: 0.48rem;
-  height: 0.48rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0.16rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  width: 0.48rem;
+  height: 0.48rem;
+  padding: 0.16rem;
   border-radius: 0.04rem;
+  background-color: #e8f1fc;
 }
 .l-header .l-global-nav .l-global-nav__list {
   display: -webkit-box;
@@ -480,16 +483,16 @@ html.is-visible .load {
   list-style: none;
 }
 .l-header .l-global-nav .l-global-nav__link {
-  text-decoration: none;
-  font-size: 0.16rem;
-  line-height: 0.24rem;
   color: #697484;
-  font-weight: 400;
+  font-size: 0.16rem;
   -webkit-transition: color 0.2s;
   transition: color 0.2s;
+  font-weight: 400;
+  line-height: 0.24rem;
+  text-decoration: none;
 }
 .l-header .l-global-nav .l-global-nav__link:hover, .l-header .l-global-nav .l-global-nav__link.is-active {
-  color: #1777E5;
+  color: #1777e5;
   font-weight: 600;
 }
 
@@ -655,7 +658,7 @@ html.is-visible .load {
   height: 0.01rem;
   width: 100%;
   max-width: 11.7rem;
-  margin: 0.32rem auto 0.16rem;
+  margin: 0.4rem auto 0.16rem;
   background-color: #2B384C;
 }
 .l-footer .l-footer__copyright {
@@ -1235,6 +1238,7 @@ html.is-visible .load {
   color: #697484;
   margin: 0;
   text-align: center;
+  margin-top: 6px;
 }
 
 .p-section-top-education {
@@ -1271,11 +1275,10 @@ html.is-visible .load {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.72rem;
+  gap: 0.65rem;
 }
 .p-section-top-education__item--education {
   display: grid;
-  gap: 0.32rem;
 }
 .p-section-top-education__item--award {
   display: grid;
@@ -1288,7 +1291,7 @@ html.is-visible .load {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 0.16rem;
+  gap: 0.24rem;
   width: 5.36rem;
   height: 1.12rem;
 }
@@ -1340,6 +1343,7 @@ html.is-visible .load {
   font-weight: 500;
   color: #132238;
   margin: 0;
+  margin-top: -0.06rem;
 }
 .p-section-top-education__content span {
   font-size: 0.14rem;
@@ -1363,6 +1367,38 @@ html.is-visible .load {
   gap: 0.24rem;
   padding: 0.32rem;
   width: 5.7rem;
+}
+
+.p-section-top-award__content {
+  display: grid;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  gap: 0.12rem;
+  min-width: 0;
+}
+.p-section-top-award__content h3 {
+  font-size: 0.2rem;
+  line-height: 0.28rem;
+  font-weight: 500;
+  color: #132238;
+  margin: 0;
+}
+.p-section-top-award__content span {
+  font-size: 0.14rem;
+  line-height: 0.2rem;
+  font-weight: 400;
+  color: #132238;
+  margin: 0;
+}
+.p-section-top-award__content p {
+  font-size: 0.16rem;
+  line-height: 0.24rem;
+  font-weight: 400;
+  color: #697484;
+  margin: 0;
 }
 
 .p-section-top-news {
@@ -1414,6 +1450,7 @@ html.is-visible .load {
   font-weight: 500;
   color: #132238;
   margin: 0;
+  margin-top: -0.09rem;
 }
 .p-section-top-news__content p {
   font-size: 0.16rem;
@@ -1421,6 +1458,7 @@ html.is-visible .load {
   font-weight: 400;
   color: #424e60;
   margin: 0;
+  margin-bottom: 0.12rem;
 }
 .p-section-top-news__content .c-button--quaternary {
   -webkit-box-sizing: border-box;
@@ -1478,7 +1516,7 @@ html.is-visible .load {
 .p-section-top-contact__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.64rem;
+  gap: 0.99rem;
 }
 .p-section-top-contact__info {
   display: grid;
@@ -1497,6 +1535,7 @@ html.is-visible .load {
   font-weight: 600;
   color: #132238;
   margin: 0;
+  margin-top: 0.3rem;
 }
 .p-section-top-contact__heading p {
   font-size: 0.2rem;
@@ -1510,16 +1549,16 @@ html.is-visible .load {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 0.24rem minmax(0, 1fr);
+  grid-template-columns: 0.36rem minmax(0, 1fr);
   grid-template-rows: auto auto;
   -ms-flex-line-pack: center;
   align-content: center;
-  -webkit-column-gap: 0.16rem;
-  -moz-column-gap: 0.16rem;
-  column-gap: 0.16rem;
-  row-gap: 0.04rem;
-  min-height: 0.96rem;
-  padding: 0.2rem 0.24rem;
+  -webkit-column-gap: 0.32rem;
+  -moz-column-gap: 0.32rem;
+  column-gap: 0.32rem;
+  row-gap: 0.08rem;
+  min-height: 1.18rem;
+  padding: 0.32rem;
   border-radius: 0.04rem;
   background: #fff7d1;
   color: #132238;
@@ -1527,8 +1566,8 @@ html.is-visible .load {
 }
 .p-section-top-contact__card img {
   grid-row: 1/3;
-  width: 0.24rem;
-  height: 0.24rem;
+  width: 0.36rem;
+  height: 0.36rem;
 }
 .p-section-top-contact__card span {
   font-size: 0.14rem;
@@ -1549,23 +1588,26 @@ html.is-visible .load {
   display: grid;
   -ms-flex-line-pack: start;
   align-content: start;
-  gap: 0.1rem;
+  gap: 0.36rem;
   width: 5.36rem;
 }
-.p-section-top-contact-form h3 {
+.p-section-top-contact-form__heading {
+  display: grid;
+  gap: 0.12rem;
+}
+.p-section-top-contact-form__heading h3 {
   font-size: 0.24rem;
   line-height: 0.32rem;
   font-weight: 600;
   color: #132238;
   margin: 0;
 }
-.p-section-top-contact-form p {
+.p-section-top-contact-form__heading p {
   font-size: 0.16rem;
   line-height: 0.24rem;
   font-weight: 400;
   color: #424e60;
   margin: 0;
-  margin-bottom: 0.26rem;
 }
 .p-section-top-contact-form input,
 .p-section-top-contact-form select,
@@ -1626,7 +1668,10 @@ html.is-visible .load {
   min-height: 0.82rem;
   padding: 0.12rem;
   resize: vertical;
-  margin-bottom: 0.26rem;
+}
+.p-section-top-contact-form .p-section-top-contact__box {
+  display: grid;
+  gap: 0.16rem;
 }
 .p-section-top-contact-form .p-section-top-contact__row {
   display: grid;
@@ -1664,10 +1709,8 @@ html.is-visible .load {
   -ms-flex-pack: center;
   justify-content: center;
   gap: 0.12rem;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  min-height: 0.46rem;
+  width: 2.48rem;
+  min-height: 0.56rem;
   padding: 0 0.2rem;
   border-radius: 0.04rem;
   background: #1777e5;
@@ -1675,8 +1718,8 @@ html.is-visible .load {
   text-decoration: none;
 }
 .p-section-top-contact-form .c-button .c-button__label {
-  font-size: 0.12rem;
-  line-height: 1;
+  font-size: 0.16rem;
+  line-height: 0.56rem;
   font-weight: 600;
   text-transform: uppercase;
 }
