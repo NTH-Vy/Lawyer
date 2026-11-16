@@ -24,6 +24,7 @@ html(lang="en")
     if(["top"].includes(pageID))
       link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css")
     link(rel="stylesheet" href=`${path}/css/${pageID.replace(/-/gi,'_')}.css`)
+    link(rel="stylesheet" href=`${path}/css/responsive.css`)
   body
     .container
       include ../_parts/header

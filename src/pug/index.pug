@@ -41,18 +41,18 @@ block container
           | Phasellus malesuada nibh sit amet leo blandit finibus. Ut lorem neque, egestas vel nisi ut, pharetra venenatis enim.
 
         .p-section-top-keyvisual__actions
-          a.c-button.c-button--primary(href="#contact")
+          a.c-button.c-button--primary(href="#")
             span.c-button__label Book appointment
             img.c-button__icon(src=path+"/img/common/icon_arrow_right.svg" alt="Arrow Right" width="24" height="24" loading="eager")
 
-          a.c-button.c-button--secondary(href="#testimonials")
+          a.c-button.c-button--secondary(href="#")
             img.c-button__icon(src=path+"/img/common/icn_play_circle.svg" alt="Play Circle" width="24" height="24" loading="eager")
             span.c-button__label Customer feedback
 
       figure.p-section-top-keyvisual__media
         img(src=path+"/img/top/keyvisual_img_winston_potter.png" alt="Winston Potter" width="470" height="470")
 
-  section#about.p-section-top-company
+  section.p-section-top-company
     .p-section-top-company__wrapper
       .p-section-top-company__body
         h2.p-section-top-company__title
@@ -154,7 +154,7 @@ block container
             | I'm Winston Potter with a highly dedicated & hard working personality.
           p.p-section-top-about__text
             | Pellentesque vitae nisi eget nisi dapibus accumsan. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce sit amet leo sem. Sed ac posuere neque, scelerisque porta nulla. Aliquam erat volutpat.
-          a.c-button.c-button--tertiary(href="#contact")
+          a.c-button.c-button--tertiary(href="#")
             img.c-button__icon(src=path+"/img/top/about_icn_download.svg" alt="Download" width="24" height="24" loading="lazy")
             span.c-button__label Download Resume
 
@@ -165,7 +165,7 @@ block container
         p Sed ac posuere neque, scelerisque porta nulla. Aliquam erat volutpat. Nulla in mi malesuada, luctus nibh quis, rutrum arcu.
       .p-section-top-education__content
         .p-section-top-education__grid
-          .p-section-top-education__item
+          .p-section-top-education__item--education
             article.p-section-top-education__list
               img(src=path+"/img/top/education_icn_stamp.svg" alt="Bachelor of Laws (LLB)" width="40" height="40" loading="lazy")
               .p-section-top-education__list-content
@@ -187,7 +187,7 @@ block container
                 h3 Bachelor of Communication
                 p Donec ut ex eu libero euismod dapibus id quis ipsum. Phasellus non feugiat turpis, non gravida.
 
-          .p-section-top-education__item
+          .p-section-top-education__item--award
             article.p-section-top-education__card
               img(src=path+"/img/top/education_logo_award_01.svg" alt="Best Laywer of the Month." width="144" height="144" loading="lazy")
               .p-section-top-education__content
@@ -240,9 +240,9 @@ block container
         article.p-section-top-news__card
           img(src=path+"/img/top/news_banner_blog_02.png" alt="Duis magna risus, convallis vel purus eu, sollicitudin volutpat velit." width="370" height="264" loading="lazy")
           .p-section-top-news__content
-            span 22 Oct, 2020 / 246 Comments
-            h3 Duis magna risus, convallis vel purus eu, sollicitudin volutpat velit.
-            p Maecenas blandit auctor tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+            span 8 Sep, 2020 / 246 Comments
+            h3 Donec ut ex eu libero euismod dapibus id quis ipsum.
+            p Phasellus non feugiat turpis, non gravida lorem. Nulla fermentum odio in dolor dapibus, ac eleifend lectus ullamcorper.
             a.c-button.c-button--quaternary(href="#")
               span.c-button__label Read more
               img.c-button__icon(src=path+"/img/common/icon_arrow_right.svg" alt="Play Circle" width="24" height="24" loading="eager")
@@ -250,9 +250,9 @@ block container
         article.p-section-top-news__card
           img(src=path+"/img/top/news_banner_blog_03.png" alt="Duis magna risus, convallis vel purus eu, sollicitudin volutpat velit." width="370" height="264" loading="lazy")
           .p-section-top-news__content
-            span 22 Oct, 2020 / 246 Comments
-            h3 Duis magna risus, convallis vel purus eu, sollicitudin volutpat velit.
-            p Maecenas blandit auctor tempor. Class aptent taciti sociosqu ad litora torquent per conubia nostra.
+            span 24 May, 2020 / 246 Comments
+            h3 Maecenas congue cursus metus eget bibendum phasellus dign.
+            p Praesent semper enim at lacus sagittis, non semper eros ullamcorper. Duis id elemtum nisl, eu tincidunt nisl.
             a.c-button.c-button--quaternary(href="#")
               span.c-button__label Read more
               img.c-button__icon(src=path+"/img/common/icon_arrow_right.svg" alt="Play Circle" width="24" height="24" loading="eager")
@@ -269,7 +269,7 @@ block container
             span Chat with me
             p kevin.gilbert.com
 
-          a.p-section-top-contact__card(href="#mailto:kevin.gilbert.com")
+          a.p-section-top-contact__card(href="tel:12025550190")
             img(src=path+"/img/top/contact_icn_phone_call.svg" alt="Play Circle" width="36" height="36" loading="lazy")
             span Call Me
             p +1 202 555 0190
