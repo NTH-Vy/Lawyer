@@ -70,7 +70,7 @@ table {
 table th,
 table td {
   padding: 0.5em;
-  border: 1px solid #000;
+  border: 0.01rem solid #000;
 }
 
 table th {
@@ -204,7 +204,7 @@ input[type=search] {
 @media print {
   html,
   body {
-    width: 1600px;
+    width: 16rem;
     margin: 0;
   }
   body {
@@ -311,19 +311,19 @@ html.is-visible .load {
 
 @media print, (min-width: 768px) {
   .container {
-    min-width: 1250px;
+    min-width: 12.5rem;
   }
 }
 @media only screen and (max-width: 767.98px) {
   .container {
-    min-width: 320px;
+    min-width: 3.2rem;
   }
 }
 
 @media print, (min-width: 768px) {
   .wrapper {
-    width: calc(100% - 60px);
-    max-width: 1200px;
+    width: calc(100% - 0.6rem);
+    max-width: 12rem;
     margin-right: auto;
     margin-left: auto;
   }
@@ -337,20 +337,18 @@ html.is-visible .load {
 
 @media print, (min-width: 768px) {
   .sm {
-    /* stylelint-disable-next-line declaration-no-important */
     display: none !important;
   }
 }
 
 @media only screen and (max-width: 767.98px) {
   .md {
-    /* stylelint-disable-next-line declaration-no-important */
     display: none !important;
   }
 }
 
 .l-header .l-header__wrapper {
-  max-width: 1170px;
+  max-width: 11.7rem;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -361,11 +359,11 @@ html.is-visible .load {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  height: 104px;
+  height: 1.04rem;
 }
 .l-header .l-header__logo a {
-  font-size: 22px;
-  line-height: 24px;
+  font-size: 0.22rem;
+  line-height: 0.24rem;
   font-weight: 600;
   color: #FFFFFF;
   display: -webkit-box;
@@ -374,13 +372,13 @@ html.is-visible .load {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.1rem;
   text-decoration: none;
 }
 .l-header .l-header__logo a .l-header__logo-icon {
   background-color: #1777E5;
-  width: 56px;
-  height: 56px;
+  width: 0.56rem;
+  height: 0.56rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -391,33 +389,33 @@ html.is-visible .load {
   -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 56px;
-  flex: 0 0 56px;
+  -ms-flex: 0 0 0.56rem;
+  flex: 0 0 0.56rem;
   padding: 0;
-  border-radius: 4px;
+  border-radius: 0.04rem;
 }
 .l-header .l-header__logo a .l-header__logo-icon span {
-  font-size: 22px;
-  line-height: 24px;
+  font-size: 0.22rem;
+  line-height: 0.24rem;
   font-weight: 600;
   text-decoration: none;
 }
 .l-header .l-header__logo a .l-header__logo-content {
   display: grid;
-  gap: 4px;
+  gap: 0.04rem;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
 .l-header .l-header__logo a .l-header__logo-content strong {
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 0.2rem;
+  line-height: 0.2rem;
   font-weight: 500;
   color: #121314;
 }
 .l-header .l-header__logo a .l-header__logo-content p {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.14rem;
+  line-height: 0.2rem;
   font-weight: 400;
   color: #5E6971;
   margin-bottom: 0;
@@ -448,26 +446,26 @@ html.is-visible .load {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 8px;
+  gap: 0.08rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .l-header .l-header__utilities .c-list--inline .c-list__item {
   background-color: #E8F1FC;
-  width: 48px;
-  height: 48px;
+  width: 0.48rem;
+  height: 0.48rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 16px;
+  padding: 0.16rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 0.04rem;
 }
 .l-header .l-global-nav .l-global-nav__list {
   display: -webkit-box;
@@ -476,15 +474,15 @@ html.is-visible .load {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  gap: 24px;
+  gap: 0.24rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .l-header .l-global-nav .l-global-nav__link {
   text-decoration: none;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 0.16rem;
+  line-height: 0.24rem;
   color: #697484;
   font-weight: 400;
   -webkit-transition: color 0.2s;
@@ -497,10 +495,10 @@ html.is-visible .load {
 
 .l-footer {
   background: #132238;
-  padding: 100px 0 40px 0;
+  padding: 1rem 0 0.4rem 0;
 }
 .l-footer .l-footer__wrapper {
-  max-width: 1170px;
+  max-width: 11.7rem;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -511,7 +509,7 @@ html.is-visible .load {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  gap: 40px;
+  gap: 0.4rem;
 }
 .l-footer .l-footer__logo {
   -webkit-box-flex: 0;
@@ -519,8 +517,8 @@ html.is-visible .load {
   flex: 0 0 auto;
 }
 .l-footer .l-footer__logo a {
-  font-size: 22px;
-  line-height: 24px;
+  font-size: 0.22rem;
+  line-height: 0.24rem;
   font-weight: 600;
   color: #FFFFFF;
   display: -webkit-box;
@@ -529,13 +527,13 @@ html.is-visible .load {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.1rem;
   text-decoration: none;
 }
 .l-footer .l-footer__logo a .l-footer__logo-icon {
   background-color: #1777E5;
-  width: 56px;
-  height: 56px;
+  width: 0.56rem;
+  height: 0.56rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -546,33 +544,33 @@ html.is-visible .load {
   -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 56px;
-  flex: 0 0 56px;
+  -ms-flex: 0 0 0.56rem;
+  flex: 0 0 0.56rem;
   padding: 0;
-  border-radius: 4px;
+  border-radius: 0.04rem;
 }
 .l-footer .l-footer__logo a .l-footer__logo-icon span {
-  font-size: 22px;
-  line-height: 24px;
+  font-size: 0.22rem;
+  line-height: 0.24rem;
   font-weight: 600;
   text-decoration: none;
 }
 .l-footer .l-footer__logo a .l-footer__logo-content {
   display: grid;
-  gap: 4px;
+  gap: 0.04rem;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
 }
 .l-footer .l-footer__logo a .l-footer__logo-content strong {
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 0.2rem;
+  line-height: 0.2rem;
   font-weight: 500;
   color: #FFFFFF;
 }
 .l-footer .l-footer__logo a .l-footer__logo-content p {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 0.14rem;
+  line-height: 0.2rem;
   font-weight: 400;
   color: #A5ACB5;
   margin-bottom: 0;
@@ -603,26 +601,26 @@ html.is-visible .load {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 8px;
+  gap: 0.08rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .l-footer .l-footer__utilities .c-list--inline .c-list__item {
   background-color: #2B384C;
-  width: 48px;
-  height: 48px;
+  width: 0.48rem;
+  height: 0.48rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 16px;
+  padding: 0.16rem;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 0.04rem;
 }
 .l-footer .l-footer__utilities .c-list--inline .c-list__item img {
   -webkit-filter: brightness(0) invert(1);
@@ -635,15 +633,15 @@ html.is-visible .load {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  gap: 24px;
+  gap: 0.24rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .l-footer .l-global-nav .l-global-nav__link {
   text-decoration: none;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 0.16rem;
+  line-height: 0.24rem;
   color: #87909D;
   font-weight: 400;
   -webkit-transition: color 0.2s;
@@ -654,19 +652,19 @@ html.is-visible .load {
   font-weight: 600;
 }
 .l-footer .l-footer__divider {
-  height: 1px;
+  height: 0.01rem;
   width: 100%;
-  max-width: 1170px;
-  margin: 32px auto 16px;
+  max-width: 11.7rem;
+  margin: 0.32rem auto 0.16rem;
   background-color: #2B384C;
 }
 .l-footer .l-footer__copyright {
-  margin-top: 40px;
+  margin-top: 0.4rem;
   text-align: center;
 }
 .l-footer .l-footer__copyright small {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 0.16rem;
+  line-height: 0.24rem;
   font-weight: 400;
   color: #A5ACB5;
 }

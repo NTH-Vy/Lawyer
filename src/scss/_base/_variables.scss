@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-$viewport-width: 1250px;
-$wrapper-width: 1200px;
+$viewport-width: 12.5rem;
+$wrapper-width: 12rem;
 // $font-sans: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ", "Hiragino Sans", "游ゴシック", yugothic, "Yu Gothic", "メイリオ", meiryo,
 //   sans-serif;
 $font-sans: "Barlow";
@@ -25,18 +25,18 @@ $color-surface: #f0f1f3;
 $color-surface-blue: #e8f1fc;
 $color-surface-yellow: #fff7d1;
 
-$spacing-xs: 8px;
-$spacing-sm: 12px;
-$spacing-md: 16px;
-$spacing-lg: 24px;
-$spacing-xl: 32px;
-$spacing-2xl: 50px;
-$spacing-section: 100px;
+$spacing-xs: 0.08rem;
+$spacing-sm: 0.12rem;
+$spacing-md: 0.16rem;
+$spacing-lg: 0.24rem;
+$spacing-xl: 0.32rem;
+$spacing-2xl: 0.5rem;
+$spacing-section: 1rem;
 
-$font-size-sm: 14px;
-$font-size-base: 16px;
-$font-size-lg: 20px;
-$font-size-xl: 24px;
-$font-size-2xl: 32px;
-$font-size-3xl: 40px;
-$font-size-4xl: 48px;
+$font-size-sm: 0.14rem;
+$font-size-base: 0.16rem;
+$font-size-lg: 0.2rem;
+$font-size-xl: 0.24rem;
+$font-size-2xl: 0.32rem;
+$font-size-3xl: 0.4rem;
+$font-size-4xl: 0.48rem;

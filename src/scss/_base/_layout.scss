@@ -88,13 +88,13 @@ svg {
   }
 
   @include mobile {
-    min-width: 320px;
+    min-width: 3.2rem;
   }
 }
 
 .wrapper {
   @include desktop {
-    width: calc(100% - 60px);
+    width: calc(100% - 0.6rem);
     max-width: $wrapper-width;
     margin-right: auto;
     margin-left: auto;
@@ -108,14 +108,12 @@ svg {
 
 .sm {
   @include desktop {
-    /* stylelint-disable-next-line declaration-no-important */
     display: none !important;
   }
 }
 
 .md {
   @include mobile {
-    /* stylelint-disable-next-line declaration-no-important */
     display: none !important;
   }
 }

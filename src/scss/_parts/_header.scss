@@ -2,39 +2,39 @@
   // background: #FFFFFF;
 
   .l-header__wrapper {
-    max-width: 1170px;
+    max-width: 11.7rem;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 104px;
+    height: 1.04rem;
   }
 
   .l-header__logo {
     a {
-      font-size: 22px;
-      line-height: 24px;
+      font-size: 0.22rem;
+      line-height: 0.24rem;
       font-weight: 600;
       color: #FFFFFF;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.1rem;
       text-decoration: none;
 
       .l-header__logo-icon {
         background-color: #1777E5;
-        width: 56px;
-        height: 56px;
+        width: 0.56rem;
+        height: 0.56rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex: 0 0 56px;
+        flex: 0 0 0.56rem;
         padding: 0;
-        border-radius: 4px;
+        border-radius: 0.04rem;
 
         span {
-          font-size: 22px;
-          line-height: 24px;
+          font-size: 0.22rem;
+          line-height: 0.24rem;
           font-weight: 600;
           text-decoration: none;
         }
@@ -42,19 +42,19 @@
 
       .l-header__logo-content {
         display: grid;
-        gap: 4px;
+        gap: 0.04rem;
         justify-content: center;
 
         strong {
-          font-size: 20px;
-          line-height: 20px;
+          font-size: 0.2rem;
+          line-height: 0.2rem;
           font-weight: 500;
           color: #121314;
         }
 
         p {
-          font-size: 14px;
-          line-height: 20px;
+          font-size: 0.14rem;
+          line-height: 0.2rem;
           font-weight: 400;
           color: #5E6971;
           margin-bottom: 0;
@@ -76,20 +76,20 @@
     .c-list--inline {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.08rem;
       margin: 0;
       padding: 0;
       list-style: none;
 
       .c-list__item {
         background-color: #E8F1FC;
-        width: 48px;
-        height: 48px;
+        width: 0.48rem;
+        height: 0.48rem;
         display: flex;
-        padding: 16px;
+        padding: 0.16rem;
         align-items: center;
         justify-content: center;
-        border-radius: 4px;
+        border-radius: 0.04rem;
       }
     }
   }
@@ -98,7 +98,7 @@
     .l-global-nav__list {
       display: flex;
       justify-content: center;
-      gap: 24px;
+      gap: 0.24rem;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -106,8 +106,8 @@
 
     .l-global-nav__link {
       text-decoration: none;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 0.16rem;
+      line-height: 0.24rem;
       color: #697484;
       font-weight: 400;
       transition: color 0.2s;

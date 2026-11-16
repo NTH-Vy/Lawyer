@@ -8,24 +8,24 @@
   background: #FFFBE8;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    gap: 0.4rem;
   }
 
   &__body {
     display: grid;
     gap: $spacing-xl;
-    width: 568px;
+    width: 5.68rem;
   }
 
   &__title {
     margin: 0;
     font-size: $font-size-4xl;
     font-weight: 400;
-    line-height: 56px;
+    line-height: 0.56rem;
 
     strong {
       font-weight: 600;
@@ -34,7 +34,7 @@
 
   &__text {
     font-size: $font-size-lg;
-    line-height: 28px;
+    line-height: 0.28rem;
     font-weight: 400;
     color: $color-text;
   }
@@ -46,23 +46,23 @@
 
     .c-button {
       box-sizing: border-box;
-      min-height: 56px;
+      min-height: 0.56rem;
       padding: 0 $spacing-xl;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: $spacing-sm;
-      border-radius: 5px;
+      border-radius: 0.05rem;
       font-size: $font-size-base;
       font-weight: 600;
-      line-height: 56px;
+      line-height: 0.56rem;
       text-decoration: none;
       text-transform: uppercase;
       transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 
       &--primary {
         background-color: $color-brand;
-        width: 257px;
+        width: 2.57rem;
         color: $color-white;
 
         &:hover {
@@ -71,8 +71,8 @@
       }
 
       &--secondary {
-        box-shadow: 0px 8px 32px 0px rgba(19, 34, 56, 0.08);
-        width: 259px;
+        box-shadow: 0rem 0.08rem 0.32rem 0rem rgba(19, 34, 56, 0.08);
+        width: 2.59rem;
         background-color: $color-white;
         color: $color-brand;
 
@@ -86,8 +86,8 @@
         }
 
         &:focus-visible {
-          outline: 2px solid #121314;
-          outline-offset: 3px;
+          outline: 0.02rem solid #121314;
+          outline-offset: 0.03rem;
         }
       }
     }
@@ -96,11 +96,11 @@
   &__media {
     position: relative;
     flex-shrink: 0;
-    width: 470px;
-    height: 470px;
+    width: 4.7rem;
+    height: 4.7rem;
     margin: 0;
     background: rgba(255, 255, 255, 0.72);
-    border-radius: 12px;
+    border-radius: 0.12rem;
     overflow: hidden;
 
     img {
@@ -108,8 +108,8 @@
       top: -13.6%;
       left: 50%;
       display: block;
-      width: 646px;
-      height: 646px;
+      width: 6.46rem;
+      height: 6.46rem;
       max-width: none;
       transform: translateX(-50%);
       object-fit: cover;
@@ -121,7 +121,7 @@
   padding: $spacing-section 0;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
     display: grid;
     gap: $spacing-2xl;
   }
@@ -133,7 +133,7 @@
 
   &__title {
     font-size: $font-size-2xl;
-    line-height: 40px;
+    line-height: 0.4rem;
     font-weight: 400;
     color: $color-heading;
     margin: 0;
@@ -144,16 +144,16 @@
       isolation: isolate;
       color: $color-brand;
       font-size: $font-size-2xl;
-      line-height: 40px;
+      line-height: 0.4rem;
       font-weight: 600;
 
       &::after {
         position: absolute;
         z-index: -1;
         bottom: 0;
-        left: -4px;
-        width: 196px;
-        height: 12px;
+        left: -0.04rem;
+        width: 1.96rem;
+        height: 0.12rem;
         background-color: $color-surface-blue;
         content: "";
       }
@@ -162,7 +162,7 @@
 
   &__item-logo {
     display: flex;
-    gap: 30px;
+    gap: 0.3rem;
     margin: 0;
     padding: 0;
   }
@@ -188,14 +188,14 @@
   background: $color-heading;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
     display: flex;
-    gap: 30px;
+    gap: 0.3rem;
   }
 
   &__body {
     display: flex;
-    gap: 30px;
+    gap: 0.3rem;
     margin: 0;
     padding: 0;
 
@@ -203,32 +203,32 @@
       list-style: none;
       display: flex;
       gap: $spacing-md;
-      width: 270px;
-      height: 64px;
+      width: 2.7rem;
+      height: 0.64rem;
 
       strong {
         font-size: $font-size-2xl;
-        line-height: 40px;
+        line-height: 0.4rem;
         font-weight: 600;
         color: $color-white;
       }
 
       span {
         font-size: $font-size-sm;
-        line-height: 14px;
+        line-height: 0.14rem;
         font-weight: 500;
         color: $color-text-subtle;
         text-transform: uppercase;
       }
 
       img {
-        width: 40px;
-        height: 40px;
+        width: 0.4rem;
+        height: 0.4rem;
       }
 
       .p-section-top-counter__stat {
         display: grid;
-        gap: 10px;
+        gap: 0.1rem;
       }
     }
   }
@@ -239,26 +239,26 @@
   background: $color-surface;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
   }
 
   &__body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 100px;
+    gap: 1rem;
   }
 
   &__media {
     position: relative;
     flex-shrink: 0;
-    width: 570px;
-    height: 500px;
+    width: 5.7rem;
+    height: 5rem;
     margin: 0;
     background: rgba(255, 255, 255, 0.72);
-    border-radius: 18px;
+    border-radius: 0.18rem;
     overflow: hidden;
-    box-shadow: 0 10px 22px rgba(18, 27, 42, 0.08);
+    box-shadow: 0 0.1rem 0.22rem rgba(18, 27, 42, 0.08);
 
     img {
       display: block;
@@ -272,12 +272,12 @@
     display: grid;
     gap: $spacing-xl;
     width: 100%;
-    max-width: 500px;
+    max-width: 5rem;
 
     .p-section-top-about__title {
       margin: 0;
       font-size: $font-size-3xl;
-      line-height: 48px;
+      line-height: 0.48rem;
       font-weight: 600;
       color: $color-heading;
     }
@@ -285,7 +285,7 @@
     .p-section-top-about__text {
       margin: 0;
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 400;
       color: $color-text;
     }
@@ -298,13 +298,13 @@
   align-items: center;
   justify-content: center;
     gap: $spacing-sm;
-  width: 247px;
-  min-height: 56px;
-  padding: 0 24px;
-  border-radius: 6px;
+  width: 2.47rem;
+  min-height: 0.56rem;
+  padding: 0 0.24rem;
+  border-radius: 0.06rem;
   background: #1d7fe4;
   color: #fff;
-  box-shadow: 0 10px 18px rgba(29, 127, 228, 0.18);
+  box-shadow: 0 0.1rem 0.18rem rgba(29, 127, 228, 0.18);
   text-decoration: none;
   transition: background-color 0.2s ease;
 
@@ -313,14 +313,14 @@
   }
 
   .c-button__icon {
-    width: 22px;
-    height: 22px;
+    width: 0.22rem;
+    height: 0.22rem;
     filter: brightness(0) invert(1);
   }
 
   .c-button__label {
     font-size: $font-size-base;
-    line-height: 56px;
+    line-height: 0.56rem;
     font-weight: 600;
     text-transform: uppercase;
     }
@@ -331,7 +331,7 @@
   padding: 0 0 $spacing-section 0;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
     display: grid;
     gap: $spacing-2xl;
   }
@@ -344,7 +344,7 @@
     h2 {
       margin: 0;
       font-size: $font-size-3xl;
-      line-height: 48px;
+      line-height: 0.48rem;
       font-weight: 600;
       color: $color-heading;
     }
@@ -352,27 +352,27 @@
     p {
       margin: 0;
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 400;
       color: $color-text;
-      width: 370px;
-      height: 48px;
+      width: 3.7rem;
+      height: 0.48rem;
       text-align: center;
     }
   }
 
   &__grid {
     display: flex;
-    gap: 70px;
+    gap: 0.7rem;
   }
 
   &__media {
     position: relative;
     flex-shrink: 0;
-    width: 500px;
-    height: 500px;
+    width: 5rem;
+    height: 5rem;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 0.04rem;
 
     > img:first-child {
       display: block;
@@ -385,8 +385,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 72px;
-      height: 72px;
+      width: 0.72rem;
+      height: 0.72rem;
       transform: translate(-50%, -50%);
     }
   }
@@ -403,7 +403,7 @@
     gap: $spacing-sm;
 
     &:not(:last-child) {
-      border-bottom: 1px solid $color-border;
+      border-bottom: 0.01rem solid $color-border;
       padding-bottom: $spacing-xl;
     }
   }
@@ -411,12 +411,12 @@
   &__date {
     display: grid;
     gap: $spacing-xs;
-    width: 200px;
-    height: 52px;
+    width: 2rem;
+    height: 0.52rem;
 
     strong {
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 600;
       color: $color-brand;
       margin: 0;
@@ -424,7 +424,7 @@
 
     time {
       font-size: $font-size-sm;
-      line-height: 20px;
+      line-height: 0.2rem;
       font-weight: 400;
       color: $color-text-muted;
     }
@@ -433,12 +433,12 @@
   &__content {
     display: grid;
     gap: $spacing-sm;
-    width: 388px;
-    height: 112px;
+    width: 3.88rem;
+    height: 1.12rem;
 
     h3 {
       font-size: $font-size-lg;
-      line-height: 28px;
+      line-height: 0.28rem;
       font-weight: 600;
       color: $color-heading;
       margin: 0;
@@ -446,7 +446,7 @@
 
     p {
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 400;
       color: #556070;
       margin: 0;
@@ -456,9 +456,10 @@
 
 .p-section-top-testimonial {
   padding: $spacing-section;
+  box-shadow: inset 0rem 0.01rem 0rem 0rem #F0F1F3;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
     display: grid;
     gap: $spacing-2xl;
   }
@@ -470,7 +471,7 @@
 
     h2 {
       font-size: $font-size-3xl;
-      line-height: 48px;
+      line-height: 0.48rem;
       font-weight: 600;
       color: $color-heading;
       margin: 0;
@@ -478,11 +479,11 @@
 
     p {
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 400;
       color: $color-text;
       margin: 0;
-      width: 530px;
+      width: 5.3rem;
       text-align: center;
     }
   }
@@ -490,23 +491,23 @@
   &__feedback {
     display: flex;
     align-items: center;
-    gap: 152px;
+    gap: 1.52rem;
 
     button {
       display: flex;
-      flex: 0 0 56px;
+      flex: 0 0 0.56rem;
       align-items: center;
       justify-content: center;
-      width: 56px;
-      height: 56px;
+      width: 0.56rem;
+      height: 0.56rem;
       border-radius: 50%;
       background-color: $color-surface-blue;
       cursor: pointer;
       transition: background-color 0.2s ease;
 
       img {
-        width: 24px;
-        height: 24px;
+        width: 0.24rem;
+        height: 0.24rem;
         transition: filter 0.2s ease;
       }
 
@@ -527,29 +528,29 @@
   justify-items: center;
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 0.4rem;
+    height: 0.4rem;
   }
 
   blockquote {
     // font-size: 24px;
-    font-size: 23px;
-    line-height: 32px;
+    font-size: 0.23rem;
+    line-height: 0.32rem;
     font-weight: 400;
     color: $color-heading;
     text-align: center;
   }
 
   strong {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 0.18rem;
+    line-height: 0.24rem;
     font-weight: 500;
     color: $color-heading;
   }
 
   p {
     font-size: $font-size-sm;
-    line-height: 20px;
+    line-height: 0.2rem;
     font-weight: 400;
     color: $color-text-muted;
     margin: 0;
@@ -561,7 +562,7 @@
   padding: $spacing-section 0;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
     display: grid;
     gap: $spacing-2xl;
   }
@@ -573,7 +574,7 @@
 
     h2 {
       font-size: $font-size-3xl;
-      line-height: 48px;
+      line-height: 0.48rem;
       font-weight: 600;
       color: $color-heading;
       margin: 0;
@@ -581,18 +582,18 @@
 
     p {
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 400;
       color: $color-text;
       margin: 0;
-      width: 530px;
+      width: 5.3rem;
       text-align: center;
     }
   }
 
   &__grid {
     display: flex;
-    gap: 72px;
+    gap: 0.72rem;
   }
 
   &__item--education {
@@ -602,51 +603,51 @@
 
   &__item--award {
     display: grid;
-    gap: 24px;
+    gap: 0.24rem;
   }
 
   &__list {
     display: flex;
     align-items: center;
     gap: $spacing-md;
-    width: 536px;
-    height: 112px;
+    width: 5.36rem;
+    height: 1.12rem;
 
     img {
       display: block;
-      flex: 0 0 74px;
+      flex: 0 0 0.74rem;
       background: $color-white;
-      width: 112px;
-      height: 112px;
-      padding: 36px;
-      border: 3px solid $color-surface-blue;
+      width: 1.12rem;
+      height: 1.12rem;
+      padding: 0.36rem;
+      border: 0.03rem solid $color-surface-blue;
     }
   }
 
   &__list-content {
     display: grid;
-    gap: 10px;
-    width: 400px;
+    gap: 0.1rem;
+    width: 4rem;
 
     h3 {
-      font-size: 13px;
-      line-height: 18px;
+      font-size: 0.13rem;
+      line-height: 0.18rem;
       font-weight: 500;
       color: $color-heading;
       margin: 0;
     }
 
     span {
-      font-size: 9px;
-      line-height: 12px;
+      font-size: 0.09rem;
+      line-height: 0.12rem;
       font-weight: 400;
       color: $color-heading;
       margin: 0;
     }
 
     p {
-      font-size: 10px;
-      line-height: 16px;
+      font-size: 0.1rem;
+      line-height: 0.16rem;
       font-weight: 400;
       color: $color-text-muted;
       margin: 0;
@@ -655,12 +656,12 @@
 
   &__content {
     display: grid;
-    gap: 10px;
-    width: 536px;
+    gap: 0.1rem;
+    width: 5.36rem;
 
     h3 {
       font-size: $font-size-lg;
-      line-height: 28px;
+      line-height: 0.28rem;
       font-weight: 500;
       color: $color-heading;
       margin: 0;
@@ -668,7 +669,7 @@
 
     span {
       font-size: $font-size-sm;
-      line-height: 20px;
+      line-height: 0.2rem;
       font-weight: 400;
       color: $color-heading;
       margin: 0;
@@ -676,7 +677,7 @@
 
     p {
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 400;
       color: $color-text-muted;
       margin: 0;
@@ -688,7 +689,7 @@
     display: flex;
     gap: $spacing-lg;
     padding: $spacing-xl;
-    width: 570px;
+    width: 5.7rem;
   }
 }
 
@@ -697,14 +698,14 @@
   background: $color-surface;
 
   &__wrapper {
-    @include centered-container(1170px);
+    @include centered-container(11.7rem);
     display: grid;
     gap: $spacing-2xl;
   }
 
   &__heading {
     font-size: $font-size-4xl;
-    line-height: 56px;
+    line-height: 0.56rem;
     font-weight: 600;
     color: $color-heading;
     margin: 0;
@@ -713,26 +714,26 @@
 
   &__grid {
     display: flex;
-    gap: 30px;
+    gap: 0.3rem;
   }
 
   &__card {
     display: grid;
     gap: $spacing-xl;
-    width: 370px;
+    width: 3.7rem;
     // height: 564px;
     background: $color-white;
-    border-radius: 4px;
+    border-radius: 0.04rem;
   }
 
   &__content {
-    padding: 0 32px 32px 32px;
+    padding: 0 0.32rem 0.32rem 0.32rem;
     display: grid;
     gap: $spacing-sm;
 
     span {
       font-size: $font-size-sm;
-      line-height: 20px;
+      line-height: 0.2rem;
       font-weight: 400;
       color: $color-text-muted;
       margin: 0;
@@ -740,7 +741,7 @@
 
     h3 {
       font-size: $font-size-lg;
-      line-height: 28px;
+      line-height: 0.28rem;
       font-weight: 500;
       color: $color-heading;
       margin: 0;
@@ -748,7 +749,7 @@
 
     p {
       font-size: $font-size-base;
-      line-height: 24px;
+      line-height: 0.24rem;
       font-weight: 400;
       color: $color-text;
       margin: 0;
@@ -761,10 +762,10 @@
     align-items: center;
     justify-content: center;
     gap: $spacing-sm;
-    width: 157px;
-    height: 48px;
-    border: 2px solid #DCEBFF;
-    border-radius: 4px;
+    width: 1.57rem;
+    height: 0.48rem;
+    border: 0.02rem solid #DCEBFF;
+    border-radius: 0.04rem;
     background: $color-white;
     color: $color-brand;
     text-decoration: none;
@@ -776,21 +777,21 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-heading;
-      outline-offset: 3px;
+      outline: 0.02rem solid $color-heading;
+      outline-offset: 0.03rem;
     }
 
     .c-button__label {
       font-size: $font-size-sm;
-      line-height: 48px;
+      line-height: 0.48rem;
       font-weight: 600;
       color: $color-brand;
       text-transform: uppercase;
     }
 
     .c-button__icon {
-      width: 24px;
-      height: 24px;
+      width: 0.24rem;
+      height: 0.24rem;
       filter: brightness(0) saturate(100%) invert(35%) sepia(99%) saturate(1944%) hue-rotate(197deg) brightness(95%) contrast(97%);
     }
   }
@@ -800,21 +801,21 @@
   padding: $spacing-section 0;
 
   &__wrapper {
-    width: calc(100% - 60px);
-    @include centered-container(1170px);
+    width: calc(100% - 0.6rem);
+    @include centered-container(11.7rem);
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 64px;
+    gap: 0.64rem;
   }
 
   &__info {
     display: grid;
     align-content: start;
     gap: $spacing-lg;
-    width: 536px;
+    width: 5.36rem;
   }
 
   &__heading {
@@ -823,7 +824,7 @@
 
     h2 {
       font-size: $font-size-3xl;
-      line-height: 48px;
+      line-height: 0.48rem;
       font-weight: 600;
       color: $color-heading;
       margin: 0;
@@ -831,7 +832,7 @@
 
     p {
       font-size: $font-size-lg;
-      line-height: 28px;
+      line-height: 0.28rem;
       font-weight: 400;
       color: $color-text;
       margin: 0;
@@ -842,27 +843,27 @@
   &__card {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 24px minmax(0, 1fr);
+    grid-template-columns: 0.24rem minmax(0, 1fr);
     grid-template-rows: auto auto;
     align-content: center;
     column-gap: $spacing-md;
-    row-gap: 4px;
-    min-height: 96px;
-    padding: 20px $spacing-lg;
-    border-radius: 4px;
+    row-gap: 0.04rem;
+    min-height: 0.96rem;
+    padding: 0.2rem $spacing-lg;
+    border-radius: 0.04rem;
     background: $color-surface-yellow;
     color: $color-heading;
     text-decoration: none;
 
     img {
       grid-row: 1 / 3;
-      width: 24px;
-      height: 24px;
+      width: 0.24rem;
+      height: 0.24rem;
     }
 
     span {
       font-size: $font-size-sm;
-      line-height: 14px;
+      line-height: 0.14rem;
       font-weight: 500;
       color: #13223880;
       text-transform: uppercase;
@@ -871,7 +872,7 @@
     p {
       margin: 0;
       font-size: $font-size-xl;
-      line-height: 32px;
+      line-height: 0.32rem;
       font-weight: 500;
       color: $color-heading;
     }
@@ -881,12 +882,12 @@
 .p-section-top-contact-form {
   display: grid;
   align-content: start;
-  gap: 10px;
-  width: 536px;
+  gap: 0.1rem;
+  width: 5.36rem;
 
   h3 {
     font-size: $font-size-xl;
-    line-height: 32px;
+    line-height: 0.32rem;
     font-weight: 600;
     color: $color-heading;
     margin: 0;
@@ -894,11 +895,11 @@
 
   p {
     font-size: $font-size-base;
-    line-height: 24px;
+    line-height: 0.24rem;
     font-weight: 400;
     color: $color-text;
     margin: 0;
-    margin-bottom: 26px;
+    margin-bottom: 0.26rem;
   }
 
   input,
@@ -907,14 +908,14 @@
     box-sizing: border-box;
     width: 100%;
     min-width: 0;
-    border: 1px solid $color-border;
-    border-radius: 4px;
+    border: 0.01rem solid $color-border;
+    border-radius: 0.04rem;
     background: $color-white;
     color: $color-text-subtle;
     font: inherit;
     font-size: $font-size-base;
-    line-height: 24px;
-    font-weight: 400px;
+    line-height: 0.24rem;
+    font-weight: 400;
 
     &::placeholder {
       color: $color-text-subtle;
@@ -922,33 +923,33 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-brand;
-      outline-offset: 2px;
+      outline: 0.02rem solid $color-brand;
+      outline-offset: 0.02rem;
     }
   }
 
   input,
   select {
-    height: 48px;
-    padding: 0 12px;
+    height: 0.48rem;
+    padding: 0 0.12rem;
   }
 
   select {
     appearance: none;
-    padding-right: 36px;
+    padding-right: 0.36rem;
   }
 
   textarea {
-    min-height: 82px;
+    min-height: 0.82rem;
     padding: $spacing-sm;
     resize: vertical;
-    margin-bottom: 26px;
+    margin-bottom: 0.26rem;
   }
 
   .p-section-top-contact__row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    gap: 0.1rem;
   }
 
   .p-section-top-contact-form__control {
@@ -956,15 +957,15 @@
 
     input,
     select {
-      padding-right: 36px;
+      padding-right: 0.36rem;
     }
 
     img {
       position: absolute;
       top: 50%;
-      right: 10px;
-      width: 16px;
-      height: 16px;
+      right: 0.1rem;
+      width: 0.16rem;
+      height: 0.16rem;
       pointer-events: none;
       transform: translateY(-50%);
     }
@@ -977,23 +978,23 @@
     justify-content: center;
     gap: $spacing-sm;
     width: fit-content;
-    min-height: 46px;
-    padding: 0 20px;
-    border-radius: 4px;
+    min-height: 0.46rem;
+    padding: 0 0.2rem;
+    border-radius: 0.04rem;
     background: $color-brand;
     color: $color-white;
     text-decoration: none;
 
     .c-button__label {
-      font-size: 12px;
+      font-size: 0.12rem;
       line-height: 1;
       font-weight: 600;
       text-transform: uppercase;
     }
 
     .c-button__icon {
-      width: 18px;
-      height: 18px;
+      width: 0.18rem;
+      height: 0.18rem;
       filter: brightness(0) invert(1);
     }
 
@@ -1002,8 +1003,8 @@
     }
 
     &:focus-visible {
-      outline: 2px solid $color-heading;
-      outline-offset: 3px;
+      outline: 0.02rem solid $color-heading;
+      outline-offset: 0.03rem;
     }
   }
 }
