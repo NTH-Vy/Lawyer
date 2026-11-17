@@ -797,6 +797,7 @@ html.is-visible .load {
 }
 
 .p-section-top-company {
+  position: relative;
   padding: 1rem 0;
 }
 .p-section-top-company__wrapper {
@@ -847,13 +848,24 @@ html.is-visible .load {
   list-style: none;
   cursor: pointer;
 }
+.p-section-top-company__list-logo--linked {
+  position: relative;
+}
+.p-section-top-company__list-logo--linked img + img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-filter: none;
+  filter: none;
+  pointer-events: none;
+}
 .p-section-top-company__list-logo img {
   -webkit-filter: brightness(0) saturate(100%) invert(72%) sepia(8%) saturate(320%) hue-rotate(174deg) brightness(94%) contrast(88%);
   filter: brightness(0) saturate(100%) invert(72%) sepia(8%) saturate(320%) hue-rotate(174deg) brightness(94%) contrast(88%);
-  -webkit-transition: -webkit-filter 0.2s ease;
-  transition: -webkit-filter 0.2s ease;
-  transition: filter 0.2s ease;
-  transition: filter 0.2s ease, -webkit-filter 0.2s ease;
+  -webkit-transition: -webkit-filter 0.3s ease;
+  transition: -webkit-filter 0.3s ease;
+  transition: filter 0.3s ease;
+  transition: filter 0.3s ease, -webkit-filter 0.3s ease;
 }
 .p-section-top-company__list-logo:hover img {
   -webkit-filter: none;
@@ -909,6 +921,18 @@ html.is-visible .load {
 .p-section-top-counter__body .p-section-top-counter__grid .p-section-top-counter__stat {
   display: grid;
   gap: 0.1rem;
+}
+
+.p-section-top-light-mode {
+  position: absolute;
+  top: 50%;
+  right: 0.72rem;
+  width: 0.48rem;
+  height: 0.48rem;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-top: 0.09rem;
 }
 
 .p-section-top-about {

@@ -118,6 +118,7 @@
 }
 
 .p-section-top-company {
+  position: relative;
   padding: $spacing-section 0;
 
   &__wrapper {
@@ -171,10 +172,22 @@
     list-style: none;
     cursor: pointer;
 
+    &--linked {
+      position: relative;
+
+      img + img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        filter: none;
+        pointer-events: none;
+      }
+    }
+
     img {
       filter: brightness(0) saturate(100%) invert(72%) sepia(8%) saturate(320%)
         hue-rotate(174deg) brightness(94%) contrast(88%);
-      transition: filter 0.2s ease;
+      transition: filter 0.3s ease;
     }
 
     &:hover img {
@@ -232,6 +245,16 @@
       }
     }
   }
+}
+
+.p-section-top-light-mode {
+  position: absolute;
+  top: 50%;
+  right: 0.72rem;
+  width: 0.48rem;
+  height: 0.48rem;
+  transform: translateY(-50%);
+  margin-top: 0.09rem;
 }
 
 .p-section-top-about {

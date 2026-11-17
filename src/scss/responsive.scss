@@ -129,6 +129,11 @@
     height: auto;
   }
 
+  .p-section-top-light-mode {
+    right: 0.15rem;
+    margin-top: -1.6rem;
+  }
+
   .p-section-top-counter__body {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -587,6 +592,11 @@
 
   .p-section-top-company__wrapper {
     gap: $spacing-lg;
+  }
+
+  .p-section-top-light-mode {
+    position: static;
+    justify-self: end;
   }
 
   .p-section-top-company__title {
